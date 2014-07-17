@@ -7,6 +7,17 @@ var mongoose = require('mongoose'),
 	Skill = mongoose.model('Skill'),
 	_ = require('lodash');
 
+
+// queryAll
+//MATCH (n: XEBIAN ) RETURN n
+
+//findByEmail
+//'MATCH (n: XEBIAN ) WHERE n.email='+ email + ' RETURN n'
+
+//find Skill by name
+//'MATCH (n: SKILL ) WHERE n.name=' + skillName + ' RETURN n'
+
+
 /**
  * Get the error message from error object
  */
