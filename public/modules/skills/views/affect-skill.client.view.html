@@ -1,0 +1,28 @@
+<section data-ng-controller="SkillsController">
+    <div class="container">
+        <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
+            <form ng-submit="affectSkill()" class="form-inline">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="tag" ng-model="newSkill" placeholder="Nouvelle compétence">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="glyphicon glyphicon-plus"></i> Ajoute cette nouvelle compétence:
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div id="tags">
+                <div class="col-md-2">
+                    <span>Tes compétences:</span>
+                </div>
+                <div class="col-md-4">
+                    <span ng-repeat="skill in skills">
+                        <span class="badge">{{skill.name}}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
