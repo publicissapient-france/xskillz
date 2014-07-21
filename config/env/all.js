@@ -8,7 +8,7 @@ module.exports = {
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
-	sessionSecret: 'MEAN',
+	sessionSecret: 'xskillz',
 	sessionCollection: 'sessions',
 	assets: {
 		lib: {
@@ -17,15 +17,18 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
+				'public/lib/jquery/jquery.min.js',
 				'public/lib/angular/angular.js',
-				'public/lib/angular-resource/angular-resource.js', 
-				'public/lib/angular-cookies/angular-cookies.js', 
-				'public/lib/angular-animate/angular-animate.js', 
-				'public/lib/angular-touch/angular-touch.js', 
-				'public/lib/angular-sanitize/angular-sanitize.js', 
+				'public/lib/angular-resource/angular-resource.js',
+				'public/lib/angular-cookies/angular-cookies.js',
+				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-touch/angular-touch.js',
+				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/lodash/dist/lodash.min.js'
 			]
 		},
 		css: [
