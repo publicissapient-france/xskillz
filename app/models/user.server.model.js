@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	crypto = require('crypto');
+	crypto = require('crypto'),
+	xebianNeo4J = require('../models/user.neo4j');
 
 /**
  * A Validation function for local strategy properties
@@ -91,6 +92,13 @@ UserSchema.pre('save', function(next) {
 	if (this.password && this.password.length > 6) {
 		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
+	}
+
+	console.log('save user with email: ' + this.email);
+
+	var xebian = xebianNeo4J.findXebian(this.email);
+	if (!xebian) {
+		xebianNeo4J.createXebian(this);
 	}
 
 	next();
