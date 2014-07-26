@@ -32,8 +32,8 @@ var createNodePromise = function(nodeType, nodeData) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('create node: ' + res.data);
-        deferred.resolve(res.data);
+        console.log('created node: ' + res.body.data[0][0].self);
+        deferred.resolve(res.body.data[0][0].self);
       }
     });
   return deferred.promise;
@@ -42,7 +42,7 @@ var createNodePromise = function(nodeType, nodeData) {
 exports.createXebian = function(user) {
   var xebian = {
     'email': user.email,
-    'firstName': user.lastName,
+    'firstName': user.firstName,
     'lastName': user.lastName,
     'displayName': user.displayName
   };
@@ -54,6 +54,17 @@ exports.createSkill = function(skillName) {
     'name': skillName
   };
   return createNodePromise(SKILL_TYPE, skill);
+};
+
+exports.deleteNode = function(nodeUrl) {
+  var deferred = Q.defer();
+  http
+    .del(nodeUrl)
+    .end(function(res){
+      console.log('deleted node: ' + nodeUrl + ' with status ' + res.statusCode);
+      deferred.resolve(res);
+  });
+  return deferred.promise;
 };
 
 exports.findXebian = function(email) {

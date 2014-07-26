@@ -132,6 +132,35 @@ exports.update = function(req, res) {
 };
 
 /**
+* Update user details
+*/
+exports.delete = function(req, res) {
+	// Init Variables
+	var user = req.user;
+	var message = null;
+
+	// For security measurement we remove the roles from the req.body object
+	delete req.body.roles;
+
+	if (user) {
+		user.remove(function(err) {
+			if (err) {
+				return res.send(400, {
+					message: getErrorMessage(err)
+				});
+			} else {
+				req.logout();
+				res.send(200);
+			}
+		});
+	} else {
+		res.send(400, {
+			message: 'User is not signed in'
+		});
+	}
+};
+
+/**
  * Change Password
  */
 exports.changePassword = function(req, res, next) {
