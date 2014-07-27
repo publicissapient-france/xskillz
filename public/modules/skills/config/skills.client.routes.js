@@ -10,8 +10,8 @@ angular.module('skills').config(['$stateProvider',
 			templateUrl: 'modules/skills/views/list-skills.client.view.html'
 		}).
 		state('affectSkill', {
-			url: '/skills/affect',
-			templateUrl: 'modules/skills/views/affect-skill.client.view.html'
+			url: '/skills/associate',
+			templateUrl: 'modules/skills/views/associate-skill.client.view.html'
 		}).
 		state('createSkill', {
 			url: '/skills/create',

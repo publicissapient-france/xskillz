@@ -1,8 +1,8 @@
 'use strict';
 
 // Skills controller
-angular.module('skills').controller('SkillsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Skills', 
-	function($scope, $stateParams, $location, Authentication, Skills) {
+angular.module('skills').controller('SkillsController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Skills',
+	function($scope, $http, $stateParams, $location, Authentication, Skills) {
 		$scope.authentication = Authentication;
 
 		// Create new Skill
@@ -57,27 +57,22 @@ angular.module('skills').controller('SkillsController', ['$scope', '$stateParams
 
 		// Find existing Skill
 		$scope.findOne = function() {
-			$scope.skill = Skills.get({ 
+			$scope.skill = Skills.get({
 				skillId: $stateParams.skillId
 			});
 		};
 
 		$scope.skills = [];
-        $scope.newSkill = 'test';
+    $scope.newSkill = '';
 
 		// Affect a skill to current user
-    	$scope.affectSkill = function() {
-
-    		console.log('should add ' + $scope.newSkill + ' to ' + Authentication.user._id);
-
-	        /*if (_.indexOf($scope.skills, $scope.newSkill) === -1) {
-
-
-	            $http.put('skill/affect', $scope.newSkill).then(function(response) {
-	                $scope.skills = response.data.skills;
-	                $scope.newSkill = '';
-	            });
-	        }*/
+  	$scope.associateSkill = function() {
+      if (window._.indexOf($scope.skills, $scope.newSkill) === -1) {
+          $http.put('skills/associate', { 'skill': $scope.newSkill }).then(function(response) {
+              $scope.skills = response.data.skills;
+              $scope.newSkill = '';
+          });
+      }
 		};
 	}
 ]);

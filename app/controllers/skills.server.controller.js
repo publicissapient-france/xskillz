@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
 	Skill = mongoose.model('Skill'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	xskillzNeo4J = require('../models/xskillz.neo4j');
 
 
 // queryAll
@@ -136,8 +137,4 @@ exports.hasAuthorization = function(req, res, next) {
 		return res.send(403, 'User is not authorized');
 	}
 	next();
-};
-
-exports.affect = function(req, res) {
-	
 };

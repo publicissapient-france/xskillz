@@ -83,6 +83,7 @@ var UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  skills : [],
   nodeUrl: {
     type: String
   }
@@ -98,14 +99,11 @@ UserSchema.pre('save', function(next) {
     self.password = self.hashPassword(this.password);
   }
 
-  console.log('save user with email: ' + this.email);
-
   xskillzNeo4J.findXebian(self.email)
     .then(function(xebian) {
       if (!xebian) {
         xskillzNeo4J.createXebian(self)
           .then(function(node) {
-            console.log(JSON.stringify(node));
             self.nodeUrl = node;
             next();
           })

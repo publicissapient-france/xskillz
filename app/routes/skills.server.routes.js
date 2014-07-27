@@ -9,9 +9,6 @@ module.exports = function(app) {
 		.get(users.requiresLogin, skills.list)
 		.post(users.requiresLogin, skills.create);
 
-	app.route('/skills/affect')
-		.put(users.requiresLogin, skills.affect);
-
 	app.route('/skills/:skillId')
 		.get(users.requiresLogin, skills.read)
 		.put(users.requiresLogin, skills.hasAuthorization, skills.update)

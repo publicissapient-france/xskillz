@@ -18,8 +18,6 @@ var getCypherQuery = function() {
 };
 
 var createNodePromise = function(nodeType, nodeData) {
-  console.log(nodeType + 'node to be created: ' + nodeData);
-
   var deferred = Q.defer();
   getCypherQuery()
     .send({
@@ -67,15 +65,8 @@ exports.deleteNode = function(nodeUrl) {
   return deferred.promise;
 };
 
-exports.findXebian = function(email) {
-  var query = {
-    'query': 'MATCH (n: ' + XEBIAN_TYPE + ' ) WHERE n.email= { email } RETURN n',
-    'params': {
-      'email': email
-    }
-  };
-  console.log('cypher query: ' + query);
-
+var findPromise = function(query) {
+  console.log('Cypher find query: ' + JSON.stringify(query));
   var deferred = Q.defer();
   getCypherQuery()
     .send(query)
@@ -83,12 +74,56 @@ exports.findXebian = function(email) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('cypher query result: ' + res.data);
-        if (_.isEmpty(res.data)) {
+        console.log('query result: ' + JSON.stringify(res.body.data));
+        if (_.isEmpty(res.body.data)) {
           deferred.resolve(null);
         } else {
-          deferred.resolve(_.first(res.data).data);
+          deferred.resolve(res.body.data);
         }
+      }
+    });
+  return deferred.promise;
+};
+
+exports.findXebian = function(email) {
+  var query = {
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n.email = {email} RETURN n',
+    'params' : {
+      'email': email
+    }
+  };
+  return findPromise(query);
+};
+
+exports.findSkill = function(name) {
+  var query = {
+    'query': 'MATCH (n: '+SKILL_TYPE+' ) WHERE n.name= {name} RETURN n',
+    'params': {
+      'name': name
+    }
+  };
+  return findPromise(query);
+};
+
+exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
+  console.log('userNodeUrl: ' + userNodeUrl);
+  console.log('skillNodeUrl: ' + skillNodeUrl);
+
+  var deferred = Q.defer();
+  http
+    .post(userNodeUrl + '/relationships')
+    .set('Accept', 'application/json; charset=UTF-8')
+    .set('Content-Type', 'application/json')
+    .send({
+      'to' : skillNodeUrl,
+      'type' : 'KNOWS'
+    })
+    .end(function(err, res) {
+      if (err) {
+        deferred.reject(err);
+      } else {
+        console.log('associateSkillToUser result: ' + JSON.stringify(res.body));
+        deferred.resolve(res.body.self);
       }
     });
   return deferred.promise;

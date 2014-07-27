@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	xskillzNeo4J = require('../models/xskillz.neo4j');
 
 /**
  * Get the error message from error object
@@ -151,61 +152,6 @@ exports.delete = function(req, res) {
 			} else {
 				req.logout();
 				res.send(200);
-			}
-		});
-	} else {
-		res.send(400, {
-			message: 'User is not signed in'
-		});
-	}
-};
-
-/**
- * Change Password
- */
-exports.changePassword = function(req, res, next) {
-	// Init Variables
-	var passwordDetails = req.body;
-	var message = null;
-
-	if (req.user) {
-		User.findById(req.user.id, function(err, user) {
-			if (!err && user) {
-				if (user.authenticate(passwordDetails.currentPassword)) {
-					if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
-						user.password = passwordDetails.newPassword;
-
-						user.save(function(err) {
-							if (err) {
-								return res.send(400, {
-									message: getErrorMessage(err)
-								});
-							} else {
-								req.login(user, function(err) {
-									if (err) {
-										res.send(400, err);
-									} else {
-										res.send({
-											message: 'Password changed successfully'
-										});
-									}
-								});
-							}
-						});
-					} else {
-						res.send(400, {
-							message: 'Passwords do not match'
-						});
-					}
-				} else {
-					res.send(400, {
-						message: 'Current password is incorrect'
-					});
-				}
-			} else {
-				res.send(400, {
-					message: 'User is not found'
-				});
 			}
 		});
 	} else {
@@ -402,4 +348,55 @@ exports.removeOAuthProvider = function(req, res, next) {
 			}
 		});
 	}
+};
+
+exports.associate = function(req, res) {
+	var skill = req.body.skill;
+	var user = req.user;
+	user.skills.push(skill);
+
+	var handleError = function(err) {
+		return res.send(400, {
+			message: getErrorMessage(err)
+		});
+	};
+
+	var associateSkillToUser = function(skillNodeUrl) {
+		xskillzNeo4J.associateSkillToUser(user.nodeUrl,skillNodeUrl)
+			.then(function(relationshipUrl) {
+					res.jsonp(user);
+			})
+			.fail(function(err) {
+				handleError(err);
+			});
+	};
+
+	var manageNodeSkill = function() {
+		xskillzNeo4J.findSkill(skill)
+			.then(function(result) {
+				if (!result) {
+					xskillzNeo4J.createSkill(skill)
+						.then(function(skillNodeUrl) {
+							associateSkillToUser(skillNodeUrl);
+						})
+						.fail(function(err) {
+							handleError(err);
+						});
+				} else {
+					var skillNodeUrl = result[0][0].self;
+					associateSkillToUser(skillNodeUrl);
+				}
+			})
+			.fail(function(err) {
+				handleError(err);
+			});
+	};
+
+	user.save(function(err) {
+		if (err) {
+			handleError(err);
+		} else {
+			manageNodeSkill();
+		}
+	});
 };
