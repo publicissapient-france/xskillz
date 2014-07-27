@@ -11,9 +11,8 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 		// Affect a skill to current user
 		$scope.associateSkill = function() {
 			if (window._.indexOf($scope.user.skills, $scope.newSkill) === -1) {
-					$scope.user.skills.push();
 					$http.put('users/associate', { 'skill': $scope.newSkill }).then(function(response) {
-							$scope.user = response.data;
+							_.extend($scope.user, response.data);
 							$scope.newSkill = '';
 					});
 			}
