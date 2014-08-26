@@ -355,12 +355,20 @@ exports.mySkillz = function(req, res){
 
 
 	var skillz = xskillzNeo4J.findXebianSkillz(user.email);
-	console.log(skillz);
 
 	skillz.then(function(result) {
   		res.jsonp(result || []);
   	});
 
+};
+
+exports.findXebiansBySkillz = function(req,res){
+	console.log(req.query.q);
+
+	xskillzNeo4J.findXebiansBySkillz(req.query.q)
+		.then(function(results){
+			res.jsonp(results);	
+		});
 };
 
 exports.associate = function(req, res) {

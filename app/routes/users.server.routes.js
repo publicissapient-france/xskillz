@@ -16,6 +16,9 @@ module.exports = function(app) {
 	app.route('/users/me/skillz')
 		.put(users.requiresLogin, users.associate);
 
+	app.route('/skillz')
+		.get(users.requiresLogin, users.findXebiansBySkillz);
+
 	// Setting up the users api
 	app.route('/auth/signin').post(users.signin);
 	app.route('/auth/signout').get(users.signout);

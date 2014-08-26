@@ -108,6 +108,16 @@ exports.findXebianSkillz = function(email){
 
 };
 
+exports.findXebiansBySkillz = function (skillName){
+  var query = {
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE s.name= {skillName} RETURN n,r, s',
+    'params' : {
+      'skillName': skillName
+    }
+  };
+  return findPromise(query);
+};
+
 exports.findSkill = function(name) {
   var query = {
     'query': 'MATCH (n: '+SKILL_TYPE+' ) WHERE n.name= {name} RETURN n',

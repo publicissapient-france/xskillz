@@ -1,0 +1,23 @@
+<section data-ng-controller="UsersController">
+    <div class="container">
+        <div id="search" class="row" style="padding-bottom:12px; padding-top: 16px;">
+            <form ng-submit="search()" class="form-inline">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="skill" ng-model="query" placeholder="compétence">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        Chercher une compétence <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div id="results" class="row">
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <a class="list-group-item" href="#/user/{{xebian[0].data.email}}" ng-repeat="xebian in results">{{xebian[0].data.displayName}} <em>{{xebian[1].type}}</em> {{xebian[2].data.name}}</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
