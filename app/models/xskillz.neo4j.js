@@ -10,6 +10,8 @@ var url = neo4j_server_url + '/db/data';
 var XEBIAN_TYPE = 'XEBIAN';
 var SKILL_TYPE = 'SKILL';
 
+var KNOWS = 'KNOWS';
+
 var getCypherQuery = function() {
   return http
     .post(url + '/cypher')
@@ -93,6 +95,17 @@ exports.findXebian = function(email) {
     }
   };
   return findPromise(query);
+};
+
+exports.findXebianSkillz = function(email){
+  var query = {
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[:`'+KNOWS+'`]->s WHERE n.email = {email} RETURN s',
+    'params' : {
+      'email': email
+    }
+  };
+  return findPromise(query);
+
 };
 
 exports.findSkill = function(name) {

@@ -8,11 +8,12 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users');
+	app.route('/users/me/skillz').get(users.mySkillz);
 	app.route('/users/me').get(users.me);
 	app.route('/users').delete(users.delete);
 	app.route('/users').put(users.update);
 
-	app.route('/users/associate')
+	app.route('/users/me/skillz')
 		.put(users.requiresLogin, users.associate);
 
 	// Setting up the users api

@@ -350,10 +350,28 @@ exports.removeOAuthProvider = function(req, res, next) {
 	}
 };
 
+exports.mySkillz = function(req, res){
+	var user = req.user;
+
+
+	var skillz = xskillzNeo4J.findXebianSkillz(user.email);
+	console.log(skillz);
+
+	skillz.then(function(result) {
+  		res.jsonp(result || []);
+  	});
+
+};
+
 exports.associate = function(req, res) {
 	var skill = req.body.skill;
 	var user = req.user;
-	user.skills.push(skill);
+	//user.skills.push(skill);
+
+	var findUser = function(){
+		return xskillzNeo4J.findXebian(user.email);
+	};
+
 
 	var handleError = function(err) {
 		return res.send(400, {
@@ -361,8 +379,8 @@ exports.associate = function(req, res) {
 		});
 	};
 
-	var associateSkillToUser = function(skillNodeUrl) {
-		xskillzNeo4J.associateSkillToUser(user.nodeUrl,skillNodeUrl)
+	var associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
+		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl)
 			.then(function(relationshipUrl) {
 					res.jsonp(user);
 			})
@@ -372,31 +390,34 @@ exports.associate = function(req, res) {
 	};
 
 	var manageNodeSkill = function() {
-		xskillzNeo4J.findSkill(skill)
-			.then(function(result) {
-				if (!result) {
-					xskillzNeo4J.createSkill(skill)
-						.then(function(skillNodeUrl) {
-							associateSkillToUser(skillNodeUrl);
+		findUser().then(function(userNode){
+			if(userNode){
+				var userNodeUrl = userNode[0][0].self;
+				xskillzNeo4J.findSkill(skill).then(function(result) {
+
+					if (!result) {
+
+						xskillzNeo4J.createSkill(skill).then(function(skillNodeUrl) {
+							associateSkillToUser(userNodeUrl, skillNodeUrl);
 						})
 						.fail(function(err) {
 							handleError(err);
 						});
-				} else {
-					var skillNodeUrl = result[0][0].self;
-					associateSkillToUser(skillNodeUrl);
-				}
-			})
+					} else {
+
+						var skillNodeUrl = result[0][0].self;
+						associateSkillToUser(userNodeUrl, skillNodeUrl);
+					}
+				})
 			.fail(function(err) {
 				handleError(err);
 			});
+			}
+		}).fail(function(err){
+			handleError(err);
+		});
 	};
 
-	user.save(function(err) {
-		if (err) {
-			handleError(err);
-		} else {
-			manageNodeSkill();
-		}
-	});
+	manageNodeSkill();
+
 };
