@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/xskillz-dev',
+	db: process.env.MONGOHQ_URL || 'mongodb://localhost/xskillz-dev',
 	app: {
 		title: 'xskillz - Development Environment'
 	},

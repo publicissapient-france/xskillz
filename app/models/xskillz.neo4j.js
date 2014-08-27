@@ -4,7 +4,7 @@ var http = require('superagent'),
   _ = require('lodash'),
   Q = require('q');
 
-var neo4j_server_url = process.env.NEO4J_URL || 'http://localhost:7474';
+var neo4j_server_url = process.env.GRAPHENEDB_URL || 'http://localhost:7474';
 var url = neo4j_server_url + '/db/data';
 
 var XEBIAN_TYPE = 'XEBIAN';
