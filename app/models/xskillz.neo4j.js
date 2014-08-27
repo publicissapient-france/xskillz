@@ -12,6 +12,8 @@ var SKILL_TYPE = 'SKILL';
 
 var KNOWS = 'KNOWS';
 
+var credentialsNEO4J = url.match(/^https?:\/\/(.*)@/)[1] || null;
+
 var getCypherQuery = function() {
   return http
     .post(url + '/cypher')
@@ -132,9 +134,13 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
   console.log('userNodeUrl: ' + userNodeUrl);
   console.log('skillNodeUrl: ' + skillNodeUrl);
 
+  var securedURL = userNodeUrl.replace(/:\/\//g,'://' + credentialsNEO4J + '@');
+
+  console.log(securedURL);
+
   var deferred = Q.defer();
   http
-    .post(userNodeUrl + '/relationships')
+    .post(securedURL + '/relationships')
     .set('Accept', 'application/json; charset=UTF-8')
     .set('Content-Type', 'application/json')
     .send({
@@ -145,7 +151,7 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('associateSkillToUser result: ' + JSON.stringify(res.body));
+        console.log('associateSkillToUser', res.statusCode, JSON.stringify(res.body) );
         deferred.resolve(res.body.self);
       }
     });
