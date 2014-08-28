@@ -79,7 +79,7 @@ exports.deleteElement = function(elementURL) {
   http
     .del(securedURL)
     .end(function(res){
-      console.log('deleted : ' + elementURL + ' with status ' + res.statusCode);
+      console.log('deleted : ' + securedURL + ' with status ' + res.statusCode);
       deferred.resolve(res);
   });
   return deferred.promise;
@@ -94,7 +94,7 @@ var findPromise = function(query) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('query result: ' + JSON.stringify(res.body.data));
+        console.log('query result count: ' + JSON.stringify(res.body.data.length));
         if (_.isEmpty(res.body.data)) {
           deferred.resolve(null);
         } else {
