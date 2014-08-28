@@ -7,12 +7,34 @@ var http = require('superagent'),
 var neo4j_server_url = process.env.GRAPHENEDB_URL || 'http://localhost:7474';
 var url = neo4j_server_url + '/db/data';
 
+console.log('NEO4J: ',neo4j_server_url);
+
 var XEBIAN_TYPE = 'XEBIAN';
 var SKILL_TYPE = 'SKILL';
 
 var KNOWS = 'KNOWS';
 
-var credentialsNEO4J = url.match(/^https?:\/\/(.*)@/)[1] || null;
+var credentialsNEO4J;
+
+var credentialsRegexp = /^https?:\/\/(.*)@/;
+
+var isSecuredDatabase = function(){
+  return credentialsRegexp.test(url);
+};
+
+if(isSecuredDatabase()){
+  credentialsNEO4J = url.match()[1];
+}else{
+  credentialsNEO4J = '';
+}
+
+var makeURLSecured = function(url){
+  if(isSecuredDatabase()){
+    return url.replace(/:\/\//g,'://' + credentialsNEO4J + '@');
+  }else{
+    return url;
+  }
+};
 
 var getCypherQuery = function() {
   return http
@@ -128,7 +150,7 @@ exports.findSkill = function(name) {
 };
 
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
-  var securedURL = userNodeUrl.replace(/:\/\//g,'://' + credentialsNEO4J + '@');
+  var securedURL = makeURLSecured(userNodeUrl);
 
   var deferred = Q.defer();
   http
