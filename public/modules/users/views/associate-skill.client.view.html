@@ -18,7 +18,7 @@
                     <span>Tes compétences:</span>
                 </div>
                 <div class="col-md-4">
-                    <span ng-repeat="skill in skillz">
+                    <span ng-repeat="skill in skillz track by $index">
                         <span class="badge">{{skill}}</span>
                     </span>
                 </div>
