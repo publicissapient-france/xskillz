@@ -19,7 +19,10 @@
                 </div>
                 <div class="col-md-4">
                     <span ng-repeat="skill in skillz track by $index">
-                        <span class="badge">{{skill}}</span>
+                        <span class='badge'>
+                            <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill[1].self)"/>
+                            <span>{{skill[0].data.name}}</span>
+                        </span>
                     </span>
                 </div>
             </div>

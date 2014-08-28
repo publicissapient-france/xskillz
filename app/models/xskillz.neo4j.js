@@ -14,25 +14,17 @@ var SKILL_TYPE = 'SKILL';
 
 var KNOWS = 'KNOWS';
 
-var credentialsNEO4J;
-
-var credentialsRegexp = /^https?:\/\/(.*)@/;
+var extractCredentials = /^https?:\/\/(.*)@/;
 
 var isSecuredDatabase = function(){
-  return credentialsRegexp.test(url);
+  return extractCredentials.test(neo4j_server_url);
 };
 
-if(isSecuredDatabase()){
-  credentialsNEO4J = url.match()[1];
-}else{
-  credentialsNEO4J = '';
-}
-
-var makeURLSecured = function(url){
+var makeURLSecured = function(unsecurred){
   if(isSecuredDatabase()){
-    return url.replace(/:\/\//g,'://' + credentialsNEO4J + '@');
+    return unsecurred.replace(/:\/\//g,'://' + neo4j_server_url.match(extractCredentials)[1] + '@');
   }else{
-    return url;
+    return unsecurred;
   }
 };
 
@@ -80,12 +72,14 @@ exports.createSkill = function(skillName) {
   return createNodePromise(SKILL_TYPE, skill);
 };
 
-exports.deleteNode = function(nodeUrl) {
+exports.deleteElement = function(elementURL) {
+  var securedURL = makeURLSecured(elementURL);
+
   var deferred = Q.defer();
   http
-    .del(nodeUrl)
+    .del(securedURL)
     .end(function(res){
-      console.log('deleted node: ' + nodeUrl + ' with status ' + res.statusCode);
+      console.log('deleted : ' + elementURL + ' with status ' + res.statusCode);
       deferred.resolve(res);
   });
   return deferred.promise;
@@ -123,7 +117,7 @@ exports.findXebian = function(email) {
 
 exports.findXebianSkillz = function(email){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[:`'+KNOWS+'`]->s WHERE n.email = {email} RETURN s',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE n.email = {email} RETURN s,r',
     'params' : {
       'email': email
     }

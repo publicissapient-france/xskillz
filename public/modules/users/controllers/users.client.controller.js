@@ -12,13 +12,23 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 		$scope.results = [];
 
 		$http.get('/users/me/skillz').then(function(response){
-			$scope.skillz = _.map(response.data,function(node){
-				return node[0].data.name;	
+			$scope.skillz = _.map(response.data, function(node){
+				return node;	
 			});
 		});
 
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
+
+		$scope.removeRelation = function(relationId){
+			console.log('remove relation ', relationId);
+
+			$http.post('users/me/skillz/disassociate', {'relationship': relationId} ).then(function(response){
+				$scope.skillz = _.map(response.data, function(node){
+					return node;	
+				});
+			});
+		};
 
 		// List all xebians corresponding to some skillz
 		$scope.search = function(){
@@ -32,9 +42,10 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 		$scope.associateSkill = function() {
 			if (_.indexOf($scope.skillz, $scope.newSkill) === -1 ) {
 					$http.put('users/me/skillz', { 'skill': $scope.newSkill }).then(function(response) {
-							$scope.skillz.push($scope.newSkill);
-							$scope.newSkill = '';
-					});
+						$scope.skillz = _.map(response.data, function(node){
+							return node;	
+						});
+				});
 			}
 		};
 

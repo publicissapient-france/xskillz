@@ -15,6 +15,9 @@ module.exports = function(app) {
 
 	app.route('/users/me/skillz')
 		.put(users.requiresLogin, users.associate);
+		
+	app.route('/users/me/skillz/disassociate')
+		.post(users.requiresLogin, users.disassociate);
 
 	app.route('/skillz')
 		.get(users.requiresLogin, users.findXebiansBySkillz);

@@ -353,7 +353,6 @@ exports.removeOAuthProvider = function(req, res, next) {
 exports.mySkillz = function(req, res){
 	var user = req.user;
 
-
 	var skillz = xskillzNeo4J.findXebianSkillz(user.email);
 
 	skillz.then(function(result) {
@@ -363,18 +362,22 @@ exports.mySkillz = function(req, res){
 };
 
 exports.findXebiansBySkillz = function(req,res){
-	console.log(req.query.q);
-
 	xskillzNeo4J.findXebiansBySkillz(req.query.q)
 		.then(function(results){
 			res.jsonp(results);	
 		});
 };
 
+exports.disassociate = function(req, res){
+	xskillzNeo4J.deleteElement(req.body.relationship)
+		.then(function(result){
+			res.redirect(303, '/users/me/skillz');
+		});
+};
+
 exports.associate = function(req, res) {
 	var skill = req.body.skill;
 	var user = req.user;
-	//user.skills.push(skill);
 
 	var findUser = function(){
 		return xskillzNeo4J.findXebian(user.email);
@@ -390,7 +393,9 @@ exports.associate = function(req, res) {
 	var associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
 		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl)
 			.then(function(relationshipUrl) {
-					res.jsonp(user);
+				console.log('Created relationship', relationshipUrl);
+				
+				res.redirect(303, '/users/me/skillz');
 			})
 			.fail(function(err) {
 				handleError(err);
@@ -401,6 +406,7 @@ exports.associate = function(req, res) {
 		findUser().then(function(userNode){
 			if(userNode){
 				var userNodeUrl = userNode[0][0].self;
+				
 				xskillzNeo4J.findSkill(skill).then(function(result) {
 
 					if (!result) {
@@ -412,7 +418,6 @@ exports.associate = function(req, res) {
 							handleError(err);
 						});
 					} else {
-
 						var skillNodeUrl = result[0][0].self;
 						associateSkillToUser(userNodeUrl, skillNodeUrl);
 					}
