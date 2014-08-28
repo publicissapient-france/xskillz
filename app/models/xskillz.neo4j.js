@@ -128,12 +128,7 @@ exports.findSkill = function(name) {
 };
 
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
-  console.log('userNodeUrl: ' + userNodeUrl);
-  console.log('skillNodeUrl: ' + skillNodeUrl);
-
   var securedURL = userNodeUrl.replace(/:\/\//g,'://' + credentialsNEO4J + '@');
-
-  console.log(securedURL);
 
   var deferred = Q.defer();
   http
@@ -148,7 +143,7 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('associateSkillToUser', res.statusCode, JSON.stringify(res.body) );
+        console.log('associateSkillToUser', res.statusCode );
         deferred.resolve(res.body.self);
       }
     });
