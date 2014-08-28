@@ -134,7 +134,10 @@ exports.findXebianSkillz = function(email){
 
 exports.findXebiansBySkillz = function (skillName){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE s.name=~ \'(?i).*'+skillName+'.*\' RETURN n,r, s'
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE s.name=~ {q} RETURN n,r, s',
+    'params': {
+      'q': '(?i).*' + skillName + '.*'
+    }
   };
   return findPromise(query);
 };
