@@ -14,3 +14,23 @@
 	right: 10px;
 	position: absolute;
 }
+
+.user-picture{
+	background-size: 32px 32px;
+	border-radius: 50%;
+	display: inline-table;
+	margin-top: -1px;
+	margin-right: 10px;
+	height: 32px;
+	width: 32px;
+}
+
+.skill-badge{
+	background-color: rgba(160, 195, 255, 0.6);;
+	color: rgba(0, 0, 0, 0.67);
+}
+
+.big-btn{
+	border: 1px solid rgba(0,0,0,.15);
+	background-color: #F0F0F0;
+}

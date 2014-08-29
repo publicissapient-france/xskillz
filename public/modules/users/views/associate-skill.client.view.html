@@ -1,12 +1,13 @@
 <section data-ng-controller="UsersController">
     <div class="container">
+        <h3><span style='background-image: url({{user.providerData.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
         <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
             <form ng-submit="associateSkill()" class="form-inline">
                 <div class="col-md-2">
                     <input type="text" class="form-control" id="tag" ng-model="newSkill" placeholder="Nouvelle compétence">
                 </div>
                 <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <button type="submit" class="btn big-btn" style="width: 100%;">
                         <i class="glyphicon glyphicon-plus"></i> Ajoute cette nouvelle compétence
                     </button>
                 </div>
@@ -19,7 +20,7 @@
                 </div>
                 <div class="col-md-4">
                     <span ng-repeat="skill in skillz track by $index">
-                        <span class='badge'>
+                        <span class='badge skill-badge'>
                             <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill[1].self)"/>
                             <span>{{skill[0].data.name}}</span>
                         </span>
