@@ -28,6 +28,7 @@
 .skill-badge{
 	background-color: rgba(160, 195, 255, 0.6);;
 	color: rgba(0, 0, 0, 0.67);
+	margin-bottom: 5px;
 }
 
 .big-btn{
