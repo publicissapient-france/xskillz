@@ -48,7 +48,7 @@ var createNodePromise = function(nodeType, nodeData) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('created node: ' + res.body.data[0][0].self);
+        console.log('created node', res.statusCode,res.body.data[0][0].self || '');
         deferred.resolve(res.body.data[0][0].self);
       }
     });
@@ -56,13 +56,7 @@ var createNodePromise = function(nodeType, nodeData) {
 };
 
 exports.createXebian = function(user) {
-  var xebian = {
-    'email': user.email,
-    'firstName': user.firstName,
-    'lastName': user.lastName,
-    'displayName': user.displayName
-  };
-  return createNodePromise(XEBIAN_TYPE, xebian);
+  return createNodePromise(XEBIAN_TYPE, user);
 };
 
 exports.createSkill = function(skillName) {
@@ -110,6 +104,16 @@ exports.findXebian = function(email) {
     'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n.email = {email} RETURN n',
     'params' : {
       'email': email
+    }
+  };
+  return findPromise(query);
+};
+
+exports.findXebianById = function(id) {
+  var query = {
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n._id = {_id} RETURN n',
+    'params' : {
+      '_id': id
     }
   };
   return findPromise(query);
