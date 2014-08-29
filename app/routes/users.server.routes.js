@@ -22,10 +22,6 @@ module.exports = function(app) {
 	app.route('/skillz')
 		.get(users.requiresLogin, users.findXebiansBySkillz);
 
-	// Setting up the users api
-	app.route('/auth/signin').post(users.signin);
-	app.route('/auth/signout').get(users.signout);
-
 	// Setting the google oauth routes
 	app.route('/auth/google').get(passport.authenticate('google', {
 		scope: [
@@ -35,9 +31,7 @@ module.exports = function(app) {
 	}));
 	app.route('/auth/google/callback').get(users.oauthCallback('google'));
 
-	// Setting the linkedin oauth routes
-	app.route('/auth/linkedin').get(passport.authenticate('linkedin'));
-	app.route('/auth/linkedin/callback').get(users.oauthCallback('linkedin'));
+	app.route('/auth/signout').get(users.signout);
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
