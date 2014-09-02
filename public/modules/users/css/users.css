@@ -26,12 +26,15 @@
 }
 
 .skill-badge{
-	background-color: rgba(160, 195, 255, 0.6);;
+	background-color: #A0C3FF;
+	background-color: rgba(160, 195, 255, 0.6);
+	color: black;
 	color: rgba(0, 0, 0, 0.67);
 	margin-bottom: 5px;
 }
 
 .big-btn{
+	border: 1px solid black;
 	border: 1px solid rgba(0,0,0,.15);
 	background-color: #F0F0F0;
 }

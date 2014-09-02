@@ -2,9 +2,15 @@
 
 // Init the application configuration module for AngularJS application
 var ApplicationConfiguration = (function() {
+
+	var lodash = angular.module('lodash', []);
+	lodash.factory('_', function() {
+	  return window._; // assumes underscore has already been loaded on the page
+	});
+
 	// Init module configuration options
 	var applicationModuleName = 'xskillz';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils'];
+	var applicationModuleVendorDependencies = ['lodash', 'ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName) {

@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('UsersController', ['_', '$scope', '$http', '$location', 'Users', 'Authentication',
+	function(_, $scope, $http, $location, Users, Authentication) {
 
 		$scope.user = Authentication.user;
-		
+
 		$scope.newSkill = '';
 
 		$scope.skillz = [];
@@ -13,7 +13,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 
 		$http.get('/users/me/skillz').then(function(response){
 			$scope.skillz = _.map(response.data, function(node){
-				return node;	
+				return node;
 			});
 		});
 
@@ -25,7 +25,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 
 			$http.post('users/me/skillz/disassociate', {'relationship': relationId} ).then(function(response){
 				$scope.skillz = _.map(response.data, function(node){
-					return node;	
+					return node;
 				});
 			});
 		};
@@ -43,7 +43,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 			if (_.indexOf($scope.skillz, $scope.newSkill) === -1 ) {
 					$http.put('users/me/skillz', { 'skill': $scope.newSkill }).then(function(response) {
 						$scope.skillz = _.map(response.data, function(node){
-							return node;	
+							return node;
 						});
 				});
 			}
