@@ -5,7 +5,7 @@
 
 }
 
-.results .result {
+.results a {
 		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -16,20 +16,17 @@
 		color: black;
 		max-width: 300px;
 }
-.results .result:hover {
+.results a:hover {
 		color: grey;
 }
 
-.results .result div {
+.results a div {
 	display: inline-block;
 	vertical-align: middle;
 	margin-left: 10px;
 }
 
-.results .result a.skill {
-	color: grey;
-	text-decoration: none;
-	cursor: pointer;
+.results a div.skill {
 	display: block;
 	margin-left: 10px;
 	margin-bottom: 10px;
@@ -37,11 +34,11 @@
 	text-transform: uppercase;
 }
 
-.results .result p {
+.results a p {
 	margin: 0;
 	display: block;
 }
-.results .result img {
+.results a img {
 	height: 50px;
 	width: 50px;
 	display: inline-block;
