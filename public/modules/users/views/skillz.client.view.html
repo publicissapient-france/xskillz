@@ -14,6 +14,7 @@
         </div>
         <div id="results" class="results">
               <a href="#/user/{{xebian[0].data.email}}" ng-repeat="xebian in results">
+                <div class= "skill"> {{xebian[2].data.name}} </div>
                 <img src={{xebian[0].data.picture}}> </img>
                 <div class="info">
                   <p>{{xebian[0].data.firstName}}</p>
@@ -22,7 +23,8 @@
                 <div class="level">
 	                <span>&#9733;<span>&#9733;<span>&#9734;</span></span></span>
                 </div>
-                <div class="smiley">
+                <div class="like">
+                  <span>&hearts;</span>
                 </div>
               </a>
         </div>
