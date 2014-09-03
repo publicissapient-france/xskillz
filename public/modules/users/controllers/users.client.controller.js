@@ -7,13 +7,27 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$scope.newSkill = '';
 
+		$scope.level = 0;
+
+		$scope.like = true;
+		$scope.isLiked = function() {
+			if ($scope.like) {
+				return 'liked';
+			} else {
+				return '';
+			}
+		};
+		$scope.toggleLike = function() {
+			$scope.like = !$scope.like;
+		};
+
 		$scope.skillz = [];
 
 		$scope.results = [];
 
 		$http.get('/users/me/skillz').then(function(response){
 			$scope.skillz = _.map(response.data, function(node){
-				return node;
+				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like };
 			});
 		});
 
@@ -21,8 +35,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		if (!$scope.user) $location.path('/');
 
 		$scope.removeRelation = function(relationId){
-			console.log('remove relation ', relationId);
-
 			$http.post('users/me/skillz/disassociate', {'relationship': relationId} ).then(function(response){
 				$scope.skillz = _.map(response.data, function(node){
 					return node;
@@ -40,10 +52,10 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		// Affect a skill to current user
 		$scope.associateSkill = function() {
-			if (_.indexOf($scope.skillz, $scope.newSkill) === -1 ) {
-					$http.put('users/me/skillz', { 'skill': $scope.newSkill }).then(function(response) {
+			if ( ! (_.find($scope.skillz, function(skill){return skill.name === $scope.newSkill;} ))) {
+					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : $scope.level , 'like' : $scope.like }}).then(function(response) {
 						$scope.skillz = _.map(response.data, function(node){
-							return node;
+							return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like };
 						});
 				});
 			}

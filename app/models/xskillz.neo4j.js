@@ -8,17 +8,14 @@ var http = require('superagent'),
 var XEBIAN_TYPE = 'XEBIAN';
 var SKILL_TYPE = 'SKILL';
 
-var KNOWS = 'KNOWS';
+var SKILLZ_RELATION = 'HAS';
 
 
 exports.createXebian = function(user) {
   return NEO4J.createNodePromise(XEBIAN_TYPE, user);
 };
 
-exports.createSkill = function(skillName) {
-  var skill = {
-    'name': skillName
-  };
+exports.createSkill = function(skill) {
   return NEO4J.createNodePromise(SKILL_TYPE, skill);
 };
 
@@ -67,7 +64,7 @@ exports.findXebianByEmail = function(email) {
 
 exports.findXebianSkillz = function(email){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE n.email = {email} RETURN s,r',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE n.email = {email} RETURN s,r',
     'params' : {
       'email': email
     }
@@ -78,7 +75,7 @@ exports.findXebianSkillz = function(email){
 
 exports.findXebiansBySkillz = function (skillName){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE s.name=~ {q} RETURN n,r, s',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE s.name=~ {q} RETURN n,r, s',
     'params': {
       'q': '(?i).*' + skillName + '.*'
     }
@@ -86,17 +83,17 @@ exports.findXebiansBySkillz = function (skillName){
   return NEO4J.findPromise(query);
 };
 
-exports.findSkill = function(name) {
+exports.findSkill = function(skillName) {
   var query = {
     'query': 'MATCH (n: '+SKILL_TYPE+' ) WHERE n.name= {name} RETURN n',
     'params': {
-      'name': name
+      'name': skillName
     }
   };
   return NEO4J.findPromise(query);
 };
 
-exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
+exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_properties) {
   var securedURL = NEO4J.makeURLSecured(userNodeUrl);
 
   var deferred = Q.defer();
@@ -106,7 +103,8 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
     .set('Content-Type', 'application/json')
     .send({
       'to' : skillNodeUrl,
-      'type' : 'KNOWS'
+      'type' : SKILLZ_RELATION,
+      'data' : relation_properties
     })
     .end(function(err, res) {
       if (err) {

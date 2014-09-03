@@ -4,6 +4,15 @@
 	}
 }
 
+.create-skill-form div {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.liked {
+	color: #6C1D5F;
+}
+
 .remove-account-container {
 	display: inline-block;
 	position: relative;

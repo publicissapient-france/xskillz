@@ -28,7 +28,7 @@ exports.update = function(req, res) {
 		user.save(function(err) {
 			if (err) {
 				return res.send(400, {
-					message: getErrorMessage(err)
+					message: err
 				});
 			} else {
 				req.login(user, function(err) {
@@ -62,7 +62,7 @@ exports.delete = function(req, res) {
 		user.remove(function(err) {
 			if (err) {
 				return res.send(400, {
-					message: getErrorMessage(err)
+					message: err
 				});
 			} else {
 				req.logout();
@@ -138,18 +138,18 @@ exports.requiresLogin = function(req, res, next) {
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 
 	if (!req.user) {
-		User.findOne(providerUserProfile.providerData.id).then(function(user) {
-				if (!user) {
-					console.log('Welcome to new user',providerUserProfile.displayName);
-					// And save the user		
-					User.importUserWithGoogleAuthData(providerUserProfile,function(err) {
-						return done(null, providerUserProfile);
-					});
-					
-				} else {
-					return done(null, user);
-				}
 
+		User.findOne(providerUserProfile.providerData.id).then(function(user){
+			if (!user) {
+				console.log('Welcome to new user',providerUserProfile.displayName);
+				// And save the user		
+				User.importUserWithGoogleAuthData(providerUserProfile,function(err) {
+					return done(null, providerUserProfile);
+				});
+				
+			} else {
+				return done(null, user);
+			}
 		}).fail(function(err){
 			done(err);
 		});
@@ -177,7 +177,7 @@ exports.removeOAuthProvider = function(req, res, next) {
 		user.save(function(err) {
 			if (err) {
 				return res.send(400, {
-					message: getErrorMessage(err)
+					message: err
 				});
 			} else {
 				req.login(user, function(err) {
@@ -219,6 +219,7 @@ exports.disassociate = function(req, res){
 
 exports.associate = function(req, res) {
 	var skill = req.body.skill;
+	var relation_properties = req.body.relation_properties;
 	var user = req.user;
 
 	var findUser = function(){
@@ -228,12 +229,12 @@ exports.associate = function(req, res) {
 
 	var handleError = function(err) {
 		return res.send(400, {
-			message: getErrorMessage(err)
+			message: err
 		});
 	};
 
 	var associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
-		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl)
+		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl, relation_properties)
 			.then(function(relationshipUrl) {
 				console.log('Created relationship', relationshipUrl);
 				
@@ -249,8 +250,7 @@ exports.associate = function(req, res) {
 			if(userNode){
 				var userNodeUrl = userNode[0][0].self;
 				
-				xskillzNeo4J.findSkill(skill).then(function(result) {
-
+				xskillzNeo4J.findSkill(skill.name).then(function(result) {
 					if (!result) {
 
 						xskillzNeo4J.createSkill(skill).then(function(skillNodeUrl) {
