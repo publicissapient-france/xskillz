@@ -7,7 +7,10 @@ var passport = require('passport');
 
 module.exports = function(app) {
 	// User Routes
-	var users = require('../../app/controllers/users');
+	var users = require('../../app/controllers/users'),
+		user = require('../../app/controllers/user');
+
+
 	app.route('/users/me/skillz').get(users.mySkillz);
 	app.route('/users/me').get(users.me);
 	app.route('/users').delete(users.delete);
@@ -23,6 +26,8 @@ module.exports = function(app) {
 
 	app.route('/skillz')
 		.get(users.requiresLogin, users.findXebiansBySkillz);
+
+	app.route('/user/:email').get(user.profile);
 
 	// Setting the google oauth routes
 	app.route('/auth/google').get(passport.authenticate('google', {

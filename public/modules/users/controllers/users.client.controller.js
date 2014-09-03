@@ -12,9 +12,9 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			$scope.level = value;
 	  };
 
-		$scope.like = true;
-		$scope.isLiked = function() {
-			if ($scope.like) {
+		$scope.like = false;
+		$scope.isLiked = function(like) {
+			if (like) {
 				return 'glyphicon-heart';
 			} else {
 				return 'glyphicon-heart-empty';
@@ -30,7 +30,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$http.get('/users/me/skillz').then(function(response){
 			$scope.skillz = _.map(response.data, function(node){
-				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like };
+				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like, relationId : node[1].self };
 			});
 		});
 
@@ -40,7 +40,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		$scope.removeRelation = function(relationId){
 			$http.post('users/me/skillz/disassociate', {'relationship': relationId} ).then(function(response){
 				$scope.skillz = _.map(response.data, function(node){
-					return node;
+					return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like, relationId : node[1].self };
 				});
 			});
 		};
@@ -58,17 +58,23 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			if ( ! (_.find($scope.skillz, function(skill){return skill.name === $scope.newSkill;} ))) {
 					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : $scope.level , 'like' : $scope.like }}).then(function(response) {
 						$scope.skillz = _.map(response.data, function(node){
-							return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like };
+							return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like, relationId : node[1].self };
 						});
 				});
 			}
 		};
+
 
 		$scope.searchXebians = function(){
 			$http.get('/users', {'params': {'q':$scope.query}})
 				.then(function(response){
 					$scope.results = response.data;
 			});
+		};
+
+		// Get user profile
+		$scope.getProfile = function() {
+			console.log('get profile');
 		};
 
 	}

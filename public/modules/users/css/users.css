@@ -2,8 +2,8 @@
 	.nav-users {
 		position: fixed;
 	}
-}
 
+}
 
 .results a {
 		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -14,6 +14,7 @@
 		text-decoration: none;
 		margin-bottom: 10px;
 		color: black;
+		max-width: 300px;
 }
 .results a:hover {
 		color: grey;
@@ -27,8 +28,10 @@
 
 .results a div.skill {
 	display: block;
-	vertical-align: middle;
 	margin-left: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .results a p {
@@ -39,6 +42,10 @@
 	height: 50px;
 	width: 50px;
 	display: inline-block;
+}
+
+.results .remove {
+	float: right;
 }
 
 .level {

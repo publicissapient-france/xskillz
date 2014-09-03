@@ -10,7 +10,7 @@
                     <rating class="turquoise bigger" ng-model="level" max="3" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
                 </div>
                 <div>
-                    <span class="turquoise glyphicon" ng-click="toggleLike()" ng-class="isLiked()"></span>
+                    <span class="turquoise glyphicon" ng-click="toggleLike()" ng-class="isLiked(like)"></span>
                 </div>
                 <div>
                     <button type="submit" class="btn big-btn" style="width: 100%;">
@@ -19,20 +19,23 @@
                 </div>
             </form>
         </div>
-        <div class="row">
-            <div id="tags">
-                <div class="col-md-2">
-                    <span>Tes compétences :</span>
+        <div id="results" class="results">
+              <a href="#/user/{{xebian[0].data.email}}" ng-repeat="skill in skillz track by $index">
+                <div class="info">
+                  <p>{{skill.name}}</p>
                 </div>
-                <div class="col-md-4">
-                    <span ng-repeat="skill in skillz track by $index">
-                        <span class='badge skill-badge'>
-                            <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill[1].self)"/>
-                            <span>{{skill.name}}</span>
-                        </span>
-                    </span>
+
+                <div class="level" ng-if="skill.level != undefined">
+                  <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>
                 </div>
-            </div>
+
+                <div class="like" ng-if="skill.like == true">
+                  <span class="turquoise glyphicon glyphicon-heart"></span>
+                </div>
+                <div class="remove">
+                  <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"/>
+                </div>
+              </a>
         </div>
     </div>
 </section>

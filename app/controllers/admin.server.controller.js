@@ -23,8 +23,8 @@ exports.auth = function(req, res) {
 	var url = oauth2Client.generateAuthUrl({
 		access_type: 'offline', // will return a refresh token
 		scope: [
-			"https://www.googleapis.com/auth/admin.directory.user",
-			"https://www.googleapis.com/auth/admin.directory.user.readonly"
+			'https://www.googleapis.com/auth/admin.directory.user',
+			'https://www.googleapis.com/auth/admin.directory.user.readonly'
 		]
 	});
 
@@ -34,14 +34,14 @@ exports.auth = function(req, res) {
 exports.authCallback = function(req, res) {
 	oauth2Client.getToken(req.query.code, function(err, tokens) {
 		oauth2Client.setCredentials(tokens);
-		res.render('admin')
+		res.render('admin');
 	});
 };
 
 exports.importContacts = function(req, res) {
 	directory.users.list({ domain: 'xebia.fr', maxResults: 200, auth: oauth2Client }, function(err, data) {
 
-		console.log("Users:", JSON.stringify(data, undefined, 2));
+		console.log('Users:', JSON.stringify(data, undefined, 2));
 
 		var neo4jUsers = _(data.users).map(function(user) {
 			return {
@@ -57,7 +57,7 @@ exports.importContacts = function(req, res) {
 			User.importUserWithDomainDirectoryData(user, cb);
 		};
 
-		console.log("Users:", JSON.stringify(neo4jUsers, undefined, 2));
+		console.log('Users:', JSON.stringify(neo4jUsers, undefined, 2));
 
 		async.each(neo4jUsers, saveUser, function(err, data) {
 			console.log(err || data);
