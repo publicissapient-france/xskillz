@@ -29,6 +29,8 @@ module.exports = function(app) {
 
 	app.route('/user/:email').get(user.profile);
 
+	app.route('/user/skillz/:email').get(user.skillz);
+
 	// Setting the google oauth routes
 	app.route('/auth/google').get(passport.authenticate('google', {
 		scope: [

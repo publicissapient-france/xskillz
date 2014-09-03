@@ -1,5 +1,8 @@
 'use strict';
 
+
+console.log('loading users');
+
 angular.module('users').controller('UsersController', ['_', '$scope', '$http', '$location', 'Users', 'Authentication',
 	function(_, $scope, $http, $location, Users, Authentication) {
 

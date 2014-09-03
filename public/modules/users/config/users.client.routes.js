@@ -25,6 +25,15 @@ angular
 		state('search',{
 			url: '/users/search',			
 			templateUrl: 'modules/users/views/users.client.view.html'
+		}).
+		state('profile',{
+			url: '/user/:mail',
+			// controller: function($scope){
+			    
+			//     $scope.title = 'My Contacts';
+			//   },		
+			//controller: 'ProfileController',
+			templateUrl: 'modules/users/views/profile.client.view.html'
 		});
 
 	}]);
