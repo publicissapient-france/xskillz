@@ -4,13 +4,65 @@
 	}
 }
 
-.create-skill-form div {
-	display: inline-block;
-	margin: 0 10px;
+
+.results a {
+		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		padding: 10px;
+		display: block;
+		text-decoration: none;
+		margin-bottom: 10px;
+		color: black;
+}
+.results a:hover {
+		color: grey;
 }
 
-.liked {
-	color: #6C1D5F;
+.results a div {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.results a div.skill {
+	display: block;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.results a p {
+	margin: 0;
+	display: block;
+}
+.results a img {
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+}
+
+.level {
+	display: inline-block;
+}
+
+.level div {
+	width: 100px;
+	margin: 25px auto;
+}
+
+.like {
+	display: inline-block;
+}
+
+.like div {
+	width: 100px;
+	margin: 25px auto;
+}
+
+.create-skill-form div {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px;
 }
 
 .remove-account-container {

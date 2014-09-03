@@ -61,7 +61,6 @@ exports.findPromise = function(query) {
       if (err) {
         deferred.reject(err);
       } else {
-        console.log('query result count: ' + JSON.stringify(res.body.data.length));
         if (_.isEmpty(res.body.data)) {
           deferred.resolve(null);
         } else {

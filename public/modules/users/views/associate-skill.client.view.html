@@ -7,14 +7,14 @@
                     <input type="text" class="form-control expanded" id="name" ng-model="newSkill" placeholder="Nouvelle compétence">
                 </div>
                 <div>
-                    <rating ng-model="rate" max="3" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                    <rating class="turquoise bigger" ng-model="level" max="3" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
                 </div>
                 <div>
-                    <span class="glyphicon glyphicon-thumbs-up" ng-click="toggleLike()" ng-class="isLiked()"></span>
+                    <span class="turquoise glyphicon" ng-click="toggleLike()" ng-class="isLiked()"></span>
                 </div>
                 <div>
                     <button type="submit" class="btn big-btn" style="width: 100%;">
-                        <i class="glyphicon glyphicon-plus"></i> Ajoute cette nouvelle compétence
+                        <i class="turquoise glyphicon glyphicon-plus"></i> Ajoute cette nouvelle compétence
                     </button>
                 </div>
             </form>

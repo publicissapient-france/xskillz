@@ -21,10 +21,10 @@
                   <p>{{xebian[0].data.lastName}}</p>
                 </div>
                 <div class="level">
-	                <span>&#9733;<span>&#9733;<span>&#9734;</span></span></span>
+                  <rating class="turquoise bigger" ng-model="xebian.level" max="3" readonly="true"></rating>
                 </div>
                 <div class="like">
-                  <span>&hearts;</span>
+                  <span class="turquoise glyphicon" ng-class="isLiked()"></span>
                 </div>
               </a>
         </div>

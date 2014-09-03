@@ -70,7 +70,16 @@ exports.findXebianSkillz = function(email){
     }
   };
   return NEO4J.findPromise(query);
+};
 
+exports.findXebiansByName = function(q){
+  var query = {
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n.displayName =~ {q} RETURN n',
+    'params': {
+      'q': '(?i).*' + q + '.*'
+    }
+  };
+  return NEO4J.findPromise(query);
 };
 
 exports.findXebiansBySkillz = function (skillName){
