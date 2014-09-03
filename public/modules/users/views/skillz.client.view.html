@@ -13,20 +13,22 @@
             </form>
         </div>
         <div id="results" class="results">
-              <a href="#!/user/{{xebian.email}}" ng-repeat="xebian in results track by $index">
-                <div class= "skill"> {{xebian.skillName}} </div>
-                <img src={{xebian.picture}}> </img>
-                <div class="info">
-                  <p>{{xebian.firstName}}</p>
-                  <p>{{xebian.lastName}}</p>
-                </div>
-                <div class="level">
-                  <rating class="turquoise bigger" ng-model="xebian.level" max="3" readonly="true"></rating>
-                </div>
-                <div class="like">
-                  <span class="turquoise glyphicon" ng-class="isLiked(xebian.like)"></span>
-                </div>
-              </a>
+              <div class="result" ng-repeat="xebian in results track by $index">
+                <a ng-click="changeSearch(xebian.skillName)" class= "skill"> {{xebian.skillName}} </a>
+                <a href="#!/user/{{xebian.email}}" >
+                  <img src={{xebian.picture}}> </img>
+                  <div class="info">
+                    <p>{{xebian.firstName}}</p>
+                    <p>{{xebian.lastName}}</p>
+                  </div>
+                  <div class="level">
+                    <rating class="turquoise bigger" ng-model="xebian.level" max="3" readonly="true"></rating>
+                  </div>
+                  <div class="like">
+                    <span class="turquoise glyphicon" ng-class="isLiked(xebian.like)"></span>
+                  </div>
+                </a>
+              </div>
         </div>
     </div>
 </section>

@@ -127,5 +127,10 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		};
 		$scope.getSkills();
 
+		$scope.changeSearch = function(skill) {
+			$scope.query = skill;
+			$scope.searchSkillz(skill);
+		};
+
 	}
 ]);
