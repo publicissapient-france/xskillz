@@ -14,9 +14,10 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
 		});
 
 		$http.get('/user/skillz/'+mail).then(function(data) {
-			console.log(data);
+			$scope.skillz = _.map(data.data, function(node){
+				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like, relationId : node[1].self };
+			});
 		});
-
 
 
 

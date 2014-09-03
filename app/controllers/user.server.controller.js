@@ -22,7 +22,7 @@ exports.profile = function(req, res) {
 exports.skillz = function(req, res) {
   var email = req.params.email;
 
-  var skillz = xskillzNeo4J.findXebianSkillz(email);
+  var skillz = xskillzNeo4j.findXebianSkillz(email);
 
   skillz.then(function(result) {
     res.jsonp(result || []);
