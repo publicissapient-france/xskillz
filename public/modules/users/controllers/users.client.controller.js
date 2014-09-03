@@ -7,9 +7,19 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$scope.newSkill = '';
 
-		$scope.level = 1;
+		$scope.level = 0;
 
 		$scope.like = true;
+		$scope.isLiked = function() {
+			if ($scope.like) {
+				return 'liked';
+			} else {
+				return '';
+			}
+		};
+		$scope.toggleLike = function() {
+			$scope.like = !$scope.like;
+		};
 
 		$scope.skillz = [];
 

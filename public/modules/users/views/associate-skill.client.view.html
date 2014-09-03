@@ -2,19 +2,17 @@
     <div class="container">
         <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
         <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
-            <form ng-submit="associateSkill()" class="form-inline">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="name" ng-model="newSkill" placeholder="Nouvelle compétence">
+            <form ng-submit="associateSkill()" class="create-skill-form">
+                <div>
+                    <input type="text" class="form-control expanded" id="name" ng-model="newSkill" placeholder="Nouvelle compétence">
                 </div>
-                <div class="col-md-2">
-                    level: 
-                    <input type="number" class="form-control" id="level" ng-model="level" min="0" max="3">
+                <div>
+                    <rating ng-model="rate" max="3" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
                 </div>
-                <div class="col-md-2">
-                    Like
-                    <input type="checkbox" class="form-control" id="like" ng-model="like">
+                <div>
+                    <span class="glyphicon glyphicon-thumbs-up" ng-click="toggleLike()" ng-class="isLiked()"></span>
                 </div>
-                <div class="col-md-4">
+                <div>
                     <button type="submit" class="btn big-btn" style="width: 100%;">
                         <i class="glyphicon glyphicon-plus"></i> Ajoute cette nouvelle compétence
                     </button>
