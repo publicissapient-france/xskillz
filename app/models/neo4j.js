@@ -89,7 +89,7 @@ exports.execute = function(query){
 			if (err) {
 				deferred.reject(err);
 			} else {
-				console.log('updated node', res.statusCode);
+				console.log('executed query',query, res.statusCode);
 				deferred.resolve();
 			}
 		});
@@ -102,7 +102,6 @@ exports.findPromise = function(query) {
   getCypherQuery()
     .send(query)
     .end(function(err, res) {
-	  console.log("Query: " + JSON.stringify(query), "res: " + JSON.stringify(res ? (res.body ? res.body.data : "") : ""));
       if (err) {
         deferred.reject(err);
       } else {

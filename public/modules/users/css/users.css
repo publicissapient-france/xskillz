@@ -5,7 +5,7 @@
 
 }
 
-.results a {
+.results a, .results > div {
 		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -20,13 +20,13 @@
 		color: grey;
 }
 
-.results a div {
+.results a div , .results > div div{
 	display: inline-block;
 	vertical-align: middle;
 	margin-left: 10px;
 }
 
-.results a div.skill {
+.results div.skill{
 	display: block;
 	margin-left: 10px;
 	margin-bottom: 10px;
@@ -34,17 +34,17 @@
 	text-transform: uppercase;
 }
 
-.results a p {
+.results a p , .results > div p{
 	margin: 0;
 	display: block;
 }
-.results a img {
+.results a img , .results > div img{
 	height: 50px;
 	width: 50px;
 	display: inline-block;
 }
 
-.results .remove {
+.results .remove{
 	float: right;
 }
 

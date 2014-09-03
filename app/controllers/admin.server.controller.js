@@ -41,7 +41,7 @@ exports.authCallback = function(req, res) {
 };
 
 exports.importContacts = function(req, res) {
-	if (oauth2Client.credentials == undefined || oauth2Client.credentials.access_token == undefined) {
+	if (oauth2Client.credentials === undefined || oauth2Client.credentials.access_token === undefined) {
 		res.redirect('/admin/gapi/auth');
 	}
 	else {
@@ -150,12 +150,12 @@ exports.importSkills = function(req, res) {
 			var saveSkillForUser = function(userEmail) {
 				return function(tag, cb) {
 					associateSkillToUser(userEmail, tag.title, cb);
-				}
+				};
 			};
 
 			var saveSkillsForPost = function(post, cb) {
 				var username = post.authors[0].nickname.toLowerCase();
-				var userEmail  = username + "@xebia.fr";
+				var userEmail  = username + '@xebia.fr';
 				async.each(post.tags, saveSkillForUser(userEmail), cb);
 			};
 

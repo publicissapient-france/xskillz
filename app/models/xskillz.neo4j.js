@@ -108,7 +108,7 @@ exports.findSkill = function(skillName) {
 
 exports.findAllSkills = function() {
   var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-(x) return s.name, count(r),s'
+    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),s'
   };
   return NEO4J.findPromise(query);
 };
@@ -122,7 +122,7 @@ exports.userHasSkill = function(userNodeUrl, skillNodeUrl) {
 	var userNodeId = extractNodeId(userNodeUrl);
 	var skillNodeId = extractNodeId(skillNodeUrl);
 	var query = {
-		'query': "start xebian=node( {userNodeId} ),skill=node( {skillNodeId} ) match (xebian)-[r:HAS]->(skill) return r",
+		'query': 'start xebian=node( {userNodeId} ),skill=node( {skillNodeId} ) match (xebian)-[r:HAS]->(skill) return r',
 		'params': {
 			'userNodeId': Number(userNodeId),
 			'skillNodeId': Number(skillNodeId)
@@ -156,7 +156,28 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_prop
   return deferred.promise;
 };
 
-exports.deduplicate = function(source, destination){
+exports.orphanSkillz = function(){
+  var query = {
+    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan'
+  };
+
+  return NEO4J.findPromise(query);
+};
+
+exports.deleteSkill = function(source){
+  var oldSkillId = NEO4J.extractNodeId(source);
+
+  var removeOldSkillQuery = {
+      'query' : 'start oldSkill=node( {oldSkillId} )  OPTIONAL MATCH (oldSkill)-[r]-() DELETE oldSkill,r',
+      'params': {
+        'oldSkillId' : oldSkillId
+      }
+    };
+
+    return NEO4J.execute(removeOldSkillQuery);
+};
+
+exports.mergeSkill = function(source, destination){
   var oldSkillId = NEO4J.extractNodeId(source);
   var newSkillId = NEO4J.extractNodeId(destination);
 
@@ -170,14 +191,9 @@ exports.deduplicate = function(source, destination){
 
   var addNewRelations = NEO4J.execute(addNewRelationsQuery);
 
-  return addNewRelations.then(function(){
-    var removeOldSkillQuery = {
-      'query' : 'start oldSkill=node( {oldSkillId} )  OPTIONAL MATCH (oldSkill)-[r]-() DELETE oldSkill,r',
-      'params': {
-        'oldSkillId' : oldSkillId
-      }
-    };
+  var self = this;
 
-    return NEO4J.execute(removeOldSkillQuery);
+  return addNewRelations.then(function(){
+    return self.deleteSkill(source);
   });
 };

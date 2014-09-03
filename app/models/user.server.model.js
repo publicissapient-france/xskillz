@@ -23,11 +23,11 @@ exports.findOne = function(id){
 exports.importUserWithDomainDirectoryData = function (gData, next) {
 
 	var userData = {
-		displayName: gData.firstName + " " + gData.lastName,
+		displayName: gData.firstName + ' ' + gData.lastName,
 		firstName: gData.firstName,
 		lastName: gData.lastName,
 		email: gData.email,
-		picture: gData.picture || "http://blog.xebia.fr/wp-content/glc_cache/fd4df8067d57ff096523f2c2f2981a52-60.jpg"
+		picture: gData.picture || 'http://blog.xebia.fr/wp-content/glc_cache/fd4df8067d57ff096523f2c2f2981a52-60.jpg'
 	};
 
 	xskillzNeo4J.findXebianByEmail(userData.email)

@@ -18,9 +18,9 @@ angular
 			url: '/cloudtag',
 			templateUrl : 'modules/users/views/cloudtag.client.view.html',
 		}).
-		state('skillz/de-duplicate',{
-			url: '/skillz/de-duplicate',
-			templateUrl: 'modules/users/views/de-duplicate.client.view.html'
+		state('skillz/management',{
+			url: '/skillz/management',
+			templateUrl: 'modules/users/views/skillz.management.client.view.html'
 		}).
 		state('skillz',{
 			url: '/skillz',

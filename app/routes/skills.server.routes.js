@@ -7,9 +7,12 @@ module.exports = function(app) {
 	// User Routes
 	var skills = require('../../app/controllers/skills');
 
-	app.route('/skills/deduplicate').post(users.requiresLogin, skills.deduplicate);
+	app.route('/skills/merge').post(users.requiresLogin, skills.merge);
+
+	app.route('/skills/delete').post(users.requiresLogin, skills.deleteSkill);
+
+	app.route('/skills/orphans').get(users.requiresLogin, skills.orphans);
 
 	app.route('/skills').get(users.requiresLogin, skills.all);
-
 
 };
