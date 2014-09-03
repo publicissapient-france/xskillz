@@ -1,9 +1,9 @@
 <section data-ng-controller="UsersController">
     <div class="container">
         <div id="search" class="row" style="padding-bottom:12px; padding-top: 16px;">
-            <form ng-submit="search()" class="form-inline">
+            <form ng-submit="searchSkillz()" class="form-inline">
                 <div class="col-md-2">
-                    <input type="text" class="form-control" id="skill" ng-model="query" placeholder="compétence">
+                    <input type="text" class="form-control" id="skill" ng-model="query" ng-change="changingSearchSkillz()" placeholder="compétence">
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn big-btn" style="width: 100%;">
@@ -13,18 +13,18 @@
             </form>
         </div>
         <div id="results" class="results">
-              <a href="#!/user/{{xebian[0].data.email}}" ng-repeat="xebian in results">
-                <div class= "skill"> {{xebian[2].data.name}} </div>
-                <img src={{xebian[0].data.picture}}> </img>
+              <a href="#!/user/{{xebian.email}}" ng-repeat="xebian in results">
+                <div class= "skill"> {{xebian.skillName}} </div>
+                <img src={{xebian.picture}}> </img>
                 <div class="info">
-                  <p>{{xebian[0].data.firstName}}</p>
-                  <p>{{xebian[0].data.lastName}}</p>
+                  <p>{{xebian.firstName}}</p>
+                  <p>{{xebian.lastName}}</p>
                 </div>
                 <div class="level">
-                  <rating class="turquoise bigger" ng-model="xebian[1].data.level" max="3" readonly="true"></rating>
+                  <rating class="turquoise bigger" ng-model="xebian.level" max="3" readonly="true"></rating>
                 </div>
                 <div class="like">
-                  <span class="turquoise glyphicon" ng-class="isLiked(xebian[1].data.like)"></span>
+                  <span class="turquoise glyphicon" ng-class="isLiked(xebian.like)"></span>
                 </div>
               </a>
         </div>
