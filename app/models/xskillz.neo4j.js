@@ -116,7 +116,7 @@ exports.findAllSkills = function() {
 var extractNodeIdPattern = /(\d*)$/;
 var extractNodeId = function(nodeUrl) {
 	return nodeUrl.match(extractNodeIdPattern)[1];
-}
+};
 
 exports.userHasSkill = function(userNodeUrl, skillNodeUrl) {
 	var userNodeId = extractNodeId(userNodeUrl);
