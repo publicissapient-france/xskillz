@@ -8,7 +8,7 @@ var http = require('superagent'),
 var XEBIAN_TYPE = 'XEBIAN';
 var SKILL_TYPE = 'SKILL';
 
-var KNOWS = 'KNOWS';
+var SKILLZ_RELATION = 'HAS';
 
 
 exports.createXebian = function(user) {
@@ -57,7 +57,7 @@ exports.findXebianById = function(id) {
 
 exports.findXebianSkillz = function(email){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE n.email = {email} RETURN s,r',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE n.email = {email} RETURN s,r',
     'params' : {
       'email': email
     }
@@ -68,7 +68,7 @@ exports.findXebianSkillz = function(email){
 
 exports.findXebiansBySkillz = function (skillName){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+KNOWS+'`]->s WHERE s.name=~ {q} RETURN n,r, s',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE s.name=~ {q} RETURN n,r, s',
     'params': {
       'q': '(?i).*' + skillName + '.*'
     }
@@ -96,7 +96,7 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
     .set('Content-Type', 'application/json')
     .send({
       'to' : skillNodeUrl,
-      'type' : 'KNOWS'
+      'type' : SKILLZ_RELATION
     })
     .end(function(err, res) {
       if (err) {
