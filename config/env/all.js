@@ -38,7 +38,6 @@ module.exports = {
 			'public/config.js',
 			'public/application.js',
 			'public/modules/*/*.js',
-			'public/modules/users/controllers/profile.client.controller.js',
 			'public/modules/*/*[!tests]*/*.js'
 		],
 		tests: [
