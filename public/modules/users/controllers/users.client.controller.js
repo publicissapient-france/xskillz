@@ -8,9 +8,16 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$scope.user = Authentication.user;
 
-		$scope.newSkill = '';
+		$scope.skillz = [];
+		$scope.results = [];
 
-		$scope.oldLevel = $scope.level = 0;
+		var reset = function() {
+			$scope.newSkill = '';
+			$scope.oldLevel = $scope.level = 0;
+			$scope.like = false;
+		};
+		reset();
+
 		$scope.hoveringOver = function(value) {
 			$scope.tempLevel = value;
 	  };
@@ -22,8 +29,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			}
 			$scope.oldLevel = $scope.tempLevel;
 		};
-
-		$scope.like = false;
 		$scope.isLiked = function(like) {
 			if (like) {
 				return 'glyphicon-heart';
@@ -34,10 +39,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		$scope.toggleLike = function() {
 			$scope.like = !$scope.like;
 		};
-
-		$scope.skillz = [];
-
-		$scope.results = [];
 		var transformResultToSkillz = function(response) {
 			return _.map(response.data, function(node){
 				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like, relationId : node[1].self };
@@ -81,6 +82,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 				}
 		};
 		$scope.searchSkillz = function(){
+			$scope.results = [];
 			$http.get('/skillz', {'params': {'q':$scope.query}})
 				.then(function(response){
 					$scope.results = transformResultToXebians(response);
@@ -92,12 +94,14 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			if ( ! (_.find($scope.skillz, function(skill){return skill.name === $scope.newSkill;} ))) {
 					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : $scope.level , 'like' : $scope.like }})
 						.then(function(response) {
+								reset();
 								$scope.skillz = transformResultToSkillz(response);
 					});
 			}
 		};
 
 		$scope.changingSearchXebians = function() {
+				$scope.results = [];
 				if ($scope.query.length > 2) {
 					$scope.searchXebians();
 				}

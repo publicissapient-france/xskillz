@@ -13,7 +13,7 @@
             </form>
         </div>
         <div id="results" class="results">
-              <a href="#!/user/{{xebian.email}}" ng-repeat="xebian in results">
+              <a href="#!/user/{{xebian.email}}" ng-repeat="xebian in results track by $index">
                 <div class= "skill"> {{xebian.skillName}} </div>
                 <img src={{xebian.picture}}> </img>
                 <div class="info">
