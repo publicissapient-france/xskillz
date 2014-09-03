@@ -21,10 +21,6 @@ angular
 		state('search',{
 			url: '/users/search',			
 			templateUrl: 'modules/users/views/users.client.view.html'
-		}).
-		state('email', {
-			url: '/users/email',
-			templateUrl: 'modules/users/views/skillz.client.view.html'
 		});
 
 	}]);

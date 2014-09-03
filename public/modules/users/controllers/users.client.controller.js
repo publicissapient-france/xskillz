@@ -74,11 +74,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		// Get user profile
 		$scope.getProfile = function() {
-			$http
-				.get('/user', {'params': {'username' : 'lvol@xebia.fr'}})
-				.then( function (data) {
-					console.log('ok', data);
-				});
+			console.log('get profile');
 		};
 
 	}
