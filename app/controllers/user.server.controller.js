@@ -18,3 +18,13 @@ exports.profile = function(req, res) {
       res.jsonp(results); 
     });
 };
+
+exports.skillz = function(req, res) {
+  var email = req.params.email;
+
+  var skillz = xskillzNeo4j.findXebianSkillz(email);
+
+  skillz.then(function(result) {
+    res.jsonp(result || []);
+  });
+};

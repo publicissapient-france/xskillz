@@ -18,6 +18,10 @@ angular
 			url: '/cloudtag',
 			templateUrl : 'modules/users/views/cloudtag.client.view.html',
 		}).
+		state('skillz/de-duplicate',{
+			url: '/skillz/de-duplicate',
+			templateUrl: 'modules/users/views/de-duplicate.client.view.html'
+		}).
 		state('skillz',{
 			url: '/skillz',
 			templateUrl: 'modules/users/views/skillz.client.view.html'
@@ -25,6 +29,15 @@ angular
 		state('search',{
 			url: '/users/search',			
 			templateUrl: 'modules/users/views/users.client.view.html'
+		}).
+		state('profile',{
+			url: '/user/:mail',
+			// controller: function($scope){
+			    
+			//     $scope.title = 'My Contacts';
+			//   },		
+			//controller: 'ProfileController',
+			templateUrl: 'modules/users/views/profile.client.view.html'
 		});
 
 	}]);

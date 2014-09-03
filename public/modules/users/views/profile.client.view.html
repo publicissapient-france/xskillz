@@ -1,0 +1,23 @@
+
+
+<section data-ng-controller="ProfileController">
+    <div class="container">
+        <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
+        
+        <div id="results" class="results">
+              <a href="#/user/{{xebian[0].data.email}}" ng-repeat="skill in skillz track by $index">
+                <div class="info">
+                  <p>{{skill.name}}</p>
+                </div>
+
+                <div class="level" ng-if="skill.level != undefined">
+                  <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>
+                </div>
+
+                <div class="like" ng-if="skill.like == true">
+                  <span class="turquoise glyphicon glyphicon-heart"></span>
+                </div>
+              </a>
+        </div>
+    </div>
+</section>
