@@ -12,9 +12,9 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			$scope.level = value;
 	  };
 
-		$scope.like = true;
-		$scope.isLiked = function() {
-			if ($scope.like) {
+		$scope.like = false;
+		$scope.isLiked = function(like) {
+			if (like) {
 				return 'glyphicon-heart';
 			} else {
 				return 'glyphicon-heart-empty';
