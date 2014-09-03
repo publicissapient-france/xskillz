@@ -83,7 +83,7 @@ exports.importContacts = function(req, res) {
 var associateSkillToUser = function (userEmail, skillName, cb) {
 	var relation_properties = { level: 0, like: false };
 
-	var associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
+	var associateSkillToUser = function(userNodeUrl, skillNodeUrl, cb) {
 		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl, relation_properties)
 			.then(function(relationshipUrl) {
 				console.log('Created relationship', relationshipUrl);
@@ -105,14 +105,14 @@ var associateSkillToUser = function (userEmail, skillName, cb) {
 						if (!result) {
 							xskillzNeo4J.createSkill({ name: skillName })
 								.then(function (skillNodeUrl) {
-									associateSkillToUser(userNodeUrl, skillNodeUrl);
+									associateSkillToUser(userNodeUrl, skillNodeUrl, cb);
 								})
 								.fail(function (err) {
 									cb(err);
 								});
 						} else {
 							var skillNodeUrl = result[0][0].self;
-							associateSkillToUser(userNodeUrl, skillNodeUrl);
+							associateSkillToUser(userNodeUrl, skillNodeUrl, cb);
 						}
 					})
 					.fail(function (err) {
