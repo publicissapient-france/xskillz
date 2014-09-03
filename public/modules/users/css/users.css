@@ -29,6 +29,9 @@
 .results a div.skill {
 	display: block;
 	margin-left: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .results a p {
