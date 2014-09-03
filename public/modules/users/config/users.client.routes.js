@@ -1,7 +1,8 @@
 'use strict';
 
 // Setting up route
-angular.module('users').config(['$stateProvider',
+angular
+	.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
@@ -21,5 +22,14 @@ angular.module('users').config(['$stateProvider',
 			url: '/users/search',			
 			templateUrl: 'modules/users/views/users.client.view.html'
 		});
-	}
-]);
+
+	}])
+	.module('user').config(['$stateProvider', 
+	function($stateProvider) {
+		// User state routing
+		$stateProvider.
+		state('email', {
+			url: '',
+			templateUrl: 'modules/users/views/skillz.client.view.html'
+		});
+	}]);

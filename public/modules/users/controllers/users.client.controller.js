@@ -64,11 +64,20 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			}
 		};
 
+
 		$scope.searchXebians = function(){
 			$http.get('/users', {'params': {'q':$scope.query}})
 				.then(function(response){
 					$scope.results = response.data;
 			});
+
+		// Get user profile
+		$scope.getProfile = function() {
+			$http
+				.get('/user', {'params': {'username' : 'lvol@xebia.fr'}})
+				.then( function (data) {
+					console.log('ok', data);
+				});
 		};
 
 	}
