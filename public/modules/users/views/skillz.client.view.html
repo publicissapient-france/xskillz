@@ -12,12 +12,19 @@
                 </div>
             </form>
         </div>
-        <div id="results" class="row">
-            <div class="col-md-5">
-                <ul class="list-group">
-                    <a class="list-group-item" href="#/user/{{xebian[0].data.email}}" ng-repeat="xebian in results"><span style='background-image: url({{xebian[0].data.picture}});' class="user-picture"></span>{{xebian[0].data.displayName}} <em>{{xebian[1].type}}</em> {{xebian[2].data.name}}</a>
-                </ul>
-            </div>
+        <div id="results" class="results">
+              <a href="#/user/{{xebian[0].data.email}}" ng-repeat="xebian in results">
+                <img src={{xebian[0].data.picture}}> </img>
+                <div class="info">
+                  <p>{{xebian[0].data.firstName}}</p>
+                  <p>{{xebian[0].data.lastName}}</p>
+                </div>
+                <div class="level">
+	                <span>&#9733;<span>&#9733;<span>&#9734;</span></span></span>
+                </div>
+                <div class="smiley">
+                </div>
+              </a>
         </div>
     </div>
 </section>
