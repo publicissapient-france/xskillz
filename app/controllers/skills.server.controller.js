@@ -11,3 +11,11 @@ exports.all = function(req,res){
 	});
 	
 };
+
+exports.deduplicate = function(req,res){
+
+	var source = req.body.source;
+	var destination = req.body.destination;
+
+	
+};

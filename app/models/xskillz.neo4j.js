@@ -108,7 +108,7 @@ exports.findSkill = function(skillName) {
 
 exports.findAllSkills = function() {
   var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ')<-[:`HAS`]-(x) return s.name,count(*)'
+    'query': 'MATCH (s:' + SKILL_TYPE + ')<-[:`HAS`]-(x) return s.name, count(*),s'
   };
   return NEO4J.findPromise(query);
 };
