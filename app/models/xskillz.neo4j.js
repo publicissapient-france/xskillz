@@ -106,13 +106,6 @@ exports.findSkill = function(skillName) {
   return NEO4J.findPromise(query);
 };
 
-exports.findAllSkills = function() {
-  var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ')<-[:`HAS`]-(x) return s.name,count(*)'
-  };
-  return NEO4J.findPromise(query);
-};
-
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_properties) {
   var securedURL = NEO4J.makeURLSecured(userNodeUrl);
 

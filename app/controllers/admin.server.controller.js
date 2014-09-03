@@ -3,6 +3,8 @@
 var util = require('util');
 var _ = require('underscore');
 var async = require('async');
+var request = require('request');
+var xskillzNeo4J = require('../models/xskillz.neo4j');
 
 var googleapis = require('googleapis');
 var directory = googleapis.admin('directory_v1');
@@ -76,3 +78,87 @@ exports.importContacts = function(req, res) {
 		});
 	}
 };
+
+
+var associateSkillToUser = function (userEmail, skillName, cb) {
+	var relation_properties = { level: 0, like: false };
+
+	var associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
+		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl, relation_properties)
+			.then(function(relationshipUrl) {
+				console.log('Created relationship', relationshipUrl);
+
+				cb();
+			})
+			.fail(function(err) {
+				cb(err);
+			});
+	};
+
+	xskillzNeo4J.findXebian(userEmail)
+		.then(function (userNode) {
+			if (userNode) {
+				var userNodeUrl = userNode[0][0].self;
+
+				xskillzNeo4J.findSkill(skillName)
+					.then(function (result) {
+						if (!result) {
+							xskillzNeo4J.createSkill({ name: skillName })
+								.then(function (skillNodeUrl) {
+									associateSkillToUser(userNodeUrl, skillNodeUrl);
+								})
+								.fail(function (err) {
+									cb(err);
+								});
+						} else {
+							var skillNodeUrl = result[0][0].self;
+							associateSkillToUser(userNodeUrl, skillNodeUrl);
+						}
+					})
+					.fail(function (err) {
+						cb(err);
+					});
+			}
+			else {
+				cb();
+			}
+		})
+		.fail(function (err) {
+			cb(err);
+		});
+};
+
+exports.importSkills = function(req, res) {
+
+	request.get({ url: 'http://backend.mobile.xebia.io/api/v1/blog/posts/recent?limit=100', json: true}, function(error, response, body) {
+		if (error) {
+			res.json(500, error);
+		}
+		else {
+
+			var saveSkillForUser = function(userEmail) {
+				return function(tag, cb) {
+					associateSkillToUser(userEmail, tag.title, cb);
+				}
+			};
+
+			var saveSkillsForPost = function(post, cb) {
+				var username = post.authors[0].nickname.toLowerCase();
+				var userEmail  = username + "@xebia.fr";
+				async.each(post.tags, saveSkillForUser(userEmail), cb);
+			};
+
+			async.each(body.posts, saveSkillsForPost, function(err, data) {
+				console.log(err || data);
+
+				res.render('import', {
+					user: req.user || null,
+					error: err,
+					users: data
+				});
+			});
+		}
+	});
+};
+
+
