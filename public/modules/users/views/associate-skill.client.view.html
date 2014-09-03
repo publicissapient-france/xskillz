@@ -3,10 +3,18 @@
         <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
         <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
             <form ng-submit="associateSkill()" class="form-inline">
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="tag" ng-model="newSkill" placeholder="Nouvelle compétence">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="name" ng-model="newSkill" placeholder="Nouvelle compétence">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    level: 
+                    <input type="number" class="form-control" id="level" ng-model="level" min="0" max="3">
+                </div>
+                <div class="col-md-2">
+                    Like
+                    <input type="checkbox" class="form-control" id="like" ng-model="like">
+                </div>
+                <div class="col-md-4">
                     <button type="submit" class="btn big-btn" style="width: 100%;">
                         <i class="glyphicon glyphicon-plus"></i> Ajoute cette nouvelle compétence
                     </button>

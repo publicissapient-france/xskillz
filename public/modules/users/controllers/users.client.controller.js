@@ -7,6 +7,10 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$scope.newSkill = '';
 
+		$scope.level = 1;
+
+		$scope.like = true;
+
 		$scope.skillz = [];
 
 		$scope.results = [];
@@ -39,7 +43,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		// Affect a skill to current user
 		$scope.associateSkill = function() {
 			if (_.indexOf($scope.skillz, $scope.newSkill) === -1 ) {
-					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : 0 , 'like' : true }}).then(function(response) {
+					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : $scope.level , 'like' : $scope.like }}).then(function(response) {
 						$scope.skillz = _.map(response.data, function(node){
 							return node;
 						});
