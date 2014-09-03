@@ -22,17 +22,18 @@ exports.findOne = function(id){
 
 exports.importUserWithDomainDirectoryData = function (gData, next) {
 
-	var user = {
+	var userData = {
+		displayName: gData.firstName + " " + gData.lastName,
 		firstName: gData.firstName,
 		lastName: gData.lastName,
 		email: gData.email,
-		picture: gData.picture
+		picture: gData.picture || "http://blog.xebia.fr/wp-content/glc_cache/fd4df8067d57ff096523f2c2f2981a52-60.jpg"
 	};
 
-	xskillzNeo4J.findXebianByEmail(user.email)
+	xskillzNeo4J.findXebianByEmail(userData.email)
 		.then(function (xebian) {
 			if (!xebian) {
-				xskillzNeo4J.createXebian(user)
+				xskillzNeo4J.createXebian(userData)
 					.then(function () {
 						next();
 					})
@@ -40,7 +41,14 @@ exports.importUserWithDomainDirectoryData = function (gData, next) {
 						next(error);
 					});
 			} else {
-				next();
+				var mergedUserData = _.extend(xebian[0][0].data, userData);
+				xskillzNeo4J.updateXebian(mergedUserData)
+					.then(function () {
+						next();
+					})
+					.fail(function (error) {
+						next(error);
+					});
 			}
 		})
 		.fail(function (error) {
@@ -58,8 +66,7 @@ exports.importUserWithGoogleAuthData = function (authData, next) {
 		email: authData.email,
 		accessToken: authData.providerData.accessToken,
 		gender: authData.providerData.gender,
-		link: authData.providerData.link,
-		picture: authData.providerData.picture
+		link: authData.providerData.link
 	};
 
 	xskillzNeo4J.findXebianByEmail(userData.email)

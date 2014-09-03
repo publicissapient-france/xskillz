@@ -39,35 +39,40 @@ exports.authCallback = function(req, res) {
 };
 
 exports.importContacts = function(req, res) {
-	directory.users.list({ domain: 'xebia.fr', maxResults: 200, auth: oauth2Client }, function(err, data) {
+	if (oauth2Client.credentials == undefined || oauth2Client.credentials.access_token == undefined) {
+		res.redirect('/admin/gapi/auth');
+	}
+	else {
+		directory.users.list({ domain: 'xebia.fr', maxResults: 200, auth: oauth2Client }, function(err, data) {
 
-		console.log('Users:', JSON.stringify(data, undefined, 2));
+			console.log('Users:', JSON.stringify(data, undefined, 2));
 
-		var neo4jUsers = _(data.users).map(function(user) {
-			return {
-				username: user.primaryEmail,
-				email: user.primaryEmail,
-				firstName: user.name.givenName,
-				lastName:  user.name.familyName,
-				picture:  user.thumbnailPhotoUrl
-			};
-		});
-
-		var saveUser = function(user, cb) {
-			User.importUserWithDomainDirectoryData(user, cb);
-		};
-
-		console.log('Users:', JSON.stringify(neo4jUsers, undefined, 2));
-
-		async.each(neo4jUsers, saveUser, function(err, data) {
-			console.log(err || data);
-
-			res.render('import', {
-				user: req.user || null,
-				error: err,
-				users: data
+			var neo4jUsers = _(data.users).map(function(user) {
+				return {
+					username: user.primaryEmail,
+					email: user.primaryEmail,
+					firstName: user.name.givenName,
+					lastName:  user.name.familyName,
+					picture:  user.thumbnailPhotoUrl
+				};
 			});
-		});
 
-	});
+			var saveUser = function(user, cb) {
+				User.importUserWithDomainDirectoryData(user, cb);
+			};
+
+			console.log('Users:', JSON.stringify(neo4jUsers, undefined, 2));
+
+			async.each(neo4jUsers, saveUser, function(err, data) {
+				console.log(err || data);
+
+				res.render('import', {
+					user: req.user || null,
+					error: err,
+					users: data
+				});
+			});
+
+		});
+	}
 };
