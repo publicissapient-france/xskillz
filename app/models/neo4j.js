@@ -33,23 +33,45 @@ var getCypherQuery = function() {
 };
 
 exports.createNodePromise = function(nodeType, nodeData) {
-  var deferred = Q.defer();
-  getCypherQuery()
-    .send({
-      'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN n',
-      'params': {
-        'props': nodeData
-      }
-    })
-    .end(function(err, res) {
-      if (err) {
-        deferred.reject(err);
-      } else {
-        console.log('created node', res.statusCode,res.body.data[0][0].self || '');
-        deferred.resolve(res.body.data[0][0].self);
-      }
-    });
-  return deferred.promise;
+	var deferred = Q.defer();
+	getCypherQuery()
+		.send({
+			'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN n',
+			'params': {
+				'props': nodeData
+			}
+		})
+		.end(function(err, res) {
+			if (err) {
+				deferred.reject(err);
+			} else {
+				console.log('created node', res.statusCode,res.body.data[0][0].self || '');
+				deferred.resolve(res.body.data[0][0].self);
+			}
+		});
+	return deferred.promise;
+};
+
+exports.updateNodePromise = function(nodeType, nodeKey, nodeValue, nodeData) {
+	var deferred = Q.defer();
+
+	getCypherQuery()
+		.send({
+			'query': 'MATCH (n:' + nodeType + ') where n.' + nodeKey + '= { nodeValue } SET n = { props }',
+			'params': {
+				'nodeValue': nodeValue,
+				'props': nodeData
+			}
+		})
+		.end(function(err, res) {
+			if (err) {
+				deferred.reject(err);
+			} else {
+				console.log('updated node', res.statusCode);
+				deferred.resolve();
+			}
+		});
+	return deferred.promise;
 };
 
 exports.findPromise = function(query) {

@@ -11,8 +11,12 @@ var SKILL_TYPE = 'SKILL';
 var SKILLZ_RELATION = 'HAS';
 
 
-exports.createXebian = function(user) {
-  return NEO4J.createNodePromise(XEBIAN_TYPE, user);
+exports.createXebian = function(userData) {
+	return NEO4J.createNodePromise(XEBIAN_TYPE, userData);
+};
+
+exports.updateXebian = function(userData) {
+	return NEO4J.updateNodePromise(XEBIAN_TYPE, 'email', userData.email, userData);
 };
 
 exports.createSkill = function(skill) {

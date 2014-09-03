@@ -13,7 +13,7 @@ exports.findOne = function(id){
       try{
         var userData =  user[0][0].data;
         userData.roles = ['user'];
-        return userData ;
+        return userData;
       } catch(err){
         return null;
       }
@@ -40,7 +40,6 @@ exports.importUserWithDomainDirectoryData = function (gData, next) {
 						next(error);
 					});
 			} else {
-				// Update Xebian
 				next();
 			}
 		})
@@ -51,18 +50,22 @@ exports.importUserWithDomainDirectoryData = function (gData, next) {
 
 exports.importUserWithGoogleAuthData = function (authData, next) {
 
-	var user = {
-		_id: authData.id,
+	var userData = {
+		_id: authData.providerData.id,
+		displayName: authData.displayName,
 		firstName: authData.firstName,
 		lastName: authData.lastName,
 		email: authData.email,
-		picture: authData.picture
+		accessToken: authData.providerData.accessToken,
+		gender: authData.providerData.gender,
+		link: authData.providerData.link,
+		picture: authData.providerData.picture
 	};
 
-	xskillzNeo4J.findXebianByEmail(user.email)
+	xskillzNeo4J.findXebianByEmail(userData.email)
 		.then(function (xebian) {
 			if (!xebian) {
-				xskillzNeo4J.createXebian(user)
+				xskillzNeo4J.createXebian(userData)
 					.then(function () {
 						next();
 					})
@@ -70,7 +73,14 @@ exports.importUserWithGoogleAuthData = function (authData, next) {
 						next(error);
 					});
 			} else {
-				next();
+				var mergedUserData = _.extend(xebian[0][0].data, userData);
+				xskillzNeo4J.updateXebian(mergedUserData)
+					.then(function () {
+						next();
+					})
+					.fail(function (error) {
+						next(error);
+					});
 			}
 		})
 		.fail(function (error) {
