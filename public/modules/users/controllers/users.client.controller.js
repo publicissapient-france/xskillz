@@ -77,5 +77,12 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			console.log('get profile');
 		};
 
+		$scope.getSkills = function() {
+          $http.get('/skills').then(function(response){
+				$scope.skills = response.data;
+			});
+		};
+		$scope.getSkills();
+
 	}
 ]);

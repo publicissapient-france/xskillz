@@ -14,6 +14,10 @@ angular
 			url: '/signin',
 			templateUrl: 'modules/users/views/signin.client.view.html'
 		}).
+		state('cloudtag',{
+			url: '/cloudtag',
+			templateUrl : 'modules/users/views/cloudtag.client.view.html',
+		}).
 		state('skillz',{
 			url: '/skillz',
 			templateUrl: 'modules/users/views/skillz.client.view.html'
