@@ -106,12 +106,30 @@ exports.findSkill = function(skillName) {
   return NEO4J.findPromise(query);
 };
 
-
 exports.findAllSkills = function() {
   var query = {
     'query': 'MATCH (s:' + SKILL_TYPE + ')<-[:`HAS`]-(x) return s.name, count(*),s'
   };
   return NEO4J.findPromise(query);
+};
+
+var extractNodeIdPattern = /(\d*)$/;
+var extractNodeId = function(nodeUrl) {
+	return nodeUrl.match(extractNodeIdPattern)[1];
+}
+
+exports.userHasSkill = function(userNodeUrl, skillNodeUrl) {
+	var userNodeId = extractNodeId(userNodeUrl);
+	var skillNodeId = extractNodeId(skillNodeUrl);
+	var query = {
+		'query': "start xebian=node( {userNodeId} ),skill=node( {skillNodeId} ) match (xebian)-[r:HAS]->(skill) return r",
+		'params': {
+			'userNodeId': Number(userNodeId),
+			'skillNodeId': Number(skillNodeId)
+		}
+	};
+
+	return NEO4J.findPromise(query);
 };
 
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_properties) {

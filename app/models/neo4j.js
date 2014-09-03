@@ -80,6 +80,7 @@ exports.findPromise = function(query) {
   getCypherQuery()
     .send(query)
     .end(function(err, res) {
+	  console.log("Query: " + JSON.stringify(query), "res: " + JSON.stringify(res ? (res.body ? res.body.data : "") : ""));
       if (err) {
         deferred.reject(err);
       } else {

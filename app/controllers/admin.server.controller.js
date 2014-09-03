@@ -84,15 +84,26 @@ var associateSkillToUser = function (userEmail, skillName, cb) {
 	var relation_properties = { level: 0, like: false };
 
 	var associateSkillToUser = function(userNodeUrl, skillNodeUrl, cb) {
-		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl, relation_properties)
-			.then(function(relationshipUrl) {
-				console.log('Created relationship', relationshipUrl);
 
+		xskillzNeo4J.userHasSkill(userNodeUrl, skillNodeUrl)
+		.then(function(user) {
+			if (!user) {
+				xskillzNeo4J.associateSkillToUser(userNodeUrl, skillNodeUrl, relation_properties)
+				.then(function(relationshipUrl) {
+					console.log('Created relationship', relationshipUrl);
+					cb();
+				})
+				.fail(function(err) {
+					cb(err);
+				});
+			}
+			else {
 				cb();
-			})
-			.fail(function(err) {
-				cb(err);
-			});
+			}
+		})
+		.fail(function (err) {
+			cb(err);
+		});
 	};
 
 	xskillzNeo4J.findXebian(userEmail)
