@@ -21,15 +21,10 @@ angular
 		state('search',{
 			url: '/users/search',			
 			templateUrl: 'modules/users/views/users.client.view.html'
-		});
-
-	}])
-	.module('user').config(['$stateProvider', 
-	function($stateProvider) {
-		// User state routing
-		$stateProvider.
+		}).
 		state('email', {
-			url: '',
+			url: '/users/email',
 			templateUrl: 'modules/users/views/skillz.client.view.html'
 		});
+
 	}]);

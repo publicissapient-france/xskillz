@@ -70,6 +70,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 				.then(function(response){
 					$scope.results = response.data;
 			});
+		};
 
 		// Get user profile
 		$scope.getProfile = function() {
