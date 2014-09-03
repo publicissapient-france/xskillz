@@ -7,5 +7,6 @@ angular.module('core').run(['Menus',
 		Menus.addMenuItem('topbar', 'My skills', 'users/associate', 'item');
 		Menus.addMenuItem('topbar', 'Search for skills', 'skillz', 'item');
 		Menus.addMenuItem('topbar', 'Search for xebians', 'users/search', 'item');
+		Menus.addMenuItem('topbar', 'VIZ', 'cloudtag', 'item');
 	}
 ]);
