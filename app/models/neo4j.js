@@ -24,6 +24,12 @@ exports.makeURLSecured = function(unsecurred){
   }
 };
 
+var extractNodeIdPattern = /(\d*)$/;
+
+exports.extractNodeId = function(nodeUrl){
+	return nodeUrl.match(extractNodeIdPattern)[1];
+};
+
 
 var getCypherQuery = function() {
   return http
@@ -72,6 +78,11 @@ exports.updateNodePromise = function(nodeType, nodeKey, nodeValue, nodeData) {
 			}
 		});
 	return deferred.promise;
+};
+
+exports.execute = function(query){
+	console.log('execute query', query);
+	getCypherQuery().send(query);
 };
 
 exports.findPromise = function(query) {
