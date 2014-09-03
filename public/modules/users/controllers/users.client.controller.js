@@ -61,5 +61,12 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			}
 		};
 
+		$scope.searchXebians = function(){
+			$http.get('/users', {'params': {'q':$scope.query}})
+				.then(function(response){
+					$scope.results = response.data;
+			});
+		};
+
 	}
 ]);

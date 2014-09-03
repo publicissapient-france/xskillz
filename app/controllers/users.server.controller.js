@@ -210,6 +210,13 @@ exports.findXebiansBySkillz = function(req,res){
 		});
 };
 
+exports.allXebians = function(req,res){
+	xskillzNeo4J.findXebiansByName(req.query.q)
+		.then(function(results){
+			res.jsonp(results);	
+		});
+};
+
 exports.disassociate = function(req, res){
 	xskillzNeo4J.deleteElement(req.body.relationship)
 		.then(function(result){

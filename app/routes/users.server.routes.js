@@ -13,6 +13,8 @@ module.exports = function(app) {
 	app.route('/users').delete(users.delete);
 	app.route('/users').put(users.update);
 
+	app.route('/users').get(users.requiresLogin, users.allXebians);
+
 	app.route('/users/me/skillz')
 		.put(users.requiresLogin, users.associate);
 		
