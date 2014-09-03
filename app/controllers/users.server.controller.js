@@ -138,11 +138,11 @@ exports.requiresLogin = function(req, res, next) {
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 
 	if (!req.user) {
-		User.findOne(providerUserProfile.providerData.id).then(function(user){
+		User.findOne(providerUserProfile.providerData.id).then(function(user) {
 				if (!user) {
 					console.log('Welcome to new user',providerUserProfile.displayName);
 					// And save the user		
-					User.save(providerUserProfile,function(err) {
+					User.importUserWithGoogleAuthData(providerUserProfile,function(err) {
 						return done(null, providerUserProfile);
 					});
 					

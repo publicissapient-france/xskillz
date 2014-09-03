@@ -46,13 +46,23 @@ exports.findXebian = function(email) {
 };
 
 exports.findXebianById = function(id) {
-  var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n._id = {_id} RETURN n',
-    'params' : {
-      '_id': id
-    }
-  };
-  return NEO4J.findPromise(query);
+	var query = {
+		'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n._id = {_id} RETURN n',
+		'params' : {
+			'_id': id
+		}
+	};
+	return NEO4J.findPromise(query);
+};
+
+exports.findXebianByEmail = function(email) {
+	var query = {
+		'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n.email = {email} RETURN n',
+		'params' : {
+			'email': email
+		}
+	};
+	return NEO4J.findPromise(query);
 };
 
 exports.findXebianSkillz = function(email){

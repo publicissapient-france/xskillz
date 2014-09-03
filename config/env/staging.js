@@ -8,6 +8,11 @@ module.exports = {
 	google: {
 		clientID: process.env.GOOGLE_ID || 'APP_ID',
 		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
-		callbackURL: 'http://xskillz.herokuapp.com/auth/google/callback'
+		callbackURL: 'http://xskillz.herokuapp.com/auth/google/callback',
+		api: {
+			clientID: process.env.GOOGLE_API_ID || 'APP_ID',
+			clientSecret: process.env.GOOGLE_API_SECRET || 'APP_SECRET',
+			callbackURL: 'http://xskillz.herokuapp.com/admin/gapi/auth/callback'
+		}
 	}
 };

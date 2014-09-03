@@ -20,39 +20,62 @@ exports.findOne = function(id){
     });
 };
 
-var makeFlatUser = function(user){
-  var flatUser = _.extend(user,user.providerData);
+exports.importUserWithDomainDirectoryData = function (gData, next) {
 
-  flatUser._id = flatUser.id;
-  delete flatUser.id;
-  delete flatUser.providerData;
+	var user = {
+		firstName: gData.firstName,
+		lastName: gData.lastName,
+		email: gData.email,
+		picture: gData.picture
+	};
 
-  flatUser.username = flatUser.email;
-
-  return flatUser;
-};
-
-exports.save = function(user, next) {
-
-  var flatUser = makeFlatUser(user);
-
-  xskillzNeo4J.findXebianById(flatUser._id)
-    .then(function(xebian) {
-      if (!xebian) {
-        xskillzNeo4J.createXebian(flatUser)
-          .then(function(node) {
-            next();
-          })
-          .fail(function(error) {
-            next(error);
-          });
-      } else {
+	xskillzNeo4J.findXebianByEmail(user.email)
+		.then(function (xebian) {
+			if (!xebian) {
+				xskillzNeo4J.createXebian(user)
+					.then(function () {
+						next();
+					})
+					.fail(function (error) {
+						next(error);
+					});
+			} else {
+				// Update Xebian
 				next();
 			}
-    })
-    .fail(function(error) {
-      next(error);
-    });
+		})
+		.fail(function (error) {
+			next(error);
+		});
+};
+
+exports.importUserWithGoogleAuthData = function (authData, next) {
+
+	var user = {
+		_id: authData.id,
+		firstName: authData.firstName,
+		lastName: authData.lastName,
+		email: authData.email,
+		picture: authData.picture
+	};
+
+	xskillzNeo4J.findXebianByEmail(user.email)
+		.then(function (xebian) {
+			if (!xebian) {
+				xskillzNeo4J.createXebian(user)
+					.then(function () {
+						next();
+					})
+					.fail(function (error) {
+						next(error);
+					});
+			} else {
+				next();
+			}
+		})
+		.fail(function (error) {
+			next(error);
+		});
 };
 
 exports.remove = function(next, done) {

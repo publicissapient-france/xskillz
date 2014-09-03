@@ -2,17 +2,21 @@
 
 var util = require('util');
 var _ = require('underscore');
+var async = require('async');
 
 var googleapis = require('googleapis');
 var directory = googleapis.admin('directory_v1');
 
+var User = require('../models/user');
+
+var config = require('../../config/config');
+
 
 var oauth2Client = new googleapis.auth.OAuth2(
-	'407785855930-cde7hoia0q9j6192195ji0no78j0p0h0.apps.googleusercontent.com',
-	'gFBGoi21pO9XI4hOA5KeZbpE',
-	'http://localhost:3000/admin/gapi/auth/callback'
+	config.google.api.clientID,
+	config.google.api.clientSecret,
+	config.google.api.callbackURL
 );
-
 
 exports.auth = function(req, res) {
 	// generate consent page url
@@ -35,25 +39,35 @@ exports.authCallback = function(req, res) {
 };
 
 exports.importContacts = function(req, res) {
-	directory.users.list({ domain: 'xebia.fr', auth: oauth2Client }, function(err, data) {
+	directory.users.list({ domain: 'xebia.fr', maxResults: 200, auth: oauth2Client }, function(err, data) {
 
 		console.log("Users:", JSON.stringify(data, undefined, 2));
 
 		var neo4jUsers = _(data.users).map(function(user) {
 			return {
+				username: user.primaryEmail,
 				email: user.primaryEmail,
 				firstName: user.name.givenName,
-				familyName:  user.name.familyName,
-				photoUrl:  user.thumbnailPhotoUrl
+				lastName:  user.name.familyName,
+				picture:  user.thumbnailPhotoUrl
 			};
 		});
 
+		var saveUser = function(user, cb) {
+			User.importUserWithDomainDirectoryData(user, cb);
+		};
+
 		console.log("Users:", JSON.stringify(neo4jUsers, undefined, 2));
 
-		res.render('import', {
-			user: req.user || null,
-			error: err,
-			users: data
+		async.each(neo4jUsers, saveUser, function(err, data) {
+			console.log(err || data);
+
+			res.render('import', {
+				user: req.user || null,
+				error: err,
+				users: data
+			});
 		});
+
 	});
 };
