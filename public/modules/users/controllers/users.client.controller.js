@@ -21,8 +21,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		if (!$scope.user) $location.path('/');
 
 		$scope.removeRelation = function(relationId){
-			console.log('remove relation ', relationId);
-
 			$http.post('users/me/skillz/disassociate', {'relationship': relationId} ).then(function(response){
 				$scope.skillz = _.map(response.data, function(node){
 					return node;
@@ -41,7 +39,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		// Affect a skill to current user
 		$scope.associateSkill = function() {
 			if (_.indexOf($scope.skillz, $scope.newSkill) === -1 ) {
-					$http.put('users/me/skillz', { 'skill': $scope.newSkill }).then(function(response) {
+					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : 0 , 'like' : true }}).then(function(response) {
 						$scope.skillz = _.map(response.data, function(node){
 							return node;
 						});

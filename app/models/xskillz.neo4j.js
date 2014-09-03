@@ -15,10 +15,7 @@ exports.createXebian = function(user) {
   return NEO4J.createNodePromise(XEBIAN_TYPE, user);
 };
 
-exports.createSkill = function(skillName) {
-  var skill = {
-    'name': skillName
-  };
+exports.createSkill = function(skill) {
   return NEO4J.createNodePromise(SKILL_TYPE, skill);
 };
 
@@ -76,17 +73,17 @@ exports.findXebiansBySkillz = function (skillName){
   return NEO4J.findPromise(query);
 };
 
-exports.findSkill = function(name) {
+exports.findSkill = function(skillName) {
   var query = {
     'query': 'MATCH (n: '+SKILL_TYPE+' ) WHERE n.name= {name} RETURN n',
     'params': {
-      'name': name
+      'name': skillName
     }
   };
   return NEO4J.findPromise(query);
 };
 
-exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
+exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_properties) {
   var securedURL = NEO4J.makeURLSecured(userNodeUrl);
 
   var deferred = Q.defer();
@@ -96,7 +93,8 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
     .set('Content-Type', 'application/json')
     .send({
       'to' : skillNodeUrl,
-      'type' : SKILLZ_RELATION
+      'type' : SKILLZ_RELATION,
+      'data' : relation_properties
     })
     .end(function(err, res) {
       if (err) {
