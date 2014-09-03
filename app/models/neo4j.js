@@ -27,7 +27,7 @@ exports.makeURLSecured = function(unsecurred){
 var extractNodeIdPattern = /(\d*)$/;
 
 exports.extractNodeId = function(nodeUrl){
-	return nodeUrl.match(extractNodeIdPattern)[1];
+	return Number(nodeUrl.match(extractNodeIdPattern)[1]);
 };
 
 
@@ -81,8 +81,19 @@ exports.updateNodePromise = function(nodeType, nodeKey, nodeValue, nodeData) {
 };
 
 exports.execute = function(query){
-	console.log('execute query', query);
-	getCypherQuery().send(query);
+	var deferred = Q.defer();
+
+	getCypherQuery()
+		.send(query)
+		.end(function(err, res) {
+			if (err) {
+				deferred.reject(err);
+			} else {
+				console.log('updated node', res.statusCode);
+				deferred.resolve();
+			}
+		});
+	return deferred.promise;
 };
 
 exports.findPromise = function(query) {
