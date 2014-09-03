@@ -17,7 +17,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$http.get('/users/me/skillz').then(function(response){
 			$scope.skillz = _.map(response.data, function(node){
-				return node;
+				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like };
 			});
 		});
 
@@ -42,10 +42,10 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		// Affect a skill to current user
 		$scope.associateSkill = function() {
-			if (_.indexOf($scope.skillz, $scope.newSkill) === -1 ) {
+			if ( ! (_.find($scope.skillz, function(skill){return skill.name === $scope.newSkill;} ))) {
 					$http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level' : $scope.level , 'like' : $scope.like }}).then(function(response) {
 						$scope.skillz = _.map(response.data, function(node){
-							return node;
+							return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like };
 						});
 				});
 			}

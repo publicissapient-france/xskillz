@@ -28,7 +28,7 @@ exports.update = function(req, res) {
 		user.save(function(err) {
 			if (err) {
 				return res.send(400, {
-					message: getErrorMessage(err)
+					message: err
 				});
 			} else {
 				req.login(user, function(err) {
@@ -62,7 +62,7 @@ exports.delete = function(req, res) {
 		user.remove(function(err) {
 			if (err) {
 				return res.send(400, {
-					message: getErrorMessage(err)
+					message: err
 				});
 			} else {
 				req.logout();
@@ -177,7 +177,7 @@ exports.removeOAuthProvider = function(req, res, next) {
 		user.save(function(err) {
 			if (err) {
 				return res.send(400, {
-					message: getErrorMessage(err)
+					message: err
 				});
 			} else {
 				req.login(user, function(err) {
@@ -229,7 +229,7 @@ exports.associate = function(req, res) {
 
 	var handleError = function(err) {
 		return res.send(400, {
-			message: getErrorMessage(err)
+			message: err
 		});
 	};
 
