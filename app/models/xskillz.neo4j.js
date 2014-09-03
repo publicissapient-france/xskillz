@@ -2,72 +2,28 @@
 
 var http = require('superagent'),
   _ = require('lodash'),
-  Q = require('q');
-
-var neo4j_server_url = process.env.GRAPHENEDB_URL || 'http://localhost:7474';
-var url = neo4j_server_url + '/db/data';
-
-console.log('NEO4J: ',neo4j_server_url);
+  Q = require('q'),
+  NEO4J = require('./neo4j');
 
 var XEBIAN_TYPE = 'XEBIAN';
 var SKILL_TYPE = 'SKILL';
 
 var KNOWS = 'KNOWS';
 
-var extractCredentials = /^https?:\/\/(.*)@/;
-
-var isSecuredDatabase = function(){
-  return extractCredentials.test(neo4j_server_url);
-};
-
-var makeURLSecured = function(unsecurred){
-  if(isSecuredDatabase()){
-    return unsecurred.replace(/:\/\//g,'://' + neo4j_server_url.match(extractCredentials)[1] + '@');
-  }else{
-    return unsecurred;
-  }
-};
-
-var getCypherQuery = function() {
-  return http
-    .post(url + '/cypher')
-    .set('Accept', 'application/json; charset=UTF-8')
-    .set('Content-Type', 'application/json');
-};
-
-var createNodePromise = function(nodeType, nodeData) {
-  var deferred = Q.defer();
-  getCypherQuery()
-    .send({
-      'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN n',
-      'params': {
-        'props': nodeData
-      }
-    })
-    .end(function(err, res) {
-      if (err) {
-        deferred.reject(err);
-      } else {
-        console.log('created node', res.statusCode,res.body.data[0][0].self || '');
-        deferred.resolve(res.body.data[0][0].self);
-      }
-    });
-  return deferred.promise;
-};
 
 exports.createXebian = function(user) {
-  return createNodePromise(XEBIAN_TYPE, user);
+  return NEO4J.createNodePromise(XEBIAN_TYPE, user);
 };
 
 exports.createSkill = function(skillName) {
   var skill = {
     'name': skillName
   };
-  return createNodePromise(SKILL_TYPE, skill);
+  return NEO4J.createNodePromise(SKILL_TYPE, skill);
 };
 
 exports.deleteElement = function(elementURL) {
-  var securedURL = makeURLSecured(elementURL);
+  var securedURL = NEO4J.makeURLSecured(elementURL);
 
   var deferred = Q.defer();
   http
@@ -79,26 +35,6 @@ exports.deleteElement = function(elementURL) {
   return deferred.promise;
 };
 
-var findPromise = function(query) {
-  console.log('Cypher find query: ' + JSON.stringify(query));
-  var deferred = Q.defer();
-  getCypherQuery()
-    .send(query)
-    .end(function(err, res) {
-      if (err) {
-        deferred.reject(err);
-      } else {
-        console.log('query result count: ' + JSON.stringify(res.body.data.length));
-        if (_.isEmpty(res.body.data)) {
-          deferred.resolve(null);
-        } else {
-          deferred.resolve(res.body.data);
-        }
-      }
-    });
-  return deferred.promise;
-};
-
 exports.findXebian = function(email) {
   var query = {
     'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n.email = {email} RETURN n',
@@ -106,7 +42,7 @@ exports.findXebian = function(email) {
       'email': email
     }
   };
-  return findPromise(query);
+  return NEO4J.findPromise(query);
 };
 
 exports.findXebianById = function(id) {
@@ -116,7 +52,7 @@ exports.findXebianById = function(id) {
       '_id': id
     }
   };
-  return findPromise(query);
+  return NEO4J.findPromise(query);
 };
 
 exports.findXebianSkillz = function(email){
@@ -126,7 +62,7 @@ exports.findXebianSkillz = function(email){
       'email': email
     }
   };
-  return findPromise(query);
+  return NEO4J.findPromise(query);
 
 };
 
@@ -137,7 +73,7 @@ exports.findXebiansBySkillz = function (skillName){
       'q': '(?i).*' + skillName + '.*'
     }
   };
-  return findPromise(query);
+  return NEO4J.findPromise(query);
 };
 
 exports.findSkill = function(name) {
@@ -147,11 +83,11 @@ exports.findSkill = function(name) {
       'name': name
     }
   };
-  return findPromise(query);
+  return NEO4J.findPromise(query);
 };
 
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl) {
-  var securedURL = makeURLSecured(userNodeUrl);
+  var securedURL = NEO4J.makeURLSecured(userNodeUrl);
 
   var deferred = Q.defer();
   http

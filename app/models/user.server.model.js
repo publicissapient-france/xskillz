@@ -3,8 +3,7 @@
 /**
  * Module dependencies.
  */
-var crypto = require('crypto'),
-  xskillzNeo4J = require('../models/xskillz.neo4j'),
+var xskillzNeo4J = require('../models/xskillz.neo4j'),
   _ = require('lodash');
 
 
