@@ -9,16 +9,10 @@
 }
 
 .navbar-inverse {
-  background-image: -webkit-linear-gradient(top, #6C1D5F 0%, #6C1D5F 100%);
-  background-image:      -o-linear-gradient(top, #6C1D5F 0%, #6C1D5F 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#6C1D5F), to(#6C1D5F));
-  background-image:         linear-gradient(to bottom, #6C1D5F 0%, #6C1D5F 100%);
+  background-image: linear-gradient(to bottom, #6C1D5F 0%, #6C1D5F 100%);
 }
 .navbar-inverse .navbar-nav > .active > a {
-  background-image: -webkit-linear-gradient(top, #6C1D5F 0%, #6C1D5F 100%);
-  background-image:      -o-linear-gradient(top, #6C1D5F 0%, #6C1D5F 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#6C1D5F), to(#6C1D5F));
-  background-image:         linear-gradient(to bottom, #6C1D5F 0%, #6C1D5F 100%);
+  background-image: linear-gradient(to bottom, #6C1D5F 0%, #6C1D5F 100%);
 }
 .navbar-inverse .navbar-brand,
 .navbar-inverse .navbar-nav > li > a {
