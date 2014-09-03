@@ -5,7 +5,7 @@
 
 }
 
-.results a {
+.results .result {
 		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -16,17 +16,20 @@
 		color: black;
 		max-width: 300px;
 }
-.results a:hover {
+.results .result:hover {
 		color: grey;
 }
 
-.results a div {
+.results .result div {
 	display: inline-block;
 	vertical-align: middle;
 	margin-left: 10px;
 }
 
-.results a div.skill {
+.results .result a.skill {
+	color: grey;
+	text-decoration: none;
+	cursor: pointer;
 	display: block;
 	margin-left: 10px;
 	margin-bottom: 10px;
@@ -34,11 +37,11 @@
 	text-transform: uppercase;
 }
 
-.results a p {
+.results .result p {
 	margin: 0;
 	display: block;
 }
-.results a img {
+.results .result img {
 	height: 50px;
 	width: 50px;
 	display: inline-block;

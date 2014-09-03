@@ -45,9 +45,10 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			});
 		};
 		var transformResultToXebians = function(response) {
-			return _.map(response.data, function(node){
+			var values = _.map(response.data, function(node){
 				return {
 					'skillName': node[2].data.name,
+					'nameForSort': node[2].data.name.toLowerCase(),
 					'email': node[0].data.email,
 					'picture': node[0].data.picture,
 					'displayName' : node[0].data.displayName,
@@ -57,6 +58,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 					'like' : node[1].data.like,
 					relationId : node[1].self };
 			});
+			return _.sortBy(values, 'level').reverse();
 		};
 
 		$http.get('/users/me/skillz').then(function(response){
@@ -77,12 +79,12 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		// List all xebians corresponding to some skillz
 
 		$scope.changingSearchSkillz = function() {
-				if ($scope.query.length > 2) {
-					$scope.searchSkillz();
-				}
+			$scope.results = [];
+			if ($scope.query.length > 2) {
+				$scope.searchSkillz();
+			}
 		};
 		$scope.searchSkillz = function(){
-			$scope.results = [];
 			$http.get('/skillz', {'params': {'q':$scope.query}})
 				.then(function(response){
 					$scope.results = transformResultToXebians(response);
@@ -124,6 +126,11 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			});
 		};
 		$scope.getSkills();
+
+		$scope.changeSearch = function(skill) {
+			$scope.query = skill;
+			$scope.searchSkillz(skill);
+		};
 
 	}
 ]);

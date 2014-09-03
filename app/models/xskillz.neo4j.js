@@ -108,7 +108,7 @@ exports.findSkill = function(skillName) {
 
 exports.findAllSkills = function() {
   var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ')<-[:`HAS`]-(x) return s.name, count(*),s'
+    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-(x) return s.name, count(r),s'
   };
   return NEO4J.findPromise(query);
 };
@@ -154,4 +154,30 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_prop
       }
     });
   return deferred.promise;
+};
+
+exports.deduplicate = function(source, destination){
+  var oldSkillId = NEO4J.extractNodeId(source);
+  var newSkillId = NEO4J.extractNodeId(destination);
+
+  var addNewRelationsQuery = {
+    'query' : 'START oldSkill=node( {oldSkillId} ), newSkill=node( {newSkillId} ) match  (x: `'+XEBIAN_TYPE+'`)-[oldRelation:`'+SKILLZ_RELATION+'`]->oldSkill WHERE NOT (x)-[:`'+SKILLZ_RELATION+'`]->newSkill  create (x)-[r:`'+SKILLZ_RELATION+'` {level: oldRelation.level, like: oldRelation.like }]->(newSkill)',
+    'params' : {
+      'oldSkillId': oldSkillId,
+      'newSkillId': newSkillId
+    }
+  };
+
+  var addNewRelations = NEO4J.execute(addNewRelationsQuery);
+
+  return addNewRelations.then(function(){
+    var removeOldSkillQuery = {
+      'query' : 'start oldSkill=node( {oldSkillId} )  OPTIONAL MATCH (oldSkill)-[r]-() DELETE oldSkill,r',
+      'params': {
+        'oldSkillId' : oldSkillId
+      }
+    };
+
+    return NEO4J.execute(removeOldSkillQuery);
+  });
 };

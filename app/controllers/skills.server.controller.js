@@ -17,5 +17,5 @@ exports.deduplicate = function(req,res){
 	var source = req.body.source;
 	var destination = req.body.destination;
 
-	
+	xskillzNeo4J.deduplicate(source,destination);
 };
