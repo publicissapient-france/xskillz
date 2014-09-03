@@ -10,10 +10,18 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 
 		$scope.newSkill = '';
 
-		$scope.level = 0;
+		$scope.oldLevel = $scope.level = 0;
 		$scope.hoveringOver = function(value) {
-			$scope.level = value;
+			$scope.tempLevel = value;
 	  };
+		$scope.setLevel = function() {
+			if ($scope.oldLevel === 1) {
+				$scope.level = 0;
+			} else {
+				$scope.level = $scope.tempLevel;
+			}
+			$scope.oldLevel = $scope.tempLevel;
+		};
 
 		$scope.like = false;
 		$scope.isLiked = function(like) {
@@ -66,7 +74,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 				});
 			}
 		};
-
 
 		$scope.searchXebians = function(){
 			$http.get('/users', {'params': {'q':$scope.query}})
