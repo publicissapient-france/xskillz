@@ -1,0 +1,14 @@
+<style type="text/css">
+    #tagcloud a {
+        margin-right: 1em; 
+    }
+</style>
+
+<section data-ng-controller="UsersController">
+    <div class="container">
+        <h3>Tag Cloud</h3>
+        <div id="tagcloud" class="row" style="padding-bottom: 12px; padding-top: 16px;">
+            <a ng-repeat="skill in skills" href="/skills/{{skill[0]}}" style="font-size:{{(10 + skill[1]) * 1.5}}px">{{skill[0]}}&nbsp;({{skill[1]}})</a>
+        </div>
+    </div>
+</section>
