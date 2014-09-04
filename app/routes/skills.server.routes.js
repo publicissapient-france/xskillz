@@ -2,17 +2,17 @@
 
 module.exports = function(app) {
 
-	var users = require('../../app/controllers/users');
+	var auth = require('../../app/controllers/auth');
 
 	// User Routes
 	var skills = require('../../app/controllers/skills');
 
-	app.route('/skills/merge').post(users.requiresLogin, skills.merge);
+	app.route('/skills/merge').post(auth.requiresLogin, skills.merge);
 
-	app.route('/skills/delete').post(users.requiresLogin, skills.deleteSkill);
+	app.route('/skills/delete').post(auth.requiresLogin, skills.deleteSkill);
 
-	app.route('/skills/orphans').get(users.requiresLogin, skills.orphans);
+	app.route('/skills/orphans').get(auth.requiresLogin, skills.orphans);
 
-	app.route('/skills').get(users.requiresLogin, skills.all);
+	app.route('/skills').get(auth.requiresLogin, skills.all);
 
 };

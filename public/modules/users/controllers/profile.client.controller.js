@@ -19,16 +19,5 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
 			});
 		});
 
-
-
-
-		// $scope.user = Authentication.user;
-
-		// $scope.newSkill = '';
-
-		// $scope.level = 0;
-
-		// $scope.id = $routeParams.id;
-
 	}
 ]);
