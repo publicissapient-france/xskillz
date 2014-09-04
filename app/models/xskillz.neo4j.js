@@ -108,7 +108,7 @@ exports.findSkill = function(skillName) {
 
 exports.findAllSkills = function() {
   var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),s'
+    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),s order by s.name'
   };
   return NEO4J.findPromise(query);
 };
@@ -158,7 +158,7 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_prop
 
 exports.orphanSkillz = function(){
   var query = {
-    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan'
+    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan order by orphan.name'
   };
 
   return NEO4J.findPromise(query);
