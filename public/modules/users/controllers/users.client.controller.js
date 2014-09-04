@@ -44,22 +44,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 				return {'name' : node[0].data.name, 'level' : node[1].data.level , 'like' : node[1].data.like, relationId : node[1].self };
 			});
 		};
-		var transformResultToXebians = function(response) {
-			var values = _.map(response.data, function(node){
-				return {
-					'skillName': node[2].data.name,
-					'nameForSort': node[2].data.name.toLowerCase(),
-					'email': node[0].data.email,
-					'picture': node[0].data.picture,
-					'displayName' : node[0].data.displayName,
-					'firstName' : node[0].data.firstName,
-					'lastName' : node[0].data.lastName,
-					'level' : node[1].data.level ,
-					'like' : node[1].data.like,
-					relationId : node[1].self };
-			});
-			return _.sortBy(values, 'level').reverse();
-		};
 
 		$http.get('/users/me/skillz').then(function(response){
 			$scope.skillz = _.map(response.data, function(node){
@@ -73,21 +57,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		$scope.removeRelation = function(relationId){
 			$http.post('users/me/skillz/disassociate', {'relationship': relationId} ).then(function(response){
 				$scope.skillz = transformResultToSkillz(response);
-			});
-		};
-
-		// List all xebians corresponding to some skillz
-
-		$scope.changingSearchSkillz = function() {
-			$scope.results = [];
-			if ($scope.query.length > 2) {
-				$scope.searchSkillz();
-			}
-		};
-		$scope.searchSkillz = function(){
-			$http.get('/skillz', {'params': {'q':$scope.query}})
-				.then(function(response){
-					$scope.results = transformResultToXebians(response);
 			});
 		};
 
@@ -119,13 +88,6 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 		$scope.getProfile = function() {
 			console.log('get profile');
 		};
-
-		$scope.getSkills = function() {
-          $http.get('/skills').then(function(response){
-				$scope.skills = response.data;
-			});
-		};
-		$scope.getSkills();
 
 	}
 ]);

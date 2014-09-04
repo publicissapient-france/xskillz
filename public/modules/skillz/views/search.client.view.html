@@ -1,4 +1,4 @@
-<section data-ng-controller="UsersController">
+<section data-ng-controller="SkillzController">
     <div class="container">
         <div id="search" class="row" style="padding-bottom:12px; padding-top: 16px;">
             <form ng-submit="searchSkillz()" class="form-inline">
@@ -15,7 +15,7 @@
         <div id="results" class="results">
               <a href="#!/user/{{xebian.email}}" ng-repeat="xebian in results track by $index">
                 <div class= "skill"> {{xebian.skillName}} </div>
-                <img src={{xebian.picture}}> </img>
+                <img ng-src={{xebian.picture}}> </img>
                 <div class="info">
                   <p>{{xebian.firstName}}</p>
                   <p>{{xebian.lastName}}</p>
