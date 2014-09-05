@@ -14,7 +14,8 @@
 		"angular-bootstrap": "~0.11.0",
 		"angular-ui-utils": "~0.1.1",
 		"angular-ui-router": "~0.2.10",
-		"lodash": "~2.4.1",
+        "d3": "~3.4.11",
+        "lodash": "~2.4.1",
 		"jquery": "~2.1.1"
 	}
 }
