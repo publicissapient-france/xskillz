@@ -50,6 +50,7 @@
 
 .level {
 	display: inline-block;
+	float: right;
 }
 
 .level div {
@@ -59,6 +60,7 @@
 
 .like {
 	display: inline-block;
+	float: right;
 }
 
 .like div {

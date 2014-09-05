@@ -19,5 +19,13 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
 			});
 		});
 
+		$scope.isLiked = function(like) {
+			if (like) {
+				return 'glyphicon-heart';
+			} else {
+				return 'glyphicon-heart-empty';
+			}
+		};
+
 	}
 ]);

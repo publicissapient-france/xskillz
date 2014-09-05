@@ -66,6 +66,14 @@ angular.module('skillz').controller('SkillzController', ['_', '$scope', '$http',
 					$scope.searchSkillz();
 				}
 			};
+
+			$scope.isLiked = function(like) {
+			if (like) {
+				return 'glyphicon-heart';
+			} else {
+				return 'glyphicon-heart-empty';
+			}
+		};
 	}
 
 

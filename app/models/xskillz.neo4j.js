@@ -68,7 +68,7 @@ exports.findXebianByEmail = function(email) {
 
 exports.findXebianSkillz = function(email){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE n.email = {email} RETURN s,r',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE n.email = {email} RETURN s,r  order by r.like DESC, r.level DESC, s.name',
     'params' : {
       'email': email
     }

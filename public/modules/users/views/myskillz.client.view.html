@@ -24,17 +24,18 @@
                 <div class="info">
                   <p>{{skill.name}}</p>
                 </div>
+                <div class="remove">
+                  <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"/>
+                </div>
+
+                <div class="like">
+                  <span class="turquoise glyphicon glyphicon-heart" ng-class="isLiked(skill.like)"></span>
+                </div>
 
                 <div class="level" ng-if="skill.level != undefined">
                   <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>
                 </div>
 
-                <div class="like" ng-if="skill.like == true">
-                  <span class="turquoise glyphicon glyphicon-heart"></span>
-                </div>
-                <div class="remove">
-                  <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"/>
-                </div>
               </a>
         </div>
     </div>
