@@ -38,7 +38,17 @@
   margin: 0;
   display: block;
 }
-.skill {
+.user {
+  display: block;
+  color: black;
+  text-decoration: none;
+}
+.user:hover {
+  color: grey;
+  text-decoration: none;
+}
+.skill--link {
+  cursor: pointer;
   display: block;
   margin-left: 10px;
   margin-bottom: 10px;

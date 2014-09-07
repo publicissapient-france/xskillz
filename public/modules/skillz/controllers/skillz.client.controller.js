@@ -99,6 +99,13 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
 				});
 			};
 
+      $scope.findSkillByName = function(skill) {
+        $scope.query = skill;
+        if (skill.length > 2) {
+          $scope.searchSkillz();
+        }
+      };
+
 			$scope.changingSearchSkillz = function() {
 				$scope.results = [];
 				if ($scope.query.length > 2) {
