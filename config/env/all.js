@@ -30,7 +30,6 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/bootstrap/dist/js/bootstrap.min.js',
-				'public/lib/d3/d3.min.js'
 			]
 		},
 		css: [
