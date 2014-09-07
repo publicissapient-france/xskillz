@@ -29,7 +29,7 @@
             </form>
         </div>
         <div id="results" class="results">
-              <a href="#!/user/{{user.email}}" ng-repeat="skill in skillz track by $index">
+              <div ng-repeat="skill in skillz track by $index">
                 <div class="info">
                   <p>{{skill.name}}</p>
                 </div>
@@ -45,7 +45,7 @@
                   <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true" state-off=""></rating>
                 </div>
 
-              </a>
+              </div>
         </div>
     </div>
 </section>
