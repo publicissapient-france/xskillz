@@ -39,6 +39,19 @@ exports.disassociate = function(req, res){
 		});
 };
 
+exports.availableSkillzForMe = function(req, res){
+	var skillQuery = req.query.q || '.';
+	var user = req.user;
+
+	console.log('query',skillQuery);
+
+	var skillz = xskillzNeo4J.findAvailableSkillzForXebian(user.email, skillQuery);
+
+	skillz.then(function(result) {
+  		res.jsonp(result || []);
+  	});
+};
+
 exports.associate = function(req, res) {
 	var skill = req.body.skill;
 	var relation_properties = req.body.relation_properties;

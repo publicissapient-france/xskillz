@@ -96,6 +96,18 @@ exports.findXebiansBySkillz = function (skillName){
   return NEO4J.findPromise(query);
 };
 
+exports.findAvailableSkillzForXebian = function(email, skillQuery) {
+  var query = {
+    'query': 'MATCH (xebian: '+XEBIAN_TYPE+'), (skill: '+SKILL_TYPE+' ) WHERE skill.name =~ {skillQuery} and xebian.email = {email} and not (xebian) -[:HAS]-> (skill) RETURN skill.name',
+    'params': {
+      'email': email,
+      'skillQuery': '(?i).*' + skillQuery + '.*'
+    }
+  };
+  return NEO4J.findPromise(query);
+};
+
+
 exports.getSkill = function(skillName) {
   var query = {
     'query': 'MATCH (n: '+SKILL_TYPE+' ) WHERE n.name= {name} RETURN n',

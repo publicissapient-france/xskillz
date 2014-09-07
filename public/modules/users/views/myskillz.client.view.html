@@ -4,7 +4,16 @@
         <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
             <form name="associateForm" ng-submit="associateSkill()" class="create-skill-form">
                 <div>
-                    <input type="text" maxlength="20" required class="form-control expanded" id="name" ng-model="newSkill" placeholder="Nouvelle compétence">
+                    <input 
+                        type="text" 
+                        maxlength="20" 
+                        required 
+                        class="form-control expanded" 
+                        id="name" 
+                        ng-model="newSkill" 
+                        placeholder="Nouvelle compétence"
+                        typeahead="skill for skill in searchSkill($viewValue)">
+                    <i ng-show="loadingSkillz" class="glyphicon glyphicon-refresh"></i>
                 </div>
                 <div>
                     <rating class="turquoise bigger" ng-model="level" max="3" on-hover="hoveringOver(value)" ng-click="setLevel()" on-leave="overStar = null"></rating>
@@ -20,7 +29,7 @@
             </form>
         </div>
         <div id="results" class="results">
-              <a href="#/user/{{xebian[0].data.email}}" ng-repeat="skill in skillz track by $index">
+              <a href="#!/user/{{user.email}}" ng-repeat="skill in skillz track by $index">
                 <div class="info">
                   <p>{{skill.name}}</p>
                 </div>

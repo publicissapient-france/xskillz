@@ -12,7 +12,9 @@ module.exports = function(app) {
 		auth = require('../../app/controllers/auth');
 
 
-	app.route('/users/me/skillz').get(users.mySkillz);
+	app.route('/users/me/skillz').get(auth.requiresLogin,users.mySkillz);
+
+	app.route('/users/me/availableSkillz').get(auth.requiresLogin, users.availableSkillzForMe);
 
 	app.route('/users').get(auth.requiresLogin, users.allXebians);
 

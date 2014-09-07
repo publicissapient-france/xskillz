@@ -89,5 +89,12 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
 			console.log('get profile');
 		};
 
+		$scope.searchSkill = function(value){
+			return $http.get('/users/me/availableSkillz', {'params': {'q':value}})
+				.then(function(response){
+					return _.map(response.data,function(row){return row[0];});
+			});
+		};
+
 	}
 ]);
