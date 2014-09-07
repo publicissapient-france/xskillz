@@ -29,23 +29,20 @@
             </form>
         </div>
         <div id="results" class="results">
-              <div ng-repeat="skill in skillz track by $index">
-                <div class="info">
-                  <p>{{skill.name}}</p>
+            <div ng-repeat="skill in skillz track by $index" class="result-item">
+                <div class="info result-element">
+                    <p>{{skill.name}}</p>
                 </div>
-                <div class="remove">
-                  <span class='glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"/>
+                <div class="remove result-element">
+                    <a class='result-remove--link glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"></a>
                 </div>
-
-                <div class="like">
-                  <span class="turquoise glyphicon glyphicon-heart" ng-class="isLiked(skill.like)"></span>
+                <div class="like result-element">
+                    <span class="turquoise glyphicon glyphicon-heart" ng-class="isLiked(skill.like)"></span>
                 </div>
-
-                <div class="level" ng-if="skill.level != undefined">
-                  <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true" state-off=""></rating>
+                <div class="level result-element" ng-if="skill.level != undefined">
+                    <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true" state-off=""></rating>
                 </div>
-
-              </div>
+            </div>
         </div>
     </div>
 </section>

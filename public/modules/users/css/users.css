@@ -1,111 +1,99 @@
 @media (min-width: 992px) {
-	.nav-users {
-		position: fixed;
-	}
-
+  .nav-users {
+    position: fixed;
+  }
 }
 
-.results a, .results > div {
-		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-		padding: 10px;
-		display: inline-block;
-		text-decoration: none;
-		margin-bottom: 10px;
-		color: black;
-		width: 300px;
-        margin-right: 10px;
+.result-item {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  padding: 10px;
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  color: black;
+  width: 300px;
 }
-.results a:hover {
-		color: grey;
+.result-item:hover {
+  color: grey;
+  text-decoration: none;
 }
-
-.results a div , .results > div div{
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 10px;
+.result-remove--link  {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
-
-.results div.skill{
-	display: block;
-	margin-left: 10px;
-	margin-bottom: 10px;
-	font-weight: bold;
-	text-transform: uppercase;
+.result-remove--link:hover {
+  color: grey;
+  text-decoration: none;
 }
-
-.results a p , .results > div p{
-	margin: 0;
-	display: block;
+.result-element {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
 }
-.results a img , .results > div img{
-	height: 50px;
-	width: 50px;
-	display: inline-block;
+.result-element p {
+  margin: 0;
+  display: block;
 }
-
-.results .remove{
-	float: right;
+.skill {
+  display: block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-
-.level {
-	display: inline-block;
-	float: right;
+.result-portrait {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
 }
 
-.level div {
-	width: 100px;
-	margin: 25px auto;
-}
-
+.remove,
+.level,
 .like {
-	display: inline-block;
-	float: right;
-}
-
-.like div {
-	width: 100px;
-	margin: 25px auto;
+  float: right;
 }
 
 .create-skill-form div {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
 }
 
 .remove-account-container {
-	display: inline-block;
-	position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .btn-remove-account {
-	top: 10px;
-	right: 10px;
-	position: absolute;
+  top: 10px;
+  right: 10px;
+  position: absolute;
 }
 
 .user-picture{
-	background-size: 32px 32px;
-	border-radius: 50%;
-	display: inline-table;
-	margin-top: -1px;
-	margin-right: 10px;
-	height: 32px;
-	width: 32px;
+  background-size: 32px 32px;
+  border-radius: 50%;
+  display: inline-table;
+  margin-top: -1px;
+  margin-right: 10px;
+  height: 32px;
+  width: 32px;
 }
 
 .skill-badge{
-	background-color: #A0C3FF;
-	background-color: rgba(160, 195, 255, 0.6);
-	color: black;
-	color: rgba(0, 0, 0, 0.67);
-	margin-bottom: 5px;
+  background-color: #A0C3FF;
+  background-color: rgba(160, 195, 255, 0.6);
+  color: black;
+  color: rgba(0, 0, 0, 0.67);
+  margin-bottom: 5px;
 }
 
 .big-btn{
-	border: 1px solid black;
-	border: 1px solid rgba(0,0,0,.15);
-	background-color: #F0F0F0;
+  border: 1px solid black;
+  border: 1px solid rgba(0,0,0,.15);
+  background-color: #F0F0F0;
 }

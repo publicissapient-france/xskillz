@@ -3,19 +3,17 @@
         <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
         
         <div id="results" class="results">
-              <a href="#/user/{{xebian[0].data.email}}" ng-repeat="skill in skillz track by $index">
-                <div class="info">
-                  <p>{{skill.name}}</p>
+            <a href="#/user/{{xebian[0].data.email}}" ng-repeat="skill in skillz track by $index" class="result-item">
+                <div class="info result-element">
+                    <p>{{skill.name}}</p>
                 </div>
-
-                <div class="like">
-                  <span class="turquoise glyphicon glyphicon-heart" ng-class="isLiked(skill.like)"></span>
+                    <div class="like result-element">
+                <span class="turquoise glyphicon glyphicon-heart" ng-class="isLiked(skill.like)"></span>
+                    </div>
+                <div class="level result-element" ng-if="skill.level != undefined">
+                    <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>
                 </div>
-
-                <div class="level" ng-if="skill.level != undefined">
-                  <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>
-                </div>
-              </a>
+            </a>
         </div>
     </div>
 </section>
