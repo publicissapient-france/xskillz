@@ -96,7 +96,7 @@ exports.findXebiansBySkillz = function (skillName){
   return NEO4J.findPromise(query);
 };
 
-exports.findSkill = function(skillName) {
+exports.getSkill = function(skillName) {
   var query = {
     'query': 'MATCH (n: '+SKILL_TYPE+' ) WHERE n.name= {name} RETURN n',
     'params': {

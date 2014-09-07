@@ -111,7 +111,7 @@ var associateSkillToUser = function (userEmail, skillName, cb) {
 			if (userNode) {
 				var userNodeUrl = userNode[0][0].self;
 
-				xskillzNeo4J.findSkill(skillName)
+				xskillzNeo4J.getSkill(skillName)
 					.then(function (result) {
 						if (!result) {
 							xskillzNeo4J.createSkill({ name: skillName })

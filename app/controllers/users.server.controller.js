@@ -72,7 +72,7 @@ exports.associate = function(req, res) {
 			if(userNode){
 				var userNodeUrl = userNode[0][0].self;
 				
-				xskillzNeo4J.findSkill(skill.name).then(function(result) {
+				xskillzNeo4J.getSkill(skill.name).then(function(result) {
 					if (!result) {
 
 						xskillzNeo4J.createSkill(skill).then(function(skillNodeUrl) {
