@@ -1,46 +1,46 @@
 'use strict';
 
-angular.module('skillz').controller('SkillzController', ['_', '$scope', '$http', '$location',
-	function(_, $scope, $http, $location) {
+angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$location', '_', 'd3',
+	function($scope, $http, $location, _, d3) {
 
-            $scope.cloud = function() {
-                var diameter = 960, format = d3.format(",d"), color = d3.scale.category20c();
-                var bubble = d3.layout.pack()
-                    .sort(null)
-                    .size([diameter, diameter])
-                    .padding(15);
-                var svg = d3.select("#cloud").append("svg")
-                    .attr("width", diameter)
-                    .attr("height", diameter)
-                    .attr("class", "bubble");
-                d3.json("/skills", function(error, root) {
-                    var node = svg.selectAll(".node")
-                        .data(bubble.nodes(classes(root))
-                            .filter(function(d) { return !d.children; }))
-                        .enter().append("g")
-                        .attr("class", "node")
-                        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-                    node.append("title")
-                        .text(function(d) { return d.name + ": " + format(d.value); });
-                    node.append("circle")
-                        .attr("r", function(d) { return d.r; })
-                        .style("fill", function(d) { return color(d.value); });
-                    node.append("text")
-                        .attr("dy", ".3em")
-                        .style("text-anchor", "middle")
-                        .text(function(d) { return d.name.substring(0, d.r/4); });
-                });
+      $scope.cloud = function() {
+          var diameter = 960, format = d3.format(',d'), color = d3.scale.category20c();
+          var bubble = d3.layout.pack()
+              .sort(null)
+              .size([diameter, diameter])
+              .padding(15);
+          var svg = d3.select('#cloud').append('svg')
+              .attr('width', diameter)
+              .attr('height', diameter)
+              .attr('class', 'bubble');
+          d3.json('/skills', function(error, root) {
+              var node = svg.selectAll('.node')
+                  .data(bubble.nodes(setClasses(root))
+                      .filter(function(d) { return !d.children; }))
+                  .enter().append('g')
+                  .attr('class', 'node')
+                  .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+              node.append('title')
+                  .text(function(d) { return d.name + ': ' + format(d.value); });
+              node.append('circle')
+                  .attr('r', function(d) { return d.r; })
+                  .style('fill', function(d) { return color(d.value); });
+              node.append('text')
+                  .attr('dy', '.3em')
+                  .style('text-anchor', 'middle')
+                  .text(function(d) { return d.name.substring(0, d.r/4); });
+          });
 
-                function classes(root) {
-                    var classes = [];
-                    root.forEach(function(node){
-                        classes.push({name:node[0], value:(node[1]+1)});
-                    });
-                    return {children: classes};
-                }
-                d3.select("#cloud").style("height", diameter + "px");
-            };
-            $scope.cloud();
+          function setClasses(root) {
+              var classes = [];
+              root.forEach(function(node){
+                  classes.push({name:node[0], value:(node[1]+1)});
+              });
+              return {children: classes};
+          }
+          d3.select('#cloud').style('height', diameter + 'px');
+      };
+      $scope.cloud();
 
 			$scope.getSkills = function() {
           		$http.get('/skills').then(function(response){

@@ -11,6 +11,7 @@ module.exports = {
 			js: [
 				'public/lib/lodash/dist/lodash.min.js',
 				'public/lib/jquery/dist/jquery.min.js',
+				'public/lib/d3/d3.min.js',
 				'public/lib/angular/angular.min.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-cookies/angular-cookies.js',

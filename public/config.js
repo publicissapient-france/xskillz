@@ -8,9 +8,14 @@ var ApplicationConfiguration = (function() {
 	  return window._; // assumes underscore has already been loaded on the page
 	});
 
+	var d3 = angular.module('d3', []);
+	d3.factory('d3', function() {
+		return window.d3; // assumes d3 has already been loaded on the page
+	});
+
 	// Init module configuration options
 	var applicationModuleName = 'xskillz';
-	var applicationModuleVendorDependencies = ['lodash', 'ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'lodash', 'd3'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName) {
