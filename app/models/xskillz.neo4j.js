@@ -88,12 +88,14 @@ exports.findXebiansByName = function(q){
 
 exports.findXebiansBySkillz = function (skillName){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE s.name=~ {q} RETURN n,r, s',
+    'query' : 'MATCH (x: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE s.name=~ {q} RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name',
     'params': {
       'q': '(?i).*' + skillName + '.*'
     }
   };
-  return NEO4J.findPromise(query);
+  return NEO4J.findPromise(query,function(row){
+    return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5]};
+  });
 };
 
 exports.findAvailableSkillzForXebian = function(email, skillQuery) {
