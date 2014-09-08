@@ -5,11 +5,9 @@ var http = require('superagent'),
   Q = require('q'),
   NEO4J = require('./neo4j');
 
-var XEBIAN_TYPE = 'XEBIAN';
-var SKILL_TYPE = 'SKILL';
-
-var SKILLZ_RELATION = 'HAS';
-
+  var XEBIAN_TYPE = NEO4J.XEBIAN_TYPE;
+  var SKILL_TYPE = NEO4J.SKILL_TYPE;
+  var SKILLZ_RELATION = NEO4J.SKILLZ_RELATION;
 
 exports.createXebian = function(userData) {
 	return NEO4J.createNodePromise(XEBIAN_TYPE, userData);
@@ -71,16 +69,6 @@ exports.findXebianSkillz = function(email){
     'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE n.email = {email} RETURN s,r  order by r.like DESC, r.level DESC, s.name',
     'params' : {
       'email': email
-    }
-  };
-  return NEO4J.findPromise(query);
-};
-
-exports.findXebiansByName = function(q){
-  var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n.displayName =~ {q} RETURN n',
-    'params': {
-      'q': '(?i).*' + q + '.*'
     }
   };
   return NEO4J.findPromise(query);

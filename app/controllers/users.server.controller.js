@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	xskillzNeo4J = require('../models/xskillz.neo4j');
+	xskillzNeo4J = require('../models/xskillz.neo4j'),
+	NEO4J = require('../models/neo4j.js');
 
 
 exports.mySkillz = function(req, res){
@@ -26,10 +27,18 @@ exports.findXebiansBySkillz = function(req,res){
 };
 
 exports.allXebians = function(req,res){
-	xskillzNeo4J.findXebiansByName(req.query.q)
-		.then(function(results){
-			res.jsonp(results);	
-		});
+  var query = {
+    'query' : 'MATCH (x: '+NEO4J.XEBIAN_TYPE+') WHERE x.displayName =~ {q} RETURN x.displayName, x.email, x.picture',
+    'params': {
+      'q': '(?i).*' + req.query.q + '.*'
+    }
+  };
+
+  return NEO4J.findPromise(query,function(row){
+  		return {'displayName' : row[0], 'email': row[1], 'picture': row[2]};
+	  }).then(function(results){
+		res.jsonp(results);	
+	  });
 };
 
 exports.disassociate = function(req, res){

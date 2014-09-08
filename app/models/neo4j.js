@@ -97,25 +97,27 @@ exports.execute = function(query){
 };
 
 exports.findPromise = function(query, mapper) {
-  console.log('Cypher find query: ' + JSON.stringify(query));
   var deferred = Q.defer();
   getCypherQuery()
     .send(query)
     .end(function(err, res) {
-      if (err) {
-        deferred.reject(err);
+      if (err || (res.statusCode !== 200)) {
+  		console.log('[ERROR]',err || res.statusCode, JSON.stringify(query));
+
+        deferred.reject(err||res.statusCode);
       } else {
-        if (_.isEmpty(res.body.data)) {
-          deferred.resolve(null);
-        } else {
-          if(mapper){
-          	deferred.resolve(_.map(res.body.data,mapper));
-          }else{
-          	deferred.resolve(res.body.data);
-          }
-          
+      	  console.log('[SUCCESS]',res.body.data.length,'rows for', JSON.stringify(query));
+	      if(mapper){
+	      	deferred.resolve(_.map(res.body.data,mapper));
+	      }else{
+	      	deferred.resolve(res.body.data);
         }
       }
     });
   return deferred.promise;
 };
+
+exports.XEBIAN_TYPE = 'XEBIAN';
+exports.SKILL_TYPE = 'SKILL';
+
+exports.SKILLZ_RELATION = 'HAS';

@@ -15,7 +15,7 @@
         <div id="results" class="row">
             <div class="col-md-5">
                 <ul class="list-group">
-                    <a class="list-group-item" ng-href="#!/user/{{xebian[0].data.email}}" ng-repeat="xebian in results"><span style='background-image: url({{xebian[0].data.picture}});' class="user-picture"></span>{{xebian[0].data.displayName}} <em>{{xebian[1].type}}</em> {{xebian[2].data.name}}</a>
+                    <a class="list-group-item" ng-href="#!/user/{{xebian.email}}" ng-repeat="xebian in results"><span style='background-image: url({{xebian.picture}});' class="user-picture"></span>{{xebian.displayName}}</a>
                 </ul>
             </div>
         </div>
