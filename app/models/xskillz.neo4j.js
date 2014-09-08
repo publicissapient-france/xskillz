@@ -118,11 +118,23 @@ exports.getSkill = function(skillName) {
   return NEO4J.findPromise(query);
 };
 
-exports.findAllSkills = function() {
+exports.allSkillz = function() {
   var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),s order by upper(s.name)'
+    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),id(s) order by upper(s.name)'
   };
-  return NEO4J.findPromise(query);
+  return NEO4J.findPromise(query, function(row){
+      return {'name':row[0], 'count': row[1], 'nodeId': row[2]};
+  });
+};
+
+exports.orphanSkillz = function(){
+  var query = {
+    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan.name, id(orphan) order by upper(orphan.name)'
+  };
+
+  return NEO4J.findPromise(query,function(row){
+    return {'nodeId': row[1], 'name': row[0]};
+  });
 };
 
 var extractNodeIdPattern = /(\d*)$/;
@@ -168,17 +180,7 @@ exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_prop
   return deferred.promise;
 };
 
-exports.orphanSkillz = function(){
-  var query = {
-    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan order by upper(orphan.name)'
-  };
-
-  return NEO4J.findPromise(query);
-};
-
-exports.deleteSkill = function(source){
-  var oldSkillId = NEO4J.extractNodeId(source);
-
+exports.deleteSkill = function(oldSkillId){
   var removeOldSkillQuery = {
       'query' : 'start oldSkill=node( {oldSkillId} )  OPTIONAL MATCH (oldSkill)-[r]-() DELETE oldSkill,r',
       'params': {
@@ -189,10 +191,7 @@ exports.deleteSkill = function(source){
     return NEO4J.execute(removeOldSkillQuery);
 };
 
-exports.mergeSkill = function(source, destination){
-  var oldSkillId = NEO4J.extractNodeId(source);
-  var newSkillId = NEO4J.extractNodeId(destination);
-
+exports.mergeSkill = function(oldSkillId, newSkillId){
   var addNewRelationsQuery = {
     'query' : 'START oldSkill=node( {oldSkillId} ), newSkill=node( {newSkillId} ) match  (x: `'+XEBIAN_TYPE+'`)-[oldRelation:`'+SKILLZ_RELATION+'`]->oldSkill WHERE NOT (x)-[:`'+SKILLZ_RELATION+'`]->newSkill  create (x)-[r:`'+SKILLZ_RELATION+'` {level: oldRelation.level, like: oldRelation.like }]->(newSkill)',
     'params' : {
@@ -206,6 +205,6 @@ exports.mergeSkill = function(source, destination){
   var self = this;
 
   return addNewRelations.then(function(){
-    return self.deleteSkill(source);
+    return self.deleteSkill(oldSkillId);
   });
 };

@@ -7,7 +7,7 @@ var xskillzNeo4J = require('../models/xskillz.neo4j');
 var _ = require('underscore');
 
 exports.all = function(req,res){
-	xskillzNeo4J.findAllSkills().then(function(results) {
+	xskillzNeo4J.allSkillz().then(function(results) {
 		if(results){
 			res.jsonp(results);	
 		}else{

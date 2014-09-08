@@ -34,7 +34,7 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
           function setClasses(root) {
               var classes = [];
               root.forEach(function(node){
-                  classes.push({name:node[0], value:(node[1]+1)});
+                  classes.push({name:node.name, value:(node.count+1)});
               });
               return {children: classes};
           }

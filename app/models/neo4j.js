@@ -42,7 +42,7 @@ exports.createNodePromise = function(nodeType, nodeData) {
 	var deferred = Q.defer();
 	getCypherQuery()
 		.send({
-			'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN n',
+			'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN id(n)',
 			'params': {
 				'props': nodeData
 			}
@@ -51,8 +51,8 @@ exports.createNodePromise = function(nodeType, nodeData) {
 			if (err) {
 				deferred.reject(err);
 			} else {
-				console.log('created node', res.statusCode,res.body.data[0][0].self || '');
-				deferred.resolve(res.body.data[0][0].self);
+				console.log('created node', res.statusCode,res.body.data[0][0] || '');
+				deferred.resolve(res.body.data[0][0]);
 			}
 		});
 	return deferred.promise;
@@ -96,7 +96,7 @@ exports.execute = function(query){
 	return deferred.promise;
 };
 
-exports.findPromise = function(query) {
+exports.findPromise = function(query, mapper) {
   console.log('Cypher find query: ' + JSON.stringify(query));
   var deferred = Q.defer();
   getCypherQuery()
@@ -108,7 +108,12 @@ exports.findPromise = function(query) {
         if (_.isEmpty(res.body.data)) {
           deferred.resolve(null);
         } else {
-          deferred.resolve(res.body.data);
+          if(mapper){
+          	deferred.resolve(_.map(res.body.data,mapper));
+          }else{
+          	deferred.resolve(res.body.data);
+          }
+          
         }
       }
     });
