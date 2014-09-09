@@ -2,25 +2,26 @@
     <div class="container">
         <h3>Fusionner les compétences</h3>
         <form class="deduplicate-form" ng-submit="merge()">
-	            Remplacer 
-	            <select ng-model="source" name="source" ng-options="skill.nodeId as (skill.name + ' (' + skill.count + ')') for skill in skillz" style="width: 100px;" />
-	            par
-	            <select ng-model="destination" name="destination" ng-options="skill.nodeId as (skill.name + ' (' + skill.count + ')') for skill in skillz" style="width: 100px;"/>
+            Remplacer
+            <select ng-model="source" name="source" ng-options="skill.nodeId as (skill.name + ' (' + skill.count + ')') for skill in skillz" style="width: 100px;" />
+            par
+            <select ng-model="destination" name="destination" ng-options="skill.nodeId as (skill.name + ' (' + skill.count + ')') for skill in skillz" style="width: 100px;"/>
             <button type="submit" class="btn big-btn">
-              Fusion <i class="turquoise glyphicon glyphicon-plus"></i>
+                Fusion <i class="turquoise glyphicon glyphicon-plus"></i>
             </button>
         </form>
         <h3 ng-show="orphanSkillz.length>0">Find and delete orphan skillz ({{orphanSkillz.length}} orphans)</h3>
-		    <div id="results" class="results">
-              <div ng-repeat="skill in orphanSkillz" id="{{skill.nodeId}}">
-                <div class="info">
-                  <p>{{skill.name}}</p>
+        <div id="results" class="results">
+            <div ng-repeat="skill in orphanSkillz" id="{{skill.nodeId}}" class="result-item">
+
+                <div class="info  result-element">
+                    <p>{{skill.name}}</p>
+                </div>
+                <div class="remove result-element">
+                    <a class='result-remove--link glyphicon glyphicon-remove' ng-click="deleteSkill(skill.nodeId)"></a>
                 </div>
 
-                <div class="remove">
-                  <span class='glyphicon glyphicon-remove' ng-click="deleteSkill(skill.nodeId)"/>
-                </div>
-              </div>
+            </div>
         </div>
     </div>
 </section>

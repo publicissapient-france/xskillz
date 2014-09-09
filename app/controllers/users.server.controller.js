@@ -95,7 +95,8 @@ exports.associate = function(req, res) {
 				var userNodeUrl = userNode[0][0].self;
 				
 				xskillzNeo4J.getSkill(skill.name).then(function(result) {
-					if (!result) {
+
+					if (result.length === 0 ) {
 
 						xskillzNeo4J.createSkill(skill).then(function(skillNodeUrl) {
 							associateSkillToUser(userNodeUrl, skillNodeUrl);

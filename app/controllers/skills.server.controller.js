@@ -5,9 +5,17 @@
  */
 var xskillzNeo4J = require('../models/xskillz.neo4j');
 var _ = require('underscore');
+var NEO4J = require('../models/neo4j');
 
 exports.all = function(req,res){
-	xskillzNeo4J.allSkillz().then(function(results) {
+
+  var query = {
+    'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),id(s) order by upper(s.name)'
+  };
+  
+  NEO4J.findPromise(query, function(row){
+      return {'name':row[0], 'count': row[1], 'nodeId': row[2]};
+  }).then(function(results) {
 		if(results){
 			res.jsonp(results);	
 		}else{
@@ -34,7 +42,13 @@ exports.deleteSkill = function(req,res){
 };
 
 exports.orphans = function(req,res){
-	xskillzNeo4J.orphanSkillz().then(function(results){
+	  var query = {
+	    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan.name, id(orphan) order by upper(orphan.name)'
+	  };
+
+	  NEO4J.findPromise(query,function(row){
+	    return {'name': row[0],'nodeId': row[1]};
+	  }).then(function(results){
 		if(results){
 			res.jsonp(results);	
 		}else{

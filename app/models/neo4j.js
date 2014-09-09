@@ -42,7 +42,7 @@ exports.createNodePromise = function(nodeType, nodeData) {
 	var deferred = Q.defer();
 	getCypherQuery()
 		.send({
-			'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN id(n)',
+			'query': 'CREATE (n:' + nodeType + ' { props } ) RETURN n',
 			'params': {
 				'props': nodeData
 			}
@@ -51,8 +51,8 @@ exports.createNodePromise = function(nodeType, nodeData) {
 			if (err) {
 				deferred.reject(err);
 			} else {
-				console.log('created node', res.statusCode,res.body.data[0][0] || '');
-				deferred.resolve(res.body.data[0][0]);
+				console.log('created node', res.statusCode,res.body.data[0][0].self || '');
+				deferred.resolve(res.body.data[0][0].self);
 			}
 		});
 	return deferred.promise;

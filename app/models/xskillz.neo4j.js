@@ -108,25 +108,6 @@ exports.getSkill = function(skillName) {
   return NEO4J.findPromise(query);
 };
 
-exports.allSkillz = function() {
-  var query = {
-    'query': 'MATCH (s:' + SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),id(s) order by upper(s.name)'
-  };
-  return NEO4J.findPromise(query, function(row){
-      return {'name':row[0], 'count': row[1], 'nodeId': row[2]};
-  });
-};
-
-exports.orphanSkillz = function(){
-  var query = {
-    'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan.name, id(orphan) order by upper(orphan.name)'
-  };
-
-  return NEO4J.findPromise(query,function(row){
-    return {'nodeId': row[1], 'name': row[0]};
-  });
-};
-
 var extractNodeIdPattern = /(\d*)$/;
 var extractNodeId = function(nodeUrl) {
 	return nodeUrl.match(extractNodeIdPattern)[1];
