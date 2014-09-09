@@ -1,0 +1,90 @@
+
+.domain {
+    padding-left: 10px;
+    margin-right: 5px;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 5px 2px 5px;
+    color: white;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.domain-back {
+    background-color: #aa2615;
+}
+
+.domain-cloud {
+    background-color: #06a99c;
+}
+
+.domain-craft {
+    background-color: #afcd37;
+}
+
+.domain-agile {
+    background-color: #d7d5d0;
+}
+
+.domain-data {
+    background-color: #df0075;
+}
+
+.domain-devops {
+    background-color: #f99b1d;
+}
+
+.domain-front {
+    background-color: #00a0d4;
+}
+
+.domain-mobile {
+    background-color: #1447d3;
+}
+
+.skill-level-name {
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.skill-list {
+    border: solid 1px lightgrey;
+    border-radius: 3px;
+    display: inline-block;
+    min-width: 320px;
+    vertical-align: top;
+    padding: 5px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.skill-level-name span {
+    float: right;
+}
+
+.like {
+    color: red;
+}
+
+.notlike {
+    color: grey;
+}
+
+.expert-background {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.confirmed-background {
+    background-color: rgba(255, 115, 0, 0.1);
+}
+
+.rookie-background {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.enthusiast-background {
+    background-color: #EEEEEE;
+}

@@ -8,7 +8,8 @@
                     <p>{{skill.name}}</p>
                 </div>
                     <div class="like result-element">
-                <span class="turquoise glyphicon glyphicon-heart" ng-class="isLiked(skill.like)"></span>
+                        <span class="glyphicon glyphicon-heart like" ng-show="skill.like"></span>
+                        <span class="glyphicon glyphicon-heart-empty notlike" ng-hide="skill.like"></span>
                     </div>
                 <div class="level result-element" ng-if="skill.level != undefined">
                     <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>

@@ -1,0 +1,15 @@
+<div class= "skill--link" ng-click="findSkillByName(xebian.skillName)"> {{xebian.skillName}} </div>
+<a href="#!/user/{{xebian.email}}" class="user">
+    <img ng-src="{{xebian.picture}}" class="result-portrait" />
+    <div class="info result-element">
+        <p>{{xebian.firstName}}</p>
+        <p>{{xebian.lastName}}</p>
+    </div>
+    <div class="like result-element">
+        <span class="red glyphicon glyphicon-heart like" ng-show="xebian.like" ></span>
+        <span class="red glyphicon glyphicon-heart-empty notlike" ng-show="!xebian.like" ></span>
+    </div>
+    <div class="level result-element" ng-show="show-rating">
+        <rating class="turquoise bigger" ng-model="xebian.level" max="3" readonly="true"></rating>
+    </div>
+</a>
