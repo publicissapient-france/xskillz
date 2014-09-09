@@ -37,11 +37,11 @@
                     <a class='result-remove--link glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"></a>
                 </div>
                 <div class="like result-element">
-                    <span class="glyphicon glyphicon-heart like" ng-show="skill.like"></span>
-                    <span class="glyphicon glyphicon-heart-empty notlike" ng-hide="skill.like"></span>
+                    <span class="glyphicon glyphicon-heart like" ng-click="updateLike(skill)" ng-show="skill.like"></span>
+                    <span class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
                 </div>
                 <div class="level result-element" ng-if="skill.level != undefined">
-                    <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true" state-off=""></rating>
+                    <rating class="turquoise bigger" ng-model="skill.level" max="3" on-hover="hoveringOver(value)" ng-click="updateLevel(skill)" on-leave="overStar = null"></rating>
                 </div>
             </div>
             <br/>

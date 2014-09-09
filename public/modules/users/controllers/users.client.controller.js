@@ -33,37 +33,17 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
         $scope.toggleLike = function () {
             $scope.like = !$scope.like;
         };
-        var transformResultToSkillz = function (response) {
-            return _.map(response.data, function (node) {
-                return {
-                    'name': node[0].data.name,
-                    'level': node[1].data.level,
-                    'like': node[1].data.like, relationId: node[1].self
-                };
-            });
-        };
 
         $http.get('/users/me/skillz').then(function (response) {
-            $scope.skillz = _.map(response.data, function (node) {
-                var domains = _.uniq(_.map(node[2], function (domain) {
-                    return domain.data.name;
-                }));
-                return {
-                    'name': node[0].data.name,
-                    'level': node[1].data.level,
-                    'like': node[1].data.like,
-                    relationId: node[1].self,
-                    'domains': domains
-                };
-            });
+            $scope.skillz = response.data;
         });
 
 // If user is not signed in then redirect back home
         if (!$scope.user) $location.path('/');
 
         $scope.removeRelation = function (relationId) {
-            $http.post('users/me/skillz/disassociate', {'relationship': relationId}).then(function (response) {
-                $scope.skillz = transformResultToSkillz(response);
+            $http.post('users/me/skillz/disassociate', {'relationId': relationId}).then(function (response) {
+                $scope.skillz = response.data;
             });
         };
 
@@ -75,7 +55,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
                 $http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level': $scope.level, 'like': $scope.like }})
                     .then(function (response) {
                         reset();
-                        $scope.skillz = transformResultToSkillz(response);
+                        $scope.skillz = response.data;
                     });
             }
         };
@@ -107,6 +87,19 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
                 });
         };
 
+        $scope.updateLevel = function (skill) {
+            console.log(skill);
+            $http.put('/users/me/skillz/' + skill.relationId + '/level', {'level': skill.level}).then(function (response) {
+                $scope.skillz = response.data;
+            });
+        };
+
+        $scope.updateLike = function (skill) {
+            skill.like = !skill.like;
+            $http.put('/users/me/skillz/' + skill.relationId + '/like', {'like': skill.like}).then(function (response) {
+                $scope.skillz = response.data;
+            });
+        };
     }
 ]);
 

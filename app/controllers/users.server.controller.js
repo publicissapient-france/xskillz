@@ -56,12 +56,12 @@ exports.disassociate = function (req, res) {
 
     var query = {
         'query': 'start r=relationship({relationId}) delete r',
-        'params' : {
-           'relationId': relationId
+        'params': {
+            'relationId': relationId
         }
     };
 
-    return NEO4J.execute(query).then(function(){
+    return NEO4J.execute(query).then(function () {
         res.redirect(303, '/users/me/skillz');
     });
 };
@@ -86,6 +86,40 @@ exports.availableSkillzForMe = function (req, res) {
         res.jsonp(result || []);
     });
 
+};
+
+exports.updateLike = function (req, res) {
+    var skillId = req.params.id;
+    var value = req.body.like;
+
+    var query = {
+        'query': 'start r=relationship({skillId}) set r.like = {newValue}',
+        'params': {
+            'skillId'  : Number(skillId),
+            'newValue' : value
+        }
+    };
+
+    NEO4J.execute(query).then(function(){
+        res.redirect(303, '/users/me/skillz');
+    });
+};
+
+exports.updateLevel = function (req, res) {
+    var skillId = req.params.id;
+    var value = req.body.level;
+
+    var query = {
+        'query': 'start r=relationship({skillId}) set r.level = {newValue}',
+        'params': {
+            'skillId'  : Number(skillId),
+            'newValue' : value
+        }
+    };
+
+    NEO4J.execute(query).then(function(){
+        res.redirect(303, '/users/me/skillz');
+    });
 };
 
 exports.associate = function (req, res) {

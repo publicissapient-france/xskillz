@@ -18,11 +18,17 @@ module.exports = function(app) {
 
 	app.route('/users').get(auth.requiresLogin, users.allXebians);
 
-	app.route('/users/me/skillz')
-		.put(auth.requiresLogin, users.associate);
-		
-	app.route('/users/me/skillz/disassociate')
-		.post(auth.requiresLogin, users.disassociate);
+    app.route('/users/me/skillz/disassociate')
+        .post(auth.requiresLogin, users.disassociate);
+
+	app.route('/users/me/skillz/:id/level')
+        .put(auth.requiresLogin, users.updateLevel);
+
+    app.route('/users/me/skillz/:id/like')
+        .put(auth.requiresLogin, users.updateLike);
+
+    app.route('/users/me/skillz')
+        .put(auth.requiresLogin, users.associate);
 
 	app.route('/skillz')
 		.get(auth.requiresLogin, users.findXebiansBySkillz);
