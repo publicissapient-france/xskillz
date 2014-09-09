@@ -89,7 +89,7 @@ exports.execute = function(query){
 			if (err) {
 				deferred.reject(err);
 			} else {
-				console.log('executed query',query, res.statusCode);
+				console.log('[SUCCESS]',res.statusCode,query);
 				deferred.resolve();
 			}
 		});
@@ -115,6 +115,19 @@ exports.findPromise = function(query, mapper) {
       }
     });
   return deferred.promise;
+};
+
+exports.deleteElement = function(elementURL) {
+    var securedURL = this.makeURLSecured(elementURL);
+
+    var deferred = Q.defer();
+    http
+        .del(securedURL)
+        .end(function(res){
+            console.log('deleted : ' + securedURL + ' with status ' + res.statusCode);
+            deferred.resolve(res);
+        });
+    return deferred.promise;
 };
 
 exports.XEBIAN_TYPE = 'XEBIAN';

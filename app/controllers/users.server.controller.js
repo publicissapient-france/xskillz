@@ -19,12 +19,22 @@ exports.mySkillz = function(req, res){
 
 };
 
-exports.findXebiansBySkillz = function(req,res){
-	xskillzNeo4J.findXebiansBySkillz(req.query.q)
-		.then(function(results){
-			res.jsonp(results);	
-		});
+
+exports.findXebiansBySkillz = function (req, res) {
+    var skillName = req.query.q;
+    var query = {
+        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ')-[r:`' + NEO4J.SKILLZ_RELATION + '`]->s WHERE s.name=~ {q} RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name',
+        'params': {
+            'q': '(?i).*' + skillName + '.*'
+        }
+    };
+    NEO4J.findPromise(query, function (row) {
+        return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5]};
+    }).then(function (result) {
+        res.jsonp(result);
+    });
 };
+
 
 exports.allXebians = function(req,res){
   var query = {
@@ -37,12 +47,12 @@ exports.allXebians = function(req,res){
   return NEO4J.findPromise(query,function(row){
   		return {'displayName' : row[0], 'email': row[1], 'picture': row[2]};
 	  }).then(function(results){
-		res.jsonp(results);	
+		res.jsonp(results);
 	  });
 };
 
 exports.disassociate = function(req, res){
-	xskillzNeo4J.deleteElement(req.body.relationship)
+	NEO4J.deleteElement(req.body.relationship)
 		.then(function(result){
 			res.redirect(303, '/users/me/skillz');
 		});
@@ -51,14 +61,19 @@ exports.disassociate = function(req, res){
 exports.availableSkillzForMe = function(req, res){
 	var skillQuery = req.query.q || '.';
 	var user = req.user;
+	var email = user.email;
 
-	console.log('query',skillQuery);
+    var query = {
+        'query': 'MATCH (xebian: '+NEO4J.XEBIAN_TYPE+'), (skill: '+NEO4J.SKILL_TYPE+' ) WHERE skill.name =~ {skillQuery} and xebian.email = {email} and not (xebian) -[:HAS]-> (skill) RETURN skill.name order by upper(skill.name)',
+        'params': {
+            'email': email,
+            'skillQuery': '(?i).*' + skillQuery + '.*'
+        }
+    };
+    NEO4J.findPromise(query).then(function(result){
+        res.jsonp(result || [] );
+    });
 
-	var skillz = xskillzNeo4J.findAvailableSkillzForXebian(user.email, skillQuery);
-
-	skillz.then(function(result) {
-  		res.jsonp(result || []);
-  	});
 };
 
 exports.associate = function(req, res) {
@@ -67,7 +82,7 @@ exports.associate = function(req, res) {
 	var user = req.user;
 
 	var findUser = function(){
-		return xskillzNeo4J.findXebian(user.email);
+		return xskillzNeo4J.findXebianByEmail(user.email);
 	};
 
 
@@ -81,7 +96,7 @@ exports.associate = function(req, res) {
 		xskillzNeo4J.associateSkillToUser(userNodeUrl,skillNodeUrl, relation_properties)
 			.then(function(relationshipUrl) {
 				console.log('Created relationship', relationshipUrl);
-				
+
 				res.redirect(303, '/users/me/skillz');
 			})
 			.fail(function(err) {
@@ -93,7 +108,7 @@ exports.associate = function(req, res) {
 		findUser().then(function(userNode){
 			if(userNode){
 				var userNodeUrl = userNode[0][0].self;
-				
+
 				xskillzNeo4J.getSkill(skill.name).then(function(result) {
 
 					if (result.length === 0 ) {

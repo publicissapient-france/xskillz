@@ -12,7 +12,7 @@ var http = require('superagent'),
 exports.profile = function(req, res) {
   var email = req.params.email;
 
-  xskillzNeo4j.findXebian(email)
+  xskillzNeo4j.findXebianByEmail(email)
     .then(function(results){
       console.log(results);
       res.jsonp(results); 

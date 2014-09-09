@@ -106,7 +106,7 @@ var associateSkillToUser = function (userEmail, skillName, cb) {
 		});
 	};
 
-	xskillzNeo4J.findXebian(userEmail)
+	xskillzNeo4J.findXebianByEmail(userEmail)
 		.then(function (userNode) {
 			if (userNode) {
 				var userNodeUrl = userNode[0][0].self;
