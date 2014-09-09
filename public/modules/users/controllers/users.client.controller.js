@@ -29,13 +29,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
             }
             $scope.oldLevel = $scope.tempLevel;
         };
-        $scope.isLiked = function (like) {
-            if (like) {
-                return 'glyphicon-heart';
-            } else {
-                return 'glyphicon-heart-empty';
-            }
-        };
+
         $scope.toggleLike = function () {
             $scope.like = !$scope.like;
         };

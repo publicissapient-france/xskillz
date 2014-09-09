@@ -107,16 +107,14 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
         var transformResultToXebians = function (response) {
             var values = _.map(response.data, function (node) {
                 return {
-                    'skillName': node[2].data.name,
-                    'nameForSort': node[2].data.name.toLowerCase(),
-                    'email': node[0].data.email,
-                    'picture': node[0].data.picture,
-                    'displayName': node[0].data.displayName,
-                    'firstName': node[0].data.firstName,
-                    'lastName': node[0].data.lastName,
-                    'level': node[1].data.level,
-                    'like': node[1].data.like,
-                    relationId: node[1].self };
+                    'skillName': node.skillName,
+                    'nameForSort': node.skillName.toLowerCase(),
+                    'email': node.email,
+                    'picture': node.picture,
+                    'displayName': node.xebianName,
+                    'level': node.level,
+                    'like': node.like
+                };
             });
             return _.sortBy(values, 'level').reverse();
         };
@@ -149,8 +147,7 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
                 return 'glyphicon-heart-empty';
             }
         };
-    }
 
-}
+    }
 
 ]);
