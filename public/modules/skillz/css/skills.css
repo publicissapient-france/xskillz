@@ -1,48 +1,45 @@
 
-.domain {
-    padding-left: 10px;
-    margin-right: 5px;
-    display: inline-block;
-    border-radius: 3px;
-    padding: 2px 5px 2px 5px;
-    color: white;
-    font-size: 11px;
+.domain-name {
     text-transform: uppercase;
-    letter-spacing: 1px;
     font-weight: bold;
-    margin-top: 5px;
+    letter-spacing: 3px;
 }
 
-.domain-back {
-    background-color: #aa2615;
+.domain {
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
-.domain-cloud {
-    background-color: #06a99c;
+.domain-Back {
+    background-color: rgba(170, 38, 21, 0.3);
 }
 
-.domain-craft {
-    background-color: #afcd37;
+.domain-Cloud {
+    background-color: rgba(6, 169, 156, 0.3);
 }
 
-.domain-agile {
-    background-color: #d7d5d0;
+.domain-Craft {
+    background-color: rgba(175, 205, 55, 0.3);
 }
 
-.domain-data {
-    background-color: #df0075;
+.domain-Agile {
+    background-color: rgba(215, 213, 208, 0.3);
 }
 
-.domain-devops {
-    background-color: #f99b1d;
+.domain-Data {
+    background-color: rgba(223, 0, 117, 0.3);
 }
 
-.domain-front {
-    background-color: #00a0d4;
+.domain-Devops {
+    background-color: rgba(249, 155, 29, 0.3);
 }
 
-.domain-mobile {
-    background-color: #1447d3;
+.domain-Front {
+    background-color: rgba(0, 160, 212, 0.3);
+}
+
+.domain-Mobile {
+    background-color: rgba(20, 71, 211, 0.3);
 }
 
 .skill-level-name {

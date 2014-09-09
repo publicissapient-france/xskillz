@@ -1,12 +1,42 @@
 'use strict';
 
-
 console.log('loading users');
+
+angular.module('users').filter('partOfDomain', function () {
+    return function (skills, domain) {
+        return _.filter(skills, function (skill) {
+            if (skill.domains) {
+                return _.map(skill.domains, function(domain){return domain.toUpperCase()}).indexOf(domain.toUpperCase()) >= 0;
+            }
+            return false;
+        });
+    };
+});
+
+angular.module('users').directive('domain', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            label: '=label',
+            skills: '=skills'
+        },
+        templateUrl: 'modules/users/views/domain.template.html'
+    };
+});
 
 angular.module('users').controller('UsersController', ['_', '$scope', '$http', '$location', 'Users', 'Authentication',
     function (_, $scope, $http, $location, Users, Authentication) {
 
         $scope.user = Authentication.user;
+
+        $scope.back = 'Back';
+        $scope.cloud = 'Cloud';
+        $scope.front = 'Front';
+        $scope.devops = 'Devops';
+        $scope.agile = 'Agile';
+        $scope.mobile = 'Mobile';
+        $scope.data = 'Data';
+        $scope.craft = 'Craft';
 
         $scope.skillz = [];
         $scope.results = [];
