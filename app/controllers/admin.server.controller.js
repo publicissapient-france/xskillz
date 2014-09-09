@@ -5,6 +5,8 @@ var _ = require('underscore');
 var async = require('async');
 var request = require('request');
 var xskillzNeo4J = require('../models/xskillz.neo4j');
+var NEO4J = require('../models/neo4j.js');
+
 
 var googleapis = require('googleapis');
 var directory = googleapis.admin('directory_v1');
@@ -80,12 +82,31 @@ exports.importContacts = function(req, res) {
 };
 
 
+var extractNodeIdPattern = /(\d*)$/;
+var extractNodeId = function(nodeUrl) {
+    return nodeUrl.match(extractNodeIdPattern)[1];
+};
+
+var userHasSkill = function(userNodeUrl, skillNodeUrl) {
+    var userNodeId = extractNodeId(userNodeUrl);
+    var skillNodeId = extractNodeId(skillNodeUrl);
+    var query = {
+        'query': 'start xebian=node( {userNodeId} ),skill=node( {skillNodeId} ) match (xebian)-[r:HAS]->(skill) return r',
+        'params': {
+            'userNodeId': Number(userNodeId),
+            'skillNodeId': Number(skillNodeId)
+        }
+    };
+
+    return NEO4J.findPromise(query);
+};
+
 var associateSkillToUser = function (userEmail, skillName, cb) {
 	var relation_properties = { level: 0, like: false };
 
 	var associateSkillToUser = function(userNodeUrl, skillNodeUrl, cb) {
 
-		xskillzNeo4J.userHasSkill(userNodeUrl, skillNodeUrl)
+		userHasSkill(userNodeUrl, skillNodeUrl)
 		.then(function(user) {
 			if (!user) {
 				xskillzNeo4J.associateSkillToUser(userNodeUrl, skillNodeUrl, relation_properties)

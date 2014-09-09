@@ -43,12 +43,17 @@ exports.findXebianByEmail = function(email) {
 
 exports.findXebianSkillz = function(email){
   var query = {
-    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s WHERE n.email = {email} RETURN s,r  order by r.like DESC, r.level DESC, s.name',
+    'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s ' +
+        'WHERE n.email = {email} ' +
+        'RETURN s.name, r.level, r.like, id(r)  order by r.like DESC, r.level DESC, s.name',
     'params' : {
       'email': email
     }
   };
-  return NEO4J.findPromise(query);
+
+    return NEO4J.findPromise(query,function(row){
+        return {'name': row[0], 'level': row[1],'like': row[2],'relationId': row[3]};
+    });
 };
 
 exports.getSkill = function(skillName) {
@@ -59,25 +64,6 @@ exports.getSkill = function(skillName) {
     }
   };
   return NEO4J.findPromise(query);
-};
-
-var extractNodeIdPattern = /(\d*)$/;
-var extractNodeId = function(nodeUrl) {
-	return nodeUrl.match(extractNodeIdPattern)[1];
-};
-
-exports.userHasSkill = function(userNodeUrl, skillNodeUrl) {
-	var userNodeId = extractNodeId(userNodeUrl);
-	var skillNodeId = extractNodeId(skillNodeUrl);
-	var query = {
-		'query': 'start xebian=node( {userNodeId} ),skill=node( {skillNodeId} ) match (xebian)-[r:HAS]->(skill) return r',
-		'params': {
-			'userNodeId': Number(userNodeId),
-			'skillNodeId': Number(skillNodeId)
-		}
-	};
-
-	return NEO4J.findPromise(query);
 };
 
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_properties) {

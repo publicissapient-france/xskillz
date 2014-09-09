@@ -13,16 +13,9 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
             $scope.user = data.data[0][0].data;
         });
 
-        $http.get('/user/skillz/' + mail).then(function (data) {
-            $scope.skillz = _.map(data.data, function (node) {
-                return {
-                    'name': node[0].data.name,
-                    'level': node[1].data.level,
-                    'like': node[1].data.like,
-                    relationId: node[1].self
-                };
-            });
-        });
+		$http.get('/user/skillz/'+mail).then(function(response) {
+			$scope.skillz = response.data;
+		});
 
     }
 ]);
