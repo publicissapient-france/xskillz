@@ -6,7 +6,11 @@ angular.module('users').filter('partOfDomain', function () {
     return function (skills, domain) {
         return _.filter(skills, function (skill) {
             if (skill.domains) {
-                return _.map(skill.domains, function(domain){return domain.toUpperCase()}).indexOf(domain.toUpperCase()) >= 0;
+                var domainsInUpperCase = _.map(skill.domains, function (domain) {
+                        return domain.toUpperCase();
+                    }
+                );
+                return domainsInUpperCase.indexOf(domain.toUpperCase()) >= 0;
             }
             return false;
         });

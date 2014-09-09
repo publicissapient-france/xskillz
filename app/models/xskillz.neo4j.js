@@ -45,14 +45,14 @@ exports.findXebianSkillz = function(email){
   var query = {
     'query' : 'MATCH (n: '+XEBIAN_TYPE+')-[r:`'+SKILLZ_RELATION+'`]->s ' +
         'WHERE n.email = {email} ' +
-        'RETURN s.name, r.level, r.like, id(r)  order by r.like DESC, r.level DESC, s.name',
+        'RETURN s.name, r.level, r.like, id(r), s.domains  order by r.like DESC, r.level DESC, s.name',
     'params' : {
       'email': email
     }
   };
 
     return NEO4J.findPromise(query,function(row){
-        return {'name': row[0], 'level': row[1],'like': row[2],'relationId': row[3]};
+        return {'name': row[0], 'level': row[1],'like': row[2],'relationId': row[3], 'domains':row[4]};
     });
 };
 
