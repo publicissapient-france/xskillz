@@ -124,7 +124,7 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
             return $http.get('/users/me/availableSkillz', {'params': {'q': value}})
                 .then(function (response) {
                     return _.map(response.data, function (row) {
-                        return row[0];
+                        return row.name;
                     });
                 });
         };
