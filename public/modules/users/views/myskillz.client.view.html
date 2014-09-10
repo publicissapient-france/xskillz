@@ -19,7 +19,8 @@
                     <rating class="turquoise bigger" ng-model="level" max="3" on-hover="hoveringOver(value)" ng-click="setLevel()" on-leave="overStar = null"></rating>
                 </div>
                 <div>
-                    <span class="turquoise glyphicon" ng-click="toggleLike()" ng-class="isLiked(like)"></span>
+                    <span class="glyphicon glyphicon-heart like" ng-click="toggleLike()" ng-show="like"></span>
+                    <span class="glyphicon glyphicon-heart-empty notlike" ng-click="toggleLike()" ng-hide="like"></span>
                 </div>
                 <div>
                     <button type="submit" ng-disabled="!associateForm.$valid" class="btn big-btn" style="width: 100%;">

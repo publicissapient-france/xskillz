@@ -73,7 +73,8 @@
 
 .remove,
 .level,
-.like {
+.like,
+.notlike{
     float: right;
 }
 
