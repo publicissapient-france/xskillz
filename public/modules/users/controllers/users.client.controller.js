@@ -50,8 +50,17 @@ angular.module('users').controller('UsersController', ['_', '$scope', '$http', '
         $scope.data = 'Data';
         $scope.craft = 'Craft';
 
+        $scope.expertLevel = 3;
+        $scope.confirmedLevel = 2;
+        $scope.rookieLevel = 1;
+        $scope.enthusiastLevel = 0;
+
         $scope.skillz = [];
         $scope.results = [];
+
+        $scope.help = function() {
+            $scope.displayHelp = !$scope.displayHelp;
+        }
 
         var reset = function () {
             $scope.newSkill = '';

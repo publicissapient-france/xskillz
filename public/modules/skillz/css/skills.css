@@ -85,3 +85,30 @@
 .enthusiast-background {
     background-color: #EEEEEE;
 }
+
+#skill-help {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    margin-top: 5px;
+    font-size: 0.9em;
+    width: 90%;
+}
+
+#skill-help p {
+    padding-left: 10px;
+    padding-top: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #333;
+}
+
+#skill-help ul {
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#skill-help li {
+    list-style: none;
+    margin-bottom: 3px;
+}
