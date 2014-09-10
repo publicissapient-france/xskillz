@@ -5,7 +5,7 @@ console.log('loading users');
 angular.module('users').filter('noDomain', function () {
     return function (skills) {
         return _.filter(skills, function (skill) {
-            return !skill.domains;
+            return !skill.domains || skill.domains.length == 0;
         });
     };
 });
