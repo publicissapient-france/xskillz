@@ -5,7 +5,8 @@ angular.module('skillz').directive('xebianSkillCard', function () {
         restrict: 'E',
         scope: {
             xebian: '=xebian',
-            showRating: '=showRating'
+            showRating: '=showRating',
+            onClick: '&onClick'
         },
         templateUrl: 'modules/skillz/views/xebian-skill-card.template.html'
     };

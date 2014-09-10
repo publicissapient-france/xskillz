@@ -11,7 +11,7 @@ angular.module('users').filter('noDomain', function () {
 });
 
 angular.module('users').filter('partOfDomain', function () {
-    return function (skills, domain) {
+    return function (skills, domain, _) {
         return _.filter(skills, function (skill) {
             if (skill.domains) {
                 var domainsInUpperCase = _.map(skill.domains, function (domain) {
@@ -36,8 +36,8 @@ angular.module('users').directive('domain', function () {
     };
 });
 
-angular.module('users').controller('UsersController', ['_', '$scope', '$http', '$location', 'Users', 'Authentication',
-    function (_, $scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_', 
+    function ($scope, $http, $location, Users, Authentication, _) {
 
         $scope.user = Authentication.user;
 
