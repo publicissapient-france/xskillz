@@ -1,5 +1,6 @@
 <section data-ng-controller="SkillzController">
     <div class="container">
+
         <h3>Fusionner les compétences</h3>
         <form class="deduplicate-form" ng-submit="merge()">
             Remplacer
@@ -10,6 +11,18 @@
                 Fusion <i class="turquoise glyphicon glyphicon-plus"></i>
             </button>
         </form>
+
+        <h3>Associer aux domaines</h3>
+        <form class="domaines-form" ng-submit="domainize()">
+            Associer
+            <select ng-model="skill" name="skill" ng-options="skill.nodeId as (skill.name + ' (' + skill.domains + ')') for skill in skillz" style="width: 100px;" />
+            à
+            <select ng-model="domain" name="domain" ng-options="d as d for d in domains" />
+            <button type="submit" class="btn big-btn">
+                Associer <i class="turquoise glyphicon glyphicon-plus"></i>
+            </button>
+        </form>
+
         <h3 ng-show="orphanSkillz.length>0">Find and delete orphan skillz ({{orphanSkillz.length}} orphans)</h3>
         <div id="results" class="results">
             <div ng-repeat="skill in orphanSkillz" id="{{skill.nodeId}}" class="result-item">

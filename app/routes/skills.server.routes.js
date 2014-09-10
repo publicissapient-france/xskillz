@@ -7,7 +7,9 @@ module.exports = function(app) {
 	// User Routes
 	var skills = require('../../app/controllers/skills');
 
-	app.route('/skills/merge').post(auth.requiresLogin, skills.merge);
+    app.route('/skills/merge').post(auth.requiresLogin, skills.merge);
+
+    app.route('/skills/domains').post(auth.requiresLogin, skills.associateDomains);
 
 	app.route('/skills/delete').post(auth.requiresLogin, skills.deleteSkill);
 

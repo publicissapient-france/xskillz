@@ -9,21 +9,21 @@ var NEO4J = require('../models/neo4j.js');
 exports.all = function (req, res) {
 
     var query = {
-        'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),id(s) order by upper(s.name)'
+        'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),id(s), s.domains order by upper(s.name)'
     };
 
-    return NEO4J.findPromise(query, function (row) {
-        return {'name': row[0], 'count': row[1], 'nodeId': row[2]};
+    return NEO4J.findPromise(query,function (row) {
+        return {'name': row[0], 'count': row[1], 'nodeId': row[2], 'domains': row[3] || []};
     }).then(function (results) {
-        if (results) {
-            res.jsonp(results);
-        } else {
-            res.jsonp([]);
-        }
-    });
+            if (results) {
+                res.jsonp(results);
+            } else {
+                res.jsonp([]);
+            }
+        });
 };
 
-var deleteSkillNode = function(source){
+var deleteSkillNode = function (source) {
     var removeOldSkillQuery = {
         'query': 'start oldSkill=node( {oldSkillId} )  OPTIONAL MATCH (oldSkill)-[r]-() DELETE oldSkill,r',
         'params': {
@@ -33,6 +33,21 @@ var deleteSkillNode = function(source){
     return NEO4J.execute(removeOldSkillQuery);
 };
 
+exports.associateDomains = function (req, res) {
+    var skillId = req.body.skill;
+    var domain = req.body.domain;
+    var addNewDomainQuery = {
+        'query': 'MATCH (s:`' + NEO4J.SKILL_TYPE + '`) WHERE id(s)={skillId} SET s.domains = [{domains}]',
+        'params': {
+            'skillId': skillId,
+            'domains': domain
+        }
+    };
+    var addNewDomain = NEO4J.execute(addNewDomainQuery);
+    return addNewDomain.then(function () {
+        res.redirect(303, '/skills/');
+    });
+};
 
 exports.merge = function (req, res) {
     var source = req.body.source;
@@ -52,7 +67,7 @@ exports.merge = function (req, res) {
         .then(function () {
             return deleteSkillNode(source);
         })
-        .then(function (){
+        .then(function () {
             res.redirect(303, '/skills/');
         });
 
@@ -72,13 +87,13 @@ exports.orphans = function (req, res) {
         'query': 'match (orphan:SKILL) where not ()-[:HAS]->(orphan) return orphan.name, id(orphan) order by upper(orphan.name)'
     };
 
-    return NEO4J.findPromise(query, function (row) {
+    return NEO4J.findPromise(query,function (row) {
         return {'name': row[0], 'nodeId': row[1]};
     }).then(function (results) {
-        if (results) {
-            res.jsonp(results);
-        } else {
-            res.jsonp([]);
-        }
-    });
+            if (results) {
+                res.jsonp(results);
+            } else {
+                res.jsonp([]);
+            }
+        });
 };

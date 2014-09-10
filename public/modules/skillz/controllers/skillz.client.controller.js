@@ -19,6 +19,8 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
         $scope.rookieLevel = 1;
         $scope.enthusiastLevel = 0;
 
+        $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile'];
+
         $scope.cloud = function () {
             var diameter = 960, format = d3.format(',d'), color = d3.scale.category20c();
             var bubble = d3.layout.pack()
@@ -94,6 +96,14 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
                 $scope.getOrphanSkillz();
                 $scope.source = {};
                 $scope.destination = {};
+            });
+        };
+
+        $scope.domainize = function () {
+            $http.post('/skills/domains', {'skill': $scope.skill, 'domain': $scope.domain}).then(function (response) {
+                $scope.skillz = response.data;
+                $scope.skill = {};
+                $scope.domain = {};
             });
         };
 
