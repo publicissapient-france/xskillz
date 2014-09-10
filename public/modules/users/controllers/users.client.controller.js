@@ -2,6 +2,14 @@
 
 console.log('loading users');
 
+angular.module('users').filter('noDomain', function () {
+    return function (skills) {
+        return _.filter(skills, function (skill) {
+            return !skill.domains;
+        });
+    };
+});
+
 angular.module('users').filter('partOfDomain', function () {
     return function (skills, domain) {
         return _.filter(skills, function (skill) {
