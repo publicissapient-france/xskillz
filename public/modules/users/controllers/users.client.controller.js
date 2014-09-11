@@ -5,13 +5,13 @@ console.log('loading users');
 angular.module('users').filter('noDomain', function () {
     return function (skills) {
         return _.filter(skills, function (skill) {
-            return !skill.domains || skill.domains.length == 0;
+            return !skill.domains || skill.domains.length === 0;
         });
     };
 });
 
 angular.module('users').filter('partOfDomain', function () {
-    return function (skills, domain, _) {
+    return function (skills, domain) {
         return _.filter(skills, function (skill) {
             if (skill.domains) {
                 var domainsInUpperCase = _.map(skill.domains, function (domain) {
@@ -60,7 +60,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 
         $scope.help = function() {
             $scope.displayHelp = !$scope.displayHelp;
-        }
+        };
 
         var reset = function () {
             $scope.newSkill = '';
