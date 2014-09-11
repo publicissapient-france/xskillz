@@ -25,16 +25,63 @@ angular.module('users').filter('partOfDomain', function () {
     };
 });
 
-angular.module('users').directive('domain', function () {
+angular.module('users').directive('skillCard', ['$http', function ($http) {
+
+    function link(scope, element, attrs) {
+        scope.updateLike = function (skill) {
+            skill.like = !skill.like;
+            $http.put('/users/me/skillz/' + skill.relationId + '/like', {'like': skill.like}).then(function (response) {
+            });
+        };
+
+        scope.hoveringOver = function (value) {
+            scope.tempLevel = value;
+        };
+
+        scope.setLevel = function () {
+            if (scope.oldLevel === 1) {
+                scope.level = 0;
+            } else {
+                scope.level = scope.tempLevel;
+            }
+            scope.oldLevel = scope.tempLevel;
+        };
+
+        scope.updateLevel = function (skill) {
+            $http.put('/users/me/skillz/' + skill.relationId + '/level', {'level': skill.level}).then(function (response) {
+                
+            });
+        };
+
+        scope.removeRelation = function (relationId) {
+            $http.post('users/me/skillz/disassociate', {'relationId': relationId}).then(function (response) {
+                element.remove();
+            });
+        };
+    };
+
+    return {
+        restrict: 'E',
+        scope: {
+            skill: '=skill',
+        },
+        link: link,
+        templateUrl: 'modules/users/views/skill-card.template.html'
+    };
+}]);
+
+
+angular.module('users').directive('domain', ['$http', function ($http) {
+
     return {
         restrict: 'E',
         scope: {
             label: '=label',
-            skills: '=skills'
+            skills: '=skills',
         },
         templateUrl: 'modules/users/views/domain.template.html'
     };
-});
+}]);
 
 angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_', 
     function ($scope, $http, $location, Users, Authentication, _) {
@@ -58,7 +105,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
         $scope.skillz = [];
         $scope.results = [];
 
-        $scope.help = function() {
+        $scope.help = function () {
             $scope.displayHelp = !$scope.displayHelp;
         };
 

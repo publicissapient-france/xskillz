@@ -1,19 +1,5 @@
 <div class="results domain domain-{{label}}">
     <p class="domain-name">{{label}}</p>
-    <div ng-repeat="skill in skills | partOfDomain:label track by $index" class="result-item">
-        <div class="info result-element">
-            <p>{{skill.name}}</p>
-        </div>
-        <div class="remove result-element">
-            <a class='result-remove--link glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"></a>
-        </div>
-        <div class="like result-element">
-            <span class="glyphicon glyphicon-heart like" ng-show="skill.like"></span>
-            <span class="glyphicon glyphicon-heart-empty notlike" ng-hide="skill.like"></span>
-        </div>
-        <div class="level result-element" ng-if="skill.level != undefined">
-            <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true" state-off=""></rating>
-        </div>
-    </div>
+        <skill-card ng-repeat="skill in skills | partOfDomain:label track by $index" skill="skill"></skill-card>
     <br/>
 </div>
