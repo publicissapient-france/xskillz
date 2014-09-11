@@ -12,6 +12,14 @@ angular.module('skillz').directive('xebianSkillCard', function () {
     };
 });
 
+angular.module('skillz').directive('help', ['$http', function ($http) {
+
+    return {
+        restrict: 'E',
+        templateUrl: 'modules/skillz/views/help.template.html'
+    };
+}]);
+
 angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$location', '_', 'd3',
     function ($scope, $http, $location, _, d3) {
 
@@ -21,6 +29,10 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
         $scope.enthusiastLevel = 0;
 
         $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile'];
+
+        $scope.help = function () {
+            $scope.displayHelp = !$scope.displayHelp;
+        };
 
         $scope.cloud = function () {
             var diameter = 960, format = d3.format(',d'), color = d3.scale.category20c();

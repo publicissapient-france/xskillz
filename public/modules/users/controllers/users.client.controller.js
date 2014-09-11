@@ -88,7 +88,6 @@ angular.module('users').directive('skillCard', ['$http', function ($http) {
 
 
 angular.module('users').directive('domain', ['$http', function ($http) {
-
     return {
         restrict: 'E',
         scope: {

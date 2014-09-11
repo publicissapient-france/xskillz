@@ -86,13 +86,17 @@
     background-color: #EEEEEE;
 }
 
+.help-label {
+    cursor: pointer;
+    line-height: 30px;
+}
+
 #skill-help {
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #eee;
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 0.9em;
-    width: 90%;
 }
 
 #skill-help p {

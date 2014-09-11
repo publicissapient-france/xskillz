@@ -10,8 +10,12 @@
                         Chercher une compétence <i class="glyphicon glyphicon-search"></i>
                     </button>
                 </div>
+                <span ng-mouseover="help()" ng-mouseleave="help()" class="help-label"><i>Besoin d'aide ?</i></span>
+                <help ng-show="displayHelp"></help>
             </form>
         </div>
+
+
         <div class="results skill-list expert-background">
             <p class="skill-level-name">Expert(e)s <rating class="turquoise bigger" ng-model="expertLevel" max="3" readonly="true"></rating></p>
             <div ng-repeat="xebian in results | filter:{level:3} track by $index" class="result-item">
