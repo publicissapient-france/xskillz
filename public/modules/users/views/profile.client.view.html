@@ -3,7 +3,7 @@
         <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
         
         <div id="results" class="results">
-            <a href="#!/skillz/{{skill.name}}" ng-repeat="skill in skillz track by $index" class="result-item">
+            <a href="#!/skillz/{{skill.name}}" ng-repeat="skill in skillz | noDomain track by $index" class="result-item">
                 <div class="info result-element">
                     <p>{{skill.name}}</p>
                 </div>
