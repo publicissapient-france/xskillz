@@ -29,16 +29,25 @@ angular.module('users').directive('skillCard', ['$http', function ($http) {
 
     function link(scope, element, attrs) {
         scope.updateLike = function (skill) {
+            if(scope.readonly) {
+                return;
+            }
             skill.like = !skill.like;
             $http.put('/users/me/skillz/' + skill.relationId + '/like', {'like': skill.like}).then(function (response) {
             });
         };
 
         scope.hoveringOver = function (value) {
+            if(scope.readonly) {
+                return;
+            }
             scope.tempLevel = value;
         };
 
         scope.setLevel = function () {
+            if(scope.readonly) {
+                return;
+            }
             if (scope.oldLevel === 1) {
                 scope.level = 0;
             } else {
@@ -48,12 +57,18 @@ angular.module('users').directive('skillCard', ['$http', function ($http) {
         };
 
         scope.updateLevel = function (skill) {
+            if(scope.readonly) {
+                return;
+            }
             $http.put('/users/me/skillz/' + skill.relationId + '/level', {'level': skill.level}).then(function (response) {
                 
             });
         };
 
         scope.removeRelation = function (relationId) {
+            if(scope.readonly) {
+                return;
+            }
             $http.post('users/me/skillz/disassociate', {'relationId': relationId}).then(function (response) {
                 element.remove();
             });
@@ -64,6 +79,7 @@ angular.module('users').directive('skillCard', ['$http', function ($http) {
         restrict: 'E',
         scope: {
             skill: '=skill',
+            readonly: "=readonly"
         },
         link: link,
         templateUrl: 'modules/users/views/skill-card.template.html'
@@ -78,6 +94,7 @@ angular.module('users').directive('domain', ['$http', function ($http) {
         scope: {
             label: '=label',
             skills: '=skills',
+            readonly: '=readonly'
         },
         templateUrl: 'modules/users/views/domain.template.html'
     };

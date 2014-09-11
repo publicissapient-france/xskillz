@@ -1,5 +1,5 @@
 <div class="results domain domain-{{label}}">
     <p class="domain-name">{{label}}</p>
-        <skill-card ng-repeat="skill in skills | partOfDomain:label track by $index" skill="skill"></skill-card>
+        <skill-card ng-repeat="skill in skills | partOfDomain:label track by $index" skill="skill" readonly="readonly"></skill-card>
     <br/>
 </div>

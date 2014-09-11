@@ -3,7 +3,7 @@
         <p>{{skill.name}}</p>
     </div>
     <div class="remove result-element">
-        <a class='result-remove--link glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"></a>
+        <a class='result-remove--link glyphicon glyphicon-remove' ng-hide="readonly" ng-click="removeRelation(skill.relationId)"></a>
     </div>
     <div class="like result-element">
         <span class="glyphicon glyphicon-heart like" ng-click="updateLike(skill,this)" ng-show="skill.like"></span>
