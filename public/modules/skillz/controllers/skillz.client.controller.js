@@ -20,8 +20,8 @@ angular.module('skillz').directive('help', ['$http', function ($http) {
     };
 }]);
 
-angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$location', '_', 'd3',
-    function ($scope, $http, $location, _, d3) {
+angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope', '$http', '$location', '_', 'd3',
+    function ($rootScope, $scope, $http, $location, _, d3) {
 
         $scope.expertLevel = 3;
         $scope.confirmedLevel = 2;
@@ -66,7 +66,13 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
                     .style('fill', function (d) {
                         return color(d.value);
                     });
-                node.append('text')
+                node.append('a')
+                    .attr({"xlink:href": "#"})
+                    .on("mouseover", function(d, i){
+                        d3.select(this)
+                            .attr({"xlink:href": "#!/skillz/search?query=" + d.name});
+                    })
+                    .append('text')
                     .attr('dy', '.3em')
                     .style('text-anchor', 'middle')
                     .text(function (d) {
@@ -172,7 +178,7 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
         };
 
         // initialize
-        if($location.search().query) {
+        if ($location.search().query) {
             $scope.query = $location.search().query;
             $scope.searchSkillz();
         }
