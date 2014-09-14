@@ -1,6 +1,6 @@
 <div class="result-item">
     <div class="info result-element">
-        <p>{{skill.name}}</p>
+        <p><a class="skill-link" href="#!/skillz/search?query={{skill.name}}">{{skill.name}}</a></p>
     </div>
     <div class="remove result-element">
         <a class='result-remove--link glyphicon glyphicon-remove' ng-hide="readonly" ng-click="removeRelation(skill.relationId)"></a>

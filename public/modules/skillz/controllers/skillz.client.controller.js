@@ -171,6 +171,12 @@ angular.module('skillz').controller('SkillzController', ['$scope', '$http', '$lo
             }
         };
 
+        // initialize
+        if($location.search().query) {
+            $scope.query = $location.search().query;
+            $scope.searchSkillz();
+        }
+
     }
 
 ]);

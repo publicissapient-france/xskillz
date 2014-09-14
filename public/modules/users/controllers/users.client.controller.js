@@ -25,11 +25,11 @@ angular.module('users').filter('partOfDomain', function () {
     };
 });
 
-angular.module('users').directive('skillCard', ['$http', function ($http) {
+angular.module('users').directive('skillCard', ['$http', '$location', function ($http, $location) {
 
     function link(scope, element, attrs) {
         scope.updateLike = function (skill) {
-            if(scope.readonly) {
+            if (scope.readonly) {
                 return;
             }
             skill.like = !skill.like;
@@ -38,14 +38,14 @@ angular.module('users').directive('skillCard', ['$http', function ($http) {
         };
 
         scope.hoveringOver = function (value) {
-            if(scope.readonly) {
+            if (scope.readonly) {
                 return;
             }
             scope.tempLevel = value;
         };
 
         scope.setLevel = function () {
-            if(scope.readonly) {
+            if (scope.readonly) {
                 return;
             }
             if (scope.oldLevel === 1) {
@@ -57,16 +57,14 @@ angular.module('users').directive('skillCard', ['$http', function ($http) {
         };
 
         scope.updateLevel = function (skill) {
-            if(scope.readonly) {
+            if (scope.readonly) {
                 return;
             }
-            $http.put('/users/me/skillz/' + skill.relationId + '/level', {'level': skill.level}).then(function (response) {
-                
-            });
+            $http.put('/users/me/skillz/' + skill.relationId + '/level', {'level': skill.level});
         };
 
         scope.removeRelation = function (relationId) {
-            if(scope.readonly) {
+            if (scope.readonly) {
                 return;
             }
             $http.post('users/me/skillz/disassociate', {'relationId': relationId}).then(function (response) {
@@ -99,7 +97,7 @@ angular.module('users').directive('domain', ['$http', function ($http) {
     };
 }]);
 
-angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_', 
+angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_',
     function ($scope, $http, $location, Users, Authentication, _) {
 
         $scope.user = Authentication.user;
@@ -214,6 +212,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
                 $scope.skillz = response.data;
             });
         };
+
     }
 ]);
 
