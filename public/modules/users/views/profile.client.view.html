@@ -1,16 +1,19 @@
 <section data-ng-controller="ProfileController">
     <div class="container">
-        <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
-        
+        <h3>
+            <span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}
+            <experience-badge experience="user.experience" style="float: right;"></experience-badge>
+        </h3>
+
         <div id="results" class="results">
             <a href="#!/skillz/search?query={{skill.name}}" ng-repeat="skill in skillz | noDomain track by $index" class="result-item">
+                <div class="like result-element">
+                    <span class="glyphicon glyphicon-heart like" ng-show="skill.like"></span>
+                    <span class="glyphicon glyphicon-heart-empty notlike" ng-hide="skill.like"></span>
+                </div>
                 <div class="info result-element">
                     <p>{{skill.name}}</p>
                 </div>
-                    <div class="like result-element">
-                        <span class="glyphicon glyphicon-heart like" ng-show="skill.like"></span>
-                        <span class="glyphicon glyphicon-heart-empty notlike" ng-hide="skill.like"></span>
-                    </div>
                 <div class="level result-element" ng-if="skill.level != undefined">
                     <rating class="turquoise bigger" ng-model="skill.level" max="3" readonly="true"></rating>
                 </div>

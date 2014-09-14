@@ -72,9 +72,7 @@
 }
 
 .remove,
-.level,
-.like,
-.notlike{
+.level {
     float: right;
 }
 
@@ -121,4 +119,23 @@
 
 .info {
     margin-left: 0 !important;
+}
+
+.experience {
+    width:50px;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    display: inline-block;
+    float: right;
+}
+
+.experience-value {
+    font-size: 20pt;
+}
+
+.experience-label {
+    font-size: 10pt;
 }

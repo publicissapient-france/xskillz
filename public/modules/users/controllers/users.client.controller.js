@@ -97,10 +97,22 @@ angular.module('users').directive('domain', ['$http', function ($http) {
     };
 }]);
 
+angular.module('users').directive('experienceBadge', ['$http', function ($http) {
+    return {
+        restrict: 'E',
+        scope: {
+            experience: '=experience'
+        },
+        templateUrl: 'modules/users/views/experience-badge.template.html'
+    };
+}]);
+
+
 angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_',
     function ($scope, $http, $location, Users, Authentication, _) {
 
         $scope.user = Authentication.user;
+        $scope.user.experience =  $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
 
         $scope.back = 'Back';
         $scope.cloud = 'Cloud';

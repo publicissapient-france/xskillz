@@ -37,4 +37,6 @@ module.exports = function(app) {
 
 	app.route('/user/skillz/:email').get(user.skillz);
 
+    app.route('/user/diploma').post(auth.requiresLogin, users.associateDiploma);
+
 };

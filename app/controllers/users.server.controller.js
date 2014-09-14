@@ -7,6 +7,9 @@ var _ = require('lodash'),
     xskillzNeo4J = require('../models/xskillz.neo4j'),
     NEO4J = require('../models/neo4j.js');
 
+function getExperience(diploma) {
+    return diploma ? new Date().getFullYear() - diploma : '-';
+}
 
 exports.mySkillz = function (req, res) {
     var user = req.user;
@@ -23,32 +26,32 @@ exports.mySkillz = function (req, res) {
 exports.findXebiansBySkillz = function (req, res) {
     var skillName = req.query.q;
     var query = {
-        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ')-[r:`' + NEO4J.SKILLZ_RELATION + '`]->s WHERE s.name=~ {q} RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name',
+        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ')-[r:`' + NEO4J.SKILLZ_RELATION + '`]->s WHERE s.name=~ {q} RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name, x.diploma',
         'params': {
             'q': '(?i).*' + skillName + '.*'
         }
     };
-    NEO4J.findPromise(query, function (row) {
-        return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5]};
+    NEO4J.findPromise(query,function (row) {
+        return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5], 'experience': getExperience(row[6])};
     }).then(function (result) {
-        res.jsonp(result);
-    });
+            res.jsonp(result);
+        });
 };
 
 
 exports.allXebians = function (req, res) {
     var query = {
-        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ') WHERE x.displayName =~ {q} RETURN x.displayName, x.email, x.picture',
+        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ') WHERE x.displayName =~ {q} RETURN x.displayName, x.email, x.picture, x.diploma',
         'params': {
             'q': '(?i).*' + req.query.q + '.*'
         }
     };
 
-    return NEO4J.findPromise(query, function (row) {
-        return {'displayName': row[0], 'email': row[1], 'picture': row[2]};
+    return NEO4J.findPromise(query,function (row) {
+        return {'displayName': row[0], 'email': row[1], 'picture': row[2], experience: getExperience(row[3])};
     }).then(function (results) {
-        res.jsonp(results);
-    });
+            res.jsonp(results);
+        });
 };
 
 exports.disassociate = function (req, res) {
@@ -80,11 +83,11 @@ exports.availableSkillzForMe = function (req, res) {
             'skillQuery': '(?i).*' + skillQuery + '.*'
         }
     };
-    NEO4J.findPromise(query, function (row) {
+    NEO4J.findPromise(query,function (row) {
         return {'name': row[0]};
     }).then(function (result) {
-        res.jsonp(result || []);
-    });
+            res.jsonp(result || []);
+        });
 
 };
 
@@ -95,12 +98,12 @@ exports.updateLike = function (req, res) {
     var query = {
         'query': 'start r=relationship({skillId}) set r.like = {newValue}',
         'params': {
-            'skillId'  : Number(skillId),
-            'newValue' : value
+            'skillId': Number(skillId),
+            'newValue': value
         }
     };
 
-    NEO4J.execute(query).then(function(){
+    NEO4J.execute(query).then(function () {
         res.redirect(303, '/users/me/skillz');
     });
 };
@@ -112,13 +115,28 @@ exports.updateLevel = function (req, res) {
     var query = {
         'query': 'start r=relationship({skillId}) set r.level = {newValue}',
         'params': {
-            'skillId'  : Number(skillId),
-            'newValue' : value
+            'skillId': Number(skillId),
+            'newValue': value
         }
     };
 
-    NEO4J.execute(query).then(function(){
+    NEO4J.execute(query).then(function () {
         res.redirect(303, '/users/me/skillz');
+    });
+};
+
+exports.associateDiploma = function (req, res) {
+    var email = req.body.email;
+    var diploma = req.body.diploma;
+    var addDiplomaQuery = {
+        'query': 'MATCH (x:`' + NEO4J.XEBIAN_TYPE + '`) WHERE x.email={email} SET x.diploma = {diploma}',
+        'params': {
+            'email': email,
+            'diploma': diploma
+        }
+    };
+    NEO4J.execute(addDiplomaQuery).then(function () {
+        res.send(200);
     });
 };
 
@@ -175,8 +193,8 @@ exports.associate = function (req, res) {
                     });
             }
         }).fail(function (err) {
-            handleError(err);
-        });
+                handleError(err);
+            });
     };
 
     manageNodeSkill();

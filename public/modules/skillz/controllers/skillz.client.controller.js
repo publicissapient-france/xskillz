@@ -30,6 +30,8 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
 
         $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile'];
 
+        $scope.years = _.range(new Date().getFullYear(), 1990, -1);
+
         $scope.help = function () {
             $scope.displayHelp = !$scope.displayHelp;
         };
@@ -98,7 +100,14 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             });
         };
 
+        $scope.getXebians = function () {
+            $http.get('/users?q=.').then(function (response) {
+                $scope.xebians = response.data;
+            });
+        };
+
         $scope.getSkills();
+        $scope.getXebians();
 
         $scope.getOrphanSkillz = function () {
             $http.get('/skills/orphans').then(function (response) {
@@ -126,6 +135,14 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             });
         };
 
+        $scope.diplomize = function () {
+            $http.post('/user/diploma', {'email': $scope.xebian, 'diploma': $scope.year}).then(function (response) {
+                $scope.getXebians();
+                $scope.year = {};
+                $scope.xebian = {};
+            });
+        };
+
         $scope.deleteSkill = function (nodeToDelete) {
             $http.post('/skills/delete', {'source': nodeToDelete}).then(function (response) {
                 $scope.orphanSkillz = response.data;
@@ -142,7 +159,8 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                     'picture': node.picture,
                     'displayName': node.xebianName,
                     'level': node.level,
-                    'like': node.like
+                    'like': node.like,
+                    'experience': node.experience
                 };
             });
             return _.sortBy(values, 'level').reverse();

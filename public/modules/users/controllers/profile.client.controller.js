@@ -20,11 +20,12 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
 
         $http.get('/user/' + mail).then(function (data) {
             $scope.user = data.data[0][0].data;
+            $scope.user.experience =  $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
         });
 
-		$http.get('/user/skillz/'+mail).then(function(response) {
-			$scope.skillz = response.data;
-		});
+        $http.get('/user/skillz/' + mail).then(function (response) {
+            $scope.skillz = response.data;
+        });
 
     }
 ]);

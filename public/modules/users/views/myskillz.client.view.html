@@ -1,6 +1,9 @@
 <section data-ng-controller="UsersController">
     <div class="container">
-        <h3><span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}</h3>
+        <h3>
+            <span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}
+            <experience-badge experience="user.experience" style="float: right;"></experience-badge>
+        </h3>
         <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
             <form name="associateForm" ng-submit="associateSkill()" class="create-skill-form">
                 <div>
@@ -34,15 +37,15 @@
         </div>
         <div id="results" class="results">
             <div ng-repeat="skill in skillz | noDomain track by $index" class="result-item">
+                <div class="like result-element">
+                    <span class="glyphicon glyphicon-heart like" ng-click="updateLike(skill)" ng-show="skill.like"></span>
+                    <span class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
+                </div>
                 <div class="info result-element">
                     <p><a class="skill-link" href="#!/skillz/search?query={{skill.name}}">{{skill.name}}</a></p>
                 </div>
                 <div class="remove result-element">
                     <a class='result-remove--link glyphicon glyphicon-remove' ng-click="removeRelation(skill.relationId)"></a>
-                </div>
-                <div class="like result-element">
-                    <span class="glyphicon glyphicon-heart like" ng-click="updateLike(skill)" ng-show="skill.like"></span>
-                    <span class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
                 </div>
                 <div class="level result-element" ng-if="skill.level != undefined">
                     <rating class="turquoise bigger" ng-model="skill.level" max="3" on-hover="hoveringOver(value)" ng-click="updateLevel(skill)" on-leave="overStar = null"></rating>
