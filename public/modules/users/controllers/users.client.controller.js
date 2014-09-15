@@ -122,6 +122,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
         $scope.mobile = 'Mobile';
         $scope.data = 'Data';
         $scope.craft = 'Craft';
+        $scope.loisirs = 'Loisirs';
 
         $scope.expertLevel = 3;
         $scope.confirmedLevel = 2;

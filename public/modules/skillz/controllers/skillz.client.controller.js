@@ -28,7 +28,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         $scope.rookieLevel = 1;
         $scope.enthusiastLevel = 0;
 
-        $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile'];
+        $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile', 'Loisirs'];
 
         $scope.years = _.range(new Date().getFullYear(), 1990, -1);
 

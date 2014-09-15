@@ -14,6 +14,7 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
         $scope.mobile = 'Mobile';
         $scope.data = 'Data';
         $scope.craft = 'Craft';
+        $scope.loisirs = 'Loisirs';
 
         console.log('profile controller', $location.$$path.split('/').pop());
         var mail = $location.$$path.split('/').pop();
