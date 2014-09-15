@@ -85,7 +85,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             function setClasses(root) {
                 var classes = [];
                 root.forEach(function (node) {
-                    classes.push({name: node.name, value: (node.count + 1)});
+                    classes.push({name: node.name, value: node.count});
                 });
                 return {children: classes};
             }
