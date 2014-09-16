@@ -37,6 +37,45 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         };
 
         $scope.cloud = function () {
+
+            function domainColor(domain, count) {
+                var alpha = count / 10;
+                var color;
+                if (!domain) {
+                    return 'rgba(255,255,255,1)';
+                }
+                switch (domain.toLowerCase()) {
+                    case 'back':
+                        color = 'rgba(170, 38, 21, ' + alpha + ')';
+                        break;
+                    case 'cloud':
+                        color = 'rgba(170, 38, 21, ' + alpha + ')';
+                        break;
+                    case 'craft' :
+                        color = 'rgba(175, 205, 55, ' + alpha + ')';
+                        break;
+                    case 'agile':
+                        color = 'rgba(215, 213, 208, ' + alpha + ')';
+                        break;
+                    case 'data' :
+                        color = 'rgba(223, 0, 117, ' + alpha + ')';
+                        break;
+                    case 'devops':
+                        color = 'rgba(249, 155, 29, ' + alpha + ')';
+                        break;
+                    case 'front' :
+                        color = 'rgba(0, 160, 212, ' + alpha + ')';
+                        break;
+                    case 'mobile' :
+                        color = 'rgba(20, 71, 211, ' + alpha + ')';
+                        break;
+                    default:
+                        color = 'rgba(100, 100, 100, ' + alpha + ')';
+                        break;
+                }
+                return color;
+            }
+
             var diameter = 960, format = d3.format(',d'), color = d3.scale.category20c();
             var bubble = d3.layout.pack()
                 .sort(null)
@@ -66,13 +105,14 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                         return d.r;
                     })
                     .style('fill', function (d) {
-                        return color(d.value);
+                        var domain = d.domains[0];
+                        return domainColor(domain, d.value);
                     });
                 node.append('a')
                     .attr({"xlink:href": "#"})
-                    .on("mouseover", function(d, i){
+                    .on("mouseover", function (d, i) {
                         d3.select(this)
-                            .attr({"xlink:href": "#!/skillz/search?query=" + d.name});
+                            .attr({"xlink:href": "#!/skillz/search?query=" + d.name + "$"});
                     })
                     .append('text')
                     .attr('dy', '.3em')
@@ -85,7 +125,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             function setClasses(root) {
                 var classes = [];
                 root.forEach(function (node) {
-                    classes.push({name: node.name, value: node.count});
+                    classes.push({name: node.name, value: node.count, domains: node.domains});
                 });
                 return {children: classes};
             }
