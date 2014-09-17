@@ -14,7 +14,11 @@ exports.profile = function(req, res) {
 
   xskillzNeo4j.findXebianByEmail(email)
     .then(function(results){
-          res.jsonp(results);
+          var user = results[0][0].data;
+          if(results[0][1]){
+              user.manager = results[0][1].data;
+          }
+          res.jsonp(user);
     });
 };
 

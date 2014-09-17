@@ -121,3 +121,4 @@ exports.XEBIAN_TYPE = 'XEBIAN';
 exports.SKILL_TYPE = 'SKILL';
 
 exports.SKILLZ_RELATION = 'HAS';
+exports.MANAGER_RELATION = 'IS_MANAGER_OF';

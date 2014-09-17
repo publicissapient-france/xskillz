@@ -19,14 +19,16 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
         console.log('profile controller', $location.$$path.split('/').pop());
         var mail = $location.$$path.split('/').pop();
 
-        $http.get('/user/' + mail).then(function (data) {
-            $scope.user = data.data[0][0].data;
+        $http.get('/user/' + mail).then(function (response) {
+            $scope.user = response.data;
             $scope.user.experience =  $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
         });
 
         $http.get('/user/skillz/' + mail).then(function (response) {
             $scope.skillz = response.data;
         });
+
+        $scope.me = Authentication.user;
 
     }
 ]);

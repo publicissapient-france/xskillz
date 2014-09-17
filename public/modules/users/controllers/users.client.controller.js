@@ -213,7 +213,6 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
         };
 
         $scope.updateLevel = function (skill) {
-            console.log(skill);
             $http.put('/users/me/skillz/' + skill.relationId + '/level', {'level': skill.level}).then(function (response) {
                 $scope.skillz = response.data;
             });

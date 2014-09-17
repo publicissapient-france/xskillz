@@ -13,6 +13,9 @@ exports.findOne = function(id){
       try{
         var userData =  user[0][0].data;
         userData.roles = ['user'];
+        if(user[0][1]){
+            userData.manager = user[0][1].data;
+        }
         return userData;
       } catch(err){
         return null;

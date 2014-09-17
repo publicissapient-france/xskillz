@@ -112,14 +112,6 @@ exports.oauthCallback = function(strategy) {
 };
 
 /**
- * User middleware
- */
-exports.userByID = function(req, res, next, id) {
-  	xskillzNeo4J.findXebianById(id).then(next);
-};
-
-
-/**
  * Require login routing middleware
  */
 exports.requiresLogin = function(req, res, next) {

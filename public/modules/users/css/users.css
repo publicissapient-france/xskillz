@@ -4,6 +4,10 @@
     }
 }
 
+h3 .mailto{
+    font-size: 16px;
+}
+
 .result-item {
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);

@@ -2,6 +2,7 @@
     <div class="container">
         <h3>
             <span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}
+            <a ng-href="mailto:{{user.email}}?cc={{user.manager.email}}&subject={{me.firstName}} a une proposition pour toi&body=Bonjour {{user.firstName}}" class="mailto"><i class="turquoise glyphicon glyphicon-envelope"></i></a>
             <experience-badge experience="user.experience" style="float: right;"></experience-badge>
         </h3>
 
