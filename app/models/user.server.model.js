@@ -12,10 +12,16 @@ exports.findOne = function(id){
     function(user){
       try{
         var userData =  user[0][0].data;
-        userData.roles = ['user'];
+        userData.roles = [];
+
         if(user[0][1]){
-            userData.manager = user[0][1].data;
+            _.forEach(user[0][1],function(role){
+                userData.roles.push(role);
+            });
         }
+
+          console.log(userData.roles);
+
         return userData;
       } catch(err){
         return null;

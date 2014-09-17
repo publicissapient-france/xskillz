@@ -24,7 +24,7 @@ exports.createSkill = function(skill) {
 
 exports.findXebianById = function(id) {
 	var query = {
-		'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n._id = {_id} OPTIONAL MATCH (n)<-[:IS_MANAGER_OF]-(manager) RETURN n,manager',
+		'query' : 'MATCH (n: '+XEBIAN_TYPE+') WHERE n._id = {_id} RETURN n,labels(n)',
 		'params' : {
 			'_id': id
 		}
