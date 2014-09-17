@@ -20,8 +20,8 @@ angular.module('skillz').directive('help', ['$http', function ($http) {
     };
 }]);
 
-angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope', '$http', '$location', '_', 'd3',
-    function ($rootScope, $scope, $http, $location, _, d3) {
+angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope', '$http', '$location', '_', 'd3', '$analytics', 'Authentication',
+    function ($rootScope, $scope, $http, $location, _, d3, $analytics, Authentication) {
 
         $scope.expertLevel = 3;
         $scope.confirmedLevel = 2;
@@ -207,9 +207,11 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         };
 
         $scope.searchSkillz = function () {
+            $analytics.eventTrack(Authentication.user.username, {category: 'Skill Search', label: $scope.query});
             $http.get('/skillz', {'params': {'q': $scope.query}})
                 .then(function (response) {
                     $scope.results = transformResultToXebians(response);
+                    $analytics.eventTrack($scope.query, {category: 'Skill Results', label: $scope.results.length});
                 });
         };
 
@@ -220,12 +222,12 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             }
         };
 
-        $scope.changingSearchSkillz = function () {
+        $scope.changingSearchSkillz = _.debounce(function () {
             $scope.results = [];
             if ($scope.query.length > 2) {
                 $scope.searchSkillz();
             }
-        };
+        }, 500);
 
         $scope.isLiked = function (like) {
             if (like) {
