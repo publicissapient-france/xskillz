@@ -207,7 +207,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         };
 
         $scope.searchSkillz = function () {
-            $analytics.eventTrack(Authentication.user.username.split('@')[0], {category: 'Skill Search', label: $scope.query});
+            $analytics.eventTrack(Authentication.user.email.split('@')[0], {category: 'Skill Search', label: $scope.query});
             $http.get('/skillz', {'params': {'q': $scope.query}})
                 .then(function (response) {
                     $scope.results = transformResultToXebians(response);
