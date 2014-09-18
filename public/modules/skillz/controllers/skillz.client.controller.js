@@ -36,7 +36,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             $scope.displayHelp = !$scope.displayHelp;
         };
 
-        $scope.cloud = function () {
+        $scope.cloud = function (id, api) {
 
             function domainColor(domain, count) {
                 var alpha = count / 10;
@@ -81,11 +81,11 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                 .sort(null)
                 .size([diameter, diameter])
                 .padding(15);
-            var svg = d3.select('#cloud').append('svg')
+            var svg = d3.select(id).append('svg')
                 .attr('width', diameter)
                 .attr('height', diameter)
                 .attr('class', 'bubble');
-            d3.json('/skills', function (error, root) {
+            d3.json(api, function (error, root) {
                 var node = svg.selectAll('.node')
                     .data(bubble.nodes(setClasses(root))
                         .filter(function (d) {
@@ -130,9 +130,15 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                 return {children: classes};
             }
 
-            d3.select('#cloud').style('height', diameter + 'px');
+            d3.select(id).style('height', diameter + 'px');
         };
-        $scope.cloud();
+
+        $scope.cloud('#cloud', '/skills');
+        $scope.cloud('#love', '/skills?onlyLike=true');
+        $scope.cloud('#level3', '/skills?level=3');
+        $scope.cloud('#level2', '/skills?level=2');
+        $scope.cloud('#level1', '/skills?level=1');
+        $scope.cloud('#level0', '/skills?level=0');
 
         $scope.getSkills = function () {
             $http.get('/skills').then(function (response) {
