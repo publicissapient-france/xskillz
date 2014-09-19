@@ -101,6 +101,8 @@
     background-color: #eee;
     margin-top: 10px;
     font-size: 0.9em;
+    position: absolute;
+    z-index: 1000;
 }
 
 #skill-help p {
