@@ -5,23 +5,17 @@
 </style>
 
 <section data-ng-controller="SkillzController">
+
+    <h3>Réparation des compétences</h3>
+
+    <p>
+        Domaine : <select ng-model="domain" name="domain" ng-change="cloudify()" ng-options="d as d for d in domains" />
+    </p>
+    <p>
+        Niveau de compétence supérieur à <select ng-model="level" name="level" ng-change="cloudify()" ng-options="d as d for d in levels" />
+    </p>
+
     <div class="container">
-        <h3>Les compétences très appréciées par les Xebians</h3>
-        <div id="love"></div>
-
-        <h3>Les compétences avec un niveau d'expérience "Expert"</h3>
-        <div id="level3"></div>
-
-        <h3>Les compétences avec un niveau d'expérience  "Confirmé"</h3>
-        <div id="level2"></div>
-
-        <h3>Les compétences avec un niveau d'expérience "Débutant"</h3>
-        <div id="level1"></div>
-
-        <h3>Les compétences sans expérience mais intéressantes</h3>
-        <div id="level0"></div>
-
-        <h3>Les compétences tous niveaux confondus</h3>
         <div id="cloud"></div>
     </div>
 </section>

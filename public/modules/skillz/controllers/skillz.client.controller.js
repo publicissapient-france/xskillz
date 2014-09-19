@@ -29,6 +29,9 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         $scope.enthusiastLevel = 0;
 
         $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile', 'Loisirs'];
+        $scope.domain='Agile';
+        $scope.levels = ['3', '2', '1', '0'];
+        $scope.level = '3';
 
         $scope.years = _.range(new Date().getFullYear(), 1990, -1);
 
@@ -86,6 +89,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                 .attr('height', diameter)
                 .attr('class', 'bubble');
             d3.json(api, function (error, root) {
+                if(!root.length) {return;}
                 var node = svg.selectAll('.node')
                     .data(bubble.nodes(setClasses(root))
                         .filter(function (d) {
@@ -105,8 +109,11 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                         return d.r;
                     })
                     .style('fill', function (d) {
-                        var domain = d.domains[0];
-                        return domainColor(domain, d.value);
+                        if(d.domains) {
+                            var domain = d.domains[0];
+                            return domainColor(domain, d.value);
+                        }
+                        return '#FFFFFF';
                     });
                 node.append('a')
                     .attr({"xlink:href": "#"})
@@ -118,7 +125,10 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                     .attr('dy', '.3em')
                     .style('text-anchor', 'middle')
                     .text(function (d) {
-                        return d.name.substring(0, d.r / 4);
+                        if(d.name) {
+                            return d.name.substring(0, d.r / 4);
+                        }
+                        return "";
                     });
             });
 
@@ -133,12 +143,11 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             d3.select(id).style('height', diameter + 'px');
         };
 
-        $scope.cloud('#cloud', '/skills');
-        $scope.cloud('#love', '/skills?onlyLike=true');
-        $scope.cloud('#level3', '/skills?level=3');
-        $scope.cloud('#level2', '/skills?level=2');
-        $scope.cloud('#level1', '/skills?level=1');
-        $scope.cloud('#level0', '/skills?level=0');
+        $scope.cloudify = function() {
+            angular.element('#cloud').empty();
+            $scope.cloud('#cloud', '/skills?level='+$scope.level+"&domain="+$scope.domain);
+        };
+        $scope.cloudify();
 
         $scope.getSkills = function () {
             $http.get('/skills').then(function (response) {

@@ -8,22 +8,12 @@ var NEO4J = require('../models/neo4j.js');
 
 exports.all = function (req, res) {
 
+    var level = req.query.level || 3;
+    var domain = req.query.domain || "Agile";
+
     var query = {
-        'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() return s.name, count(r),id(s), s.domains order by upper(s.name)'
+        'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') WHERE \''+domain+'\' in s.domains OPTIONAL MATCH s<-[r:`HAS`]-() WHERE r.level >= '+level+' return s.name, count(r),id(s), s.domains order by upper(s.name)'
     };
-
-    if(req.query.onlyLike) {
-        query = {
-            'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() WHERE r.like = true return s.name, count(r),id(s), s.domains order by upper(s.name)'
-        };
-    }
-
-    if(req.query.level) {
-        query = {
-            'query': 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() WHERE r.level = '+req.query.level+' return s.name, count(r),id(s), s.domains order by upper(s.name)'
-        };
-    }
-
 
     return NEO4J.findPromise(query,function (row) {
         return {'name': row[0], 'count': row[1], 'nodeId': row[2], 'domains': row[3] || []};
