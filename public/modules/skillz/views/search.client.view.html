@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="results skill-list enthusiast-background">
-            <p class="skill-level-name">Enthousiastes <rating class="turquoise bigger" ng-model="expertLevel" max="0" readonly="true"></rating></p>
+            <p class="skill-level-name">Sans expérience mais intéressé(e)s <rating class="turquoise bigger" ng-model="expertLevel" max="0" readonly="true"></rating></p>
             <div ng-repeat="xebian in results | filter:{level:0} track by $index" class="result-item">
                 <xebian-skill-card xebian="xebian" show-rating="false" on-click="findSkillByName(xebian.skillName)" ></xebian-skill-card>
             </div>

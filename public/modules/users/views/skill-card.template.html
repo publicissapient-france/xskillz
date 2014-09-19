@@ -1,7 +1,7 @@
 <div class="result-item">
     <div class="like result-element">
         <span class="glyphicon glyphicon-heart like" ng-click="updateLike(skill,this)" ng-show="skill.like"></span>
-        <span class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
+        <span title="J'aime beaucoup ?" class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
     </div>
     <div class="info result-element">
         <p><a class="skill-link" href="#!/skillz/search?query={{skill.name}}">{{skill.name}}</a></p>

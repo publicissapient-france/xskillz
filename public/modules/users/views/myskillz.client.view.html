@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <span class="glyphicon glyphicon-heart like" ng-click="toggleLike()" ng-show="like"></span>
-                    <span class="glyphicon glyphicon-heart-empty notlike" ng-click="toggleLike()" ng-hide="like"></span>
+                    <span title="J'aime beaucoup ?" class="glyphicon glyphicon-heart-empty notlike" ng-click="toggleLike()" ng-hide="like"></span>
                 </div>
                 <div>
                     <button type="submit" ng-disabled="!associateForm.$valid" class="btn big-btn" style="width: 100%;">
@@ -39,7 +39,7 @@
             <div ng-repeat="skill in skillz | noDomain track by $index" class="result-item">
                 <div class="like result-element">
                     <span class="glyphicon glyphicon-heart like" ng-click="updateLike(skill)" ng-show="skill.like"></span>
-                    <span class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
+                    <span title="J'aime beaucoup ?" class="glyphicon glyphicon-heart-empty notlike" ng-click="updateLike(skill)" ng-hide="skill.like"></span>
                 </div>
                 <div class="info result-element">
                     <p><a class="skill-link" href="#!/skillz/search?query={{skill.name}}">{{skill.name}}</a></p>
