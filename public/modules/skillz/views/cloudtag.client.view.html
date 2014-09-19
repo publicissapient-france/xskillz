@@ -6,13 +6,13 @@
 
 <section data-ng-controller="SkillzController">
 
-    <h3>Réparation des compétences</h3>
+    <h3>Répartition des compétences</h3>
 
     <p>
         Domaine : <select ng-model="domain" name="domain" ng-change="cloudify()" ng-options="d as d for d in domains" />
     </p>
     <p>
-        Niveau de compétence supérieur à <select ng-model="level" name="level" ng-change="cloudify()" ng-options="d as d for d in levels" />
+        Niveau de compétence supérieur ou égal à <select ng-model="level" name="level" ng-change="cloudify()" ng-options="d as d for d in levels" />
     </p>
 
     <div class="container">
