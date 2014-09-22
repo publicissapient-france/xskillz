@@ -60,6 +60,14 @@ h3 .mailto{
     text-decoration: none;
 }
 
+.user {
+    vertical-align: top;
+}
+
+.user-manager {
+    font-size: 12px;
+}
+
 .skill--link {
     cursor: pointer;
     display: block;

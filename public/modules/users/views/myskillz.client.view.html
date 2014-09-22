@@ -1,7 +1,8 @@
 <section data-ng-controller="UsersController">
     <div class="container">
         <h3>
-            <span style='background-image: url({{user.picture}});' class="user-picture"></span>{{user.displayName}}
+            <span style='background-image: url({{user.picture}});' class="user-picture"></span>
+            <span class="user-displayName">{{user.displayName}}</span>
             <experience-badge experience="user.experience" style="float: right;"></experience-badge>
         </h3>
         <div class="row" style="padding-bottom: 12px; padding-top: 16px;">
