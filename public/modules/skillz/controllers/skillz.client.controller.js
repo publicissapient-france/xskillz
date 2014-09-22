@@ -20,6 +20,8 @@ angular.module('skillz').directive('help', ['$http', function ($http) {
     };
 }]);
 
+
+
 angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope', '$http', '$location', '_', 'd3', '$analytics', 'Authentication',
     function ($rootScope, $scope, $http, $location, _, d3, $analytics, Authentication) {
 
