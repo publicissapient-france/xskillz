@@ -39,17 +39,20 @@ exports.findXebiansBySkillz = function (req, res) {
         return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5], 'experience': getExperience(row[6])};
     })
         .then(function (result){
-            if(result.length > 0 && _.contains(currentUser.roles,'COMMERCE')) {
-                var logRequestQuery = {}
+            if(_.contains(currentUser.roles,'COMMERCE')) {
+                var logRequestQuery = {};
+
+                var queryDate = new Date();
 
                 logRequestQuery.query = '' +
                     'MATCH (c:COMMERCE) , (skill:'+ NEO4J.SKILL_TYPE +') WHERE c.email = {email} AND skill.name = {skill} ' +
-                    'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}} ]->(skill) ' +
+                    'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}, month: {month}} ]->(skill) ' +
                     'RETURN id(r)';
 
                 logRequestQuery.params = {
                     'email': currentUser.email,
-                    'date' : new Date().toISOString(),
+                    'date' : queryDate.toISOString(),
+                    'month' : queryDate.getUTCMonth() + 1,
                     'skill' : skillName,
                     'count': result.length
                 };

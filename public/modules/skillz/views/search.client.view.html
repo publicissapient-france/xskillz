@@ -11,7 +11,8 @@
                            autocomplete="off"
                            placeholder="Compétence"
                            typeahead-editable="false"
-                           typeahead="skillName for skillName in proposeSkillz($viewValue)">
+                           typeahead="skill.name as (skill.name + ' (' + skill.count + ')') for skill in proposeSkillz($viewValue)"
+                           typeahead-on-select="searchSkillz()">
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn big-btn" style="width: 100%;">

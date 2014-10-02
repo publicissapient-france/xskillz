@@ -234,12 +234,9 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         };
 
         $scope.proposeSkillz = function(query){
-            return $http.get('/skills', {'params': {'skill': query}})
-                .then(function (response) {
-                    return _.map(response.data, function (row) {
-                        return row.name;
-                    });
-                });
+            return $http.get('/skills', {'params': {'skill': query}}).then(function(response){
+                return response.data;
+            });
         };
 
         $scope.findSkillByName = function (skill) {
