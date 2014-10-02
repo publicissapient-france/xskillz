@@ -34,6 +34,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         $scope.domain='Agile';
         $scope.levels = ['3', '2', '1', '0'];
         $scope.level = '3';
+        $scope.newSkill = '';
 
         $scope.years = _.range(new Date().getFullYear(), 1990, -1);
 
@@ -118,10 +119,10 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                         return '#FFFFFF';
                     });
                 node.append('a')
-                    .attr({"xlink:href": "#"})
-                    .on("mouseover", function (d, i) {
+                    .attr({'xlink:href': '#'})
+                    .on('mouseover', function (d, i) {
                         d3.select(this)
-                            .attr({"xlink:href": "#!/skillz/search?query=" + d.name + "$"});
+                            .attr({'xlink:href': '#!/skillz/search?query=' + d.name + '$'});
                     })
                     .append('text')
                     .attr('dy', '.3em')
@@ -130,7 +131,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                         if(d.name) {
                             return d.name.substring(0, d.r / 4);
                         }
-                        return "";
+                        return '';
                     });
             });
 
@@ -147,7 +148,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
 
         $scope.cloudify = function() {
             angular.element('#cloud').empty();
-            $scope.cloud('#cloud', '/skills?level='+$scope.level+"&domain="+$scope.domain);
+            $scope.cloud('#cloud', '/skills?level='+$scope.level+'&domain='+$scope.domain);
         };
         $scope.cloudify();
 
@@ -225,10 +226,19 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
 
         $scope.searchSkillz = function () {
             $analytics.eventTrack(Authentication.user.email.split('@')[0], {category: 'Skill Search', label: $scope.query});
-            $http.get('/skillz', {'params': {'q': $scope.query}})
+            $http.get('/users/skillz/'+$scope.query)
                 .then(function (response) {
                     $scope.results = transformResultToXebians(response);
                     $analytics.eventTrack($scope.query, {category: 'Skill Results', label: $scope.results.length});
+                });
+        };
+
+        $scope.proposeSkillz = function(query){
+            return $http.get('/skills', {'params': {'skill': query}})
+                .then(function (response) {
+                    return _.map(response.data, function (row) {
+                        return row.name;
+                    });
                 });
         };
 

@@ -3,7 +3,15 @@
         <div id="search" class="row" style="padding-bottom:12px; padding-top: 16px;">
             <form ng-submit="searchSkillz()" class="form-inline">
                 <div class="col-md-2">
-                    <input type="text" class="form-control" id="skill" ng-model="query" ng-change="changingSearchSkillz()" placeholder="Compétence">
+                    <input type="text"
+                           maxlength="20"
+                           class="form-control expanded"
+                           id="skill"
+                           ng-model="query"
+                           autocomplete="off"
+                           placeholder="Compétence"
+                           typeahead-editable="false"
+                           typeahead="skillName for skillName in proposeSkillz($viewValue)">
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn big-btn" style="width: 100%;">

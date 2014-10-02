@@ -10,13 +10,35 @@ exports.all = function (req, res) {
 
     var level = req.query.level || 3;
     var domain = req.query.domain;
+    var skillName = req.query.skill;
 
     var query = {};
-    if (domain) {
-        query.query = 'MATCH (s:' + NEO4J.SKILL_TYPE + ') WHERE \'' + domain + '\' in s.domains OPTIONAL MATCH s<-[r:`HAS`]-() WHERE r.level >= ' + level + ' return s.name, count(r),id(s), s.domains order by upper(s.name)'
-    } else {
-        query.query = 'MATCH (s:' + NEO4J.SKILL_TYPE + ') OPTIONAL MATCH s<-[r:`HAS`]-() WHERE r.level >= ' + level + ' return s.name, count(r),id(s), s.domains order by upper(s.name)'
+
+    var skillWhereClause = '';
+    if(domain){
+        skillWhereClause += ' WHERE {domain} in s.domains ';
     }
+    if(skillName){
+        if(domain){
+            skillWhereClause += ' AND s.name =~ {name} ';
+        }else{
+            skillWhereClause += ' WHERE s.name =~ {name} ';
+        }
+    }
+
+
+    query.query = 'MATCH (s:' + NEO4J.SKILL_TYPE + ') ' +
+        skillWhereClause +
+        'OPTIONAL MATCH s<-[r:`HAS`]-() ' +
+        'WHERE r.level >= {level}' +
+        'return s.name, count(r),id(s), s.domains order by upper(s.name)';
+
+    query.params = {
+        'domain': domain,
+        'name' : '(?i).*' + skillName + '.*',
+        'level': level
+    };
+
 
     return NEO4J.findPromise(query,function (row) {
         return {'name': row[0], 'count': row[1], 'nodeId': row[2], 'domains': row[3] || []};

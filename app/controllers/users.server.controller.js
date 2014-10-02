@@ -24,16 +24,41 @@ exports.mySkillz = function (req, res) {
 
 
 exports.findXebiansBySkillz = function (req, res) {
-    var skillName = req.query.q;
+    var skillName = req.params.skill;
+    var currentUser = req.user;
+
     var query = {
-        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ')-[r:`' + NEO4J.SKILLZ_RELATION + '`]->s WHERE s.name=~ {q} RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name, x.diploma',
+        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ')-[r:`' + NEO4J.SKILLZ_RELATION + '`]->s ' +
+            ' WHERE s.name= {q} ' +
+            ' RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name, x.diploma',
         'params': {
-            'q': '(?i).*' + skillName + '.*'
+            'q': skillName
         }
     };
     NEO4J.findPromise(query,function (row) {
         return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5], 'experience': getExperience(row[6])};
-    }).then(function (result) {
+    })
+        .then(function (result){
+            if(result.length > 0 && _.contains(currentUser.roles,'COMMERCE')) {
+                var logRequestQuery = {}
+
+                logRequestQuery.query = '' +
+                    'MATCH (c:COMMERCE) , (skill:'+ NEO4J.SKILL_TYPE +') WHERE c.email = {email} AND skill.name = {skill} ' +
+                    'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}} ]->(skill) ' +
+                    'RETURN id(r)';
+
+                logRequestQuery.params = {
+                    'email': currentUser.email,
+                    'date' : new Date().toISOString(),
+                    'skill' : skillName,
+                    'count': result.length
+                };
+                NEO4J.execute(logRequestQuery);
+            }
+            return result;
+
+        })
+        .then(function (result) {
             res.jsonp(result);
         });
 };

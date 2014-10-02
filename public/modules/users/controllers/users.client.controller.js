@@ -27,7 +27,7 @@ angular.module('users').filter('partOfDomain', function () {
 
 angular.module('users').directive('skillCard', ['$http', '$location', function ($http, $location) {
 
-    function link(scope, element, attrs) {
+    function link(scope, element) {
         scope.updateLike = function (skill) {
             if (scope.readonly) {
                 return;
@@ -71,13 +71,13 @@ angular.module('users').directive('skillCard', ['$http', '$location', function (
                 element.remove();
             });
         };
-    };
+    }
 
     return {
         restrict: 'E',
         scope: {
             skill: '=skill',
-            readonly: "=readonly"
+            readonly: '=readonly'
         },
         link: link,
         templateUrl: 'modules/users/views/skill-card.template.html'

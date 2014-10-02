@@ -18,7 +18,6 @@
                         ng-model="newSkill" 
                         placeholder="Nouvelle compétence"
                         typeahead="skill for skill in searchSkill($viewValue)">
-                    <i ng-show="loadingSkillz" class="glyphicon glyphicon-refresh"></i>
                 </div>
                 <div>
                     <rating class="turquoise bigger" ng-model="level" max="3" on-hover="hoveringOver(value)" ng-click="setLevel()" on-leave="overStar = null"></rating>

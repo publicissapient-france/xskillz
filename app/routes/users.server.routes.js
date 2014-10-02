@@ -30,7 +30,7 @@ module.exports = function(app) {
     app.route('/users/me/skillz')
         .put(auth.requiresLogin, users.associate);
 
-	app.route('/skillz')
+	app.route('/users/skillz/:skill')
 		.get(auth.requiresLogin, users.findXebiansBySkillz);
 
 	app.route('/user/:email').get(user.profile);
