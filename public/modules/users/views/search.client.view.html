@@ -3,7 +3,8 @@
         <div id="search" class="row" style="padding-bottom:12px; padding-top: 16px;">
             <form ng-submit="searchXebians()" class="form-inline">
                 <div class="col-md-2">
-                    <input type="text" class="form-control" id="xebian" ng-model="query" ng-change="changingSearchXebians()" placeholder="Nom" placeholder="name">
+                    <input type="text" class="form-control" id="xebian" ng-model="query"
+                           ng-change="changingSearchXebians()" placeholder="Nom" placeholder="name">
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn big-btn" style="width: 100%;">
@@ -12,6 +13,28 @@
                 </div>
             </form>
         </div>
+
+        <table class="table" ng-if="!query">
+            <tr>
+                <th style="width:50px;"></th>
+                <th>Xebian</th>
+                <th style="width:100px;">Expérience</th>
+            </tr>
+            <tr ng-repeat="xebian in xebians | orderBy:'experience':reverse">
+                <td>
+                    <a ng-href="#!/user/{{xebian.email}}">
+                        <span style='background-image: url({{xebian.picture}});' class="user-picture"></span>
+                    </a>
+                </td>
+                <td>
+                    <a ng-href="#!/user/{{xebian.email}}">{{xebian.displayName}}</a>
+                </td>
+                <td>
+                    <experience-badge experience="xebian.experience"></experience-badge>
+                </td>
+            </tr>
+        </table>
+
         <div id="results" class="row">
             <div class="col-md-5">
                 <ul class="list-group">

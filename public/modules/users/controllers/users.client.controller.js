@@ -198,6 +198,12 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
                 });
         };
 
+        $http.get('/users', {'params': {'q': '.'}})
+            .then(function (response) {
+                $scope.xebians = response.data;
+            });
+
+
 // Get user profile
         $scope.getProfile = function () {
             console.log('get profile');
