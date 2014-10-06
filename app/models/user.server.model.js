@@ -80,13 +80,13 @@ exports.importUserWithGoogleAuthData = function (authData, next) {
 
 	xskillzNeo4J.findXebianByEmail(userData.email)
 		.then(function (xebian) {
-			if (!xebian) {
+            if (!xebian || xebian.length == 0) {
 				xskillzNeo4J.createXebian(userData)
 					.then(function () {
-						next();
+                        next();
 					})
 					.fail(function (error) {
-						next(error);
+            			next(error);
 					});
 			} else {
 				var mergedUserData = _.extend(xebian[0][0].data, userData);
