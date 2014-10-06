@@ -122,7 +122,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                     .attr({'xlink:href': '#'})
                     .on('mouseover', function (d, i) {
                         d3.select(this)
-                            .attr({'xlink:href': '#!/skillz/search?query=' + d.name + '$'});
+                            .attr({'xlink:href': '#!/skillz/search?query=' + d.name});
                     })
                     .append('text')
                     .attr('dy', '.3em')
