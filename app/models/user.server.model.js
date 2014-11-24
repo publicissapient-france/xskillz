@@ -41,7 +41,7 @@ exports.importUserWithDomainDirectoryData = function (gData, next) {
 
 	xskillzNeo4J.findXebianByEmail(userData.email)
 		.then(function (xebian) {
-			if (!xebian) {
+			if (!xebian || _.isEmpty(xebian)) {
 				xskillzNeo4J.createXebian(userData)
 					.then(function () {
 						next();
