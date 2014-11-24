@@ -8,6 +8,6 @@ angular.module('core').run(['Menus',
 		Menus.addMenuItem('topbar', 'Chercher une compétence', 'skillz/search', 'item', null, false, ['XEBIAN']);
 		Menus.addMenuItem('topbar', 'Chercher un Xebian', 'users/search', 'item', null, false, ['XEBIAN']);
 		Menus.addMenuItem('topbar', 'Dataviz', 'skillz/cloudtag', 'item', null, false, ['XEBIAN']);
-		Menus.addMenuItem('topbar', 'Administration', 'skillz/management', 'item', null, false, ['ADMIN']);
+		Menus.addMenuItem('topbar', 'Administration', 'skillz/management', 'item', null, false, ['MANAGER']);
 	}
 ]);

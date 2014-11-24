@@ -39,13 +39,13 @@ exports.findXebiansBySkillz = function (req, res) {
         return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5], 'experience': getExperience(row[6])};
     })
         .then(function (result){
-            if(_.contains(currentUser.roles,'COMMERCE')) {
+            if(_.contains(currentUser.roles,'COMMERCE') || _.contains(currentUser.roles,'MANAGER')) {
                 var logRequestQuery = {};
 
                 var queryDate = new Date();
 
                 logRequestQuery.query = '' +
-                    'MATCH (c:COMMERCE) , (skill:'+ NEO4J.SKILL_TYPE +') WHERE c.email = {email} AND skill.name = {skill} ' +
+                    'MATCH (c:XEBIAN) , (skill:'+ NEO4J.SKILL_TYPE +') WHERE c.email = {email} AND skill.name = {skill} ' +
                     'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}, month: {month}} ]->(skill) ' +
                     'RETURN id(r)';
 
