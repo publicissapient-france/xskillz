@@ -8,7 +8,7 @@ var NEO4J = require('../models/neo4j.js');
 
 exports.all = function (req, res) {
 
-    var level = req.query.level ? parseInt(req.query.level) : 3;
+    var level = req.query.level ? parseInt(req.query.level) : 0;
     var domain = req.query.domain;
     var skillName = req.query.skill;
 
