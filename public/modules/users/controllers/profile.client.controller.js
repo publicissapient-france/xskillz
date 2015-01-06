@@ -30,5 +30,9 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
 
         $scope.me = Authentication.user;
 
+        $scope.salesCard = function () {
+            $scope.displaySalesCard = !$scope.displaySalesCard;
+        };
+
     }
 ]);

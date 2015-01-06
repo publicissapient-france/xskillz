@@ -107,6 +107,18 @@ angular.module('users').directive('experienceBadge', ['$http', function ($http) 
     };
 }]);
 
+angular.module('users').directive('salesCard', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            xebian: '=xebian',
+            skills: '=skills'
+        },
+        templateUrl: 'modules/users/views/sales-card.template.html'
+    };
+});
+
+
 
 angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_',
     function ($scope, $http, $location, Users, Authentication, _) {
@@ -230,7 +242,6 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
                 $scope.skillz = response.data;
             });
         };
-
     }
 ]);
 
