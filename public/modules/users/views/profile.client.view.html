@@ -27,14 +27,12 @@
 
         <sales-card xebian="user" skills="skillz" ng-show="displaySalesCard"></sales-card>
 
-        <div>
-            <div class="skill-list expert-background">
+            <div class="skill-list expert-background results">
                 <p class="skill-level-name">Expert(e) <rating class="turquoise bigger" ng-model="expertLevel" max="3" readonly="true"></rating></p>
-                <div ng-repeat="skill in skillz | filter:{level:3} track by $index">
+                <div ng-repeat="skill in skillz | filter:{level:3} track by $index" style="display: inline;">
                     <skill-card skill="skill" ></skill-card>
                 </div>
             </div>
-        </div>
 
         <div>
             <domain label="back"    skills="skillz" readonly="true"></domain>
