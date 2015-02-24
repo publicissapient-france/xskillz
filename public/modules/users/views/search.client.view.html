@@ -39,7 +39,7 @@
             <div class="col-md-5">
                 <ul class="list-group">
                     <a class="list-group-item" ng-href="#!/user/{{xebian.email}}" ng-repeat="xebian in results">
-                        <span style='background-image: url({{xebian.picture}});' class="user-picture"></span>{{xebian.displayName}}
+                        <img gravatar-src="'{{xebian.email}}'" class="user-picture" gravatar-size="40">{{xebian.displayName}}
                         <experience-badge experience="xebian.experience"></experience-badge>
                     </a>
                 </ul>
