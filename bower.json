@@ -17,6 +17,7 @@
         "d3": "~3.4.11",
         "lodash": "~2.4.1",
 		"jquery": "~2.1.1",
-        "angulartics" : "0.16.4"
-	}
+        "angulartics" : "0.16.4",
+        "angular-gravatar": "0.2.4"
+    }
 }
