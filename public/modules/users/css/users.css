@@ -106,13 +106,10 @@ h3 .mailto{
 }
 
 .user-picture {
-    background-size: 32px 32px;
     border-radius: 50%;
     display: inline-table;
     margin-top: -1px;
     margin-right: 10px;
-    height: 32px;
-    width: 32px;
 }
 
 .skill-badge {

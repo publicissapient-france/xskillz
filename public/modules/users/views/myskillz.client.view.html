@@ -1,7 +1,7 @@
 <section data-ng-controller="UsersController">
     <div class="container">
         <h3>
-            <span style='background-image: url({{user.picture}});' class="user-picture"></span>
+            <img gravatar-src="'{{user.email}}'" class="user-picture" gravatar-size="40">
             <span class="user-displayName">{{user.displayName}}</span>
             <experience-badge experience="user.experience" style="float: right;"></experience-badge>
         </h3>

@@ -23,7 +23,7 @@
             <tr ng-repeat="xebian in xebians | orderBy:'experience':reverse">
                 <td>
                     <a ng-href="#!/user/{{xebian.email}}">
-                        <span style='background-image: url({{xebian.picture}});' class="user-picture"></span>
+                        <img gravatar-src="'{{xebian.email}}'" class="user-picture" gravatar-size="40">
                     </a>
                 </td>
                 <td>
