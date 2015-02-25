@@ -25,7 +25,7 @@ angular.module('users').filter('partOfDomain', function () {
     };
 });
 
-angular.module('users').directive('skillCard', ['$http', '$location', function ($http, $location) {
+angular.module('users').directive('skillCard', ['$http', '$location', function ($http) {
 
     function link(scope, element) {
         scope.updateLike = function (skill) {
@@ -67,7 +67,7 @@ angular.module('users').directive('skillCard', ['$http', '$location', function (
             if (scope.readonly) {
                 return;
             }
-            $http.post('users/me/skillz/disassociate', {'relationId': relationId}).then(function (response) {
+            $http.post('users/me/skillz/disassociate', {'relationId': relationId}).then(function () {
                 element.remove();
             });
         };
@@ -85,7 +85,7 @@ angular.module('users').directive('skillCard', ['$http', '$location', function (
 }]);
 
 
-angular.module('users').directive('domain', ['$http', function ($http) {
+angular.module('users').directive('domain', ['$http', function () {
     return {
         restrict: 'E',
         scope: {
@@ -97,7 +97,7 @@ angular.module('users').directive('domain', ['$http', function ($http) {
     };
 }]);
 
-angular.module('users').directive('experienceBadge', ['$http', function ($http) {
+angular.module('users').directive('experienceBadge', ['$http', function () {
     return {
         restrict: 'E',
         scope: {
@@ -117,7 +117,6 @@ angular.module('users').directive('salesCard', function () {
         templateUrl: 'modules/users/views/sales-card.template.html'
     };
 });
-
 
 
 angular.module('users').controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', '_',
@@ -188,9 +187,12 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 // Affect a skill to current user
         $scope.associateSkill = function () {
             if (!(_.find($scope.skillz, function (skill) {
-                return skill.name === $scope.newSkill;
-            }))) {
-                $http.put('users/me/skillz', { 'skill': {'name': $scope.newSkill}, 'relation_properties': {'level': $scope.level, 'like': $scope.like }})
+                    return skill.name === $scope.newSkill;
+                }))) {
+                $http.put('users/me/skillz', {
+                    'skill': {'name': $scope.newSkill},
+                    'relation_properties': {'level': $scope.level, 'like': $scope.like}
+                })
                     .then(function (response) {
                         reset();
                         $scope.skillz = response.data;
@@ -241,6 +243,16 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
             skill.like = !skill.like;
             $http.put('/users/me/skillz/' + skill.relationId + '/like', {'like': skill.like}).then(function (response) {
                 $scope.skillz = response.data;
+            });
+        };
+
+        $scope.isManager = function (user) {
+            return _.contains(user.roles, 'MANAGER') || _.contains(user.roles, 'COMMERCE');
+        };
+
+        $scope.remove = function(email){
+            $http.delete('/user/'+email).then(function(){
+                $scope.changingSearchXebians();
             });
         };
     }

@@ -22,6 +22,7 @@
             </tr>
             <tr ng-repeat="xebian in xebians | orderBy:'experience':reverse">
                 <td>
+                    <a class="result-remove--link glyphicon glyphicon-remove" ng-click="remove(xebian.email)" ng-show="isManager(user)"></a>
                     <a ng-href="#!/user/{{xebian.email}}">
                         <img gravatar-src="'{{xebian.email}}'" class="user-picture" gravatar-size="40">
                     </a>
