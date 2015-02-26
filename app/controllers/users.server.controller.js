@@ -11,6 +11,18 @@ function getExperience(diploma) {
     return diploma ? new Date().getFullYear() - diploma : '-';
 }
 
+function setLastUpdate(req) {
+    var email = req.user.email;
+    var query = {
+        'query': 'MATCH (x:XEBIAN) WHERE x.email={email} SET x.lastUpdate ={date}',
+        'params': {
+            'email': email,
+            'date': new Date()
+        }
+    };
+    NEO4J.execute(query);
+}
+
 exports.mySkillz = function (req, res) {
     var user = req.user;
 
@@ -35,25 +47,25 @@ exports.findXebiansBySkillz = function (req, res) {
             'q': skillName
         }
     };
-    NEO4J.findPromise(query,function (row) {
+    NEO4J.findPromise(query, function (row) {
         return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5], 'experience': getExperience(row[6])};
     })
-        .then(function (result){
-            if(_.contains(currentUser.roles,'COMMERCE') || _.contains(currentUser.roles,'MANAGER')) {
+        .then(function (result) {
+            if (_.contains(currentUser.roles, 'COMMERCE') || _.contains(currentUser.roles, 'MANAGER')) {
                 var logRequestQuery = {};
 
                 var queryDate = new Date();
 
                 logRequestQuery.query = '' +
-                    'MATCH (c:XEBIAN) , (skill:'+ NEO4J.SKILL_TYPE +') WHERE c.email = {email} AND skill.name = {skill} ' +
+                    'MATCH (c:XEBIAN) , (skill:' + NEO4J.SKILL_TYPE + ') WHERE c.email = {email} AND skill.name = {skill} ' +
                     'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}, month: {month}} ]->(skill) ' +
                     'RETURN id(r)';
 
                 logRequestQuery.params = {
                     'email': currentUser.email,
-                    'date' : queryDate.toISOString(),
-                    'month' : queryDate.getUTCMonth() + 1,
-                    'skill' : skillName,
+                    'date': queryDate.toISOString(),
+                    'month': queryDate.getUTCMonth() + 1,
+                    'skill': skillName,
                     'count': result.length
                 };
                 NEO4J.execute(logRequestQuery);
@@ -83,15 +95,15 @@ exports.allXebians = function (req, res) {
 };
 
 exports.disassociate = function (req, res) {
-    var relationId = req.body.relationId;
+    setLastUpdate(req);
 
+    var relationId = req.body.relationId;
     var query = {
         'query': 'start r=relationship({relationId}) delete r',
         'params': {
             'relationId': relationId
         }
     };
-
     return NEO4J.execute(query).then(function () {
         res.redirect(303, '/users/me/skillz');
     });
@@ -120,9 +132,10 @@ exports.availableSkillzForMe = function (req, res) {
 };
 
 exports.updateLike = function (req, res) {
+    setLastUpdate(req);
+
     var skillId = req.params.id;
     var value = req.body.like;
-
     var query = {
         'query': 'start r=relationship({skillId}) set r.like = {newValue}',
         'params': {
@@ -137,6 +150,8 @@ exports.updateLike = function (req, res) {
 };
 
 exports.updateLevel = function (req, res) {
+    setLastUpdate(req);
+
     var skillId = req.params.id;
     var value = req.body.level;
 
@@ -177,7 +192,6 @@ exports.associate = function (req, res) {
         return xskillzNeo4J.findXebianByEmail(user.email);
     };
 
-
     var handleError = function (err) {
         return res.send(400, {
             message: err
@@ -187,8 +201,8 @@ exports.associate = function (req, res) {
     var associateSkillToUser = function (userNodeUrl, skillNodeUrl) {
         xskillzNeo4J.associateSkillToUser(userNodeUrl, skillNodeUrl, relation_properties)
             .then(function (relationshipUrl) {
+                setLastUpdate(req);
                 console.log('Created relationship', relationshipUrl);
-
                 res.redirect(303, '/users/me/skillz');
             })
             .fail(function (err) {
