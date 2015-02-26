@@ -81,14 +81,14 @@ exports.findXebiansBySkillz = function (req, res) {
 
 exports.allXebians = function (req, res) {
     var query = {
-        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ') WHERE x.displayName =~ {q} RETURN x.displayName, x.email, x.picture, x.diploma',
+        'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ') WHERE x.displayName =~ {q} RETURN x.displayName, x.email, x.picture, x.diploma, x.lastUpdate',
         'params': {
             'q': '(?i).*' + req.query.q + '.*'
         }
     };
 
     return NEO4J.findPromise(query,function (row) {
-        return {'displayName': row[0], 'email': row[1], 'picture': row[2], experience: getExperience(row[3])};
+        return {'displayName': row[0], 'email': row[1], 'picture': row[2], experience: getExperience(row[3]), 'lastUpdate': row[4]};
     }).then(function (results) {
             res.jsonp(results);
         });

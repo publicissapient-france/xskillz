@@ -28,6 +28,9 @@
                 </td>
                 <td>
                     <a ng-href="#!/user/{{xebian.email}}">{{xebian.displayName}}</a>
+                    <span ng-show="user.isManager">
+                        <span class="user-lastupdate" ng-show="xebian.lastUpdate">Dernière mise à jour le {{xebian.lastUpdate | date:'dd/MM/yyyy à hh:mm'}}</span>
+                    </span>
                 </td>
                 <td>
                     <experience-badge experience="xebian.experience"></experience-badge>
