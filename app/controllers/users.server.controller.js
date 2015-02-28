@@ -34,6 +34,16 @@ exports.mySkillz = function (req, res) {
 
 };
 
+exports.notifications = function (req, res) {
+    var query = {
+        'query': 'MATCH (x:XEBIAN)-[h:HAS]->(s:SKILL) WHERE HAS (h.created) RETURN h.created, x.displayName, x.email,h.level,s.name,s.domains ORDER BY h.created DESC LIMIT 50'
+    };
+    NEO4J.findPromise(query,function (row) {
+        return row;
+    }).then(function (result) {
+            res.jsonp(result || []);
+        });
+};
 
 exports.findXebiansBySkillz = function (req, res) {
     var skillName = req.params.skill;
@@ -137,10 +147,11 @@ exports.updateLike = function (req, res) {
     var skillId = req.params.id;
     var value = req.body.like;
     var query = {
-        'query': 'start r=relationship({skillId}) set r.like = {newValue}',
+        'query': 'start r=relationship({skillId}) set r.like = {newValue}, r.created = {created}',
         'params': {
             'skillId': Number(skillId),
-            'newValue': value
+            'newValue': value,
+            'created': new Date()
         }
     };
 
@@ -156,10 +167,11 @@ exports.updateLevel = function (req, res) {
     var value = req.body.level;
 
     var query = {
-        'query': 'start r=relationship({skillId}) set r.level = {newValue}',
+        'query': 'start r=relationship({skillId}) set r.level = {newValue}, r.created = {created}',
         'params': {
             'skillId': Number(skillId),
-            'newValue': value
+            'newValue': value,
+            'created': new Date()
         }
     };
 

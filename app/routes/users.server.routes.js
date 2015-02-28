@@ -39,4 +39,6 @@ module.exports = function(app) {
 
     app.route('/user/diploma').post(auth.requiresLogin, users.associateDiploma);
 
+    app.route('/users/notifications').get(users.notifications);
+
 };
