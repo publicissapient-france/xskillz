@@ -69,6 +69,7 @@ exports.getSkill = function(skillName) {
 
 exports.associateSkillToUser = function(userNodeUrl, skillNodeUrl, relation_properties) {
   var securedURL = NEO4J.makeURLSecured(userNodeUrl);
+  relation_properties.created = new Date();
 
   var deferred = Q.defer();
   http
