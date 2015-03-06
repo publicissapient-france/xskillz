@@ -20,8 +20,6 @@ exports.findOne = function(id){
             });
         }
 
-          console.log(userData.roles);
-
         return userData;
       } catch(err){
         return null;
