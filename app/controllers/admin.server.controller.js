@@ -1,6 +1,5 @@
 'use strict';
 
-var util = require('util');
 var _ = require('underscore');
 var async = require('async');
 var request = require('request');
@@ -21,19 +20,6 @@ var oauth2Client = new googleapis.auth.OAuth2(
 	config.google.api.clientSecret,
 	config.google.api.callbackURL
 );
-
-exports.auth = function(req, res) {
-	// generate consent page url
-	var url = oauth2Client.generateAuthUrl({
-		access_type: 'offline', // will return a refresh token
-		scope: [
-			'https://www.googleapis.com/auth/admin.directory.user',
-			'https://www.googleapis.com/auth/admin.directory.user.readonly'
-		]
-	});
-
-	res.redirect(url);
-};
 
 exports.authCallback = function(req, res) {
 	oauth2Client.getToken(req.query.code, function(err, tokens) {
