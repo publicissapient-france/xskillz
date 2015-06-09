@@ -38,11 +38,11 @@ exports.notifications = function (req, res) {
     var query = {
         'query': 'MATCH (x:XEBIAN)-[h:HAS]->(s:SKILL) WHERE HAS (h.created) RETURN h.created, x.displayName, x.email,h.level,s.name,s.domains ORDER BY h.created DESC LIMIT 50'
     };
-    NEO4J.findPromise(query,function (row) {
+    NEO4J.findPromise(query, function (row) {
         return row;
     }).then(function (result) {
-            res.jsonp(result || []);
-        });
+        res.jsonp(result || []);
+    });
 };
 
 exports.findXebiansBySkillz = function (req, res) {
@@ -51,14 +51,22 @@ exports.findXebiansBySkillz = function (req, res) {
 
     var query = {
         'query': 'MATCH (x: ' + NEO4J.XEBIAN_TYPE + ')-[r:`' + NEO4J.SKILLZ_RELATION + '`]->s ' +
-            ' WHERE s.name= {q} ' +
-            ' RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name, x.diploma',
+        ' WHERE s.name= {q} ' +
+        ' RETURN x.displayName, x.email, x.picture, r.level, r.like, s.name, x.diploma',
         'params': {
             'q': skillName
         }
     };
     NEO4J.findPromise(query, function (row) {
-        return {'xebianName': row[0], 'email': row[1], 'picture': row[2], 'level': row[3], 'like': row[4], 'skillName': row[5], 'experience': getExperience(row[6])};
+        return {
+            'xebianName': row[0],
+            'email': row[1],
+            'picture': row[2],
+            'level': row[3],
+            'like': row[4],
+            'skillName': row[5],
+            'experience': getExperience(row[6])
+        };
     })
         .then(function (result) {
             if (_.contains(currentUser.roles, 'COMMERCE') || _.contains(currentUser.roles, 'MANAGER')) {
@@ -67,9 +75,9 @@ exports.findXebiansBySkillz = function (req, res) {
                 var queryDate = new Date();
 
                 logRequestQuery.query = '' +
-                    'MATCH (c:XEBIAN) , (skill:' + NEO4J.SKILL_TYPE + ') WHERE c.email = {email} AND skill.name = {skill} ' +
-                    'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}, month: {month}} ]->(skill) ' +
-                    'RETURN id(r)';
+                'MATCH (c:XEBIAN) , (skill:' + NEO4J.SKILL_TYPE + ') WHERE c.email = {email} AND skill.name = {skill} ' +
+                'CREATE (c)-[r:' + NEO4J.HAS_SEARCHED_FOR + ' {date : {date}, count: {count}, month: {month}} ]->(skill) ' +
+                'RETURN id(r)';
 
                 logRequestQuery.params = {
                     'email': currentUser.email,
@@ -97,11 +105,17 @@ exports.allXebians = function (req, res) {
         }
     };
 
-    return NEO4J.findPromise(query,function (row) {
-        return {'displayName': row[0], 'email': row[1], 'picture': row[2], experience: getExperience(row[3]), 'lastUpdate': row[4]};
+    return NEO4J.findPromise(query, function (row) {
+        return {
+            'displayName': row[0],
+            'email': row[1],
+            'picture': row[2],
+            experience: getExperience(row[3]),
+            'lastUpdate': row[4]
+        };
     }).then(function (results) {
-            res.jsonp(results);
-        });
+        res.jsonp(results);
+    });
 };
 
 exports.disassociate = function (req, res) {
@@ -126,18 +140,18 @@ exports.availableSkillzForMe = function (req, res) {
 
     var query = {
         'query': 'MATCH (xebian: ' + NEO4J.XEBIAN_TYPE + '), (skill: ' + NEO4J.SKILL_TYPE + ' ) ' +
-            'WHERE skill.name =~ {skillQuery} and xebian.email = {email} and not (xebian) -[:HAS]-> (skill) ' +
-            'RETURN skill.name order by upper(skill.name)',
+        'WHERE skill.name =~ {skillQuery} and xebian.email = {email} and not (xebian) -[:HAS]-> (skill) ' +
+        'RETURN skill.name order by upper(skill.name)',
         'params': {
             'email': email,
             'skillQuery': '(?i).*' + skillQuery + '.*'
         }
     };
-    NEO4J.findPromise(query,function (row) {
+    NEO4J.findPromise(query, function (row) {
         return {'name': row[0]};
     }).then(function (result) {
-            res.jsonp(result || []);
-        });
+        res.jsonp(result || []);
+    });
 
 };
 
@@ -195,6 +209,33 @@ exports.associateDiploma = function (req, res) {
     });
 };
 
+exports.managers = function (req, res) {
+    return NEO4J.findPromise({query: 'MATCH (m:MANAGER) RETURN m'}, function (row) {
+        return row[0].data;
+    }).then(function (results) {
+        if (results) {
+            res.jsonp(results);
+        } else {
+            res.jsonp([]);
+        }
+    });
+};
+
+exports.associateManager = function (req, res) {
+    var xebian = req.body.xebianWithoutManager;
+    var manager = req.body.manager;
+    var setManagerQuery = {
+        'query': 'MATCH x,m WHERE x.email={xebian} AND m.email={manager} CREATE (m)-[r:' + NEO4J.MANAGER_RELATION + ']->(x)',
+        'params': {
+            'xebian': xebian,
+            'manager': manager
+        }
+    };
+    NEO4J.execute(setManagerQuery).then(function () {
+        res.send(200);
+    });
+};
+
 exports.associate = function (req, res) {
     var skill = req.body.skill;
     var relation_properties = req.body.relation_properties;
@@ -247,8 +288,8 @@ exports.associate = function (req, res) {
                     });
             }
         }).fail(function (err) {
-                handleError(err);
-            });
+            handleError(err);
+        });
     };
 
     manageNodeSkill();

@@ -41,6 +41,10 @@ module.exports = function (app) {
 
     app.route('/user/diploma').post(auth.requiresLogin, users.associateDiploma);
 
+    app.route('/user/manager').post(auth.requiresLogin, users.associateManager);
+
     app.route('/users/notifications').get(users.notifications);
+
+    app.route('/managers').get(users.managers);
 
 };

@@ -21,7 +21,6 @@ angular.module('skillz').directive('help', ['$http', function ($http) {
 }]);
 
 
-
 angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope', '$http', '$location', '_', 'd3', '$analytics', 'Authentication',
     function ($rootScope, $scope, $http, $location, _, d3, $analytics, Authentication) {
 
@@ -31,7 +30,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         $scope.enthusiastLevel = 0;
 
         $scope.domains = ['Agile', 'Back', 'Cloud', 'Craft', 'Data', 'Devops', 'Front', 'Mobile', 'Loisirs'];
-        $scope.domain='Agile';
+        $scope.domain = 'Agile';
         $scope.levels = ['3', '2', '1', '0'];
         $scope.level = '3';
         $scope.newSkill = '';
@@ -92,7 +91,9 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                 .attr('height', diameter)
                 .attr('class', 'bubble');
             d3.json(api, function (error, root) {
-                if(!root.length) {return;}
+                if (!root.length) {
+                    return;
+                }
                 var node = svg.selectAll('.node')
                     .data(bubble.nodes(setClasses(root))
                         .filter(function (d) {
@@ -112,7 +113,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                         return d.r;
                     })
                     .style('fill', function (d) {
-                        if(d.domains) {
+                        if (d.domains) {
                             var domain = d.domains[0];
                             return domainColor(domain, d.value);
                         }
@@ -128,7 +129,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                     .attr('dy', '.3em')
                     .style('text-anchor', 'middle')
                     .text(function (d) {
-                        if(d.name) {
+                        if (d.name) {
                             return d.name.substring(0, d.r / 4);
                         }
                         return '';
@@ -146,9 +147,9 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             d3.select(id).style('height', diameter + 'px');
         };
 
-        $scope.cloudify = function() {
+        $scope.cloudify = function () {
             angular.element('#cloud').empty();
-            $scope.cloud('#cloud', '/skills?level='+$scope.level+'&domain='+$scope.domain);
+            $scope.cloud('#cloud', '/skills?level=' + $scope.level + '&domain=' + $scope.domain);
         };
         $scope.cloudify();
 
@@ -164,8 +165,15 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
             });
         };
 
+        $scope.getManagers = function () {
+            $http.get('/managers').then(function (response) {
+                $scope.managers = response.data;
+            });
+        };
+
         $scope.getSkills();
         $scope.getXebians();
+        $scope.getManagers();
 
         $scope.getOrphanSkillz = function () {
             $http.get('/skills/orphans').then(function (response) {
@@ -177,7 +185,10 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
 
 
         $scope.merge = function () {
-            $http.post('/skills/merge', {'source': $scope.source, 'destination': $scope.destination}).then(function (response) {
+            $http.post('/skills/merge', {
+                'source': $scope.source,
+                'destination': $scope.destination
+            }).then(function (response) {
                 $scope.skillz = response.data;
                 $scope.getOrphanSkillz();
                 $scope.source = {};
@@ -190,6 +201,16 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                 $scope.skillz = response.data;
                 $scope.skill = {};
                 $scope.domain = {};
+            });
+        };
+
+        $scope.associateManager = function () {
+            $http.post('/user/manager', {
+                'xebianWithoutManager': $scope.xebianWithoutManager,
+                'manager': $scope.manager
+            }).then(function () {
+                $scope.getXebians();
+                $scope.xebianWithoutManager = {};
             });
         };
 
@@ -225,16 +246,19 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
         };
 
         $scope.searchSkillz = function () {
-            $analytics.eventTrack(Authentication.user.email.split('@')[0], {category: 'Skill Search', label: $scope.query});
-            $http.get('/users/skillz/'+$scope.query)
+            $analytics.eventTrack(Authentication.user.email.split('@')[0], {
+                category: 'Skill Search',
+                label: $scope.query
+            });
+            $http.get('/users/skillz/' + $scope.query)
                 .then(function (response) {
                     $scope.results = transformResultToXebians(response);
                     $analytics.eventTrack($scope.query, {category: 'Skill Results', label: $scope.results.length});
                 });
         };
 
-        $scope.proposeSkillz = function(query){
-            return $http.get('/skills', {'params': {'skill': query}}).then(function(response){
+        $scope.proposeSkillz = function (query) {
+            return $http.get('/skills', {'params': {'skill': query}}).then(function (response) {
                 return response.data;
             });
         };
