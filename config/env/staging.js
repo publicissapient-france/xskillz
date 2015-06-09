@@ -3,7 +3,7 @@
 module.exports = {
 	db: process.env.MONGOHQ_URL || 'mongodb://localhost/xskillz-dev',
 	app: {
-		title: 'xskillz - Xebia France'
+		title: 'skillz - Staging'
 	},
 	google: {
 		clientID: process.env.GOOGLE_ID || 'APP_ID',

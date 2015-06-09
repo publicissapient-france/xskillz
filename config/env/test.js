@@ -4,7 +4,7 @@ module.exports = {
 	db: 'mongodb://localhost/xskillz-test',
 	port: 3001,
 	app: {
-		title: 'xskillz - Test Environment'
+		title: 'skillz - Test Environment'
 	},
 	google: {
 		clientID: process.env.GOOGLE_ID || 'APP_ID',

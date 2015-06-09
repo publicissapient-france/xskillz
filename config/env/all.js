@@ -2,8 +2,8 @@
 
 module.exports = {
 	app: {
-		title: 'xskillz',
-		description: 'Manage xebians skillz',
+		title: 'skillz',
+		description: 'Manage allies skillz',
 		keywords: 'neo4J, express, angularjs, node.js'
 	},
 	port: process.env.PORT || 3000,

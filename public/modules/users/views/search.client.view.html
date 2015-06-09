@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn big-btn" style="width: 100%;">
-                        Chercher un Xebian <i class="glyphicon glyphicon-search"></i>
+                        Chercher un Allié <i class="glyphicon glyphicon-search"></i>
                     </button>
                 </div>
             </form>
@@ -17,7 +17,7 @@
         <table class="table" ng-if="!query">
             <tr>
                 <th style="width:50px;"></th>
-                <th>Xebian</th>
+                <th>Allié(e)</th>
                 <th style="width:100px;">Expérience</th>
             </tr>
             <tr ng-repeat="xebian in xebians | orderBy:'experience':reverse">
@@ -29,6 +29,7 @@
                 </td>
                 <td>
                     <a ng-href="#!/user/{{xebian.email}}">{{xebian.displayName}}</a>
+                    <brand-badge ally="xebian"></brand-badge>
                     <span ng-show="user.isManager">
                         <span class="user-lastupdate" ng-show="xebian.lastUpdate">Dernière mise à jour le {{xebian.lastUpdate | date:'dd/MM/yyyy à HH:mm'}}</span>
                     </span>

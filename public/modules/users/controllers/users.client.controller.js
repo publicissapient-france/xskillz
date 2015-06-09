@@ -107,6 +107,28 @@ angular.module('users').directive('experienceBadge', ['$http', function () {
     };
 }]);
 
+angular.module('users').directive('brandBadge', ['$http', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            ally: '=ally'
+        },
+        templateUrl: 'modules/users/views/brand-badge.template.html',
+        link: function (scope, elem, attr) {
+
+            var email = scope.ally.email;
+            var brand = email.match(/([\w-]+)@([\w-]+)/)[2]
+            if ('xebia' == brand) {
+                scope.background = 'rgb(85, 26, 139)';
+            }
+            if ('wescale' == brand) {
+                scope.background = '#09aa9d';
+            }
+            scope.brand = brand;
+        }
+    };
+}]);
+
 angular.module('users').directive('salesCard', function () {
     return {
         restrict: 'E',
@@ -124,7 +146,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 
         $scope.user = Authentication.user;
         $scope.user.isManager = _.contains(user.roles, 'MANAGER');
-        $scope.user.experience =  $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
+        $scope.user.experience = $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
 
         $scope.back = 'Back';
         $scope.cloud = 'Cloud';
@@ -250,8 +272,8 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
             return _.contains(user.roles, 'MANAGER') || _.contains(user.roles, 'COMMERCE');
         };
 
-        $scope.remove = function(email){
-            $http.delete('/user/'+email).then(function(){
+        $scope.remove = function (email) {
+            $http.delete('/user/' + email).then(function () {
                 $scope.changingSearchXebians();
             });
         };

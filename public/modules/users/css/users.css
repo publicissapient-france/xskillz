@@ -4,7 +4,7 @@
     }
 }
 
-h3 .mailto{
+h3 .mailto {
     font-size: 16px;
 }
 
@@ -131,7 +131,7 @@ h3 .mailto{
 }
 
 .experience {
-    width:55px;
+    width: 55px;
     color: white;
     text-align: center;
     font-family: Arial;
@@ -157,4 +157,12 @@ h3 .mailto{
 .user-lastupdate {
     font-size: 10px;
     float: right;
+}
+
+.brand-badge {
+    max-width: 55px;
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 11px;
 }
