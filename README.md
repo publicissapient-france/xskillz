@@ -70,4 +70,8 @@ Xebians sans manager
 
 Déclarer un manager
 
-    MATCH (x) WHERE x.email = 'rchevalier@xebia.fr' set x :MANAGER return x
+    MATCH (x) WHERE x.email = 'rchevalier@xebia.fr' set x :MANAGER
+
+Supprimer un droit de manager
+
+    MATCH (x) WHERE x.email = 'amaury@xebia.fr' remove x :MANAGER
