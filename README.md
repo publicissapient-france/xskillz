@@ -78,4 +78,4 @@ Supprimer un droit de manager
     
 Supprimer les liens de management
 
-   MATCH (m:XEBIAN)-[r:IS_MANAGER_OF]->() WHERE m.email='flaurain@xebia.fr' DELETE r
+    MATCH (m:XEBIAN)-[r:IS_MANAGER_OF]->() WHERE m.email='flaurain@xebia.fr' DELETE r
