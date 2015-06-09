@@ -56,3 +56,7 @@ client dependencies
 Launch the server for [localhost:3000](http://localhost:3000)
 
 	grunt
+
+
+# NEO4J queries
+    MATCH (a)-[:`HAS`]->(b) RETURN a.email,COUNT(b) order by count(b) asc LIMIT 25
