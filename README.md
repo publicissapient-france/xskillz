@@ -61,7 +61,13 @@ Launch the server for [localhost:3000](http://localhost:3000)
 # NEO4J queries
 
 Top 25 des profils les moins remplis
+
     MATCH (a)-[:`HAS`]->(b) RETURN a.email,COUNT(b) order by count(b) asc LIMIT 25
 
 Xebians sans manager
+
     MATCH (x:XEBIAN) WHERE NOT(()-[:IS_MANAGER_OF]->x) RETURN x.email ORDER BY x.email;
+
+Déclarer un manager
+
+    MATCH (x) WHERE x.email = 'rchevalier@xebia.fr' set x :MANAGER return x
