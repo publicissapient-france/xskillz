@@ -75,3 +75,7 @@ Déclarer un manager
 Supprimer un droit de manager
 
     MATCH (x) WHERE x.email = 'amaury@xebia.fr' remove x :MANAGER
+    
+Supprimer les liens de management
+
+   MATCH (m:XEBIAN)-[r:IS_MANAGER_OF]->() WHERE m.email='flaurain@xebia.fr' DELETE r
