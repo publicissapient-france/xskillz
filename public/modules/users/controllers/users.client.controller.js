@@ -84,6 +84,9 @@ angular.module('users').directive('skillCard', ['$http', '$location', function (
     };
 }]);
 
+function toBrand(email) {
+    return email.match(/([\w-]+)@([\w-]+)/)[2];
+}
 
 angular.module('users').directive('domain', ['$http', function () {
     return {
@@ -101,9 +104,21 @@ angular.module('users').directive('experienceBadge', ['$http', function () {
     return {
         restrict: 'E',
         scope: {
-            experience: '=experience'
+            ally: '=ally'
         },
-        templateUrl: 'modules/users/views/experience-badge.template.html'
+        templateUrl: 'modules/users/views/experience-badge.template.html',
+        link: function (scope) {
+            scope.experience = scope.ally.experience;
+            var alpha = 0.2 + scope.experience / 10;
+            scope.email = scope.ally.email;
+            var brand = toBrand(scope.email);
+            if ('xebia' == brand) {
+                scope.backgroundColor = 'rgba(85, 26, 139,' + alpha + ')';
+            }
+            if ('wescale' == brand) {
+                scope.backgroundColor = 'rgba(9, 170, 157,' + alpha + ')';
+            }
+        }
     };
 }]);
 
@@ -114,10 +129,9 @@ angular.module('users').directive('brandBadge', ['$http', function () {
             ally: '=ally'
         },
         templateUrl: 'modules/users/views/brand-badge.template.html',
-        link: function (scope, elem, attr) {
-
+        link: function (scope) {
             var email = scope.ally.email;
-            var brand = email.match(/([\w-]+)@([\w-]+)/)[2]
+            var brand = toBrand(email);
             if ('xebia' == brand) {
                 scope.background = 'rgb(85, 26, 139)';
             }
