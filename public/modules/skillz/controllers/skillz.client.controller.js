@@ -20,7 +20,6 @@ angular.module('skillz').directive('help', ['$http', function ($http) {
     };
 }]);
 
-
 angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope', '$http', '$location', '_', 'd3', '$analytics', 'Authentication',
     function ($rootScope, $scope, $http, $location, _, d3, $analytics, Authentication) {
 
@@ -235,7 +234,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                     'skillName': node.skillName,
                     'nameForSort': node.skillName.toLowerCase(),
                     'email': node.email,
-                    'picture': node.picture,
+                    'gravatar': node.gravatar,
                     'displayName': node.xebianName,
                     'level': node.level,
                     'like': node.like,

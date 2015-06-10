@@ -5,7 +5,8 @@
  */
 var _ = require('lodash'),
     xskillzNeo4J = require('../models/xskillz.neo4j'),
-    NEO4J = require('../models/neo4j.js');
+    NEO4J = require('../models/neo4j.js'),
+    gravatar = require('gravatar');
 
 function getExperience(diploma) {
     return diploma ? new Date().getFullYear() - diploma : '-';
@@ -25,13 +26,10 @@ function setLastUpdate(req) {
 
 exports.mySkillz = function (req, res) {
     var user = req.user;
-
     var skillz = xskillzNeo4J.findXebianSkillz(user.email);
-
     skillz.then(function (result) {
         res.jsonp(result || []);
     });
-
 };
 
 exports.notifications = function (req, res) {
@@ -39,6 +37,7 @@ exports.notifications = function (req, res) {
         'query': 'MATCH (x:XEBIAN)-[h:HAS]->(s:SKILL) WHERE HAS (h.created) RETURN h.created, x.displayName, x.email,h.level,s.name,s.domains ORDER BY h.created DESC LIMIT 50'
     };
     NEO4J.findPromise(query, function (row) {
+        row.push('http:' + gravatar.url(row[2], {s: 50}));
         return row;
     }).then(function (result) {
         res.jsonp(result || []);
@@ -65,7 +64,8 @@ exports.findXebiansBySkillz = function (req, res) {
             'level': row[3],
             'like': row[4],
             'skillName': row[5],
-            'experience': getExperience(row[6])
+            'experience': getExperience(row[6]),
+            'gravatar': 'http:' + gravatar.url(row[1], {s: 50})
         };
     })
         .then(function (result) {
@@ -111,7 +111,8 @@ exports.allXebians = function (req, res) {
             'email': row[1],
             'picture': row[2],
             experience: getExperience(row[3]),
-            'lastUpdate': row[4]
+            'lastUpdate': row[4],
+            gravatar: 'http:' + gravatar.url(row[1], {s: 50})
         };
     }).then(function (results) {
         res.jsonp(results);

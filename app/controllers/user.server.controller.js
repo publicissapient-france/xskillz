@@ -4,7 +4,8 @@
 var http = require('superagent'),
     _ = require('lodash'),
     Q = require('q'),
-    xskillzNeo4j = require('../models/xskillz.neo4j');
+    xskillzNeo4j = require('../models/xskillz.neo4j'),
+    gravatar = require('gravatar');
 
 /**
  * Module dependencies.
@@ -18,6 +19,7 @@ exports.profile = function (req, res) {
             if (results[0][1]) {
                 user.manager = results[0][1].data;
             }
+            user.gravatar = 'http:' + gravatar.url(user.email, {s: 50});
             res.jsonp(user);
         });
 };

@@ -15,7 +15,7 @@ var ApplicationConfiguration = (function() {
 
 	// Init module configuration options
 	var applicationModuleName = 'xskillz';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'lodash', 'd3', 'angulartics', 'angulartics.google.analytics', 'ui.gravatar'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'lodash', 'd3', 'angulartics', 'angulartics.google.analytics'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName) {
