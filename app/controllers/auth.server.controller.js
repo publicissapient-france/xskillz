@@ -52,7 +52,6 @@ exports.update = function (req, res) {
 exports.delete = function (req, res) {
     // Init Variables
     var user = req.user;
-    var message = null;
 
     // For security measurement we remove the roles from the req.body object
     delete req.body.roles;
@@ -154,6 +153,7 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
  */
 exports.removeOAuthProvider = function (req, res, next) {
     var user = req.user;
+
     var provider = req.param('provider');
 
     if (user && provider) {

@@ -161,6 +161,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
     function ($scope, $http, $location, Users, Authentication, _) {
 
         $scope.user = Authentication.user;
+
         $scope.user.isManager = _.contains(user.roles, 'MANAGER');
         $scope.user.experience = $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
 

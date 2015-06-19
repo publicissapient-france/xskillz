@@ -37,16 +37,12 @@ exports.skillz = function (req, res) {
 exports.remove = function (req, res) {
     var formerXebianMail = req.params.email;
     var currentUser = req.user;
-    console.log('Deleting xebian: ' + formerXebianMail + ' by: ' + currentUser.email);
 
     if (formerXebianMail === currentUser.email || _.contains(currentUser.roles, 'MANAGER') || _.contains(currentUser.roles, 'COMMERCE')) {
-        console.log('Authorized operation');
         xskillzNeo4j.removeXebianByMail(formerXebianMail);
         res.jsonp('DONE' || []);
 
     } else {
-        console.log('Well tried ' + currentUser.displayName);
         res.jsonp(':p' || []);
-
     }
 };

@@ -1,7 +1,7 @@
 <section data-ng-controller="UsersController">
     <div class="container">
         <h3>
-            <img src="{{user.gravatar}}" class="user-picture">
+            <img ng-src="{{user.gravatar}}" class="user-picture">
             <span class="user-displayName">{{user.displayName}}</span>
             <experience-badge ally="user" style="float: right;"></experience-badge>
         </h3>
