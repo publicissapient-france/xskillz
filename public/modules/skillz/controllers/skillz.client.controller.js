@@ -249,7 +249,7 @@ angular.module('skillz').controller('SkillzController', ['$rootScope', '$scope',
                 category: 'Skill Search',
                 label: $scope.query
             });
-            $http.get('/users/skillz/' + $scope.query)
+            $http.get('/users/skillz/' + encodeURIComponent($scope.query))
                 .then(function (response) {
                     $scope.results = transformResultToXebians(response);
                     $analytics.eventTrack($scope.query, {category: 'Skill Results', label: $scope.results.length});
