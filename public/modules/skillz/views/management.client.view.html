@@ -12,17 +12,6 @@
             </button>
         </form>
 
-        <h3>Associer aux domaines</h3>
-        <form class="domaines-form" ng-submit="domainize()">
-            Associer
-            <select ng-model="skill" name="skill" ng-options="skill.nodeId as (skill.name + ' (' + skill.domains + ')') for skill in skillz | noDomain" style="width: 100px;" />
-            à
-            <select ng-model="domain" name="domain" ng-options="d as d for d in domains" />
-            <button type="submit" class="btn big-btn">
-                Associer <i class="turquoise glyphicon glyphicon-plus"></i>
-            </button>
-        </form>
-
         <h3>Associer aux managers</h3>
         <form class="managers-form" ng-submit="associateManager()">
             Associer
