@@ -16,12 +16,11 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
         $scope.craft = 'Craft';
         $scope.loisirs = 'Loisirs';
 
-        console.log('profile controller', $location.$$path.split('/').pop());
         var mail = $location.$$path.split('/').pop();
 
         $http.get('/user/' + mail).then(function (response) {
             $scope.user = response.data;
-            $scope.user.experience =  $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
+            $scope.user.experience = $scope.user.diploma ? new Date().getFullYear() - $scope.user.diploma : '-';
         });
 
         $http.get('/user/skillz/' + mail).then(function (response) {
@@ -33,6 +32,19 @@ angular.module('users').controller('ProfileController', ['_', '$scope', '$http',
         $scope.salesCard = function () {
             $scope.displaySalesCard = !$scope.displaySalesCard;
         };
+
+        $scope.hasSkillzInDomain = function (domain) {
+            return _.filter($scope.skillz, function (skill) {
+                    if (skill.domains) {
+                        var domainsInUpperCase = _.map(skill.domains, function (domain) {
+                                return domain.toUpperCase();
+                            }
+                        );
+                        return domainsInUpperCase.indexOf(domain.toUpperCase()) >= 0;
+                    }
+                    return false;
+                }).length > 0;
+        }
 
     }
 ]);

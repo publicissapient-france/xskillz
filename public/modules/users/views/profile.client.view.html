@@ -28,15 +28,15 @@
         <sales-card xebian="user" skills="skillz" ng-show="displaySalesCard"></sales-card>
 
         <div>
-            <domain label="back"    skills="skillz" readonly="true"></domain>
-            <domain label="mobile"  skills="skillz" readonly="true"></domain>
-            <domain label="agile"   skills="skillz" readonly="true"></domain>
-            <domain label="front"   skills="skillz" readonly="true"></domain>
-            <domain label="craft"   skills="skillz" readonly="true"></domain>
-            <domain label="data"    skills="skillz" readonly="true"></domain>
-            <domain label="devops"  skills="skillz" readonly="true"></domain>
-            <domain label="cloud"   skills="skillz" readonly="true"></domain>
-            <domain label="loisirs"   skills="skillz" readonly="true"></domain>
+            <domain label="back"    skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('back')"></domain>
+            <domain label="mobile"  skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('mobile')"></domain>
+            <domain label="agile"   skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('agile')"></domain>
+            <domain label="front"   skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('front')"></domain>
+            <domain label="craft"   skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('craft')"></domain>
+            <domain label="data"    skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('data')"></domain>
+            <domain label="devops"  skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('devops')"></domain>
+            <domain label="cloud"   skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('cloud')"></domain>
+            <domain label="loisirs"   skills="skillz" readonly="true" data-ng-if="hasSkillzInDomain('loisirs')"></domain>
         </div>
     </div>
     <span class="user-lastupdate" ng-show="user.lastUpdate">Dernière mise à jour le {{user.lastUpdate | date:'dd/MM/yyyy à HH:mm'}}</span>
