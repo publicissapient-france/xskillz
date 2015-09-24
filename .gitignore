@@ -1,15 +1,3 @@
 .DS_Store
-.nodemonignore
-.sass-cache/
-npm-debug.log
-node_modules/
-public/lib
-app/tests/coverage/
-.bower-*/
 .idea/
-.profile
-local.0
-local.ns
-mongod.lock
-xskillz-dev.0
-xskillz-dev.ns
+
