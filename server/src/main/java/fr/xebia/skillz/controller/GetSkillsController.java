@@ -1,0 +1,53 @@
+package fr.xebia.skillz.controller;
+
+import fr.xebia.skillz.dto.BasicSkillProfile;
+import fr.xebia.skillz.model.Company;
+import fr.xebia.skillz.model.Skill;
+import fr.xebia.skillz.repository.SkillRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+public class GetSkillsController {
+
+    @Autowired
+    private SkillRepository skillRepository;
+
+    @RequestMapping("/skills")
+    public List<BasicSkillProfile> get(@RequestParam(required = false) String name) {
+        Iterable<Skill> skills;
+        if (name == null) {
+            skills = skillRepository.findAll();
+        } else {
+            skills = skillRepository.findAllByNameContainingOrderByNameAsc(name);
+        }
+        return toBasicSkillProfiles(skills);
+    }
+
+    private List<BasicSkillProfile> toBasicSkillProfiles(Iterable<Skill> skills) {
+        List<BasicSkillProfile> skillProfiles = new ArrayList<>();
+        for (Skill skill : skills) {
+            skillProfiles.add(new BasicSkillProfile(skill));
+        }
+        return skillProfiles;
+    }
+
+    @RequestMapping("/companies/{companyId}/skills")
+    public Iterable<BasicSkillProfile> get(@PathVariable Long companyId,
+                                           @RequestParam(required = false) String name) {
+        List<Skill> skills;
+        if (name == null) {
+            skills = skillRepository.findAllByCompany(Company.ofId(companyId));
+        } else {
+            skills = skillRepository.findAllByCompanyAndNameContainingOrderByNameAsc(Company.ofId(companyId), name);
+        }
+        return toBasicSkillProfiles(skills);
+    }
+
+}
