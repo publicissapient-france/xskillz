@@ -1,6 +1,7 @@
 package fr.xebia.skillz.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import fr.xebia.skillz.GravatarUrl;
 import fr.xebia.skillz.model.User;
 
 import java.util.Date;
@@ -20,7 +21,7 @@ public class BasicUserProfile {
     }
 
     public String getGravatarUrl() {
-        return "gravatar";
+        return GravatarUrl.url(user.getEmail());
     }
 
     public int getExperienceCounter() {
