@@ -15,4 +15,6 @@ public interface SkillRepository extends CrudRepository<Skill, Long> {
     Iterable<Skill> findAllByNameContainingOrderByNameAsc(String name);
 
     List<Skill> findAllByCompanyAndNameContainingOrderByNameAsc(Company company, String name);
+
+    Skill findByName(String name);
 }

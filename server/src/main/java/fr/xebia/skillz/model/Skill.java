@@ -4,16 +4,20 @@ import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Entity
 public class Skill {
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String name;
@@ -27,7 +31,18 @@ public class Skill {
     @OneToMany(mappedBy = "skill")
     private List<UserSkill> users;
 
-    public boolean hasDomain(Domain domain) {
-        return this.domain.equals(domain);
+    Skill() {
+    }
+
+    public Skill(String name, Company company) {
+        this.name = name;
+        this.company = company;
+    }
+
+    public boolean isInDomain(Domain domain) {
+        if (this.domain == null && domain.equals(Domain.none)) {
+            return true;
+        }
+        return this.domain != null && this.domain.equals(domain);
     }
 }

@@ -17,4 +17,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Collection<User> findAllByCompanyAndNameContainingOrderByNameAsc(Company company, String name);
 
     User findByIdAndCompany(Long id, Company company);
+
+    User findByEmail(String email);
+
 }

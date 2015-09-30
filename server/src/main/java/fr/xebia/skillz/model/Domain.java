@@ -14,6 +14,8 @@ import java.util.List;
 @EqualsAndHashCode
 public class Domain {
 
+    public static Domain none = new Domain(0L, "Sans catégorie");
+
     @Id
     private Long id;
 
@@ -25,4 +27,11 @@ public class Domain {
     @ManyToOne
     private Company company;
 
+    Domain() {
+    }
+
+    public Domain(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

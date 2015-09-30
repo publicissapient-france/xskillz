@@ -30,4 +30,10 @@ public class Company {
         company.id = companyId;
         return company;
     }
+
+    public static Company byUserEmail(String email) {
+        Company company = new Company();
+        company.id = 1L;
+        return company;
+    }
 }

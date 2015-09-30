@@ -24,7 +24,11 @@ public class BasicUserProfile {
     }
 
     public int getExperienceCounter() {
-        return new Date().getYear() - this.user.getDiploma().getYear();
+        Date diploma = this.user.getDiploma();
+        if (diploma == null) {
+            return 0;
+        }
+        return new Date().getYear() - diploma.getYear();
     }
 
     public Long getId() {
