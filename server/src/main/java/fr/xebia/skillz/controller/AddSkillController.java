@@ -2,7 +2,6 @@ package fr.xebia.skillz.controller;
 
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
-import fr.xebia.skillz.model.UserSkill;
 import fr.xebia.skillz.repository.SkillRepository;
 import fr.xebia.skillz.repository.UserRepository;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.security.Principal;
 
+import static fr.xebia.skillz.model.UserSkill.INTERESTED;
+import static fr.xebia.skillz.model.UserSkill.Level.LEVEL_EXPERT;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -36,7 +37,7 @@ public class AddSkillController {
         if (skill == null) {
             skill = new Skill(skillRequest.name, user.getCompany());
         }
-        user.addSkill(skill, UserSkill.Level.LEVEL_EXPERT, UserSkill.INTERESTED);
+        user.addSkill(skill, LEVEL_EXPERT, INTERESTED);
         userRepository.save(user);
     }
 
