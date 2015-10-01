@@ -1,5 +1,6 @@
 package fr.xebia.skillz.model;
 
+import fr.xebia.skillz.model.UserSkill.Level;
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -79,7 +80,7 @@ public class User implements Serializable {
         return manager != null;
     }
 
-    public void addSkill(Skill skill, UserSkill.Level level, boolean interested) {
+    public void addSkill(Skill skill, Level level, boolean interested) {
         this.skills.add(new UserSkill(this, skill, level, interested));
     }
 
@@ -87,7 +88,7 @@ public class User implements Serializable {
         this.manager = manager;
     }
 
-    public boolean hasSkill(Skill skill, UserSkill.Level level, boolean interested) {
+    public boolean hasSkill(Skill skill, Level level, boolean interested) {
         UserSkill searched = new UserSkill(this, skill, level, interested);
         return this.skills.stream().anyMatch(userSkill -> userSkill.equals(searched));
     }

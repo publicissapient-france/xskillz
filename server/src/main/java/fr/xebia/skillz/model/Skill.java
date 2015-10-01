@@ -50,4 +50,23 @@ public class Skill {
         }
         return this.domain != null && this.domain.equals(domain);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Skill skill = (Skill) o;
+
+        if (!name.equals(skill.name)) return false;
+        return company.equals(skill.company);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + company.hashCode();
+        return result;
+    }
 }

@@ -1,6 +1,5 @@
 package fr.xebia.skillz.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -13,7 +12,6 @@ import java.util.Date;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.IDENTITY;
 
-@EqualsAndHashCode
 @Getter
 @Entity
 public class UserSkill {
@@ -66,6 +64,31 @@ public class UserSkill {
             this.value = value;
         }
 
+        public static Level of(int level) {
+            return Level.values()[level];
+        }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserSkill userSkill = (UserSkill) o;
+
+        if (interested != userSkill.interested) return false;
+        if (!user.equals(userSkill.user)) return false;
+        if (!skill.equals(userSkill.skill)) return false;
+        return level.equals(userSkill.level);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user.hashCode();
+        result = 31 * result + skill.hashCode();
+        result = 31 * result + level.hashCode();
+        result = 31 * result + (interested ? 1 : 0);
+        return result;
+    }
 }

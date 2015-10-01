@@ -29,6 +29,9 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<Domain> domains;
 
+    Company() {
+    }
+
     public Company(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -59,4 +62,19 @@ public class Company {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        return name.equals(company.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }
