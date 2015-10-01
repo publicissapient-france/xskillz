@@ -11,6 +11,10 @@ import java.util.List;
 @Entity
 public class Company {
 
+    public static final Company XEBIA = new Company(1L, "Xebia");
+    public static final Company WESCALE = new Company(2L, "Wescale");
+    public static final Company THIGA = new Company(3L, "Thiga");
+
     @Id
     private Long id;
 
@@ -25,15 +29,34 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<Domain> domains;
 
-    public static Company ofId(Long companyId) {
-        Company company = new Company();
-        company.id = companyId;
-        return company;
+    public Company(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public static Company byId(Long companyId) {
+        switch (companyId.intValue()) {
+            case 1:
+                return XEBIA;
+            case 2:
+                return WESCALE;
+            case 3:
+                return THIGA;
+        }
+        return null;
     }
 
     public static Company byUserEmail(String email) {
-        Company company = new Company();
-        company.id = 1L;
-        return company;
+        if (email.endsWith("xebia.fr")) {
+            return XEBIA;
+        }
+        if(email.endsWith("wescale.fr")) {
+            return WESCALE;
+        }
+        if(email.endsWith("thiga.fr")) {
+            return THIGA;
+        }
+        return null;
     }
+
 }

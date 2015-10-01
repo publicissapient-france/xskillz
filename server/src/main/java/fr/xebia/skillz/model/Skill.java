@@ -16,6 +16,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 public class Skill {
 
+    public static final boolean INTERESTED = true;
+    public static final int LEVEL_EXPERT = 3;
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -37,6 +40,11 @@ public class Skill {
     public Skill(String name, Company company) {
         this.name = name;
         this.company = company;
+    }
+
+    public Skill(String skill, Company company, Domain domain) {
+        this(skill, company);
+        this.domain = domain;
     }
 
     public boolean isInDomain(Domain domain) {

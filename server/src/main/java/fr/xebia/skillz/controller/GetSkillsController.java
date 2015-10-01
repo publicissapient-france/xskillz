@@ -43,9 +43,9 @@ public class GetSkillsController {
                                            @RequestParam(required = false) String name) {
         List<Skill> skills;
         if (name == null) {
-            skills = skillRepository.findAllByCompany(Company.ofId(companyId));
+            skills = skillRepository.findAllByCompany(Company.byId(companyId));
         } else {
-            skills = skillRepository.findAllByCompanyAndNameContainingOrderByNameAsc(Company.ofId(companyId), name);
+            skills = skillRepository.findAllByCompanyAndNameContainingOrderByNameAsc(Company.byId(companyId), name);
         }
         return toBasicSkillProfiles(skills);
     }

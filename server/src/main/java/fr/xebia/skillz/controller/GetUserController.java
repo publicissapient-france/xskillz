@@ -22,7 +22,7 @@ public class GetUserController {
     @RequestMapping("/companies/{companyId}/users/{id}")
     public UserProfile get(@PathVariable Long companyId,
                            @PathVariable Long id) {
-        return new UserProfile(userRepository.findByIdAndCompany(id, Company.ofId(companyId)));
+        return new UserProfile(userRepository.findByIdAndCompany(id, Company.byId(companyId)));
     }
 
 }

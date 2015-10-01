@@ -36,7 +36,7 @@ public class User implements Serializable {
     private Company company;
 
     @OneToMany(mappedBy = "user", cascade = PERSIST)
-    private List<UserSkill> skills;
+    private List<UserSkill> skills = new ArrayList<>();
 
     @OneToMany
     private List<Role> roles;
@@ -79,7 +79,16 @@ public class User implements Serializable {
         return manager != null;
     }
 
-    public void addSkill(Skill skill) {
-        this.skills.add(new UserSkill(this, skill, 3, true));
+    public void addSkill(Skill skill, int level, boolean interested) {
+        this.skills.add(new UserSkill(this, skill, level, interested));
+    }
+
+    public void addManager(User manager) {
+        this.manager = manager;
+    }
+
+    public boolean hasSkill(Skill skill, int level, boolean interested) {
+        UserSkill searched = new UserSkill(this, skill, level, interested);
+        return this.skills.stream().anyMatch(userSkill -> userSkill.equals(searched));
     }
 }

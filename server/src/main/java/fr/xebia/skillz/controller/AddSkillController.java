@@ -27,11 +27,15 @@ public class AddSkillController {
     @RequestMapping(value = "/skills", method = POST)
     public void get(@Valid @RequestBody AddSkillRequest skillRequest, Principal principal) {
         User user = userRepository.findByEmail(principal.getName());
+        addSkill(skillRequest, user);
+    }
+
+    private void addSkill(@Valid @RequestBody AddSkillRequest skillRequest, User user) {
         Skill skill = skillRepository.findByName(skillRequest.name);
         if (skill == null) {
             skill = new Skill(skillRequest.name, user.getCompany());
         }
-        user.addSkill(skill);
+        user.addSkill(skill, Skill.LEVEL_EXPERT, Skill.INTERESTED);
         userRepository.save(user);
     }
 

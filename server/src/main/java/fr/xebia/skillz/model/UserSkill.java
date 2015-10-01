@@ -1,5 +1,6 @@
 package fr.xebia.skillz.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import java.util.Date;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.IDENTITY;
 
+@EqualsAndHashCode
 @Getter
 @Entity
 public class UserSkill {

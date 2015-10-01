@@ -36,9 +36,9 @@ public class GetUsersController {
                                           @RequestParam(required = false) String name) {
         Collection<User> users;
         if (name == null) {
-            users = userRepository.findAllByCompany(Company.ofId(companyId));
+            users = userRepository.findAllByCompany(Company.byId(companyId));
         } else {
-            users = userRepository.findAllByCompanyAndNameContainingOrderByNameAsc(Company.ofId(companyId), name);
+            users = userRepository.findAllByCompanyAndNameContainingOrderByNameAsc(Company.byId(companyId), name);
         }
         return toBasicUserProfiles(users);
     }
