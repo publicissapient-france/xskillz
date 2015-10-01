@@ -3,6 +3,7 @@ package fr.xebia.skillz.model;
 import fr.xebia.skillz.model.UserSkill.Level;
 import lombok.Getter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,9 @@ import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
-
-import static javax.persistence.CascadeType.PERSIST;
+import java.util.Set;
 
 @Getter
 @Entity
@@ -36,8 +37,8 @@ public class User implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
-    @OneToMany(mappedBy = "user", cascade = PERSIST)
-    private List<UserSkill> skills = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private Set<UserSkill> skills = new HashSet<>();
 
     @OneToMany
     private List<Role> roles;
@@ -80,8 +81,10 @@ public class User implements Serializable {
         return manager != null;
     }
 
-    public void addSkill(Skill skill, Level level, boolean interested) {
-        this.skills.add(new UserSkill(this, skill, level, interested));
+    public UserSkill addSkill(Skill skill, Level level, boolean interested) {
+        UserSkill userSkill = new UserSkill(this, skill, level, interested);
+        skills.add(userSkill);
+        return userSkill;
     }
 
     public void addManager(User manager) {
@@ -89,7 +92,8 @@ public class User implements Serializable {
     }
 
     public boolean hasSkill(Skill skill, Level level, boolean interested) {
-        UserSkill searched = new UserSkill(this, skill, level, interested);
-        return this.skills.stream().anyMatch(userSkill -> userSkill.equals(searched));
+        return
+                this.skills.stream().anyMatch(userSkill -> userSkill.hasSkill(skill) && userSkill.hasLevel(level) && userSkill.hasInterested(interested));
     }
+
 }

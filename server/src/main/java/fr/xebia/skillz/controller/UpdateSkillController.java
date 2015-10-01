@@ -3,9 +3,9 @@ package fr.xebia.skillz.controller;
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.model.UserSkill;
-import fr.xebia.skillz.model.UserSkill.Level;
 import fr.xebia.skillz.repository.SkillRepository;
 import fr.xebia.skillz.repository.UserRepository;
+import fr.xebia.skillz.repository.UserSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,29 +14,31 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.security.Principal;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
-public class AddSkillController {
+public class UpdateSkillController {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
+    private UserSkillRepository userSkillRepository;
+
+    @Autowired
     private SkillRepository skillRepository;
 
-    @RequestMapping(value = "/skills", method = POST)
-    public UserSkill addSkill(@Valid @RequestBody SkillRequest skillRequest, Principal principal) {
+    @RequestMapping(value = "/skills", method = PUT)
+    public void updateSkill(@Valid @RequestBody SkillRequest skillRequest, Principal principal) {
         User user = userRepository.findByEmail(principal.getName());
-        return addSkill(skillRequest, user);
+        updateSkill(skillRequest, user);
     }
 
-    private UserSkill addSkill(SkillRequest skillRequest, User user) {
+    private void updateSkill(SkillRequest skillRequest, User user) {
         Skill skill = skillRepository.findByNameAndCompany(skillRequest.name, user.getCompany());
-        if (skill == null) {
-            skill = new Skill(skillRequest.name, user.getCompany());
-        }
-        return user.addSkill(skill, Level.of(skillRequest.level), skillRequest.interested);
+        UserSkill userSkill = userSkillRepository.findByUserAndSkill(user, skill);
+        userSkill.update(skillRequest.level, skillRequest.interested);
+        userSkillRepository.save(userSkill);
     }
 
 }

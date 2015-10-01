@@ -7,6 +7,7 @@ import fr.xebia.skillz.model.UserSkill;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 import static java.util.stream.Collectors.toList;
@@ -25,7 +26,7 @@ public class UserProfile extends BasicUserProfile {
     }
 
     public List<UserDomain> getDomains() {
-        List<UserSkill> skills = user.getSkills();
+        Set<UserSkill> skills = user.getSkills();
         List<UserDomain> userDomains = new ArrayList<>();
         skills
                 .stream()

@@ -17,9 +17,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class UserSkill {
 
     public static final boolean INTERESTED = true;
+    public static final boolean NOT_INTERESTED = false;
 
-    @GeneratedValue(strategy = IDENTITY)
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -51,22 +52,9 @@ public class UserSkill {
         this.updatedAt = new Date();
     }
 
-    @Getter
-    public enum Level {
-        LEVEL_NO_EXPERIENCE(0),
-        LEVEL_BEGINNER(1),
-        LEVEL_INTERMEDIATE(2),
-        LEVEL_EXPERT(3);
-
-        private final int value;
-
-        Level(int value) {
-            this.value = value;
-        }
-
-        public static Level of(int level) {
-            return Level.values()[level];
-        }
+    public void update(int level, boolean interested) {
+        this.level = level;
+        this.interested = interested;
     }
 
     @Override
@@ -90,5 +78,43 @@ public class UserSkill {
         result = 31 * result + level.hashCode();
         result = 31 * result + (interested ? 1 : 0);
         return result;
+    }
+
+    public boolean hasSkill(Skill skill) {
+        return this.skill.equals(skill);
+    }
+
+    public boolean hasLevel(Level level) {
+        return this.level == level.getValue();
+    }
+
+    public boolean hasInterested(boolean interested) {
+        return this.interested == interested;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    @Getter
+    public enum Level {
+        LEVEL_NO_EXPERIENCE(0),
+        LEVEL_BEGINNER(1),
+        LEVEL_INTERMEDIATE(2),
+        LEVEL_EXPERT(3);
+
+        private final int value;
+
+        Level(int value) {
+            this.value = value;
+        }
+
+        public static Level of(int level) {
+            return Level.values()[level];
+        }
     }
 }
