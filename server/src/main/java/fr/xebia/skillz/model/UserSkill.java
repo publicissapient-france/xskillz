@@ -18,6 +18,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 public class UserSkill {
 
+    public static final boolean INTERESTED = true;
+
     @GeneratedValue(strategy = IDENTITY)
     @Id
     private Long id;
@@ -29,18 +31,16 @@ public class UserSkill {
     private Skill skill;
 
     private Date updatedAt;
-
     private Integer level;
-
     private boolean interested;
 
     UserSkill() {
     }
 
-    public UserSkill(User user, Skill skill, Integer level, boolean interested) {
+    public UserSkill(User user, Skill skill, Level level, boolean interested) {
         this.user = user;
         this.skill = skill;
-        this.level = level;
+        this.level = level.getValue();
         this.interested = interested;
     }
 
@@ -51,6 +51,21 @@ public class UserSkill {
     @PrePersist
     public void onPrePersist() {
         this.updatedAt = new Date();
+    }
+
+    @Getter
+    public enum Level {
+        LEVEL_NO_EXPERIENCE(0),
+        LEVEL_BEGINNER(1),
+        LEVEL_INTERMEDIATE(2),
+        LEVEL_EXPERT(3);
+
+        private final int value;
+
+        Level(int value) {
+            this.value = value;
+        }
+
     }
 
 }

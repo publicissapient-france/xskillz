@@ -3,8 +3,8 @@ package fr.xebia.skillz.model;
 import org.junit.Test;
 
 import static fr.xebia.skillz.model.Company.XEBIA;
-import static fr.xebia.skillz.model.Skill.INTERESTED;
-import static fr.xebia.skillz.model.Skill.LEVEL_EXPERT;
+import static fr.xebia.skillz.model.UserSkill.INTERESTED;
+import static fr.xebia.skillz.model.UserSkill.Level.LEVEL_EXPERT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {

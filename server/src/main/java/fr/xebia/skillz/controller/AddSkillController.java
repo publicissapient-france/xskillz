@@ -2,6 +2,7 @@ package fr.xebia.skillz.controller;
 
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
+import fr.xebia.skillz.model.UserSkill;
 import fr.xebia.skillz.repository.SkillRepository;
 import fr.xebia.skillz.repository.UserRepository;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -35,7 +36,7 @@ public class AddSkillController {
         if (skill == null) {
             skill = new Skill(skillRequest.name, user.getCompany());
         }
-        user.addSkill(skill, Skill.LEVEL_EXPERT, Skill.INTERESTED);
+        user.addSkill(skill, UserSkill.Level.LEVEL_EXPERT, UserSkill.INTERESTED);
         userRepository.save(user);
     }
 
