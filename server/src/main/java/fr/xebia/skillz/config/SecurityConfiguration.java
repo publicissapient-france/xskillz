@@ -1,4 +1,5 @@
 package fr.xebia.skillz.config;
+/*
 
 import fr.xebia.skillz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
-
 @Configuration
 @EnableWebMvcSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -61,4 +61,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public SocialUserDetailsService socialUsersDetailService() {
         return new SimpleSocialUsersDetailService(userRepository);
     }
-}
+}*/

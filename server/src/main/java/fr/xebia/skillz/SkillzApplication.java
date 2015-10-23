@@ -1,9 +1,9 @@
 package fr.xebia.skillz;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+//import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
+//import com.mangofactory.swagger.models.dto.ApiInfo;
+//import com.mangofactory.swagger.plugin.EnableSwagger;
+//import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import fr.xebia.skillz.filter.CORSFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +12,7 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 
-@EnableSwagger
+//@EnableSwagger
 @SpringBootApplication
 public class SkillzApplication {
 

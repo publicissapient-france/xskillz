@@ -1,5 +1,6 @@
 package fr.xebia.skillz.config;
 
+/*
 import fr.xebia.skillz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,6 @@ import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 
 import javax.sql.DataSource;
-
 @Configuration
 @EnableSocial
 public class SocialConfig implements SocialConfigurer {
@@ -47,3 +47,4 @@ public class SocialConfig implements SocialConfigurer {
         return repository;
     }
 }
+*/

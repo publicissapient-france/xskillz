@@ -1,5 +1,6 @@
 package fr.xebia.skillz.config;
 
+/*
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.repository.UserRepository;
 import org.springframework.dao.DataAccessException;
@@ -9,7 +10,6 @@ import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 
 import java.util.ArrayList;
-
 public class SimpleSocialUsersDetailService implements SocialUserDetailsService {
 
     private UserRepository userRepository;
@@ -28,3 +28,4 @@ public class SimpleSocialUsersDetailService implements SocialUserDetailsService 
     }
 
 }
+*/

@@ -1,11 +1,11 @@
 package fr.xebia.skillz.config;
 
+/*
 import fr.xebia.skillz.model.Company;
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.repository.UserRepository;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
-
 public class AccountConnectionSignUpService implements ConnectionSignUp {
 
     private final UserRepository userRepository;
@@ -24,3 +24,4 @@ public class AccountConnectionSignUpService implements ConnectionSignUp {
         return email;
     }
 }
+*/
