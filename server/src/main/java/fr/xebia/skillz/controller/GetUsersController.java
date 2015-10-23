@@ -21,7 +21,7 @@ public class GetUsersController {
     private UserRepository userRepository;
 
     @RequestMapping("/users")
-    public Iterable<BasicUserProfile> get(@RequestParam(required = false) String name) {
+    public Iterable<BasicUserProfile> getMatchingUsersByName(@RequestParam(required = false) String name) {
         Iterable<User> users;
         if (name == null) {
             users = userRepository.findAll();
@@ -32,8 +32,8 @@ public class GetUsersController {
     }
 
     @RequestMapping("/companies/{companyId}/users")
-    public Iterable<BasicUserProfile> get(@PathVariable Long companyId,
-                                          @RequestParam(required = false) String name) {
+    public Iterable<BasicUserProfile> getMatchingUsersByNameAndCompany(@PathVariable Long companyId,
+                                                                       @RequestParam(required = false) String name) {
         Collection<User> users;
         if (name == null) {
             users = userRepository.findAllByCompany(Company.byId(companyId));

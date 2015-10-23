@@ -34,4 +34,11 @@ public class SkillTest {
         assertThat(skill.isInDomain(none)).isTrue();
     }
 
+    @Test
+    public void should_return_true_when_comparing_name_ignored_case() {
+        Skill skill = new Skill("skill", XEBIA);
+        assertThat(skill.hasName("skill")).isTrue();
+        assertThat(skill.hasName("SKILL")).isTrue();
+    }
+
 }

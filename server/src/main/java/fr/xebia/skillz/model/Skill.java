@@ -69,4 +69,8 @@ public class Skill {
         result = 31 * result + company.hashCode();
         return result;
     }
+
+    public boolean hasName(String name) {
+        return this.name.equalsIgnoreCase(name);
+    }
 }

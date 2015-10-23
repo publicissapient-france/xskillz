@@ -35,4 +35,21 @@ public class AddSkillControllerTest extends TransactionSkillzTest {
         assertThat(user.hasSkill(javaSkill, LEVEL_BEGINNER, INTERESTED)).isTrue();
     }
 
+    @Test
+    public void should_reuse_previously_created_skill() {
+        SkillRequest jsmadjaSkillRequest = new SkillRequest("Java123", INTERESTED, LEVEL_BEGINNER.getValue());
+        controller.addSkill(jsmadjaSkillRequest, createPrincipalFor("jsmadja@xebia.fr"));
+
+        User jsmadja = userRepository.findByEmail("jsmadja@xebia.fr");
+        Skill previouslyCreatedSkill = jsmadja.getSkillByName("Java123");
+
+        SkillRequest blacroixSkillRequest = new SkillRequest("JAVA123", INTERESTED, LEVEL_BEGINNER.getValue());
+        controller.addSkill(blacroixSkillRequest, createPrincipalFor("blacroix@xebia.fr"));
+
+        User blacroix = userRepository.findByEmail("blacroix@xebia.fr");
+        Skill createdSkill = blacroix.getSkillByName("Java123");
+
+        assertThat(createdSkill.getId()).isEqualTo(previouslyCreatedSkill.getId());
+    }
+
 }

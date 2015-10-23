@@ -100,6 +100,10 @@ public class UserSkill {
         this.skill = skill;
     }
 
+    public boolean hasSkillName(String name) {
+        return this.skill.hasName(name);
+    }
+
     @Getter
     public enum Level {
         LEVEL_NO_EXPERIENCE(0),

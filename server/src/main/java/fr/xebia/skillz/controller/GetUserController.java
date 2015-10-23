@@ -15,13 +15,13 @@ public class GetUserController {
     private UserRepository userRepository;
 
     @RequestMapping("/users/{id}")
-    public UserProfile get(@PathVariable Long id) {
+    public UserProfile getUserById(@PathVariable Long id) {
         return new UserProfile(userRepository.findById(id));
     }
 
     @RequestMapping("/companies/{companyId}/users/{id}")
-    public UserProfile get(@PathVariable Long companyId,
-                           @PathVariable Long id) {
+    public UserProfile getUserByIdAndCompany(@PathVariable Long companyId,
+                                             @PathVariable Long id) {
         return new UserProfile(userRepository.findByIdAndCompany(id, Company.byId(companyId)));
     }
 

@@ -16,7 +16,7 @@ public class GetCompaniesController {
     private CompanyRepository companyRepository;
 
     @RequestMapping("/companies")
-    public List<CompanyProfile> get() {
+    public List<CompanyProfile> getCompanies() {
         List<CompanyProfile> companies = new ArrayList<>();
         companyRepository.findAll().forEach(company -> companies.add(new CompanyProfile(company)));
         return companies;

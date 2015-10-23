@@ -22,9 +22,9 @@ public class GetSkillController {
     private UserSkillRepository userSkillRepository;
 
     @RequestMapping("/skills/{id}/users")
-    public List<BasicUserProfile> get(@PathVariable Long id) {
+    public List<BasicUserProfile> getUsersBySkill(@PathVariable Long id) {
         List<BasicUserProfile> userProfileList = new ArrayList<>();
-        for (UserSkill userSkill : userSkillRepository.findBySkill(skillRepository.findById(id))) {
+        for (UserSkill userSkill : userSkillRepository.findBySkillOrderByUserNameAsc(skillRepository.findById(id))) {
             userProfileList.add(new BasicUserProfile(userSkill.getUser()));
         }
         return userProfileList;

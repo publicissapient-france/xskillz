@@ -32,7 +32,7 @@ public class AddSkillController {
     }
 
     private UserSkill addSkill(SkillRequest skillRequest, User user) {
-        Skill skill = skillRepository.findByNameAndCompany(skillRequest.name, user.getCompany());
+        Skill skill = skillRepository.findByNameIgnoreCaseAndCompany(skillRequest.name, user.getCompany());
         if (skill == null) {
             skill = new Skill(skillRequest.name, user.getCompany());
         }

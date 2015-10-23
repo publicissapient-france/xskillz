@@ -96,4 +96,8 @@ public class User implements Serializable {
                 this.skills.stream().anyMatch(userSkill -> userSkill.hasSkill(skill) && userSkill.hasLevel(level) && userSkill.hasInterested(interested));
     }
 
+    public Skill getSkillByName(String name) {
+        return this.skills.stream().filter(p -> p.hasSkillName(name)).findFirst().get().getSkill();
+    }
+
 }

@@ -20,7 +20,7 @@ public class GetSkillsController {
     private SkillRepository skillRepository;
 
     @RequestMapping("/skills")
-    public List<BasicSkillProfile> get(@RequestParam(required = false) String name) {
+    public List<BasicSkillProfile> getMatchingSkillsFromAllCompanies(@RequestParam(required = false) String name) {
         Iterable<Skill> skills;
         if (name == null) {
             skills = skillRepository.findAll();
@@ -39,8 +39,8 @@ public class GetSkillsController {
     }
 
     @RequestMapping("/companies/{companyId}/skills")
-    public Iterable<BasicSkillProfile> get(@PathVariable Long companyId,
-                                           @RequestParam(required = false) String name) {
+    public Iterable<BasicSkillProfile> getMatchingSkillsFromCompany(@PathVariable Long companyId,
+                                                                    @RequestParam(required = false) String name) {
         List<Skill> skills;
         if (name == null) {
             skills = skillRepository.findAllByCompany(Company.byId(companyId));

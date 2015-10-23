@@ -16,5 +16,5 @@ public interface SkillRepository extends CrudRepository<Skill, Long> {
 
     List<Skill> findAllByCompanyAndNameContainingOrderByNameAsc(Company company, String name);
 
-    Skill findByNameAndCompany(String name, Company company);
+    Skill findByNameIgnoreCaseAndCompany(String name, Company company);
 }

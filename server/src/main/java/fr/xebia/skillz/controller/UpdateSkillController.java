@@ -35,7 +35,7 @@ public class UpdateSkillController {
     }
 
     private void updateSkill(SkillRequest skillRequest, User user) {
-        Skill skill = skillRepository.findByNameAndCompany(skillRequest.name, user.getCompany());
+        Skill skill = skillRepository.findByNameIgnoreCaseAndCompany(skillRequest.name, user.getCompany());
         UserSkill userSkill = userSkillRepository.findByUserAndSkill(user, skill);
         userSkill.update(skillRequest.level, skillRequest.interested);
         userSkillRepository.save(userSkill);
