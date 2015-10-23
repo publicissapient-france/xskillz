@@ -46,13 +46,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/favicon.ico", "/static-resources/**").permitAll()
+                .antMatchers("/favicon.ico", "/static-resources/**", "/swagger/**", "/api-docs/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .rememberMe()
                 .and()
                 .apply(new SpringSocialConfigurer()
-                        .postLoginUrl("/users")
+                        .postLoginUrl("/swagger/index.html")
                         .alwaysUsePostLoginUrl(true))
         ;
     }
