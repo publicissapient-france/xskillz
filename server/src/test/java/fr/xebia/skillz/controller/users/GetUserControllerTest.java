@@ -1,4 +1,4 @@
-package fr.xebia.skillz.controller;
+package fr.xebia.skillz.controller.users;
 
 import fr.xebia.skillz.dto.UserProfile;
 import fr.xebia.skillz.repository.TransactionSkillzTest;

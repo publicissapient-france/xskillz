@@ -1,4 +1,4 @@
-package fr.xebia.skillz.controller;
+package fr.xebia.skillz.controller.users.skills;
 
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.model.UserSkill;

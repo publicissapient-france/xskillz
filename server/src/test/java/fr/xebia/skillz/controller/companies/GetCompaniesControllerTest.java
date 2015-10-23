@@ -1,4 +1,4 @@
-package fr.xebia.skillz.controller;
+package fr.xebia.skillz.controller.companies;
 
 import fr.xebia.skillz.dto.CompanyProfile;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
