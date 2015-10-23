@@ -26,6 +26,6 @@ public class Role {
     }
 
     public boolean hasName(String name) {
-        return this.name.equals(name);
+        return this.name.equalsIgnoreCase(name);
     }
 }

@@ -34,3 +34,5 @@ INSERT INTO Skill (name, company_id, domain_id) VALUES ('Product Management' ,3,
 
 INSERT INTO UserSkill (skill_id, user_id, level, interested) VALUES (1, 1, 3, true);
 INSERT INTO UserSkill (skill_id, user_id, level, interested) VALUES (1, 2, 1, false);
+
+INSERT INTO User_Role (user_id, roles_id) VALUES (1, 1);
