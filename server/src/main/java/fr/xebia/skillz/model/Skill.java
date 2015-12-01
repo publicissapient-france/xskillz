@@ -2,12 +2,7 @@ package fr.xebia.skillz.model;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -45,10 +40,10 @@ public class Skill {
     }
 
     public boolean isInDomain(Domain domain) {
-        if (this.domain == null && domain.equals(Domain.none)) {
+        if (this.domain == null && domain.getId().equals(Domain.none.getId())) {
             return true;
         }
-        return this.domain != null && this.domain.equals(domain);
+        return this.domain != null && this.domain.getId().equals(domain.getId());
     }
 
     @Override
