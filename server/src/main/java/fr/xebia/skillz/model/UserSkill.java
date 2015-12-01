@@ -2,11 +2,7 @@ package fr.xebia.skillz.model;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import java.util.Date;
 
 import static javax.persistence.CascadeType.PERSIST;
@@ -102,6 +98,16 @@ public class UserSkill {
 
     public boolean hasSkillName(String name) {
         return this.skill.hasName(name);
+    }
+
+    public Domain getDomain() {
+        Domain domain;
+        if (getSkill().getDomain() == null) {
+            domain = Domain.none;
+        } else {
+            domain = getSkill().getDomain();
+        }
+        return domain;
     }
 
     @Getter

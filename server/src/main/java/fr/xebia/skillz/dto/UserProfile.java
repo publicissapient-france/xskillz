@@ -30,21 +30,16 @@ public class UserProfile extends BasicUserProfile {
         List<UserDomain> userDomains = new ArrayList<>();
         skills
                 .stream()
-                .map(s -> {
-                    Domain domain;
-                    if (s.getSkill().getDomain() == null) {
-                        domain = Domain.none;
-                    } else {
-                        domain = s.getSkill().getDomain();
-                    }
-                    return domain;
-                })
-                .forEach(domain -> userDomains.add(new UserDomain(domain, skills
-                        .stream()
-                        .filter(s -> s.hasDomain(domain)).collect(toList()))));
+                .map(UserSkill::getDomain)
+                .forEach(domain -> {
+                    List<UserSkill> skillsByDomain = skills
+                            .stream()
+                            .filter(userSkill -> userSkill.hasDomain(domain)).collect(toList());
+                    userDomains.add(new UserDomain(domain,
+                            skillsByDomain));
+                });
         return userDomains;
     }
-
 
     private static class UserDomain {
         private Domain domain;
