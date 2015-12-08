@@ -19,7 +19,7 @@ public class GetLastUpdatesController {
 
     @RequestMapping("/companies/{companyId}/updates")
     public List<SkillUpdate> getCompanyUpdates(@PathVariable("companyId") Long companyId) {
-        return userSkillRepository.findByUserCompanyOrderByUpdatedAtDesc(Company.byId(companyId)).stream().map(SkillUpdate::new).collect(Collectors.toList());
+        return userSkillRepository.findTop100ByUserCompanyOrderByUpdatedAtDesc(Company.byId(companyId)).stream().map(SkillUpdate::new).collect(Collectors.toList());
     }
 
 }

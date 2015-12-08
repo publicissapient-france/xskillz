@@ -12,7 +12,7 @@ public interface UserSkillRepository extends CrudRepository<UserSkill, Long> {
 
     List<UserSkill> findBySkillOrderByUserNameAsc(Skill skill);
 
-    List<UserSkill> findByUserCompanyOrderByUpdatedAtDesc(Company company);
+    List<UserSkill> findTop100ByUserCompanyOrderByUpdatedAtDesc(Company company);
 
     UserSkill findByUserAndSkill(User user, Skill skill);
 
