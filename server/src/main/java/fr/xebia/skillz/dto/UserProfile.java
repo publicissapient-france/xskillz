@@ -7,7 +7,9 @@ import fr.xebia.skillz.model.UserSkill;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 import static java.util.stream.Collectors.toList;
@@ -28,15 +30,10 @@ public class UserProfile extends BasicUserProfile {
     public List<UserDomain> getDomains() {
         Set<UserSkill> skills = user.getSkills();
         List<UserDomain> userDomains = new ArrayList<>();
-        skills
-                .stream()
-                .map(UserSkill::getDomain)
-                .forEach(domain -> {
-                    List<UserSkill> skillsByDomain = skills
-                            .stream()
-                            .filter(userSkill -> userSkill.hasDomain(domain)).collect(toList());
-                    userDomains.add(new UserDomain(domain, skillsByDomain));
-                });
+        Map<Domain, List<UserSkill>> skillsByDomain = skills.stream().collect(Collectors.groupingBy(UserSkill::getDomain));
+        skillsByDomain.keySet().forEach(domain -> {
+            userDomains.add(new UserDomain(domain, skillsByDomain.get(domain)));
+        });
         return userDomains;
     }
 
