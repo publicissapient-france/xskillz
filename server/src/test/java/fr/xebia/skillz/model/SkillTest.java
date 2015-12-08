@@ -16,8 +16,8 @@ public class SkillTest {
     }
 
     @Test
-    public void should_return_false_if_skill_is_noin_domain_Back() {
-        Domain domain = new Domain(1L, "Front");
+    public void should_return_false_if_skill_is_not_in_domain_Back() {
+        Domain domain = new Domain(0L, "Front");
         Skill skill = new Skill("skill", XEBIA, domain);
         assertThat(skill.isInDomain(new Domain(1L, "Back"))).isFalse();
     }
