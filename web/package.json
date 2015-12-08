@@ -1,0 +1,31 @@
+{
+  "name": "xskillz",
+  "version": "1.0.0",
+  "description": "Staffing application for Xebia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "author": "E. YURCHUK",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "babel-core": "^5.8.34",
+    "babel-loader": "^5.4.0",
+    "babel-plugin-react-transform": "^1.1.1",
+    "css-loader": "^0.23.0",
+    "html-webpack-plugin": "^1.7.0",
+    "react-transform-hmr": "^1.0.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0",
+    "webpack-merge": "^0.3.2"
+  },
+  "dependencies": {
+    "alt": "^0.17.9",
+    "alt-container": "^1.0.0",
+    "array.prototype.findindex": "^1.0.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
+}
