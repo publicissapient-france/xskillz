@@ -35,8 +35,7 @@ public class UserProfile extends BasicUserProfile {
                     List<UserSkill> skillsByDomain = skills
                             .stream()
                             .filter(userSkill -> userSkill.hasDomain(domain)).collect(toList());
-                    userDomains.add(new UserDomain(domain,
-                            skillsByDomain));
+                    userDomains.add(new UserDomain(domain, skillsByDomain));
                 });
         return userDomains;
     }
@@ -77,6 +76,10 @@ public class UserProfile extends BasicUserProfile {
 
         public boolean isInterested() {
             return userSkill.isInterested();
+        }
+
+        public Long getId() {
+            return userSkill.getSkill().getId();
         }
     }
 
