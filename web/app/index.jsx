@@ -1,3 +1,6 @@
+/* External CSS */
+import './css/external/bootstrap.min.css';
+/* Internal CSS */
 import './css/main.css';
 
 import React from 'react';

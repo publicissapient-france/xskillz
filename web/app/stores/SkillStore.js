@@ -9,7 +9,16 @@ class SkillStore {
     constructor() {
         this.bindActions(SkillActions);
 
-        this.skills = [];
+        this.skills = [
+            {
+                id: 1,
+                name: "React"
+            },
+            {
+                id: 2,
+                name: "Java"
+            }
+        ];
     }
 
     create(skill) {
