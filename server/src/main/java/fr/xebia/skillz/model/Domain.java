@@ -1,6 +1,5 @@
 package fr.xebia.skillz.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Getter
 @Entity
-@EqualsAndHashCode
 public class Domain {
 
     public static Domain none = new Domain(0L, "Sans catégorie");
@@ -33,5 +31,21 @@ public class Domain {
     public Domain(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Domain domain = (Domain) o;
+
+        return name.equals(domain.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }
