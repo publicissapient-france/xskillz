@@ -4,6 +4,7 @@ import fr.xebia.skillz.model.Company;
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.model.UserSkill;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface UserSkillRepository extends CrudRepository<UserSkill, Long> {
 
     List<UserSkill> findBySkillOrderByUserNameAsc(Skill skill);
 
+    @Query("select us from UserSkill us where us.user.company = ?1")
     List<UserSkill> findTop100ByUserCompanyOrderByUpdatedAtDesc(Company company);
 
     UserSkill findByUserAndSkill(User user, Skill skill);
