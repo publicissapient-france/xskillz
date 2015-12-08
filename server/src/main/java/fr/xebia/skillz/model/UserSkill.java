@@ -25,7 +25,9 @@ public class UserSkill {
     @ManyToOne(cascade = PERSIST)
     private Skill skill;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
     private Integer level;
     private boolean interested;
 

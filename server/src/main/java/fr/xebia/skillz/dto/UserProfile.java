@@ -5,13 +5,11 @@ import fr.xebia.skillz.model.Domain;
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.model.UserSkill;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class UserProfile extends BasicUserProfile {
@@ -28,22 +26,24 @@ public class UserProfile extends BasicUserProfile {
     }
 
     public List<UserDomain> getDomains() {
-        Set<UserSkill> skills = user.getSkills();
-        List<UserDomain> userDomains = new ArrayList<>();
-        Map<Domain, List<UserSkill>> skillsByDomain = skills.stream().collect(Collectors.groupingBy(UserSkill::getDomain));
-        skillsByDomain.keySet().forEach(domain -> {
-            userDomains.add(new UserDomain(domain, skillsByDomain.get(domain)));
-        });
-        return userDomains;
+        return user.getSkills().stream().
+                collect(groupingBy(UserSkill::getDomain)).
+                entrySet().stream().
+                map(UserDomain::new).
+                collect(toList());
     }
 
-    private static class UserDomain {
+    static class UserDomain {
         private Domain domain;
         private List<UserSkill> userSkills;
 
-        public UserDomain(Domain domain, List<UserSkill> collect) {
+        private UserDomain(Domain domain, List<UserSkill> collect) {
             this.domain = domain;
             this.userSkills = collect;
+        }
+
+        public UserDomain(Map.Entry<Domain, List<UserSkill>> entry) {
+            this(entry.getKey(), entry.getValue());
         }
 
         public String getName() {
@@ -56,7 +56,7 @@ public class UserProfile extends BasicUserProfile {
     }
 
     @JsonInclude(NON_EMPTY)
-    private static class DomainSkill {
+    static class DomainSkill {
         private final UserSkill userSkill;
 
         public DomainSkill(UserSkill userSkill) {
