@@ -13,9 +13,10 @@ public interface UserSkillRepository extends CrudRepository<UserSkill, Long> {
 
     List<UserSkill> findBySkillOrderByUserNameAsc(Skill skill);
 
-    @Query("select us from UserSkill us where us.user.company = ?1")
-    List<UserSkill> findTop100ByUserCompanyOrderByUpdatedAtDesc(Company company);
+    @Query("select us from UserSkill us where us.user.company = ?1 order by us.updatedAt desc")
+    List<UserSkill> findTop100ByCompany(Company company);
 
     UserSkill findByUserAndSkill(User user, Skill skill);
 
+    List<UserSkill> findTop100ByOrderByUpdatedAtDesc();
 }
