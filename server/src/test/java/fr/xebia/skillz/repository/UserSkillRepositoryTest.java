@@ -22,7 +22,7 @@ public class UserSkillRepositoryTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_all_updates() {
-        List<UserSkill> skills = repository.findAll();
+        List<UserSkill> skills = repository.findTop100ByOrderByUpdatedAtDesc();
         assertThat(skills).hasSize(3);
     }
 
