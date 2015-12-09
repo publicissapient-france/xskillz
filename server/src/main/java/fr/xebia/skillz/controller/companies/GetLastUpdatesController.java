@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 public class GetLastUpdatesController {
@@ -19,7 +20,12 @@ public class GetLastUpdatesController {
 
     @RequestMapping("/companies/{companyId}/updates")
     public List<SkillUpdate> getCompanyUpdates(@PathVariable("companyId") Long companyId) {
-        return userSkillRepository.findTop100ByUserCompanyOrderByUpdatedAtDesc(Company.byId(companyId)).stream().map(SkillUpdate::new).collect(Collectors.toList());
+        return userSkillRepository.findTop100ByCompany(Company.byId(companyId)).stream().map(SkillUpdate::new).collect(toList());
+    }
+
+    @RequestMapping("/updates")
+    public List<SkillUpdate> getAllUpdates() {
+        return userSkillRepository.findAll().stream().map(SkillUpdate::new).collect(toList());
     }
 
 }

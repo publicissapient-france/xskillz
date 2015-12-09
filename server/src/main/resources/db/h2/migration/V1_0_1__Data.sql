@@ -26,13 +26,20 @@ INSERT INTO Role VALUES (3, 'Manager', 3);
 INSERT INTO User (company_id, diploma, email, name) VALUES (1, '2006-01-01', 'jsmadja@xebia.fr', 'Julien Smadja');
 INSERT INTO User (company_id, diploma, email, name) VALUES (1, '2007-01-01', 'blacroix@xebia.fr', 'Benjamin Lacroix');
 
+INSERT INTO User (company_id, diploma, email, name) VALUES (3, '2007-01-01', 'hgeissman@thiga.fr', 'Hugo Geissman');
+
+
 INSERT INTO Skill (name, company_id, domain_id) VALUES ('Java' ,1, 2);
 INSERT INTO Skill (name, company_id, domain_id) VALUES ('Javascript' ,1, 2);
 INSERT INTO Skill (name, company_id, domain_id) VALUES ('Scala' ,1, 2);
 
 INSERT INTO Skill (name, company_id, domain_id) VALUES ('Product Management' ,3, 9);
 
+-- skills xebia
 INSERT INTO UserSkill (skill_id, user_id, level, interested) VALUES (1, 1, 3, true);
 INSERT INTO UserSkill (skill_id, user_id, level, interested) VALUES (1, 2, 1, false);
+
+-- skills thiga
+INSERT INTO UserSkill (skill_id, user_id, level, interested) VALUES (4, 3, 1, false);
 
 INSERT INTO User_Role (user_id, roles_id) VALUES (1, 1);
