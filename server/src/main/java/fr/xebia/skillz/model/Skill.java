@@ -1,17 +1,21 @@
 package fr.xebia.skillz.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@Setter
 @Getter
 @Entity
 public class Skill {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
@@ -27,6 +31,12 @@ public class Skill {
     private List<UserSkill> users;
 
     Skill() {
+    }
+
+    public Skill(Long id, String name, Company company) {
+        this.id = id;
+        this.name = name;
+        this.company = company;
     }
 
     public Skill(String name, Company company) {

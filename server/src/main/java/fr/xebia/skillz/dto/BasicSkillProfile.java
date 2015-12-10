@@ -1,5 +1,6 @@
 package fr.xebia.skillz.dto;
 
+import fr.xebia.skillz.model.Domain;
 import fr.xebia.skillz.model.Skill;
 
 public class BasicSkillProfile {
@@ -15,5 +16,9 @@ public class BasicSkillProfile {
 
     public String getName() {
         return this.skill.getName();
+    }
+
+    public Domain getDomain() {
+        return this.skill.getDomain();
     }
 }
