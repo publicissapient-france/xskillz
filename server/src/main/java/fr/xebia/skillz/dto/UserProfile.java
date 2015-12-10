@@ -50,6 +50,10 @@ public class UserProfile extends BasicUserProfile {
             return domain.getName();
         }
 
+        public Long getId() {
+            return domain.getId();
+        }
+
         public List<DomainSkill> getSkills() {
             return userSkills.stream().map(DomainSkill::new).collect(toList());
         }
