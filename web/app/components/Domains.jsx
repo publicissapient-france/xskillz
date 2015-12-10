@@ -5,7 +5,13 @@ export default class Domains extends React.Component {
     render() {
         const domains = this.props.items;
 
-        return <div>{domains.map(this.renderDomain)}</div>;
+        return (
+            <div className="row">
+                <div className="col-sm-12">
+                    {domains.map(this.renderDomain)}
+                </div>
+            </div>
+        );
     }
 
     renderDomain(domain) {
