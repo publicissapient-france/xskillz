@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 export default class MenuTop extends React.Component {
     render() {
@@ -11,12 +12,12 @@ export default class MenuTop extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">Xskillz</a>
+                        <Link className="navbar-brand" to="/">Xskillz</Link>
                     </div>
 
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
-                            <li className="active"><a href="#">Mon profil</a></li>
+                            <li className="active"><Link to="/profile">Mon profil</Link></li>
                         </ul>
                     </div>
                 </div>

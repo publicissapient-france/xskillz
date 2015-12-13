@@ -16,8 +16,6 @@ export default class Profile extends React.Component {
             );
         }
 
-        console.log(profile);
-
         return (
             <Domains items={profile.domains}/>
         );
