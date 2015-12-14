@@ -3,6 +3,7 @@ package fr.xebia.skillz.controller.companies;
 import fr.xebia.skillz.dto.SkillUpdate;
 import fr.xebia.skillz.repository.UserSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class GetLastUpdatesController {
     @RequestMapping("/companies/{companyId}/updates")
     public List<SkillUpdate> getCompanyUpdates(@PathVariable("companyId") Long companyId) {
         return userSkillRepository.
-                findTop100ByCompany(byId(companyId)).stream().
+                findTop100ByCompany(byId(companyId), new PageRequest(0, 100)).stream().
                 map(SkillUpdate::new).collect(toList());
     }
 

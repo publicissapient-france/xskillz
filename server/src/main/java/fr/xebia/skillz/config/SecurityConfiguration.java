@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(new SpringSocialConfigurer()
                         .postLoginUrl("/index.html")
-                        .alwaysUsePostLoginUrl(true))
+                        .alwaysUsePostLoginUrl(false))
         ;
     }
 

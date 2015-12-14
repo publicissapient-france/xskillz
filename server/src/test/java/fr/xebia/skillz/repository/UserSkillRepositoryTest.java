@@ -4,6 +4,7 @@ import fr.xebia.skillz.model.Company;
 import fr.xebia.skillz.model.UserSkill;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class UserSkillRepositoryTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_xebia_updates() {
-        List<UserSkill> skills = repository.findTop100ByCompany(Company.XEBIA);
+        List<UserSkill> skills = repository.findTop100ByCompany(Company.XEBIA, new PageRequest(0, 100));
         assertThat(skills).hasSize(2);
     }
 
