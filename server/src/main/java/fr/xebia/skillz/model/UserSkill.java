@@ -5,11 +5,13 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.util.Date;
 
-import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Getter
 @Entity
+@NamedEntityGraph(name = "UserSkill.detail",
+        attributeNodes = {@NamedAttributeNode("skill"), @NamedAttributeNode("user")})
 public class UserSkill {
 
     public static final boolean INTERESTED = true;
@@ -22,10 +24,10 @@ public class UserSkill {
     @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = PERSIST)
+    @ManyToOne
     private Skill skill;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TIMESTAMP)
     private Date updatedAt;
 
     private Integer level;
