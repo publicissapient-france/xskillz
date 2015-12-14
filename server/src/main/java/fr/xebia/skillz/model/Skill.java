@@ -14,6 +14,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 @Getter
 @Entity
+@NamedEntityGraph(name = "Skill.detail",
+        attributeNodes = {@NamedAttributeNode("domain")})
 public class Skill {
 
     @Id
