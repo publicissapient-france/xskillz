@@ -1,5 +1,6 @@
 /* External CSS */
 import './css/external/bootstrap.min.css';
+import './css/external/font-awesome.min.css';
 /* Internal CSS */
 import './css/main.css';
 
