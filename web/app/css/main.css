@@ -1,2 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+
 body {
+}
+
+.face {
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 1px 1px 3px #aaa;
+}
+
+.face-exp, .face-company {
+    position: absolute;
+    font-size: 21px;
+}
+
+.face-exp {
+    right: 30%;
+}
+
+.face-company {
+    left: 30%;
+}
+
+.domain {
 }

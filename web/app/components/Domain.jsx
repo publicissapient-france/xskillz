@@ -7,13 +7,11 @@ import SkillStore from '../stores/SkillStore';
 export default class Domain extends React.Component {
     render() {
         return (
-            <div>
-                {this.props.domain.name}
-                <button onClick={this._addSkill}>Ajouter un skill</button>
-                <AltContainer stores={[SkillStore]}
-                              inject={{skills: () => SkillStore.getState().skills}}>
-                    <Skills onEdit={this._editSkill} onDelete={this._deleteSkill}/>
-                </AltContainer>
+            <div className="domain">
+                <div className="page-header lead">
+                    Compétences {this.props.domain.name}
+                </div>
+                <Skills skills={this.props.domain.skills} onEdit={this._editSkill} onDelete={this._deleteSkill}/>
             </div>
         );
     }

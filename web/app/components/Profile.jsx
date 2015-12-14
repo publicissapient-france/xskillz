@@ -1,9 +1,8 @@
 import AltContainer from 'alt-container';
 import React from 'react';
 import ProfileActions from '../actions/ProfileActions';
-import ProfileStore from '../stores/ProfileStore';
-import Domains from './Domains.jsx';
 import DomainStore from '../stores/DomainStore';
+import Domains from './Domains.jsx';
 
 export default class Profile extends React.Component {
     render() {
@@ -18,13 +17,7 @@ export default class Profile extends React.Component {
         }
 
         return (
-            <div>
-                {profile.companyName}
-                <AltContainer stores={[DomainStore]}
-                              inject={{items: () => DomainStore.getState().domains}}>
-                    <Domains />
-                </AltContainer>
-            </div>
+            <Domains items={profile.domains}/>
         );
     }
 

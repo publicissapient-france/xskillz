@@ -5,16 +5,20 @@ export default class Skills extends React.Component {
     render() {
         const skills = this.props.skills;
 
-        return <ul>{skills.map(this.renderSkill)}</ul>;
+        return <div className="row">{skills.map(this.renderSkill)}</div>;
     }
 
     renderSkill = (skill) => {
         return (
-            <li key={skill.id}>
-                <Skill name={skill.name}
-                       onEdit={this.props.onEdit.bind(null, skill.id)}
-                       onDelete={this.props.onDelete.bind(null, skill.id)}/>
-            </li>
+            <div className="col-sm-3" key={skill.id}>
+                <div className="skill panel panel-default">
+                    <div className="panel-body">
+                        <Skill name={skill.name}
+                               onEdit={this.props.onEdit.bind(null, skill.id)}
+                               onDelete={this.props.onDelete.bind(null, skill.id)}/>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

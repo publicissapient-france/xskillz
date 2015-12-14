@@ -16,4 +16,8 @@ public class SkillUpdate {
         this.user = new BasicUserProfile(userSkill.getUser());
         this.date = userSkill.getUpdatedAt();
     }
+
+    public String getId() {
+        return user.getId().toString() + "-" + skill.getId().toString();
+    }
 }
