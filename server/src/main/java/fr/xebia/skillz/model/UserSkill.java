@@ -10,6 +10,8 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Getter
 @Entity
+@NamedEntityGraph(name = "UserSkill.detail",
+        attributeNodes = {@NamedAttributeNode("skill"), @NamedAttributeNode("user")})
 public class UserSkill {
 
     public static final boolean INTERESTED = true;
