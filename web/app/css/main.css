@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 
-body {
+.activity .page-header {
+    margin-top: 5px;
 }
 
 .face {
@@ -21,7 +22,4 @@ body {
 
 .face-company {
     left: 30%;
-}
-
-.domain {
 }
