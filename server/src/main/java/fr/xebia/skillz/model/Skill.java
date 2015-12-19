@@ -1,5 +1,6 @@
 package fr.xebia.skillz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,12 +24,14 @@ public class Skill {
 
     private String name;
 
+    @JsonIgnore
     @ManyToOne(fetch = LAZY)
     private Company company;
 
     @ManyToOne(fetch = EAGER)
     private Domain domain;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "skill")
     private List<UserSkill> users;
 

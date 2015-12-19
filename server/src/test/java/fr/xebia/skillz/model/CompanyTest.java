@@ -2,9 +2,7 @@ package fr.xebia.skillz.model;
 
 import org.junit.Test;
 
-import static fr.xebia.skillz.model.Company.THIGA;
-import static fr.xebia.skillz.model.Company.WESCALE;
-import static fr.xebia.skillz.model.Company.XEBIA;
+import static fr.xebia.skillz.model.Company.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CompanyTest {
