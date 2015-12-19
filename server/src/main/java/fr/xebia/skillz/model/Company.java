@@ -1,5 +1,6 @@
 package fr.xebia.skillz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -20,12 +21,15 @@ public class Company {
 
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<User> users;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Skill> skills;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Domain> domains;
 
@@ -53,10 +57,10 @@ public class Company {
         if (email.endsWith("xebia.fr")) {
             return XEBIA;
         }
-        if(email.endsWith("wescale.fr")) {
+        if (email.endsWith("wescale.fr")) {
             return WESCALE;
         }
-        if(email.endsWith("thiga.fr")) {
+        if (email.endsWith("thiga.fr")) {
             return THIGA;
         }
         return null;

@@ -1,6 +1,7 @@
 package fr.xebia.skillz.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import fr.xebia.skillz.GravatarUrl;
 import fr.xebia.skillz.model.User;
 
@@ -9,6 +10,7 @@ import java.util.Date;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 @JsonInclude(NON_EMPTY)
+@JsonPropertyOrder(alphabetic = true)
 public class BasicUserProfile {
     protected final User user;
 

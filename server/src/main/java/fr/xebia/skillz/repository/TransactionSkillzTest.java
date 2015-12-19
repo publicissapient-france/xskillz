@@ -1,5 +1,7 @@
 package fr.xebia.skillz.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.xebia.skillz.SkillzApplication;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -23,4 +25,13 @@ public abstract class TransactionSkillzTest {
         when(principal.getName()).thenReturn(email);
         return principal;
     }
+
+    protected String toJson(Object object) {
+        try {
+            return new ObjectMapper().writer().writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
