@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Entity
-public class Domain {
+public class Domain implements Validable {
 
     public static Domain none = new Domain(0L, "Sans catégorie");
 

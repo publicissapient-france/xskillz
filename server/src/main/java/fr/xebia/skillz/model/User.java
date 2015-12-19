@@ -12,7 +12,7 @@ import static javax.persistence.CascadeType.PERSIST;
 
 @Getter
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, Validable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +49,10 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.company = company;
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 
     public void addRole(Role role) {

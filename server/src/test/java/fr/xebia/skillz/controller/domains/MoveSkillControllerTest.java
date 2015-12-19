@@ -4,6 +4,7 @@ package fr.xebia.skillz.controller.domains;
 import fr.xebia.skillz.controller.skills.GetSkillsController;
 import fr.xebia.skillz.model.Domain;
 import fr.xebia.skillz.model.Skill;
+import fr.xebia.skillz.repository.CompanyRepository;
 import fr.xebia.skillz.repository.DomainRepository;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import org.junit.Test;
@@ -23,14 +24,17 @@ public class MoveSkillControllerTest extends TransactionSkillzTest {
     @Autowired
     private DomainRepository domainRepository;
 
+    @Autowired
+    private CompanyRepository companyRepository;
+
     @Test
     public void should_move_skill_from_foundation_to_another() {
-        Skill skillToMove = skillsController.getSkills(XEBIA.getId()).iterator().next();
+        Skill skillToMove = skillsController.getSkills(companyRepository.findOne(XEBIA.getId())).iterator().next();
         assertThat(skillToMove.getDomain().getName()).isEqualTo("Craft");
 
         Domain domain = domainRepository.findAllByCompanyOrderByNameAsc(XEBIA).stream().filter(d -> d.getName().equals("Back")).findFirst().get();
 
-        moveSkillController.move(domain.getId(), new Skill(skillToMove.getId(), "Java", XEBIA));
+        moveSkillController.move(domain, new Skill(skillToMove.getId(), "Java", XEBIA));
 
         assertThat(skillToMove.getDomain().getName()).isEqualTo("Back");
     }

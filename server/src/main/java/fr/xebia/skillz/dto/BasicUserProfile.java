@@ -3,6 +3,7 @@ package fr.xebia.skillz.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import fr.xebia.skillz.GravatarUrl;
+import fr.xebia.skillz.model.Company;
 import fr.xebia.skillz.model.User;
 
 import java.util.Date;
@@ -39,7 +40,11 @@ public class BasicUserProfile {
     }
 
     public String getCompanyName() {
-        return user.getCompany().getName();
+        Company company = user.getCompany();
+        if (company != null) {
+            return company.getName();
+        }
+        return null;
     }
 
 }

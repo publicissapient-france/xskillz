@@ -25,22 +25,4 @@ public class CompanyTest {
         assertThat(company).isEqualTo(THIGA);
     }
 
-    @Test
-    public void should_get_xebia_if_id_is_1() {
-        Company company = Company.byId(1L);
-        assertThat(company).isEqualTo(XEBIA);
-    }
-
-    @Test
-    public void should_get_wescale_if_id_is_2() {
-        Company company = Company.byId(2L);
-        assertThat(company).isEqualTo(WESCALE);
-    }
-
-    @Test
-    public void should_get_thiga_if_id_is_3() {
-        Company company = Company.byId(3L);
-        assertThat(company).isEqualTo(THIGA);
-    }
-
 }

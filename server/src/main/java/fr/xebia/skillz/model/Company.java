@@ -6,11 +6,12 @@ import lombok.Getter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import java.util.List;
 
 @Getter
 @Entity
-public class Company {
+public class Company implements Validable {
 
     public static final Company XEBIA = new Company(1L, "Xebia");
     public static final Company WESCALE = new Company(2L, "Wescale");
@@ -27,8 +28,10 @@ public class Company {
 
     @JsonIgnore
     @OneToMany(mappedBy = "company")
+    @OrderBy("name")
     private List<Skill> skills;
 
+    @OrderBy("name")
     @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Domain> domains;
@@ -39,18 +42,6 @@ public class Company {
     public Company(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public static Company byId(Long companyId) {
-        switch (companyId.intValue()) {
-            case 1:
-                return XEBIA;
-            case 2:
-                return WESCALE;
-            case 3:
-                return THIGA;
-        }
-        return null;
     }
 
     public static Company byUserEmail(String email) {

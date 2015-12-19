@@ -37,7 +37,7 @@ public class DeleteSkillControllerTest extends TransactionSkillzTest {
         User user = userRepository.findByEmail("jsmadja@xebia.fr");
         assertThat(user.hasSkill(javaSkill, LEVEL_BEGINNER, INTERESTED)).isTrue();
 
-        deleteController.deleteSkill(userSkill.getId(), principal);
+        deleteController.deleteSkill(userSkill, principal);
 
         user = userRepository.findByEmail("jsmadja@xebia.fr");
         assertThat(user.hasSkill(javaSkill, LEVEL_BEGINNER, INTERESTED)).isFalse();

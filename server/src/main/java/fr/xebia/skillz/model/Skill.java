@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @NamedEntityGraph(name = "Skill.detail",
         attributeNodes = {@NamedAttributeNode("domain")})
-public class Skill {
+public class Skill implements Validable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

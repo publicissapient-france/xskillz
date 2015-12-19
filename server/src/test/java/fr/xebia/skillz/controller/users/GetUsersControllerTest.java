@@ -23,7 +23,7 @@ public class GetUsersControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_matching_users_by_name_and_company() {
-        Iterable<BasicUserProfile> users = controller.getUsers(XEBIA.getId());
+        Iterable<BasicUserProfile> users = controller.getUsers(XEBIA);
         assertThat(users).
                 extracting("name").
                 containsExactly("Benjamin Lacroix", "Julien Smadja");
