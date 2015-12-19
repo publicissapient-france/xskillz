@@ -10,14 +10,11 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User findById(Long id);
 
-    Collection<User> findAllByCompany(Company company);
-
-    Iterable<User> findAllByNameContainingOrderByNameAsc(String name);
-
-    Collection<User> findAllByCompanyAndNameContainingOrderByNameAsc(Company company, String name);
-
     User findByIdAndCompany(Long id, Company company);
 
     User findByEmail(String email);
 
+    Collection<User> findAllByOrderByNameAsc();
+
+    Collection<User> findAllByCompanyOrderByNameAsc(Company company);
 }

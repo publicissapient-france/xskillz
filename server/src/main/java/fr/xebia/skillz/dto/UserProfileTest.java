@@ -51,8 +51,8 @@ public class UserProfileTest {
         assertThat(userDomain.getName()).isEqualTo("Back");
         assertThat(userDomain.getSkills()).hasSize(2);
 
-        assertThat(userDomain.getSkills().get(0).getName()).isEqualTo("Javascript");
-        assertThat(userDomain.getSkills().get(1).getName()).isEqualTo("Java");
+        assertThat(userDomain.getSkills().get(1).getName()).isEqualTo("Javascript");
+        assertThat(userDomain.getSkills().get(0).getName()).isEqualTo("Java");
     }
 
     @Test

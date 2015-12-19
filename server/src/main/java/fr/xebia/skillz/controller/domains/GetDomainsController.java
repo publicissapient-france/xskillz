@@ -19,7 +19,7 @@ public class GetDomainsController {
 
     @RequestMapping("/companies/{companyId}/domains")
     public Iterable<DomainProfile> getDomains(@PathVariable("companyId") Long companyId) {
-        return stream(domainRepository.findAllByCompany(Company.byId(companyId)).spliterator(), false).map(DomainProfile::new).collect(toList());
+        return stream(domainRepository.findAllByCompanyOrderByNameAsc(Company.byId(companyId)).spliterator(), false).map(DomainProfile::new).collect(toList());
     }
 
 }

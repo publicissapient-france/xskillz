@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import static javax.persistence.FetchType.EAGER;
@@ -19,7 +18,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Skill {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 

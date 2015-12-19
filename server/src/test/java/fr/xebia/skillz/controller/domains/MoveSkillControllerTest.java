@@ -26,10 +26,10 @@ public class MoveSkillControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_move_skill_from_foundation_to_another() {
-        BasicSkillProfile skillToMove = skillsController.getMatchingSkillsFromCompany(XEBIA.getId(), "Java").iterator().next();
+        BasicSkillProfile skillToMove = skillsController.getSkills(XEBIA.getId()).iterator().next();
         assertThat(skillToMove.getDomain().getName()).isEqualTo("Craft");
 
-        Domain domain = domainRepository.findAllByCompany(XEBIA).stream().filter(d -> d.getName().equals("Back")).findFirst().get();
+        Domain domain = domainRepository.findAllByCompanyOrderByNameAsc(XEBIA).stream().filter(d -> d.getName().equals("Back")).findFirst().get();
 
         moveSkillController.move(domain.getId(), new Skill(skillToMove.getId(), "Java", XEBIA));
 

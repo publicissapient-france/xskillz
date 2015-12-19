@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface DomainRepository extends CrudRepository<Domain, Long> {
 
-    List<Domain> findAllByCompany(Company company);
+    List<Domain> findAllByCompanyOrderByNameAsc(Company company);
 
 }

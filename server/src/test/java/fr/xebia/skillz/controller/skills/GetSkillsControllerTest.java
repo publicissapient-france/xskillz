@@ -17,7 +17,7 @@ public class GetSkillsControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_all_skills_from_all_companies() {
-        List<BasicSkillProfile> skills = controller.getMatchingSkillsFromAllCompanies("");
+        List<BasicSkillProfile> skills = controller.getSkills();
         assertThat(skills).hasSize(4);
         assertThat(skills).
                 extracting("name").
@@ -26,7 +26,7 @@ public class GetSkillsControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_all_skills_from_xebia() {
-        Iterable<BasicSkillProfile> skills = controller.getMatchingSkillsFromCompany(XEBIA.getId(), "");
+        Iterable<BasicSkillProfile> skills = controller.getSkills(XEBIA.getId());
         assertThat(skills).hasSize(3);
         assertThat(skills).
                 extracting("name").

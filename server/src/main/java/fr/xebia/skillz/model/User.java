@@ -3,20 +3,11 @@ package fr.xebia.skillz.model;
 import fr.xebia.skillz.model.UserSkill.Level;
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.PERSIST;
 
 @Getter
@@ -38,7 +29,7 @@ public class User implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
-    @OneToMany(mappedBy = "user", cascade = PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true)
     private Set<UserSkill> skills = new HashSet<>();
 
     @OneToMany

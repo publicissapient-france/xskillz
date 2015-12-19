@@ -18,13 +18,10 @@ public interface SkillRepository extends CrudRepository<Skill, Long> {
     List<Skill> findAll();
 
     @EntityGraph(value = "Skill.detail", type = LOAD)
+    List<Skill> findAllByOrderByNameAsc();
+
+    @EntityGraph(value = "Skill.detail", type = LOAD)
     List<Skill> findAllByCompany(Company company);
-
-    @EntityGraph(value = "Skill.detail", type = LOAD)
-    Iterable<Skill> findAllByNameContainingOrderByNameAsc(String name);
-
-    @EntityGraph(value = "Skill.detail", type = LOAD)
-    List<Skill> findAllByCompanyAndNameContainingOrderByNameAsc(Company company, String name);
 
     @EntityGraph(value = "Skill.detail", type = LOAD)
     Skill findByNameIgnoreCaseAndCompany(String name, Company company);

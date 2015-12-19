@@ -7,7 +7,6 @@ import fr.xebia.skillz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -21,29 +20,19 @@ public class GetUsersController {
     private UserRepository userRepository;
 
     @RequestMapping("/users")
-    public Iterable<BasicUserProfile> getMatchingUsersByName(@RequestParam(required = false) String name) {
-        Iterable<User> users;
-        if (name == null) {
-            users = userRepository.findAll();
-        } else {
-            users = userRepository.findAllByNameContainingOrderByNameAsc(name);
-        }
+    public Iterable<BasicUserProfile> getUsers() {
+        Collection<User> users = userRepository.findAllByOrderByNameAsc();
         return toBasicUserProfiles(users);
     }
 
     @RequestMapping("/companies/{companyId}/users")
-    public Iterable<BasicUserProfile> getMatchingUsersByNameAndCompany(@PathVariable Long companyId,
-                                                                       @RequestParam(required = false) String name) {
+    public Iterable<BasicUserProfile> getUsers(@PathVariable Long companyId) {
         Collection<User> users;
-        if (name == null) {
-            users = userRepository.findAllByCompany(Company.byId(companyId));
-        } else {
-            users = userRepository.findAllByCompanyAndNameContainingOrderByNameAsc(Company.byId(companyId), name);
-        }
+        users = userRepository.findAllByCompanyOrderByNameAsc(Company.byId(companyId));
         return toBasicUserProfiles(users);
     }
 
-    private Iterable<BasicUserProfile> toBasicUserProfiles(Iterable<User> users) {
+    private Iterable<BasicUserProfile> toBasicUserProfiles(Collection<User> users) {
         List<BasicUserProfile> userProfileList = new ArrayList<>();
         for (User user : users) {
             userProfileList.add(new BasicUserProfile(user));

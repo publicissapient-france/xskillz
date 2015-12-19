@@ -55,7 +55,7 @@ public class UserProfile extends BasicUserProfile {
         }
 
         public List<DomainSkill> getSkills() {
-            return userSkills.stream().map(DomainSkill::new).collect(toList());
+            return userSkills.stream().map(DomainSkill::new).sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName())).collect(toList());
         }
     }
 
