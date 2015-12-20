@@ -17,8 +17,9 @@ export default class MenuTop extends React.Component {
 
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
-                            <li className="active"><Link to="/">Dernière activité</Link></li>
-                            <li><Link to="/profile">Mon profil</Link></li>
+                            <li className="active"><Link to="/profile">Mon profil</Link></li>
+                            <li><Link to="user/search">Chercher un allié</Link></li>
+                            <li><Link to="skill/search">Chercher une compétence</Link></li>
                         </ul>
                     </div>
                 </div>
