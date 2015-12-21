@@ -30,7 +30,7 @@ public class MergeSkillsControllerTest extends TransactionSkillzTest {
         assertThat(getSkillsController.getSkills().stream().filter(s -> s.getName().equalsIgnoreCase("Java6")).count()).isEqualTo(1);
         assertThat(getSkillsController.getSkills().stream().filter(s -> s.getName().equalsIgnoreCase("Java")).count()).isEqualTo(1);
 
-        mergeSkillController.mergeSkills(java6.getSkill(), java.getSkill(), createPrincipalFor("jsmadja@xebia.fr"));
+        mergeSkillController.mergeSkills(java6.getSkill(), java.getSkill());
 
         assertThat(getSkillsController.getSkills().stream().filter(s -> s.getName().equalsIgnoreCase("Java6")).count()).isEqualTo(0);
     }

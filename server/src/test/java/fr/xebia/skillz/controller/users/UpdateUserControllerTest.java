@@ -24,7 +24,7 @@ public class UpdateUserControllerTest extends TransactionSkillzTest {
         User user = userRepository.findByEmail("blacroix@xebia.fr");
         assertThat(user.getDiploma().getYear()).isEqualTo(2007);
 
-        controller.updateUser(blacroix, createPrincipalFor("jsmadja@xebia.fr"), new UserUpdate(2009));
+        controller.updateUser(blacroix, new UserUpdate(2009));
 
         user = userRepository.findByEmail("blacroix@xebia.fr");
         assertThat(user.getDiploma().getYear()).isEqualTo(2009);

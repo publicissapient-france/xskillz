@@ -20,7 +20,7 @@ public class DeleteUserControllerTest extends TransactionSkillzTest {
     public void should_delete_user() {
         User blacroix = userRepository.findByEmail("blacroix@xebia.fr");
 
-        controller.deleteUser(blacroix, createPrincipalFor("jsmadja@xebia.fr"));
+        controller.deleteUser(blacroix);
 
         User user = userRepository.findByEmail("blacroix@xebia.fr");
         assertThat(user).isNull();

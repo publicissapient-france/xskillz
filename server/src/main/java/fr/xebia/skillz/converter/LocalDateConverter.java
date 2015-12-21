@@ -16,11 +16,13 @@ public class LocalDateConverter implements AttributeConverter<LocalDate, Date> {
 
     @Override
     public LocalDate convertToEntityAttribute(Date value) {
+        if (value == null) {
+            return null;
+        }
         Instant instant = value.toInstant();
         ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
         LocalDateTime localDateTime = zonedDateTime.toLocalDateTime();
-        LocalDate localDate = localDateTime.toLocalDate();
-        return localDate;
+        return localDateTime.toLocalDate();
     }
 }
 

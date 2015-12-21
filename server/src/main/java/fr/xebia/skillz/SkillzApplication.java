@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.handler.MappedInterceptor;
 
 @SpringBootApplication
 public class SkillzApplication {
@@ -24,4 +25,8 @@ public class SkillzApplication {
         return new CORSFilter();
     }
 
+    @Bean
+    public MappedInterceptor interceptor(ManagerInterceptor managerInterceptor) {
+        return new MappedInterceptor(new String[]{"/*"}, managerInterceptor);
+    }
 }
