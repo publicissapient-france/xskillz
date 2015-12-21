@@ -7,7 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @AllArgsConstructor
-class SkillRequest {
+public class SkillRequest {
     @NotEmpty
     public String name;
     public boolean interested;

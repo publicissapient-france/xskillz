@@ -4,10 +4,7 @@ import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import fr.xebia.skillz.repository.UserRepository;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.security.Principal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,10 +19,8 @@ public class DeleteUserControllerTest extends TransactionSkillzTest {
     @Test
     public void should_delete_user() {
         User blacroix = userRepository.findByEmail("blacroix@xebia.fr");
-        Principal principal = Mockito.mock(Principal.class);
-        Mockito.when(principal.getName()).thenReturn("jsmadja@xebia.fr");
 
-        controller.deleteUser(blacroix, principal);
+        controller.deleteUser(blacroix, createPrincipalFor("jsmadja@xebia.fr"));
 
         User user = userRepository.findByEmail("blacroix@xebia.fr");
         assertThat(user).isNull();
