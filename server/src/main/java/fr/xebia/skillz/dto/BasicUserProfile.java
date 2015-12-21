@@ -6,7 +6,7 @@ import fr.xebia.skillz.GravatarUrl;
 import fr.xebia.skillz.model.Company;
 import fr.xebia.skillz.model.User;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
@@ -28,11 +28,11 @@ public class BasicUserProfile {
     }
 
     public int getExperienceCounter() {
-        Date diploma = this.user.getDiploma();
+        LocalDate diploma = this.user.getDiploma();
         if (diploma == null) {
             return 0;
         }
-        return new Date().getYear() - diploma.getYear();
+        return LocalDate.now().getYear() - diploma.getYear();
     }
 
     public Long getId() {

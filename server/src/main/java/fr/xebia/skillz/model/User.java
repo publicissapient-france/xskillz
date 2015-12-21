@@ -2,14 +2,17 @@ package fr.xebia.skillz.model;
 
 import fr.xebia.skillz.model.UserSkill.Level;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.PERSIST;
 
+@Setter
 @Getter
 @Entity
 public class User implements Serializable, Validable {
@@ -22,7 +25,7 @@ public class User implements Serializable, Validable {
 
     private String email;
 
-    private Date diploma;
+    private LocalDate diploma;
 
     private Date lastLogin;
 
