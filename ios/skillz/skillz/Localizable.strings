@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  skillz
+
+  Created by Florent Capon on 22/12/2015.
+  Copyright © 2015 Xebia IT Architects. All rights reserved.
+*/
+
+"search_ally.textfield.placeholder" = "Prénom et/ou nom";

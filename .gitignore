@@ -3,3 +3,17 @@
 *.iml
 *.pem
 target
+
+# Xcode
+*/build/*
+*.pbxuser
+!default.pbxuser
+xcuserdata
+profile
+DerivedData
+*.hmap
+*.xccheckout
+*.xcworkspace
+!default.xcworkspace
+*.gcno
+*.gcda
