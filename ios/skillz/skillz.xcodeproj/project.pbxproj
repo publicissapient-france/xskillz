@@ -37,8 +37,8 @@
 		057B37091C298ED700FE3921 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B37081C298ED700FE3921 /* Global.swift */; };
 		057B370C1C29A04D00FE3921 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370B1C29A04D00FE3921 /* User.swift */; };
 		057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370D1C29ABE900FE3921 /* RealmStore.swift */; };
-		2BFB1CB9983D9FFD8E4AB167 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE9E8DFF2768557275F659A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		84AA9846A4CCDACDC270232F /* Pods_skillzTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35916978D97D3529A7D17EFE /* Pods_skillzTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2BFB1CB9983D9FFD8E4AB167 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE9E8DFF2768557275F659A /* Pods.framework */; };
+		84AA9846A4CCDACDC270232F /* Pods_skillzTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35916978D97D3529A7D17EFE /* Pods_skillzTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

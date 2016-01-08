@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 public typealias ProgressTask = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
 
@@ -19,8 +20,17 @@ public class AbstractDataAccess: NSObject {
         self.root = root
     }
     
-    public func GET(endpoint: String) -> Request {
-        let path = self.root + endpoint
+    public func GET(endpoint: String, absolute: Bool = false) -> Request {
+        if absolute {
+            return Alamofire.request(.GET, endpoint)
+        }
+        else {
+            let path = self.root + endpoint
+            return Alamofire.request(.GET, path)
+        }
+    }
+    
+    class func GET(path: String) -> Request {
         return Alamofire.request(.GET, path)
     }
     

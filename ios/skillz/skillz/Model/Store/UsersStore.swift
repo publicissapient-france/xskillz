@@ -20,8 +20,8 @@ public class UsersStore: NSObject {
     
     public func getAllUsers() -> UsersTask {
         return self.usersDataAccess.getAllUsers()
-            .success { (users: [User]) -> UsersTask in
-                self.users = users
+            .success { [weak self] (users: [User]) -> UsersTask in
+                self?.users = users
                 return UsersTask { fullfill, reject in
                     fullfill(users)
                 }
@@ -51,5 +51,9 @@ public class UsersStore: NSObject {
                     fullfill(results)
                 }
         }
+    }
+    
+    class func getUserAvatarImage(user: User!) -> UserAvatarTask {
+        return UsersDataAccess.getUserAvatarImage(user)
     }
 }

@@ -11,6 +11,7 @@ import RealmSwift
 import SwiftTask
 
 public typealias UsersTask = Task<ProgressTask, [User], NSError>
+public typealias UserAvatarTask = Task<ProgressTask, UIImage, NSError>
 
 public class UsersDataAccess: AbstractDataAccess {
     init() {
@@ -18,8 +19,8 @@ public class UsersDataAccess: AbstractDataAccess {
     }
     
     public func getAllUsers() -> UsersTask {
-        let task = UsersTask { progress, fulfill, reject, configure in
-            self.GET("users/")
+        let task = UsersTask { [weak self] progress, fulfill, reject, configure in
+            self?.GET("users/").validate()
                 .responseJSON { response in
                     if let JSON: NSMutableArray = response.result.value as? NSMutableArray {
                         let realm = try! RealmStore.inMemoryStore()
@@ -32,6 +33,18 @@ public class UsersDataAccess: AbstractDataAccess {
                             fulfill(users)
                         })
                     }
+            }
+        }
+        
+        return task
+    }
+    
+    class func getUserAvatarImage(user: User!) -> UserAvatarTask {
+        let task = UserAvatarTask { fullfill, reject in
+            AbstractDataAccess.GET(user.gravatarUrl).validate().responseImage { response in
+                if let image = response.result.value {
+                    fullfill(image)
+                }
             }
         }
         
