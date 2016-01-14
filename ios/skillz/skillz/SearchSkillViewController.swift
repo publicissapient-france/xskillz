@@ -11,9 +11,11 @@ import SwiftTask
 
 class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var skillsCollectionView: UICollectionView!
     @IBOutlet weak var skillsSearchListCollectionView: UICollectionView!
+    @IBOutlet weak var skillsSearchListCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var skillsSearchListWrapperView: UIView!
     
     var skillsStore: SkillsStore!
@@ -24,6 +26,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.paragraphSpacing = -4.0
+        paragraphStyle.alignment = NSTextAlignment.Center
+        self.titleLabel.attributedText = NSAttributedString(string: i18n("search_skill.title").uppercaseString, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
         self.searchTextField.placeholder = i18n("search_skill.textfield.placeholder")
     }
     
@@ -35,7 +41,13 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             .success { [weak self] (skills:[Skill]) -> Void in
                 self?.skills = skills
                 self?.skillsSearchListCollectionView.reloadData()
-//                self?.skillsCollectionView.reloadData()
+                self?.skillsSearchListCollectionView.performBatchUpdates({ () -> Void in
+                    self?.skillsSearchListCollectionView.reloadData()
+                    },
+                    completion: { (complete) -> Void in
+                        self?.skillsSearchListCollectionViewHeightConstraint.constant = min((self?.skillsSearchListCollectionView.contentSize.height)!, 210.0)
+                })
+                //                self?.skillsCollectionView.reloadData()
         }
     }
     
@@ -94,7 +106,6 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         //
         //            return skillCell
         //        }
-        
     }
     
     func skillFromIndexPath(indexPath: NSIndexPath) -> Skill? {
@@ -115,6 +126,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             else {
                 return CGSizeMake(self.skillsCollectionView.bounds.size.width, AllyCollectionViewCell.cellDefaultHeight())
             }
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
     /*

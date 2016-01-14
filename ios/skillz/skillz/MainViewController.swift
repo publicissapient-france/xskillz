@@ -11,11 +11,16 @@ import Masonry
 
 class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
     var pageViewController: UIPageViewController!
     var viewControllers: [UIViewController]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (self.view.bounds.size.width == 675.0) { // iPhone 6
+            self.backgroundImageView.image = UIImage(named: "Background~iphone6")
+        }
         
         let searchAllyViewController: SearchAllyViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchAllyViewController") as! SearchAllyViewController
         let searchSkillViewController: SearchSkillViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchSkillViewController") as! SearchSkillViewController

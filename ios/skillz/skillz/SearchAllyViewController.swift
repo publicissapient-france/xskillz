@@ -11,29 +11,44 @@ import SwiftTask
 
 class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var alliesCollectionView: UICollectionView!
     
     var usersStore: UsersStore!
     var users: [User]?
     var searchString: String?
+    var searchTimer: NSTimer?
     
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.paragraphSpacing = -4.0
+        paragraphStyle.alignment = NSTextAlignment.Center
+        self.titleLabel.attributedText = NSAttributedString(string: i18n("search_ally.title").uppercaseString, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
         self.searchTextField.placeholder = i18n("search_ally.textfield.placeholder")
     }
     
     
     // MARK: - Search algo
-    func updateSearch(search: String) {
+    func updateSearch(search: String, delay: NSTimeInterval = 0.0) {
+        if (delay > 0.0) {
+            self.searchTimer?.invalidate()
+            self.searchTimer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: Selector("updateSearchTimer:"), userInfo: search, repeats: false)
+            return
+        }
         self.searchString = search
         self.usersStore.getUsersFromSearch(search)
             .success { [weak self] (users:[User]) -> Void in
                 self?.users = users
                 self?.alliesCollectionView.reloadData()
         }
+    }
+    
+    func updateSearchTimer(timer: NSTimer) {
+        self.updateSearch(timer.userInfo as! String)
     }
     
     
@@ -46,7 +61,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         var newString:NSString = textField.text! as NSString
         newString = newString.stringByReplacingCharactersInRange(range, withString: string)
-        self.updateSearch(newString as String)
+        self.updateSearch(newString as String, delay:0.7)
         return true
     }
     

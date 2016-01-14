@@ -6,5 +6,8 @@
   Copyright © 2015 Xebia IT Architects. All rights reserved.
 */
 
+"search_ally.title" = "Skillz\nRechercher+un+allié";
+"search_skill.title" = "Skillz\nRechercher+une+compétence";
+
 "search_ally.textfield.placeholder" = "Prénom et/ou nom";
 "search_skill.textfield.placeholder" = "Compétence";
