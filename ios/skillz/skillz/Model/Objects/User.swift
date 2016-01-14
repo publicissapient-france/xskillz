@@ -11,8 +11,8 @@ import RealmSwift
 
 public class User: Object {
     dynamic var companyName: String = ""
-    dynamic var experienceCounter: Int16 = 0
+    dynamic var experienceCounter: Int = 0
     dynamic var gravatarUrl: String = ""
-    dynamic var id: Int16 = 0
+    dynamic var id: Int = 0
     dynamic var name: String = ""
 }

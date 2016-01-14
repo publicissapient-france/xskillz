@@ -8,18 +8,12 @@
 
 import UIKit
 
+enum Endpoints : String {
+    case Users = "users/", Skills = "skills/"
+}
+
 class NetworkSettings: NSObject {
     static func root() -> String {
         return "http://52.28.188.147:8080/"
-    }
-    
-    static func endpoints() -> Endoints {
-        return Endoints()
-    }
-}
-
-class Endoints: NSObject {
-    static func users() -> String {
-        return "users/"
     }
 }

@@ -20,7 +20,7 @@ public class UsersDataAccess: AbstractDataAccess {
     
     public func getAllUsers() -> UsersTask {
         let task = UsersTask { [weak self] progress, fulfill, reject, configure in
-            self?.GET("users/").validate()
+            self?.GET(Endpoints.Users.rawValue).validate()
                 .responseJSON { response in
                     if let JSON: NSMutableArray = response.result.value as? NSMutableArray {
                         let realm = try! RealmStore.inMemoryStore()

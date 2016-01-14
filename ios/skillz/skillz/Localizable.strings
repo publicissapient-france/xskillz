@@ -7,3 +7,4 @@
 */
 
 "search_ally.textfield.placeholder" = "Prénom et/ou nom";
+"search_skill.textfield.placeholder" = "Compétence";

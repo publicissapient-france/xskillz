@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0526D3F71C3D153A0001A217 /* AllyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526D3F61C3D153A0001A217 /* AllyCollectionViewCell.swift */; };
+		054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CD1E51C469E1C002E637B /* MainViewController.swift */; };
 		056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38441C19BE7F003984FD /* AppDelegate.swift */; };
 		056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38461C19BE7F003984FD /* HomeViewController.swift */; };
 		056F384A1C19BE7F003984FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056F38481C19BE7F003984FD /* Main.storyboard */; };
@@ -37,6 +38,13 @@
 		057B37091C298ED700FE3921 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B37081C298ED700FE3921 /* Global.swift */; };
 		057B370C1C29A04D00FE3921 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370B1C29A04D00FE3921 /* User.swift */; };
 		057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370D1C29ABE900FE3921 /* RealmStore.swift */; };
+		059D094F1C453C4200CBF519 /* SearchSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */; };
+		059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09501C45413E00CBF519 /* SkillsDataAccess.swift */; };
+		059D09531C45418200CBF519 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09521C45418200CBF519 /* Skill.swift */; };
+		059D09551C4541C000CBF519 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09541C4541C000CBF519 /* Domain.swift */; };
+		059D09571C4547C100CBF519 /* SkillsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09561C4547C100CBF519 /* SkillsStore.swift */; };
+		059D09591C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */; };
+		059D095B1C455B5D00CBF519 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D095A1C455B5D00CBF519 /* Fonts.swift */; };
 		2BFB1CB9983D9FFD8E4AB167 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE9E8DFF2768557275F659A /* Pods.framework */; };
 		84AA9846A4CCDACDC270232F /* Pods_skillzTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35916978D97D3529A7D17EFE /* Pods_skillzTests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		0526D3F61C3D153A0001A217 /* AllyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyCollectionViewCell.swift; sourceTree = "<group>"; };
+		054CD1E51C469E1C002E637B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		056F38411C19BE7F003984FD /* skillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38441C19BE7F003984FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056F38461C19BE7F003984FD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +104,13 @@
 		057B37081C298ED700FE3921 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		057B370B1C29A04D00FE3921 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		057B370D1C29ABE900FE3921 /* RealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStore.swift; sourceTree = "<group>"; };
+		059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSkillViewController.swift; sourceTree = "<group>"; };
+		059D09501C45413E00CBF519 /* SkillsDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsDataAccess.swift; sourceTree = "<group>"; };
+		059D09521C45418200CBF519 /* Skill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		059D09541C4541C000CBF519 /* Domain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
+		059D09561C4547C100CBF519 /* SkillsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsStore.swift; sourceTree = "<group>"; };
+		059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillSearchListCollectionViewCell.swift; sourceTree = "<group>"; };
+		059D095A1C455B5D00CBF519 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		1316A2D9EA45582F61C57851 /* Pods-skillzTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-skillzTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-skillzTests/Pods-skillzTests.debug.xcconfig"; sourceTree = "<group>"; };
 		35916978D97D3529A7D17EFE /* Pods_skillzTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_skillzTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A84CBB5AB6DBBF7FF12A463 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				0526D3F61C3D153A0001A217 /* AllyCollectionViewCell.swift */,
+				059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -173,8 +190,10 @@
 				056F384D1C19BE7F003984FD /* LaunchScreen.storyboard */,
 				057B37061C298CEB00FE3921 /* Localizable.strings */,
 				056F38481C19BE7F003984FD /* Main.storyboard */,
+				054CD1E51C469E1C002E637B /* MainViewController.swift */,
 				056F388C1C1B150E003984FD /* Model */,
 				056F38851C1AD477003984FD /* SearchAllyViewController.swift */,
+				059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */,
 				056F38901C1B1B6B003984FD /* Settings */,
 				056F38871C1ADFB0003984FD /* UI */,
 			);
@@ -221,6 +240,7 @@
 				0526D3F51C3D15070001A217 /* Cells */,
 				056F38881C1ADFCB003984FD /* CustomTextField.swift */,
 				056F388A1C1AE075003984FD /* Colors.swift */,
+				059D095A1C455B5D00CBF519 /* Fonts.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -240,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				056F38931C1B1C88003984FD /* AbstractDataAccess.swift */,
+				059D09501C45413E00CBF519 /* SkillsDataAccess.swift */,
 				056F38951C1B1C9F003984FD /* UsersDataAccess.swift */,
 			);
 			path = DataAccess;
@@ -249,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				056F389A1C1B1F60003984FD /* UsersStore.swift */,
+				059D09561C4547C100CBF519 /* SkillsStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -274,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				057B370B1C29A04D00FE3921 /* User.swift */,
+				059D09521C45418200CBF519 /* Skill.swift */,
+				059D09541C4541C000CBF519 /* Domain.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -541,7 +565,13 @@
 				057B370C1C29A04D00FE3921 /* User.swift in Sources */,
 				056F389B1C1B1F60003984FD /* UsersStore.swift in Sources */,
 				056F38891C1ADFCB003984FD /* CustomTextField.swift in Sources */,
+				059D09531C45418200CBF519 /* Skill.swift in Sources */,
+				054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */,
+				059D09551C4541C000CBF519 /* Domain.swift in Sources */,
+				059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */,
+				059D09591C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift in Sources */,
 				057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */,
+				059D095B1C455B5D00CBF519 /* Fonts.swift in Sources */,
 				056F388B1C1AE075003984FD /* Colors.swift in Sources */,
 				056F38941C1B1C88003984FD /* AbstractDataAccess.swift in Sources */,
 				056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */,
@@ -552,7 +582,9 @@
 				056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */,
 				056F38961C1B1C9F003984FD /* UsersDataAccess.swift in Sources */,
 				056F38921C1B1B7A003984FD /* NetworkSettings.swift in Sources */,
+				059D094F1C453C4200CBF519 /* SearchSkillViewController.swift in Sources */,
 				0526D3F71C3D153A0001A217 /* AllyCollectionViewCell.swift in Sources */,
+				059D09571C4547C100CBF519 /* SkillsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ import SwiftTask
 
 public class UsersStore: NSObject {
     
-    var users: [User]? = []
+    var users: [User]? = nil
     
     public typealias ProgressTask = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
     
@@ -44,7 +44,7 @@ public class UsersStore: NSObject {
             .success { (users: [User]) -> UsersTask in
                 for user: User in users {
                     if user.name.lowercaseString.containsString(searchString.lowercaseString) {
-                        results.append(user);
+                        results.append(user)
                     }
                 }
                 return UsersTask { fullfill, reject in

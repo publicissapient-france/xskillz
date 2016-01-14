@@ -13,6 +13,15 @@ public class StoresAssembly: TyphoonAssembly {
     
     public var dataAccessAssembly: DataAccessAssembly!
     
+    public dynamic func searchSkillViewController() -> AnyObject {
+        return TyphoonDefinition.withClass(SearchSkillViewController.self) {
+            (definition) in
+            
+            definition.injectProperty("skillsStore", with: self.skillsStore())
+            definition.scope = TyphoonScope.ObjectGraph
+        }
+    }
+    
     public dynamic func searchAllyViewController() -> AnyObject {
         return TyphoonDefinition.withClass(SearchAllyViewController.self) {
             (definition) in
@@ -27,6 +36,15 @@ public class StoresAssembly: TyphoonAssembly {
             (definition) in
             
             definition.injectProperty("usersDataAccess", with: self.dataAccessAssembly.usersDataAccess())
+            definition.scope = TyphoonScope.Singleton
+        }
+    }
+    
+    public dynamic func skillsStore() -> AnyObject {
+        return TyphoonDefinition.withClass(SkillsStore.self) {
+            (definition) in
+            
+            definition.injectProperty("skillsDataAccess", with: self.dataAccessAssembly.skillsDataAccess())
             definition.scope = TyphoonScope.Singleton
         }
     }

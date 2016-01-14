@@ -18,4 +18,12 @@ public class DataAccessAssembly: TyphoonAssembly {
             definition.scope = TyphoonScope.Singleton
         }
     }
+    
+    public dynamic func skillsDataAccess() -> AnyObject {
+        return TyphoonDefinition.withClass(SkillsDataAccess.self) {
+            (definition) in
+            
+            definition.scope = TyphoonScope.Singleton
+        }
+    }
 }

@@ -12,7 +12,11 @@ import UIColor_Hex_Swift
 class Colors: NSObject {
     
     static func mainColor() -> UIColor {
-        return UIColor(rgba: "#7a3a76");
+        return UIColor(rgba: "#7a3a76")
+    }
+    
+    static func greyColor() -> UIColor {
+        return UIColor(rgba: "#6e6e6e")
     }
     
 }

@@ -26,7 +26,6 @@ class AllyCollectionViewCell: UICollectionViewCell {
             self.xpLabel.text = String((self.user?.experienceCounter)!)
             UsersDataAccess.getUserAvatarImage(self.user)
                 .success { [weak self] (image: UIImage) -> Void in
-                    DLog("\(self!.user!.name)")
                     self?.avatarImage = image
             }
         }

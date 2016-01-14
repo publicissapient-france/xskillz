@@ -15,19 +15,20 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     @IBOutlet weak var alliesCollectionView: UICollectionView!
     
     var usersStore: UsersStore!
-    var users:[User]?
+    var users: [User]?
+    var searchString: String?
     
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.searchTextField.placeholder = i18n("search_ally.textfield.placeholder")
-        self.usersStore.getAllUsers()
     }
     
     
     // MARK: - Search algo
     func updateSearch(search: String) {
+        self.searchString = search
         self.usersStore.getUsersFromSearch(search)
             .success { [weak self] (users:[User]) -> Void in
                 self?.users = users
@@ -43,16 +44,10 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var newString:NSString = self.searchString() as NSString
+        var newString:NSString = textField.text! as NSString
         newString = newString.stringByReplacingCharactersInRange(range, withString: string)
         self.updateSearch(newString as String)
         return true
-    }
-    
-    
-    // MARK: - Helpers
-    func searchString() -> String {
-        return self.searchTextField.text!
     }
     
     
