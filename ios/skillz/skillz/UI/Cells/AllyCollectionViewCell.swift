@@ -24,10 +24,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
             self.nameLabel.text = self.user?.name
             self.companyLabel.text = self.user?.companyName
             self.xpLabel.text = String((self.user?.experienceCounter)!)
-            UsersDataAccess.getUserAvatarImage(self.user)
-                .success { [weak self] (image: UIImage) -> Void in
-                    self?.avatarImage = image
-            }
+            self.avatarImageView.af_setImageWithURL(NSURL(string: (self.user?.gravatarUrl)!)!)
         }
     }
     var avatarImage: UIImage? {
