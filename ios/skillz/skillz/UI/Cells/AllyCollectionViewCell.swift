@@ -19,7 +19,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var skillsLabel: UILabel!
     @IBOutlet weak var xpLabel: UILabel!
     
-    var user:User? {
+    var user: User? {
         didSet {
             self.nameLabel.text = self.user?.name
             self.companyLabel.text = self.user?.companyName
@@ -30,7 +30,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    var avatarImage:UIImage? {
+    var avatarImage: UIImage? {
         didSet {
             self.avatarImageView.image = self.avatarImage
             self.avatarLoadingView.hidden = true
