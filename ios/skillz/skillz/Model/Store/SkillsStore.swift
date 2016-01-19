@@ -49,4 +49,8 @@ public class SkillsStore: NSObject {
                 }
         }
     }
+    
+    public func getAllUsersForSkill(skill: Skill) -> UsersTask {
+        return self.skillsDataAccess.getAllUsersForSkill(skill)
+    }
 }

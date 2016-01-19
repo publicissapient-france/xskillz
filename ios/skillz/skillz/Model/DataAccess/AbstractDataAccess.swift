@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
+public typealias ProgressMultiTasks = (completedCount: Int, totalCount: Int)
 public typealias ProgressTask = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
 
 public class AbstractDataAccess: NSObject {

@@ -18,6 +18,7 @@ public class StoresAssembly: TyphoonAssembly {
             (definition) in
             
             definition.injectProperty("skillsStore", with: self.skillsStore())
+            definition.injectProperty("usersStore", with: self.usersStore())
             definition.scope = TyphoonScope.ObjectGraph
         }
     }

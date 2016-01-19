@@ -11,3 +11,5 @@
 
 "search_ally.textfield.placeholder" = "Prénom et/ou nom";
 "search_skill.textfield.placeholder" = "Compétence";
+"search_skill.number_of_allies.plural" = "%i alliés trouvés";
+"search_skill.number_of_allies.singular" = "%i allié trouvé";

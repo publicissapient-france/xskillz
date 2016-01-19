@@ -15,4 +15,6 @@ public class User: Object {
     dynamic var gravatarUrl: String = ""
     dynamic var id: Int = 0
     dynamic var name: String = ""
+    
+    let domains: List<Domain> = List<Domain>()
 }

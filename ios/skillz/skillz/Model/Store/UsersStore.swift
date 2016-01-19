@@ -14,8 +14,6 @@ public class UsersStore: NSObject {
     
     var users: [User]? = nil
     
-    public typealias ProgressTask = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
-    
     public var usersDataAccess: UsersDataAccess!
     
     public func getAllUsers() -> UsersTask {
@@ -51,6 +49,19 @@ public class UsersStore: NSObject {
                     fullfill(results)
                 }
         }
+    }
+    
+    public func getFullUser(user: User) -> UserTask {
+        return self.usersDataAccess.getFullUser(user)
+    }
+    
+    public func getFullUsers(users: [User]) -> FullUsersTask {
+        var tasks = [UserTask]()
+        for user: User in users {
+            tasks.append(self.getFullUser(user))
+        }
+        
+        return Task.some(tasks)
     }
     
     class func getUserAvatarImage(user: User!) -> UserAvatarTask {

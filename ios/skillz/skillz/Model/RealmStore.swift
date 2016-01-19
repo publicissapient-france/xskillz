@@ -28,4 +28,13 @@ public class RealmStore : NSObject {
             throw error
         }
     }
+    
+    public static func defaultStore() throws -> Realm {
+        do {
+            let realm = try self.inMemoryStore()
+            return realm
+        } catch let error as NSError {
+            throw error
+        }
+    }
 }

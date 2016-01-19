@@ -10,8 +10,10 @@ import UIKit
 import RealmSwift
 import SwiftTask
 
-public typealias UsersTask = Task<ProgressTask, [User], NSError>
+public typealias FullUsersTask = Task<ProgressMultiTasks, [User], NSError>
 public typealias UserAvatarTask = Task<ProgressTask, UIImage, NSError>
+public typealias UsersTask = Task<ProgressTask, [User], NSError>
+public typealias UserTask = Task<ProgressTask, User, NSError>
 
 public class UsersDataAccess: AbstractDataAccess {
     init() {
@@ -22,8 +24,8 @@ public class UsersDataAccess: AbstractDataAccess {
         let task = UsersTask { [weak self] progress, fulfill, reject, configure in
             self?.GET(Endpoints.Users.rawValue).validate()
                 .responseJSON { response in
-                    if let JSON: NSMutableArray = response.result.value as? NSMutableArray {
-                        let realm = try! RealmStore.inMemoryStore()
+                    if let JSON: NSArray = response.result.value as? NSArray {
+                        let realm = try! RealmStore.defaultStore()
                         try! realm.write({ () -> Void in
                             var users = [User]()
                             for userDictionary in JSON {
@@ -31,6 +33,23 @@ public class UsersDataAccess: AbstractDataAccess {
                                 users.append(user)
                             }
                             fulfill(users)
+                        })
+                    }
+            }
+        }
+        
+        return task
+    }
+    
+    public func getFullUser(user: User) -> UserTask {
+        let task = UserTask { [weak self] progress, fulfill, reject, configure in
+            self?.GET(NetworkSettings.user(user)).validate()
+                .responseJSON { response in
+                    if let JSON: NSDictionary = response.result.value as? NSDictionary {
+                        let realm = try! RealmStore.defaultStore()
+                        try! realm.write({ () -> Void in
+                            let user = try! realm.create(User.self, value: JSON)
+                            fulfill(user)
                         })
                     }
             }

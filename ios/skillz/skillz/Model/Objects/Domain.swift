@@ -12,4 +12,6 @@ import RealmSwift
 public class Domain: Object {
     dynamic var id: Int = 0
     dynamic var name: String = ""
+    
+    let skills: List<Skill> = List<Skill>()
 }
