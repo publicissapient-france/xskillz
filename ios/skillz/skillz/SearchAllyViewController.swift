@@ -11,10 +11,21 @@ import SwiftTask
 
 class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var alliesCollectionView: UICollectionView!
     
+    var loadingVisible: Bool! {
+        didSet {
+            if (self.loadingVisible == true) {
+                self.loadingView.startAnimating()
+            }
+            else {
+                self.loadingView.stopAnimating()
+            }
+        }
+    }
     var usersStore: UsersStore!
     var users: [User]?
     var searchString: String?
@@ -36,11 +47,15 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             self.searchTimer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: Selector("updateSearchTimer:"), userInfo: search, repeats: false)
             return
         }
+        self.loadingVisible = true
+        self.users = nil
+        self.alliesCollectionView.reloadData()
         self.searchString = search
         self.usersStore.getUsersFromSearch(search)
             .success { [weak self] (users:[User]) -> Void in
                 self?.users = users
                 self?.alliesCollectionView.reloadData()
+                self?.loadingVisible = false
         }
     }
     
@@ -59,6 +74,11 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         var newString:NSString = textField.text! as NSString
         newString = newString.stringByReplacingCharactersInRange(range, withString: string)
         self.updateSearch(newString as String, delay:0.7)
+        return true
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        self.updateSearch("")
         return true
     }
     
