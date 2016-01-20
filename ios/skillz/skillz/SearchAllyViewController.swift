@@ -24,10 +24,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = -4.0
-        paragraphStyle.alignment = NSTextAlignment.Center
-        self.titleLabel.attributedText = NSAttributedString(string: i18n("search_ally.title").uppercaseString, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
+        self.titleLabel.text = i18n("search_ally.title").uppercaseString
         self.searchTextField.placeholder = i18n("search_ally.textfield.placeholder")
     }
     

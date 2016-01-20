@@ -12,11 +12,15 @@ import Masonry
 class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var skillzLabel: UILabel!
+    
     var pageViewController: UIPageViewController!
     var viewControllers: [UIViewController]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.skillzLabel.text = i18n("app.title").uppercaseString
         
         if (self.view.bounds.size.width == 675.0) { // iPhone 6
             self.backgroundImageView.image = UIImage(named: "Background~iphone6")

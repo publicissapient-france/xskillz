@@ -13,6 +13,7 @@
         <mutableArray key="SanFranciscoDisplay-Medium.otf">
             <string>SanFranciscoDisplay-Medium</string>
             <string>SanFranciscoDisplay-Medium</string>
+            <string>SanFranciscoDisplay-Medium</string>
         </mutableArray>
         <mutableArray key="SanFranciscoDisplay-Regular.otf">
             <string>SanFranciscoDisplay-Regular</string>
@@ -106,17 +107,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="EY3-GN-k3U">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8h-Jz-ctG">
+                                <rect key="frame" x="186" y="37" width="43" height="22"/>
+                                <fontDescription key="fontDescription" name="SanFranciscoDisplay-Medium" family="San Francisco Display" pointSize="18"/>
+                                <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="A8h-Jz-ctG" firstAttribute="top" secondItem="iP5-Tv-ceB" secondAttribute="bottom" constant="17" id="AeK-DM-E67"/>
                             <constraint firstAttribute="trailing" secondItem="EY3-GN-k3U" secondAttribute="trailing" id="Awq-Ts-VCI"/>
                             <constraint firstItem="EY3-GN-k3U" firstAttribute="top" secondItem="DOo-Cm-xkI" secondAttribute="top" id="Fss-jY-coO"/>
+                            <constraint firstItem="A8h-Jz-ctG" firstAttribute="centerX" secondItem="DOo-Cm-xkI" secondAttribute="centerX" id="Qoa-1k-Uun"/>
                             <constraint firstItem="Fn7-ja-tfZ" firstAttribute="top" secondItem="EY3-GN-k3U" secondAttribute="bottom" id="rnI-Vx-bK1"/>
                             <constraint firstItem="EY3-GN-k3U" firstAttribute="leading" secondItem="DOo-Cm-xkI" secondAttribute="leading" id="u5C-PS-BDG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="EY3-GN-k3U" id="PI0-bq-Cn5"/>
+                        <outlet property="skillzLabel" destination="A8h-Jz-ctG" id="CtL-4W-zXu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQR-Jx-59E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,8 +145,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1x-rv-TJc">
-                                <rect key="frame" x="186" y="37" width="43" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1x-rv-TJc">
+                                <rect key="frame" x="187" y="54" width="43" height="22"/>
                                 <fontDescription key="fontDescription" name="SanFranciscoDisplay-Medium" family="San Francisco Display" pointSize="18"/>
                                 <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -180,7 +190,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Xebia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRM-sA-42M">
-                                                            <rect key="frame" x="100" y="23" width="40" height="20"/>
+                                                            <rect key="frame" x="100" y="23" width="40" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="SanFranciscoDisplay-Semibold" family="San Francisco Display" pointSize="16"/>
                                                             <color key="textColor" red="0.47843137250000001" green="0.2274509804" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -236,7 +246,7 @@
                                                             </variation>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdh-Ad-Kn7">
-                                                            <rect key="frame" x="329" y="-12" width="42" height="60"/>
+                                                            <rect key="frame" x="329" y="-12" width="41.5" height="60"/>
                                                             <fontDescription key="fontDescription" name="SanFranciscoDisplay-Bold" family="San Francisco Display" pointSize="50"/>
                                                             <color key="textColor" red="0.47843137250000001" green="0.2274509804" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -292,7 +302,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Objective-C iOS FIFA Poker" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zx1-mv-4Qp">
-                                                            <rect key="frame" x="100" y="72" width="187" height="20"/>
+                                                            <rect key="frame" x="100" y="72" width="187" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="SanFranciscoDisplay-Semibold" family="San Francisco Display" pointSize="16"/>
                                                             <color key="textColor" red="0.47843137250000001" green="0.2274509804" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -355,7 +365,7 @@
                             <constraint firstAttribute="trailing" secondItem="FzW-T8-ghV" secondAttribute="trailing" id="GL1-ev-NZ2"/>
                             <constraint firstItem="VN3-KF-aAX" firstAttribute="top" secondItem="Fde-UT-nig" secondAttribute="bottom" constant="87" id="Nc6-br-DC2"/>
                             <constraint firstItem="FzW-T8-ghV" firstAttribute="top" secondItem="VN3-KF-aAX" secondAttribute="bottom" constant="20" id="a3i-7x-wD5"/>
-                            <constraint firstItem="E1x-rv-TJc" firstAttribute="top" secondItem="Fde-UT-nig" secondAttribute="bottom" constant="17" id="mQL-vt-lru"/>
+                            <constraint firstItem="E1x-rv-TJc" firstAttribute="top" secondItem="Fde-UT-nig" secondAttribute="bottom" constant="34" id="mQL-vt-lru"/>
                             <constraint firstItem="PC2-62-VoV" firstAttribute="top" secondItem="FzW-T8-ghV" secondAttribute="bottom" id="t10-GY-4Bo"/>
                             <constraint firstItem="VN3-KF-aAX" firstAttribute="leading" secondItem="kXd-z8-MVm" secondAttribute="leading" constant="33" id="zlK-NU-A7u"/>
                         </constraints>
@@ -482,7 +492,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xebia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaG-vi-BPf">
-                                                            <rect key="frame" x="64" y="19" width="143" height="15"/>
+                                                            <rect key="frame" x="64" y="19" width="143" height="14.5"/>
                                                             <fontDescription key="fontDescription" name="SanFranciscoDisplay-Semibold" family="San Francisco Display" pointSize="12"/>
                                                             <color key="textColor" red="0.47843137250000001" green="0.2274509804" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -794,7 +804,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Syz-O4-Rm3">
-                                <rect key="frame" x="187" y="37" width="43" height="22"/>
+                                <rect key="frame" x="187" y="54" width="43" height="22"/>
                                 <fontDescription key="fontDescription" name="SanFranciscoDisplay-Medium" family="San Francisco Display" pointSize="18"/>
                                 <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -814,7 +824,7 @@
                             <constraint firstItem="xhI-Ss-XPM" firstAttribute="leading" secondItem="gNF-cw-gtA" secondAttribute="leading" id="ed9-BM-oZs"/>
                             <constraint firstItem="xhI-Ss-XPM" firstAttribute="top" secondItem="gNF-cw-gtA" secondAttribute="bottom" id="gu0-Y2-KcS"/>
                             <constraint firstItem="tMH-6L-b6U" firstAttribute="centerX" secondItem="4Yh-9K-69D" secondAttribute="centerX" id="lPs-fY-7sO"/>
-                            <constraint firstItem="Syz-O4-Rm3" firstAttribute="top" secondItem="MRa-ek-VQE" secondAttribute="bottom" constant="17" id="q1p-2v-2IB"/>
+                            <constraint firstItem="Syz-O4-Rm3" firstAttribute="top" secondItem="MRa-ek-VQE" secondAttribute="bottom" constant="34" id="q1p-2v-2IB"/>
                             <constraint firstItem="gjp-aW-ALj" firstAttribute="top" secondItem="4Yh-9K-69D" secondAttribute="bottom" id="y0f-wh-1nk"/>
                         </constraints>
                     </view>
