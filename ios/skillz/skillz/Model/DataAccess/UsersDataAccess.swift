@@ -21,6 +21,7 @@ public class UsersDataAccess: AbstractDataAccess {
     }
     
     public func getAllUsers() -> UsersTask {
+        AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = UsersTask { [weak self] progress, fulfill, reject, configure in
             self?.GET(Endpoints.Users.rawValue).validate()
                 .responseJSON { response in
@@ -32,6 +33,7 @@ public class UsersDataAccess: AbstractDataAccess {
                                 let user = try! realm.create(User.self, value: userDictionary)
                                 users.append(user)
                             }
+                            AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                             fulfill(users)
                         })
                     }
@@ -42,6 +44,7 @@ public class UsersDataAccess: AbstractDataAccess {
     }
     
     public func getFullUser(user: User) -> UserTask {
+        AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = UserTask { [weak self] progress, fulfill, reject, configure in
             self?.GET(NetworkSettings.user(user)).validate()
                 .responseJSON { response in
@@ -49,6 +52,7 @@ public class UsersDataAccess: AbstractDataAccess {
                         let realm = try! RealmStore.defaultStore()
                         try! realm.write({ () -> Void in
                             let user = try! realm.create(User.self, value: JSON)
+                            AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                             fulfill(user)
                         })
                     }
@@ -59,9 +63,11 @@ public class UsersDataAccess: AbstractDataAccess {
     }
     
     class func getUserAvatarImage(user: User!) -> UserAvatarTask {
+        AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = UserAvatarTask { fullfill, reject in
             AbstractDataAccess.GET(user.gravatarUrl).validate().responseImage { response in
                 if let image = response.result.value {
+                    AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                     fullfill(image)
                 }
             }

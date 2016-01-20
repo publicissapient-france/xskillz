@@ -11,7 +11,7 @@ import SwiftTask
 
 class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var skillsResultsListCollectionView: UICollectionView!
     @IBOutlet weak var skillsResultsListWrapperView: UIView!
@@ -19,13 +19,25 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     @IBOutlet weak var skillsSearchListCollectionView: UICollectionView!
     @IBOutlet weak var skillsSearchListCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var skillsSearchListWrapperView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     
+    var loadingVisible: Bool! {
+        didSet {
+            if (self.loadingVisible == true) {
+                self.loadingView.startAnimating()
+            }
+            else {
+                self.loadingView.stopAnimating()
+            }
+        }
+    }
     var searchString:String?
     var selectedSkill:Skill?
     var skillsStore: SkillsStore!
     var skills:[Skill]?
     var users:[[User]]?
     var usersStore: UsersStore!
+    
     
     // MARK: - Init
     override func viewDidLoad() {
@@ -41,18 +53,23 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     
     // MARK: - Search algo
     func updateSearch(search: String) {
+        self.loadingVisible = true
+        self.users = nil
+        self.skillsResultsListCollectionView.reloadData()
+        self.skillsResultsNumberOfAlliesLabel.hidden = true
         self.searchString = search
         self.skillsStore.getSkillsFromSearch(search)
             .success { [weak self] (skills:[Skill]) -> Void in
+                self?.loadingVisible = false
                 self?.skills = skills
-                //                self?.skillsSearchListCollectionView.performBatchUpdates({ () -> Void in
-                //                    self?.skillsSearchListCollectionView.reloadData()
-                //                    },
-                //                    completion: { (complete) -> Void in
-                //                        self?.skillsSearchListCollectionViewHeightConstraint.constant = min((self?.skillsSearchListCollectionView.contentSize.height)!, 210.0)
-                //                })
                 self?.skillsSearchListCollectionView.reloadData()
+                NSTimer.scheduledTimerWithTimeInterval(0.01, target: self!, selector: Selector("resizeSearchListCollection"), userInfo: nil, repeats: false)
+                
         }
+    }
+    
+    func resizeSearchListCollection() -> Void {
+        self.skillsSearchListCollectionViewHeightConstraint.constant = min((self.skillsSearchListCollectionView.contentSize.height), 210.0)
     }
     
     
@@ -66,6 +83,11 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         var newString:NSString = textField.text! as NSString
         newString = newString.stringByReplacingCharactersInRange(range, withString: string)
         self.updateSearch(newString as String)
+        return true
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        self.updateSearch("")
         return true
     }
     
@@ -197,12 +219,15 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.selectSkill(self.skillFromIndexPath(indexPath)!)
+        if (collectionView == self.skillsSearchListCollectionView) {
+            self.selectSkill(self.skillFromIndexPath(indexPath)!)
+        }
     }
     
     
     // MARK: - Fetch users and skills details
     func selectSkill(skill: Skill) -> Void {
+        self.loadingVisible = true
         self.selectedSkill = skill
         self.searchTextField.text = skill.name
         self.searchTextField.resignFirstResponder()
@@ -217,6 +242,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             .success { [weak self] (users:[User]) -> Void in
                 self?.sortUsers(users)
                 self?.skillsResultsListCollectionView.reloadData()
+                self?.loadingVisible = false
         }
     }
     

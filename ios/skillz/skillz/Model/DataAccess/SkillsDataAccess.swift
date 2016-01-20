@@ -19,6 +19,7 @@ public class SkillsDataAccess: AbstractDataAccess {
     }
 
     public func getAllSkills() -> SkillsTask {
+        AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = SkillsTask { [weak self] progress, fulfill, reject, configure in
             self?.GET(Endpoints.Skills.rawValue).validate()
                 .responseJSON { response in
@@ -30,6 +31,7 @@ public class SkillsDataAccess: AbstractDataAccess {
                                 let skill = try! realm.create(Skill.self, value: skillDictionary)
                                 skills.append(skill)
                             }
+                            AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                             fulfill(skills)
                         })
                     }
@@ -40,6 +42,7 @@ public class SkillsDataAccess: AbstractDataAccess {
     }
     
     public func getAllUsersForSkill(skill: Skill) -> UsersTask {
+        AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = UsersTask { [weak self] progress, fulfill, reject, configure in
             self?.GET(NetworkSettings.usersForSkill(skill)).validate()
             .responseJSON { response in
@@ -51,6 +54,7 @@ public class SkillsDataAccess: AbstractDataAccess {
                             let user = try! realm.create(User.self, value: userDictionary)
                             users.append(user)
                         }
+                        AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                         fulfill(users)
                     })
                 }

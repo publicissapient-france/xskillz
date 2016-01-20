@@ -35,4 +35,7 @@ public class AbstractDataAccess: NSObject {
         return Alamofire.request(.GET, path)
     }
     
+    class func activityIndicatorInStatusBarVisible(visible: Bool) -> Void {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = visible
+    }
 }
