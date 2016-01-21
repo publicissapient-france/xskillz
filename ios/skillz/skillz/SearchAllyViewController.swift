@@ -31,6 +31,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     var searchString: String?
     var searchTimer: NSTimer?
     
+    
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +41,15 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     }
     
     
-    // MARK: - Search algo
-    func updateSearch(search: String, delay: NSTimeInterval = 0.0) {
+    // MARK: - Search & results
+    private func updateSearch(search: String, delay: NSTimeInterval = 0.0) {
         if (delay > 0.0) {
             self.searchTimer?.invalidate()
             self.searchTimer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: Selector("updateSearchTimer:"), userInfo: search, repeats: false)
             return
         }
+        self.clearResults()
         self.loadingVisible = true
-        self.users = nil
-        self.alliesCollectionView.reloadData()
         self.searchString = search
         self.usersStore.getUsersFromSearch(search)
             .success { [weak self] (users:[User]) -> Void in
@@ -57,6 +57,11 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
                 self?.alliesCollectionView.reloadData()
                 self?.loadingVisible = false
         }
+    }
+    
+    private func clearResults() -> Void {
+        self.users = nil
+        self.alliesCollectionView.reloadData()
     }
     
     func updateSearchTimer(timer: NSTimer) {
@@ -103,13 +108,6 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         return cell
     }
     
-    func userFromIndexPath(indexPath: NSIndexPath) -> User? {
-        if (self.users != nil) {
-            return self.users![indexPath.row]
-        }
-        return nil
-    }
-    
     
     // MARK: - UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView,
@@ -118,14 +116,12 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             return CGSizeMake(self.alliesCollectionView.bounds.size.width, AllyCollectionViewCell.cellDefaultHeight())
     }
     
-    /*
-    // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    // MARK: - Helpers
+    private func userFromIndexPath(indexPath: NSIndexPath) -> User? {
+        if (self.users != nil) {
+            return self.users![indexPath.row]
+        }
+        return nil
     }
-    */
-    
 }

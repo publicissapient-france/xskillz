@@ -17,6 +17,8 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     var pageViewController: UIPageViewController!
     var viewControllers: [UIViewController]!
 
+    
+    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,10 +45,6 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         }
     }
     
-    func indexOfViewController(viewController: UIViewController) -> Int {
-        return self.viewControllers.indexOf(viewController)!
-    }
-    
     
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -66,5 +64,8 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     }
     
     
-    // MARK: - UIPageViewControllerDelegate
+    // MARK: - Helpers
+    private func indexOfViewController(viewController: UIViewController) -> Int {
+        return self.viewControllers.indexOf(viewController)!
+    }
 }

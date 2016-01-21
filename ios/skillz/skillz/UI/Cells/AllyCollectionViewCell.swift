@@ -28,10 +28,8 @@ class AllyCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    class func cellDefaultHeight() -> CGFloat {
-        return 134.0
-    }
     
+    // MARK: - Init
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -44,5 +42,9 @@ class AllyCollectionViewCell: UICollectionViewCell {
         self.avatarImageView.af_cancelImageRequest()
         self.avatarImageView.image = nil
         self.avatarLoadingView.hidden = false
+    }
+    
+    class func cellDefaultHeight() -> CGFloat {
+        return 134.0
     }
 }

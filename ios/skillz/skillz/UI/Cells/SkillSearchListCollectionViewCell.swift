@@ -34,10 +34,8 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    class func cellDefaultHeight() -> CGFloat {
-        return 30.0
-    }
     
+    // MARK: - Init
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -49,6 +47,12 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
         self.numberOfUsersLabel.text = nil
     }
     
+    class func cellDefaultHeight() -> CGFloat {
+        return 30.0
+    }
+    
+    
+    // MARK: - Public API
     func skill(skill: Skill, searchString: String, numberOfUsers: Int) -> Void {
         self.skill = skill
         self.searchString = searchString
@@ -57,45 +61,61 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
         self.numberOfUsersLabel.text = "\(String(numberOfUsers))x"
     }
     
-    func updateNameLabel() {
-        let fontSize: CGFloat = 17.0
-        let defaultAttribute = [
-            NSForegroundColorAttributeName: (self.highlighted || self.selected ? UIColor.whiteColor() : Colors.greyColor()),
-            NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: fontSize)
-        ]
-        let matchAttribute = [
-            NSForegroundColorAttributeName: (self.highlighted || self.selected ? UIColor.whiteColor() : Colors.mainColor()),
-            NSFontAttributeName: Fonts.mainFont(FontsStyle.Bold, size: fontSize)
-        ]
+    
+    // MARK: - Private API
+    private func updateNameLabel() {
+        var components = self.stringComponents((self.skill?.name)!, searchString: self.searchString!)
+        let fullString: NSMutableAttributedString = NSMutableAttributedString()
+        for var i = 0; i < components.count; i++ {
+            fullString.appendAttributedString(NSAttributedString(string: components[i], attributes: (components[i].lowercaseString == searchString!.lowercaseString) ? self.skillNameMatchAttribute() : self.skillNameDefaultAttribute()))
+        }
         
-        let name = self.skill?.name
+        self.nameLabel.attributedText = fullString
+    }
+    
+    
+    // MARK: - Helpers
+    private func stringComponents(string: String, searchString: String) -> [String] {
         var components = [String]()
         var lastIndex: Int = 0
         
-        for var i = 0; i < name?.characters.count; i++ {
-            var part = name?.substringFromIndex((name?.startIndex.advancedBy(i))!)
-            part = part!.substringToIndex(name!.startIndex.advancedBy(min(part!.characters.count, (self.searchString?.characters.count)!)))
-            if (part!.lowercaseString == searchString?.lowercaseString) {
+        for var i = 0; i < string.characters.count; i++ {
+            var part = string.substringFromIndex((string.startIndex.advancedBy(i)))
+            part = part.substringToIndex(string.startIndex.advancedBy(min(part.characters.count, (self.searchString?.characters.count)!)))
+            if (part.lowercaseString == searchString.lowercaseString) {
                 if (components.count == 0 && i > 0) {
-                    components.append(name!.substringToIndex(name!.startIndex.advancedBy(i)))
+                    components.append(string.substringToIndex(string.startIndex.advancedBy(i)))
                 }
                 else if (lastIndex < i) {
-                    components.append(name!.substringFromIndex(name!.startIndex.advancedBy(lastIndex)).substringToIndex(name!.startIndex.advancedBy(i - lastIndex)))
+                    components.append(string.substringFromIndex(string.startIndex.advancedBy(lastIndex)).substringToIndex(string.startIndex.advancedBy(i - lastIndex)))
                 }
-                components.append(part!)
+                components.append(part)
                 lastIndex = (i + (self.searchString?.characters.count)!)
                 i += ((self.searchString?.characters.count)! - 1)
             }
         }
-        if (lastIndex < (name!.characters.count)) {
-            components.append(name!.substringFromIndex(name!.startIndex.advancedBy(lastIndex)))
+        if (lastIndex < (string.characters.count)) {
+            components.append(string.substringFromIndex(string.startIndex.advancedBy(lastIndex)))
         }
         
-        let fullString :NSMutableAttributedString = NSMutableAttributedString()
-        for var i = 0; i < components.count; i++ {
-            fullString.appendAttributedString(NSAttributedString(string: components[i], attributes: (components[i].lowercaseString == searchString!.lowercaseString) ? matchAttribute : defaultAttribute))
-        }
-        
-        self.nameLabel.attributedText = fullString
+        return components
+    }
+    
+    private func skillNameFontSize() -> CGFloat {
+        return 17.0
+    }
+    
+    private func skillNameDefaultAttribute() -> [String : AnyObject] {
+        return [
+            NSForegroundColorAttributeName: (self.highlighted || self.selected ? UIColor.whiteColor() : Colors.greyColor()),
+            NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: self.skillNameFontSize())
+        ]
+    }
+    
+    private func skillNameMatchAttribute() -> [String : AnyObject] {
+        return [
+            NSForegroundColorAttributeName: (self.highlighted || self.selected ? UIColor.whiteColor() : Colors.mainColor()),
+            NSFontAttributeName: Fonts.mainFont(FontsStyle.Bold, size: self.skillNameFontSize())
+        ]
     }
 }
