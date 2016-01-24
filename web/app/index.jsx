@@ -4,6 +4,8 @@ import './css/external/font-awesome.min.css';
 /* Internal CSS */
 import './css/main.css';
 import './css/utils.css';
+import './css/menu-top.css';
+import './css/menu-left.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
