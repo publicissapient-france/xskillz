@@ -1,11 +1,9 @@
 package fr.xebia.skillz.controller.companies;
 
-import fr.xebia.skillz.dto.CompanyProfile;
+import fr.xebia.skillz.model.Company;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,8 +14,9 @@ public class GetCompaniesControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_all_companies() {
-        List<CompanyProfile> companies = controller.getCompanies();
+        Iterable<Company> companies = controller.getCompanies();
         assertThat(companies).extracting("name").containsOnly("Xebia", "WeScale", "Thiga");
+        assertThat(toJson(companies)).isEqualTo("[{\"id\":1,\"name\":\"Xebia\"},{\"id\":2,\"name\":\"WeScale\"},{\"id\":3,\"name\":\"Thiga\"}]");
     }
 
 }

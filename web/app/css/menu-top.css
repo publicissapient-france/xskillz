@@ -1,0 +1,18 @@
+.navbar {
+    background: white;
+    font-weight: 500;
+    border-top: 2px solid #E55555;
+    border-bottom: 1px solid #D9DADE;
+}
+
+.navbar .fa-cog {
+    font-size: 1.42em;
+}
+
+.navbar .icon > a {
+    padding-bottom: 13px;
+}
+
+.navbar .active > a {
+    background-color: #F7FAFC !important;
+}

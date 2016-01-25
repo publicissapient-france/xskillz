@@ -6,6 +6,7 @@ import fr.xebia.skillz.model.UserSkill;
 import fr.xebia.skillz.model.UserSkill.Level;
 import fr.xebia.skillz.repository.SkillRepository;
 import fr.xebia.skillz.repository.UserRepository;
+import fr.xebia.skillz.repository.UserSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,18 +26,19 @@ public class AddSkillController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @Autowired
+    private UserSkillRepository userSkillRepository;
+
     @RequestMapping(value = "/skills", method = POST)
     public UserSkill addSkill(@Valid @RequestBody SkillRequest skillRequest, Principal principal) {
         User user = userRepository.findByEmail(principal.getName());
-        return addSkill(skillRequest, user);
-    }
-
-    private UserSkill addSkill(SkillRequest skillRequest, User user) {
         Skill skill = skillRepository.findByNameIgnoreCaseAndCompany(skillRequest.name, user.getCompany());
         if (skill == null) {
             skill = new Skill(skillRequest.name, user.getCompany());
+            skillRepository.save(skill);
         }
-        return user.addSkill(skill, Level.of(skillRequest.level), skillRequest.interested);
+        UserSkill userSkill = user.addSkill(skill, Level.of(skillRequest.level), skillRequest.interested);
+        return userSkillRepository.save(userSkill);
     }
 
 }

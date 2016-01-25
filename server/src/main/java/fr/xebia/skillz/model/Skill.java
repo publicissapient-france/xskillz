@@ -1,10 +1,10 @@
 package fr.xebia.skillz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import static javax.persistence.FetchType.EAGER;
@@ -16,21 +16,22 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @NamedEntityGraph(name = "Skill.detail",
         attributeNodes = {@NamedAttributeNode("domain")})
-public class Skill {
+public class Skill implements Validable {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String name;
 
+    @JsonIgnore
     @ManyToOne(fetch = LAZY)
     private Company company;
 
     @ManyToOne(fetch = EAGER)
     private Domain domain;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "skill")
     private List<UserSkill> users;
 
@@ -58,6 +59,14 @@ public class Skill {
             return true;
         }
         return this.domain != null && this.domain.getId().equals(domain.getId());
+    }
+
+    public int getNumAllies() {
+        List<UserSkill> users = getUsers();
+        if(users == null) {
+            return 0;
+        }
+        return users.size();
     }
 
     @Override

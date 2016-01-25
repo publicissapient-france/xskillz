@@ -2,26 +2,20 @@ package fr.xebia.skillz.model;
 
 import fr.xebia.skillz.model.UserSkill.Level;
 import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.PERSIST;
 
+@Setter
 @Getter
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, Validable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,14 +25,14 @@ public class User implements Serializable {
 
     private String email;
 
-    private Date diploma;
+    private LocalDate diploma;
 
     private Date lastLogin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
-    @OneToMany(mappedBy = "user", cascade = PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true)
     private Set<UserSkill> skills = new HashSet<>();
 
     @OneToMany
@@ -58,6 +52,10 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.company = company;
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 
     public void addRole(Role role) {

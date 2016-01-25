@@ -4,8 +4,8 @@ import {Link} from 'react-router';
 export default class MenuTop extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-default">
-                <div className="container">
+            <nav className="navbar navbar-fixed-top navbar-default">
+                <div className="container-fluid">
                     <div className="navbar-header">
                         <button type="button" className="navbar-toggle collapsed">
                             <span className="icon-bar"></span>
@@ -16,8 +16,9 @@ export default class MenuTop extends React.Component {
                     </div>
 
                     <div className="collapse navbar-collapse">
-                        <ul className="nav navbar-nav">
-                            <li className="active"><Link to="/profile">Mon profil</Link></li>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li className="icon"><Link to="profile"><span className="fa fa-cog"></span></Link></li>
+                            <li className="text active"><Link to="skill/search">EVGENY YURCHUK</Link></li>
                         </ul>
                     </div>
                 </div>

@@ -1,0 +1,19 @@
+platform :ios, '8.0'
+use_frameworks!
+
+# ignore all warnings from all Pods
+inhibit_all_warnings!
+
+pod 'Alamofire'
+pod 'AlamofireImage'
+pod 'DeviceKit'
+pod 'JHChainableAnimations'
+pod 'Masonry'
+pod 'ReactKit'
+pod 'RealmSwift'
+pod 'Typhoon'
+pod 'UIColor_Hex_Swift'
+
+target :'skillzTests', :exclusive => true do
+	pod 'Kiwi'
+end

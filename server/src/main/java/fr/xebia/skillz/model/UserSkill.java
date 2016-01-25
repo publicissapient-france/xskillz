@@ -1,5 +1,6 @@
 package fr.xebia.skillz.model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -12,7 +13,8 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Entity
 @NamedEntityGraph(name = "UserSkill.detail",
         attributeNodes = {@NamedAttributeNode("skill"), @NamedAttributeNode("user")})
-public class UserSkill {
+@JsonPropertyOrder(alphabetic = true)
+public class UserSkill implements Validable {
 
     public static final boolean INTERESTED = true;
     public static final boolean NOT_INTERESTED = false;

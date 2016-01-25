@@ -37,9 +37,9 @@ public class UserProfile extends BasicUserProfile {
         private Domain domain;
         private List<UserSkill> userSkills;
 
-        private UserDomain(Domain domain, List<UserSkill> collect) {
+        private UserDomain(Domain domain, List<UserSkill> userSkills) {
             this.domain = domain;
-            this.userSkills = collect;
+            this.userSkills = userSkills;
         }
 
         public UserDomain(Map.Entry<Domain, List<UserSkill>> entry) {
@@ -55,12 +55,12 @@ public class UserProfile extends BasicUserProfile {
         }
 
         public List<DomainSkill> getSkills() {
-            return userSkills.stream().map(DomainSkill::new).collect(toList());
+            return userSkills.stream().map(DomainSkill::new).sorted().collect(toList());
         }
     }
 
     @JsonInclude(NON_EMPTY)
-    static class DomainSkill {
+    static class DomainSkill implements Comparable<DomainSkill> {
         private final UserSkill userSkill;
 
         public DomainSkill(UserSkill userSkill) {
@@ -81,6 +81,11 @@ public class UserProfile extends BasicUserProfile {
 
         public Long getId() {
             return userSkill.getSkill().getId();
+        }
+
+        @Override
+        public int compareTo(DomainSkill domainSkill) {
+            return getName().compareToIgnoreCase(domainSkill.getName());
         }
     }
 

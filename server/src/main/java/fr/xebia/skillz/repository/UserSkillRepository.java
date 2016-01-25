@@ -6,8 +6,10 @@ import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.model.UserSkill;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -24,4 +26,8 @@ public interface UserSkillRepository extends CrudRepository<UserSkill, Long> {
 
     @EntityGraph(value = "UserSkill.detail", type = EntityGraph.EntityGraphType.LOAD)
     List<UserSkill> findTop100ByOrderByUpdatedAtDesc();
+
+    @Modifying
+    @Query("UPDATE UserSkill us SET us.skill = :to where us.skill = :from")
+    void replaceSkillBy(@Param("from") Skill skillFrom, @Param("to") Skill skillTo);
 }

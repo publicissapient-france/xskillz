@@ -1,25 +1,20 @@
 package fr.xebia.skillz.controller.domains;
 
-import fr.xebia.skillz.dto.DomainProfile;
+import fr.xebia.skillz.controller.SkillzController;
 import fr.xebia.skillz.model.Company;
-import fr.xebia.skillz.repository.DomainRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import fr.xebia.skillz.model.Domain;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.StreamSupport.stream;
+import java.util.List;
 
 @RestController
-public class GetDomainsController {
+public class GetDomainsController extends SkillzController {
 
-    @Autowired
-    private DomainRepository domainRepository;
-
-    @RequestMapping("/companies/{companyId}/domains")
-    public Iterable<DomainProfile> getDomains(@PathVariable("companyId") Long companyId) {
-        return stream(domainRepository.findAllByCompany(Company.byId(companyId)).spliterator(), false).map(DomainProfile::new).collect(toList());
+    @RequestMapping("/companies/{company}/domains")
+    public List<Domain> getDomains(@PathVariable Company company) {
+        return company.getDomains();
     }
 
 }

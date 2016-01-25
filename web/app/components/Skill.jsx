@@ -39,7 +39,11 @@ export default class Skill extends React.Component {
     }
 
     renderDeleteButton = () => {
-        return <span className="pull-right" onClick={this.props.onDelete}>x</span>;
+        return (
+            <a className="pull-right" href="javascript:void(0)" onClick={this.props.onDelete}>
+                <span className="fa fa-close"></span>
+            </a>
+        );
     }
 
     edit = () => {

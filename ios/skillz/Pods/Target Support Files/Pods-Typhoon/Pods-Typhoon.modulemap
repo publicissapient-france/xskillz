@@ -1,0 +1,6 @@
+framework module Typhoon {
+  umbrella header "Pods-Typhoon-umbrella.h"
+
+  export *
+  module * { export * }
+}

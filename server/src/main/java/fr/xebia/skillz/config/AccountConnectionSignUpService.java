@@ -19,7 +19,7 @@ public class AccountConnectionSignUpService implements ConnectionSignUp {
         String email = profile.getEmail();
         User user = userRepository.findByEmail(email);
         if (user == null) {
-            user = userRepository.save(new User(profile.getName(), email, Company.byUserEmail(email)));
+            userRepository.save(new User(profile.getName(), email, Company.byUserEmail(email)));
         }
         return email;
     }

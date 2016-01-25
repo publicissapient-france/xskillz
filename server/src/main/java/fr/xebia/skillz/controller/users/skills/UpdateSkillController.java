@@ -31,10 +31,6 @@ public class UpdateSkillController {
     @RequestMapping(value = "/skills", method = PUT)
     public void updateSkill(@Valid @RequestBody SkillRequest skillRequest, Principal principal) {
         User user = userRepository.findByEmail(principal.getName());
-        updateSkill(skillRequest, user);
-    }
-
-    private void updateSkill(SkillRequest skillRequest, User user) {
         Skill skill = skillRepository.findByNameIgnoreCaseAndCompany(skillRequest.name, user.getCompany());
         UserSkill userSkill = userSkillRepository.findByUserAndSkill(user, skill);
         userSkill.update(skillRequest.level, skillRequest.interested);
