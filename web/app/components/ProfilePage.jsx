@@ -2,8 +2,9 @@ import React from 'react';
 import AltContainer from 'alt-container';
 
 import ProfileStore from '../stores/ProfileStore';
-import Profile from './Profile.jsx';
 import ProfileFace from './ProfileFace.jsx';
+import ProfileAddSkill from './ProfileAddSkill.jsx';
+import Profile from './Profile.jsx';
 
 export default class ProfilePage extends React.Component {
     render() {
@@ -17,6 +18,7 @@ export default class ProfilePage extends React.Component {
                 <AltContainer stores={[ProfileStore]}
                               inject={{profile: () => ProfileStore.getState().profile}}>
                     <ProfileFace />
+                    <ProfileAddSkill />
                     <Profile />
                 </AltContainer>
             </div>
