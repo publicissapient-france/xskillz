@@ -1,3 +1,7 @@
+.padding-left {
+    padding-left: 10px;
+}
+
 .padding-bottom {
     padding-bottom: 10px;
 }
@@ -16,4 +20,12 @@
 
 .margin-left {
     margin-left: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.thin {
+    font-weight: 300;
 }
