@@ -3,7 +3,7 @@
     padding-left: 30px;
     padding-right: 30px;
     width: 30%;
-    min-width: 450px;
+    min-width: 470px;
     height: 100%;
     background: #fafafa;
     border-right: 3px solid #f2f2f2;
@@ -80,7 +80,5 @@
 }
 
 .profile-graph img {
-    max-width: 450px;
-    margin: auto;
-    margin-top: 10px;
+    margin: 10px auto;
 }
