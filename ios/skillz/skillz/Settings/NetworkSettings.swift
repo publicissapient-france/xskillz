@@ -14,7 +14,7 @@ enum Endpoints : String {
 
 class NetworkSettings: NSObject {
     static func root() -> String {
-        return "http://52.28.188.147:8080/"
+        return "http://52.29.198.81:8080/"
     }
     
     static func usersForSkill(skill: Skill) -> String {
