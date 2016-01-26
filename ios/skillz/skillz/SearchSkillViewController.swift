@@ -60,7 +60,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
                 self?.loadingVisible = false
                 self?.skills = skills
                 self?.skillsSearchListCollectionView.reloadData()
-                NSTimer.scheduledTimerWithTimeInterval(0.01, target: self!, selector: Selector("resizeSearchListCollection"), userInfo: nil, repeats: false)
+                NSTimer.scheduledTimerWithTimeInterval(0.05, target: self!, selector: Selector("resizeSearchListCollection"), userInfo: nil, repeats: false)
                 
         }
     }
@@ -126,6 +126,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         let stringFormat = i18n(number > 1 ? "search_skill.number_of_allies.plural" : "search_skill.number_of_allies.singular")
         self.skillsResultsNumberOfAlliesLabel.text = String(format: stringFormat, number)
         self.skillsResultsNumberOfAlliesLabel.hidden = (number == 0)
+    }
+    
+    private func selectAlly(ally: User) -> Void {
+        self.performSegueWithIdentifier("ShowAlly", sender: ally)
     }
     
     
@@ -218,6 +222,9 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (collectionView == self.skillsSearchListCollectionView) {
             self.selectSkill(self.skillFromIndexPath(indexPath)!)
+        }
+        else {
+            self.selectAlly(self.userFromIndexPath(indexPath)!)
         }
     }
     

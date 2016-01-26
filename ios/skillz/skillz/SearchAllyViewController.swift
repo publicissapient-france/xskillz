@@ -68,6 +68,10 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         self.updateSearch(timer.userInfo as! String)
     }
     
+    private func selectAlly(ally: User) -> Void {
+        self.performSegueWithIdentifier("ShowAlly", sender: ally)
+    }
+    
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -114,6 +118,10 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             return CGSizeMake(self.alliesCollectionView.bounds.size.width, AllyCollectionViewCell.cellDefaultHeight())
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.selectAlly(self.userFromIndexPath(indexPath)!)
     }
     
     

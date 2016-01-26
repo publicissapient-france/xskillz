@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.googleConnectButton.setTitle(i18n("welcome").uppercaseString, forState: UIControlState.Normal)
         if (Device() == .iPhone6) {
             self.backgroundImagaView.image = UIImage(named: "BackgroundSkillz~iphone6")
         }

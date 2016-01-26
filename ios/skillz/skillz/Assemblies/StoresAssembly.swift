@@ -32,6 +32,15 @@ public class StoresAssembly: TyphoonAssembly {
         }
     }
     
+    public dynamic func allyViewController() -> AnyObject {
+        return TyphoonDefinition.withClass(AllyViewController.self) {
+            (definition) in
+            
+            definition.injectProperty("usersStore", with: self.usersStore())
+            definition.scope = TyphoonScope.ObjectGraph
+        }
+    }
+    
     public dynamic func usersStore() -> AnyObject {
         return TyphoonDefinition.withClass(UsersStore.self) {
             (definition) in
