@@ -1,4 +1,7 @@
 .menu-left {
-    position: relative;
-    border: 1px solid black;
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    background: #fafafa;
+    border-right: 3px solid #f2f2f2;
 }

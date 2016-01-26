@@ -61,6 +61,14 @@ public class Skill implements Validable {
         return this.domain != null && this.domain.getId().equals(domain.getId());
     }
 
+    public int getNumAllies() {
+        List<UserSkill> users = getUsers();
+        if(users == null) {
+            return 0;
+        }
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
