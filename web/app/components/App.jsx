@@ -1,5 +1,4 @@
 import React from 'react';
-import MenuTop from './MenuTop.jsx';
 import MenuLeft from './MenuLeft.jsx';
 
 export default class App extends React.Component {
