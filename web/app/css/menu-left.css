@@ -35,13 +35,13 @@
 }
 
 .profile-face .name {
-    padding-top: 8px;
-    font-size: 44px;
+    padding-top: 7px;
+    font-size: 48px;
 }
 
 .profile-face .surname {
-    line-height: 1em;
-    font-size: 38px;
+    line-height: 0.8em;
+    font-size: 37px;
 }
 
 .profile-top .info {
