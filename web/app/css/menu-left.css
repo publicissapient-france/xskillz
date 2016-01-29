@@ -1,7 +1,84 @@
 .menu-left {
     position: fixed;
-    width: 25%;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 30%;
+    min-width: 490px;
     height: 100%;
     background: #fafafa;
-    border-right: 3px solid #f2f2f2;
+    border-right: 4px solid #f3f3f3;
+}
+
+.menu-left .header {
+    color: #cacaca;
+    font-size: 22px;
+}
+
+.profile-face {
+    height: 150px;
+    margin-top: 20px;
+    color: #454545;
+}
+
+.profile-face .identity {
+    padding-left: 0;
+}
+
+.profile-face .photo .wrapper {
+    max-width: 130px;
+    border: 5px solid #59b8d3;
+    border-radius: 50%;
+}
+
+.profile-face .photo img {
+    border: 4px solid white;
+}
+
+.profile-face .name {
+    padding-top: 7px;
+    font-size: 48px;
+}
+
+.profile-face .surname {
+    line-height: 0.8em;
+    font-size: 37px;
+}
+
+.profile-top .info {
+    margin-top: 15px;
+}
+
+.profile-top .info-counter {
+    padding-left: 25px;
+    padding-top: 10px;
+    height: 50px;
+}
+
+.profile-top .info-counter .label {
+    font-size: 22px;
+    width: 30px;
+    padding: 3px 15px;
+    background: #59b8d3;
+    border-radius: 6px;
+}
+
+.profile-top .info-text {
+    padding: 5px 30px 7px 5px;
+    margin-left: -2px;
+    font-size: 22px;
+}
+
+.profile-top .info-text .sub {
+    color: #999;
+    font-size: 20px;
+}
+
+.profile-graph .wrapper {
+    margin: 20px 10px;
+    padding-top: 25px;
+    border-top: 2px solid #f1f1f1;
+}
+
+.profile-graph img {
+    margin: 10px auto;
 }
