@@ -128,12 +128,29 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         self.skillsResultsNumberOfAlliesLabel.hidden = (number == 0)
     }
     
+    
+    // MARK: - Navigation
     private func selectAlly(ally: User) -> Void {
         self.performSegueWithIdentifier("ShowAlly", sender: ally)
     }
     
     
-    // MARK: - UITextFieldDelegate
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "ShowAlly":
+            let viewController = segue.destinationViewController as! AllyViewController
+            viewController.ally = sender as! User
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    
+    // MARK: - Delegates
+    // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -152,7 +169,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if (collectionView == self.skillsSearchListCollectionView) {
             return 1
@@ -203,13 +220,9 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
+            let skill: Skill = self.skillFromIndexPath(indexPath)!
             let view: SkillStarsCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "SkillStarsReusableView", forIndexPath: indexPath) as! SkillStarsCollectionReusableView
-            let sectionToLevel = abs(indexPath.section - 3)
-            view.level = sectionToLevel == 0 ? SkillLevel.NoSkill
-                : sectionToLevel == 1 ? SkillLevel.Beginner
-                : sectionToLevel == 2 ? SkillLevel.Confirmed
-                : sectionToLevel == 3 ? SkillLevel.Expert
-                : SkillLevel.NoSkill
+            view.level = self.skillLevelFromSection(indexPath.section)
             return view
             
         default:
@@ -218,7 +231,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     
-    // MARK: - UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (collectionView == self.skillsSearchListCollectionView) {
             self.selectSkill(self.skillFromIndexPath(indexPath)!)
@@ -229,7 +242,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     
-    // MARK: - UICollectionViewDelegateFlowLayout
+    // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -265,6 +278,23 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             return self.skills![indexPath.row]
         }
         return nil
+    }
+    
+    private func skillLevelFromSection(section: Int) -> SkillLevel! {
+        var skillLevelIndex = SkillLevel.NoSkill.rawValue
+        var index = (self.numberOfSectionsInCollectionView(self.skillsResultsListCollectionView) - 1)
+        for var i = 0; i < self.users?.count; i++ {
+            if (self.users![i].count == 0) {
+                skillLevelIndex++
+                continue
+            }
+            if (index == section) {
+                return SkillLevel(rawValue: skillLevelIndex)
+            }
+            skillLevelIndex++
+            index--
+        }
+        return SkillLevel.NoSkill
     }
     
     private func usersForSkillAtSection(section: Int) -> [User]? {

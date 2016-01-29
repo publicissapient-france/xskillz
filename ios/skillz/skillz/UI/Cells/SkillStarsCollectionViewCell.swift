@@ -1,14 +1,14 @@
 //
-//  SkillStarsCollectionReusableView.swift
+//  SkillStarsCollectionViewCell.swift
 //  skillz
 //
-//  Created by Florent Capon on 18/01/2016.
+//  Created by Florent Capon on 27/01/2016.
 //  Copyright © 2016 Xebia IT Architects. All rights reserved.
 //
 
 import UIKit
 
-class SkillStarsCollectionReusableView: UICollectionReusableView {
+class SkillStarsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var noStarView: UIView!
     @IBOutlet weak var star1View: UIView!
@@ -45,5 +45,9 @@ class SkillStarsCollectionReusableView: UICollectionReusableView {
                 break
             }
         }
+    }
+    
+    class func cellDefaultHeight() -> CGFloat {
+        return 25.0
     }
 }
