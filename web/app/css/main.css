@@ -1,30 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Work+Sans:400,300,500&subset=latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,400italic&subset=latin-ext);
 
 body {
-    font-family: 'Work Sans', sans-serif;
-    background: #F0F1F6;
-}
-
-.activity .page-header {
-    margin-top: 5px;
-}
-
-.face {
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    box-shadow: 1px 1px 3px #aaa;
-}
-
-.face-exp, .face-company {
-    position: absolute;
-    font-size: 21px;
-}
-
-.face-exp {
-    right: 30%;
-}
-
-.face-company {
-    left: 30%;
+    font-family: 'Lato', sans-serif;
+    background: #fff;
 }

@@ -1,6 +1,7 @@
 package fr.xebia.skillz.controller.skills;
 
 import fr.xebia.skillz.dto.BasicUserProfile;
+import fr.xebia.skillz.dto.SkilledUserProfile;
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class GetSkillControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_return_users_by_skill() {
-        List<BasicUserProfile> users = controller.getUsersBySkill(new Skill(1L, "name", XEBIA));
+        List<SkilledUserProfile> users = controller.getUsersBySkill(new Skill(1L, "name", XEBIA));
         assertThat(users).
                 hasSize(2).
                 extracting("name").

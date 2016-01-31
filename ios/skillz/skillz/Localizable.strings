@@ -6,6 +6,8 @@
   Copyright © 2015 Xebia IT Architects. All rights reserved.
 */
 
+"welcome" = "Bienvenue !";
+
 "app.title" = "Skillz";
 
 "search_ally.title" = "Rechercher+un+allié";

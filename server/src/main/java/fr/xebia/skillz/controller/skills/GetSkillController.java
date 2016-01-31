@@ -1,6 +1,6 @@
 package fr.xebia.skillz.controller.skills;
 
-import fr.xebia.skillz.dto.BasicUserProfile;
+import fr.xebia.skillz.dto.SkilledUserProfile;
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.repository.UserSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,12 @@ public class GetSkillController {
     private UserSkillRepository userSkillRepository;
 
     @RequestMapping("/skills/{skill}/users")
-    public List<BasicUserProfile> getUsersBySkill(@PathVariable Skill skill) {
-        return userSkillRepository.findBySkillOrderByUserNameAsc(skill).stream().map(userSkill -> new BasicUserProfile(userSkill.getUser())).collect(toList());
+    public List<SkilledUserProfile> getUsersBySkill(@PathVariable Skill skill) {
+        return userSkillRepository
+                .findBySkillOrderByUserNameAsc(skill)
+                .stream()
+                .map(userSkill -> new SkilledUserProfile(userSkill))
+                .collect(toList());
     }
 
 }

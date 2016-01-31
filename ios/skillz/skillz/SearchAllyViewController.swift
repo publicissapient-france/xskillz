@@ -69,7 +69,28 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     }
     
     
-    // MARK: - UITextFieldDelegate
+    // MARK: - Navigation
+    private func selectAlly(ally: User) -> Void {
+        self.performSegueWithIdentifier("ShowAlly", sender: ally)
+    }
+    
+    
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "ShowAlly":
+            let viewController = segue.destinationViewController as! AllyViewController
+            viewController.ally = sender as! User
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    
+    // MARK: - Delegates
+    // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -88,7 +109,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     }
     
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -109,11 +130,15 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     }
     
     
-    // MARK: - UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             return CGSizeMake(self.alliesCollectionView.bounds.size.width, AllyCollectionViewCell.cellDefaultHeight())
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.selectAlly(self.userFromIndexPath(indexPath)!)
     }
     
     

@@ -1,10 +1,10 @@
 /* External CSS */
 import './css/external/bootstrap.min.css';
 import './css/external/font-awesome.min.css';
+import './css/external/ionicons.min.css';
 /* Internal CSS */
 import './css/main.css';
 import './css/utils.css';
-import './css/menu-top.css';
 import './css/menu-left.css';
 
 import React from 'react';

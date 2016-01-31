@@ -1,7 +1,7 @@
 package fr.xebia.skillz.controller.users;
 
 import fr.xebia.skillz.dto.BasicUserProfile;
-import fr.xebia.skillz.dto.UserProfile;
+import fr.xebia.skillz.dto.FullUserProfile;
 import fr.xebia.skillz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,7 @@ public class GetCurrentUserController {
 
     @RequestMapping("/me")
     public BasicUserProfile getCurrentUser(Principal principal) {
-        return new UserProfile(userRepository.findByEmail("jsmadja@xebia.fr"));
-        //return new UserProfile(userRepository.findByEmail(principal.getName()));
+        return new FullUserProfile(userRepository.findByEmail(principal.getName()));
     }
 
 }
