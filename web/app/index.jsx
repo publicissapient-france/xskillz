@@ -6,6 +6,7 @@ import './css/external/ionicons.min.css';
 import './css/main.css';
 import './css/utils.css';
 import './css/menu-left.css';
+import './css/timeline.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

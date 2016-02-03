@@ -8,8 +8,8 @@ export default class App extends React.Component {
                 <MenuLeft/>
                 {/*
                  * React Router chooses children by URL
-                 {this.props.children}
                  * */}
+                {this.props.children}
             </div>
         );
     }
