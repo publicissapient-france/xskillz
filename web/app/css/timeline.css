@@ -1,0 +1,92 @@
+.activity-block {
+    position: relative;
+}
+
+.timeline-wrapper {
+    height: auto;
+    width: 100%;
+}
+
+.timeline {
+    position: absolute;
+    width: 230px;
+    height: 100%;
+    padding: 0 35px 20px 50px;
+}
+
+.timeline .line {
+    position: absolute;
+    height: 100%;
+    width: 72px;
+    border-right: 3px solid #d6f1d8;
+    z-index: -1;
+}
+
+.timeline .block {
+    background: #76d17f;
+    margin: 49px auto;
+    height: 50px;
+    padding: 7px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.timeline-start {
+    padding-bottom: 50px;
+}
+
+.timeline-start .block {
+    margin: 27px auto;
+    font-size: 68px;
+    height: 110px;
+    padding: 5px;
+}
+
+.timeline-start .head-text {
+    padding-top: 7px;
+    font-size: 48px;
+}
+
+.timeline-start .sub-head-text {
+    line-height: 0.8em;
+    font-size: 37px;
+}
+
+.timeline-start .citation {
+    color: #a5a5a5;
+    font-size: 22px;
+    font-style: italic;
+    margin-top: 25px;
+}
+
+.timeline-start .line {
+    margin-top: 30px;
+}
+
+.activity {
+    margin-left: 230px;
+    padding-top: 19px;
+}
+
+.activity .photo .wrapper {
+    max-width: 110px;
+    border: 4px solid #e1e1e1;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.activity .photo img {
+    border: 4px solid white;
+}
+
+.activity .name {
+    margin-top: 10px;
+    font-size: 33px;
+}
+
+.activity .company {
+    color: #a5a5a5;
+    font-size: 26px;
+}
