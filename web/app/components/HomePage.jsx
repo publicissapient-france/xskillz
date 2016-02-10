@@ -115,8 +115,6 @@ export default class HomePage extends React.Component {
                                                     <div title="Entreprise" className="pull-left">Xebia</div>
                                                     <div className="point ion-record"></div>
                                                     <div title="Fondation" className="pull-left">Craft</div>
-                                                    <div className="point ion-record"></div>
-                                                    <div title="interessé(e)" className="heart ion-heart"></div>
                                                 </div>
                                             </div>
                                         </div>
