@@ -109,7 +109,7 @@ export default class HomePage extends React.Component {
                                                 <div className="arrow-up arrow-up-wrapper"></div>
                                                 <div className="arrow-up arrow-up"></div>
                                                 <div>
-                                                    Contrôle de qualité des livraisons
+                                                    Contrôle de qualité de livraison
                                                 </div>
                                                 <div className="company">
                                                     <div title="Entreprise" className="pull-left">Xebia</div>
