@@ -17,7 +17,7 @@
 .timeline .line {
     position: absolute;
     height: 100%;
-    width: 72px;
+    width: 74px;
     border-right: 3px solid #d6f1d8;
     z-index: -1;
 }
@@ -34,7 +34,11 @@
 }
 
 .timeline-start {
-    padding-bottom: 50px;
+    padding-bottom: 30px;
+}
+
+.timeline-end {
+    height: 70px;
 }
 
 .timeline-start .block {
@@ -42,6 +46,16 @@
     font-size: 68px;
     height: 110px;
     padding: 5px;
+}
+
+.timeline-end .block {
+    background: #76d17f;
+    margin: 70px auto;
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    border-radius: 50%;
+    border: 7px solid #a3e9aa;
 }
 
 .timeline-start .head-text {
@@ -68,10 +82,11 @@
 .activity {
     margin-left: 230px;
     padding-top: 19px;
+    padding-bottom: 40px;
 }
 
 .activity .photo .wrapper {
-    max-width: 110px;
+    max-width: 120px;
     border: 4px solid #e1e1e1;
     border-radius: 50%;
     margin-right: 20px;
@@ -82,11 +97,65 @@
 }
 
 .activity .name {
-    margin-top: 10px;
-    font-size: 33px;
+    margin-top: 25px;
+    font-size: 34px;
+    line-height: 1em;
 }
 
-.activity .company {
+.activity .action {
     color: #a5a5a5;
     font-size: 26px;
+}
+
+.activity .comment {
+    color: #666;
+    font-size: 25px;
+    max-width: 1000px;
+    margin-top: 20px;
+    padding: 15px 25px 55px 25px;
+    background: #fcfcfc;
+    border: 3px solid #f1f1f1;
+    border-radius: 4px;
+}
+
+.activity .comment .arrow-up {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 11px;
+    left: 56px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 13px solid #fcfcfc;
+}
+
+.activity .comment .arrow-up-wrapper {
+    top: 8px;
+    border-bottom: 13px solid #f1f1f1;
+}
+
+.activity .comment .company {
+    color: #999;
+    font-size: 22px;
+    position: absolute;
+    bottom: 11px;
+    cursor: default;
+}
+
+.activity .comment .point {
+    color: #999;
+    font-size: 3px;
+    height: 5px;
+    padding: 16px 14px;
+    float: left;
+    cursor: default;
+}
+
+.activity .comment .heart {
+    float: left;
+    color: #ccc;
+    font-size: 22px;
+    margin-top: 2px;
+    margin-left: 1px;
+    cursor: default;
 }
