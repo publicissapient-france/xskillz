@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SanFranciscoDisplay-Semibold.otf">
+            <string>SanFranciscoDisplay-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SkillView" customModule="skillz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="98" height="23"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Objective-C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-w1-lcV">
+                    <rect key="frame" x="0.0" y="0.0" width="81" height="23"/>
+                    <fontDescription key="fontDescription" name="SanFranciscoDisplay-Semibold" family="San Francisco Display" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Life-S" translatesAutoresizingMaskIntoConstraints="NO" id="wtx-EK-eaF">
+                    <rect key="frame" x="86" y="6" width="12" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="AC0-lE-99I"/>
+                        <constraint firstAttribute="width" constant="12" id="MZb-BM-k4v"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="NAT-w1-lcV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2Me-wM-g7N"/>
+                <constraint firstAttribute="trailing" secondItem="wtx-EK-eaF" secondAttribute="trailing" id="6AC-Af-MSe"/>
+                <constraint firstItem="wtx-EK-eaF" firstAttribute="centerY" secondItem="NAT-w1-lcV" secondAttribute="centerY" id="9fY-tF-dB4"/>
+                <constraint firstItem="NAT-w1-lcV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IHX-cp-kwg"/>
+                <constraint firstAttribute="trailing" secondItem="NAT-w1-lcV" secondAttribute="trailing" constant="17" id="MmK-F9-cZE"/>
+                <constraint firstAttribute="bottom" secondItem="NAT-w1-lcV" secondAttribute="bottom" id="Mvo-yX-iPO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="lifeImageView" destination="wtx-EK-eaF" id="GmQ-hc-p64"/>
+                <outlet property="skillLabel" destination="NAT-w1-lcV" id="gfq-1d-5dF"/>
+                <outlet property="skillLabelTrailingConstraint" destination="MmK-F9-cZE" id="Mxf-h1-apO"/>
+            </connections>
+            <point key="canvasLocation" x="532" y="450.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Life-S" width="12" height="11"/>
+    </resources>
+</document>

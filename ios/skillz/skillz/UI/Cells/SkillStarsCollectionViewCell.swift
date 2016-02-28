@@ -10,6 +10,7 @@ import UIKit
 
 class SkillStarsCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var backgroundColorView: UIView!
     @IBOutlet weak var noStarView: UIView!
     @IBOutlet weak var star1View: UIView!
     @IBOutlet weak var star2View: UIView!
@@ -46,8 +47,13 @@ class SkillStarsCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    var domain: Domain! {
+        didSet {
+            self.backgroundColorView.backgroundColor = self.domain.color()
+        }
+    }
     
     class func cellDefaultHeight() -> CGFloat {
-        return 25.0
+        return 35.0
     }
 }
