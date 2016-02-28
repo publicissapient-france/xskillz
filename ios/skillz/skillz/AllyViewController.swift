@@ -54,10 +54,13 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.avatarImageView.layer.mask = self.avatarMaskImageView.layer
         self.layout()
         self.skillsCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.Old.union(NSKeyValueObservingOptions.New), context: nil)
+//        let flowLayout: UICollectionViewFlowLayout = self.skillsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        if #available(iOS 9.0, *) {
+//            flowLayout.sectionHeadersPinToVisibleBounds = true
+//        }
         self.loadingVisible = true
         self.usersStore.getFullUser(self.ally)
             .success { [weak self] (user:User) -> Void in
-                DLog(user)
                 self?.loadAvatar()
                 self?.ally = user
                 self?.skillsCollectionView.reloadData()
@@ -78,7 +81,6 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func skillsCollectionViewReloadDataComplete() -> Void {
-        DLog(self.skillsCollectionView.contentSize.height)
     }
     
     private func layout() -> Void {
@@ -119,7 +121,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             levels[skill.level] = 1
         }
-        return ((skills?.count)! + numberOfLevels)
+        return (numberOfLevels * 2)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -128,12 +130,13 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell: SkillStarsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillStarsCell", forIndexPath: indexPath) as! SkillStarsCollectionViewCell
             cell.level = SkillLevel.Expert
             cell.level = self.levelFromIndexPath(indexPath)
+            cell.domain = self.domainFromSection(indexPath.section)
             return cell
             
         case CellType.Skill:
-            let cell: SkillCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("AllySkillCell", forIndexPath: indexPath) as! SkillCollectionViewCell
-            let skill: Skill = self.skillFromIndexPath(indexPath)!
-            cell.skill = skill
+            let cell: AllySkillsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("AllySkillsCell", forIndexPath: indexPath) as! AllySkillsCollectionViewCell
+            cell.skills = self.skillsFromIndexPath(indexPath);
+            cell.domain = self.domainFromSection(indexPath.section)
             return cell
             
         case CellType.Unknown:
@@ -153,8 +156,11 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
             case CellType.Skill:
                 //            let cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! SkillCollectionViewCell
                 //            return CGSizeMake(cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).width, SkillCollectionViewCell.cellDefaultHeight())
-                let skill: Skill = self.skillFromIndexPath(indexPath)!
-                return SkillCollectionViewCell.cellSize(skill)
+                let cellTemp: AllySkillsCollectionViewCell = AllySkillsCollectionViewCell()
+                cellTemp.frame = CGRectMake(0.0, 0.0, self.skillsCollectionView.bounds.size.width, 100.0)
+                cellTemp.skills = self.skillsFromIndexPath(indexPath)
+                cellTemp.layoutSubviews()
+                return CGSizeMake(self.skillsCollectionView.bounds.size.width, cellTemp.cellHeight())
                 
             case CellType.Unknown:
                 return CGSizeZero
@@ -166,6 +172,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         case UICollectionElementKindSectionHeader:
             let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "AllyDomainReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
             view.domain = self.domainFromSection(indexPath.section)
+            view.previousDomain = self.domainFromSection(indexPath.section - 1)
             return view
             
         default:
@@ -211,11 +218,9 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
                 if (index == indexPath.row) {
                     return CellType.Level
                 }
-                for _: Skill in skillsLevel {
-                    index++
-                    if (index == indexPath.row) {
-                        return CellType.Skill
-                    }
+                index++
+                if (index == indexPath.row) {
+                    return CellType.Skill
                 }
                 index++
             }
@@ -224,7 +229,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func domainFromSection(section: Int) -> Domain? {
-        if (self.ally != nil) {
+        if (self.ally != nil && section >= 0 && section < self.ally!.domains.count) {
             return self.ally!.domains[section]
         }
         return nil
@@ -234,8 +239,8 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         return SkillLevel(rawValue: (self.dataFromIndexPath(indexPath) as! NSNumber).integerValue)
     }
     
-    private func skillFromIndexPath(indexPath: NSIndexPath) -> Skill? {
-        return self.dataFromIndexPath(indexPath) as! Skill
+    private func skillsFromIndexPath(indexPath: NSIndexPath) -> [Skill]? {
+        return self.dataFromIndexPath(indexPath) as! [Skill]
     }
     
     private func dataFromIndexPath(indexPath: NSIndexPath) -> AnyObject? {
@@ -270,11 +275,9 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
                 if (index == indexPath.row) {
                     return NSNumber(integer: skillsLevel[0].level)
                 }
-                for skill: Skill in skillsLevel {
-                    index++
-                    if (index == indexPath.row) {
-                        return skill
-                    }
+                index++
+                if (index == indexPath.row) {
+                    return skillsLevel
                 }
                 index++
             }

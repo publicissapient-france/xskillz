@@ -14,6 +14,7 @@ class AllyDomainCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var backgroundColorView: UIView!
     @IBOutlet weak var backgroundLineImageView: UIImageView!
     @IBOutlet weak var backgroundMiddleImageView: UIImageView!
+    @IBOutlet weak var topBackgroundColorView: UIView!
     
     var domain: Domain! {
         didSet {
@@ -23,6 +24,16 @@ class AllyDomainCollectionReusableView: UICollectionReusableView {
             self.backgroundMiddleImageView.image = self.backgroundMiddleImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
             self.backgroundMiddleImageView.tintColor = self.domain.color()
             self.backgroundColorView.backgroundColor = self.domain.color()
+        }
+    }
+    var previousDomain: Domain? {
+        didSet {
+            if (self.previousDomain != nil) {
+                self.topBackgroundColorView.backgroundColor = self.previousDomain!.color()
+            }
+            else {
+                self.topBackgroundColorView.backgroundColor = UIColor.clearColor();
+            }
         }
     }
 }

@@ -14,6 +14,9 @@
 		05353C631C58D65400DD0DC6 /* SkillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05353C621C58D65400DD0DC6 /* SkillCollectionViewCell.swift */; };
 		0541EB6B1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541EB6A1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift */; };
 		0541EB6D1C4D21160032636A /* AllySkillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541EB6C1C4D21160032636A /* AllySkillCollectionViewCell.swift */; };
+		0546A9B11C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546A9B01C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift */; };
+		0546A9B31C6C9DDA00BEF295 /* SkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546A9B21C6C9DDA00BEF295 /* SkillView.swift */; };
+		0546A9B51C6C9E3100BEF295 /* SkillView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0546A9B41C6C9E3100BEF295 /* SkillView.xib */; };
 		054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CD1E51C469E1C002E637B /* MainViewController.swift */; };
 		056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38441C19BE7F003984FD /* AppDelegate.swift */; };
 		056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38461C19BE7F003984FD /* HomeViewController.swift */; };
@@ -80,6 +83,9 @@
 		05353C621C58D65400DD0DC6 /* SkillCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillCollectionViewCell.swift; sourceTree = "<group>"; };
 		0541EB6A1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillStarsCollectionReusableView.swift; sourceTree = "<group>"; };
 		0541EB6C1C4D21160032636A /* AllySkillCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllySkillCollectionViewCell.swift; sourceTree = "<group>"; };
+		0546A9B01C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllySkillsCollectionViewCell.swift; sourceTree = "<group>"; };
+		0546A9B21C6C9DDA00BEF295 /* SkillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillView.swift; sourceTree = "<group>"; };
+		0546A9B41C6C9E3100BEF295 /* SkillView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillView.xib; sourceTree = "<group>"; };
 		054CD1E51C469E1C002E637B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		056F38411C19BE7F003984FD /* skillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38441C19BE7F003984FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 			children = (
 				0526D3F61C3D153A0001A217 /* AllyCollectionViewCell.swift */,
 				0541EB6C1C4D21160032636A /* AllySkillCollectionViewCell.swift */,
+				0546A9B01C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift */,
 				05353C621C58D65400DD0DC6 /* SkillCollectionViewCell.swift */,
 				059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */,
 				0500F2951C5918E9002BAEF9 /* SkillStarsCollectionViewCell.swift */,
@@ -259,6 +266,8 @@
 				056F38881C1ADFCB003984FD /* CustomTextField.swift */,
 				059D095A1C455B5D00CBF519 /* Fonts.swift */,
 				0541EB6A1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift */,
+				0546A9B21C6C9DDA00BEF295 /* SkillView.swift */,
+				0546A9B41C6C9E3100BEF295 /* SkillView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -450,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0546A9B51C6C9E3100BEF295 /* SkillView.xib in Resources */,
 				056F38821C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf in Resources */,
 				056F384F1C19BE7F003984FD /* LaunchScreen.storyboard in Resources */,
 				056F384C1C19BE7F003984FD /* Assets.xcassets in Resources */,
@@ -588,10 +598,12 @@
 				054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */,
 				0541EB6B1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift in Sources */,
 				059D09551C4541C000CBF519 /* Domain.swift in Sources */,
+				0546A9B31C6C9DDA00BEF295 /* SkillView.swift in Sources */,
 				059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */,
 				059D09591C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift in Sources */,
 				057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */,
 				05353C631C58D65400DD0DC6 /* SkillCollectionViewCell.swift in Sources */,
+				0546A9B11C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift in Sources */,
 				05353C5F1C579BAC00DD0DC6 /* AllyViewController.swift in Sources */,
 				059D095B1C455B5D00CBF519 /* Fonts.swift in Sources */,
 				056F388B1C1AE075003984FD /* Colors.swift in Sources */,
