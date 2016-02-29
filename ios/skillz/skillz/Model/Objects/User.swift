@@ -17,4 +17,15 @@ public class User: Object {
     dynamic var name: String = ""
     
     let domains: List<Domain> = List<Domain>()
+    
+    public func techDomainsSortedByScore() -> [Domain] {
+        var sorted: [Domain] = self.domains.sort({$0.score > $1.score})
+        for var i = 0; i < sorted.count; i++ {
+            if sorted[i].id == DomainIDMapping.Loisirs.rawValue {
+                sorted.removeAtIndex(i)
+                break;
+            }
+        }
+        return sorted
+    }
 }
