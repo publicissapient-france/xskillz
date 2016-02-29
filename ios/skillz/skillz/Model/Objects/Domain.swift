@@ -31,31 +31,31 @@ public class Domain: Object {
     public func color() -> UIColor {
         switch self.id {
         case DomainIDMapping.Agile.rawValue:
-            return UIColor(rgba: "#f3f3f1")
+            return UIColor(rgba: "#93a6ad")
             
         case DomainIDMapping.Craft.rawValue:
-            return UIColor(rgba: "#e7f0c3")
+            return UIColor(rgba: "#b9dd80")
             
         case DomainIDMapping.Mobile.rawValue:
-            return UIColor(rgba: "#b9c8f2")
+            return UIColor(rgba: "#62949b")
             
         case DomainIDMapping.Back.rawValue:
-            return UIColor(rgba: "#e6beb9")
+            return UIColor(rgba: "#d14939")
             
         case DomainIDMapping.Cloud.rawValue:
-            return UIColor(rgba: "#6e6e6e")//
+            return UIColor(rgba: "#555e96")
             
         case DomainIDMapping.Devops.rawValue:
-            return UIColor(rgba: "#6e6e6e")//
+            return UIColor(rgba: "#fed453")
             
         case DomainIDMapping.Data.rawValue:
-            return UIColor(rgba: "#f6b3d6")
+            return UIColor(rgba: "#f6638f")
             
         case DomainIDMapping.Loisirs.rawValue:
-            return UIColor(rgba: "#d1d1d1")
+            return UIColor(rgba: "#000000")
             
         case DomainIDMapping.Front.rawValue:
-            return UIColor(rgba: "#b3e3f2")
+            return UIColor(rgba: "#fd9632")
             
         default:
             return UIColor.blackColor()
