@@ -24,6 +24,7 @@ enum DomainIDMapping: Int {
 public class Domain: Object {
     dynamic var id: Int = 0
     dynamic var name: String = ""
+    dynamic var score: Int = 0
     
     let skills: List<Skill> = List<Skill>()
     
