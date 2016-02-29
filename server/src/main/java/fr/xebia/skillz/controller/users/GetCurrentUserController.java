@@ -17,7 +17,8 @@ public class GetCurrentUserController {
 
     @RequestMapping("/me")
     public BasicUserProfile getCurrentUser(Principal principal) {
-        return new FullUserProfile(userRepository.findByEmail(principal.getName()));
+return new FullUserProfile(userRepository.findByEmail("blacroix@xebia.fr"));
+//        return new FullUserProfile(userRepository.findByEmail(principal.getName()));
     }
 
 }
