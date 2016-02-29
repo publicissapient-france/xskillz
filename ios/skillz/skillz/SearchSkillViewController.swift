@@ -203,7 +203,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         if (collectionView == self.skillsSearchListCollectionView) {
             let skill: Skill = self.skillFromIndexPath(indexPath)!
             let skillCell: SkillSearchListCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillSearchListCell", forIndexPath: indexPath) as! SkillSearchListCollectionViewCell
-            skillCell.skill(skill, searchString: self.searchString!, numberOfUsers: 4)
+            skillCell.skill(skill, searchString: self.searchString!)
             
             return skillCell
         }

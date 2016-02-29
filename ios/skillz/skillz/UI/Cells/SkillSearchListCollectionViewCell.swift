@@ -53,12 +53,12 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
     
     
     // MARK: - Public API
-    func skill(skill: Skill, searchString: String, numberOfUsers: Int) -> Void {
+    func skill(skill: Skill, searchString: String) -> Void {
         self.skill = skill
         self.searchString = searchString
         
         self.updateNameLabel()
-        self.numberOfUsersLabel.text = "\(String(numberOfUsers))x"
+        self.numberOfUsersLabel.text = "\(String(skill.numAllies))x"
     }
     
     
