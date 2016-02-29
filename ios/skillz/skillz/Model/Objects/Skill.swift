@@ -18,10 +18,11 @@ enum SkillLevel : Int {
 
 public class Skill: Object {
     dynamic var domain: Domain? = nil
-    dynamic var id: Int = 0
-    dynamic var name: String = ""
-    dynamic var interested: Bool = false
     dynamic var level: Int = 0
+    dynamic var id: Int = 0
+    dynamic var interested: Bool = false
+    dynamic var name: String = ""
+    dynamic var numAllies: Int = 0
     
     var skillLevel: SkillLevel {
         return self.level == 0 ? SkillLevel.NoSkill

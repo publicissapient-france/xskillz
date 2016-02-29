@@ -912,7 +912,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WD4-m6-s11" userLabel="Avatar View">
                                                                     <rect key="frame" x="7" y="0.0" width="50" height="50"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvatarBackground-S" translatesAutoresizingMaskIntoConstraints="NO" id="qnr-gI-tfG">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvatarRing-S" translatesAutoresizingMaskIntoConstraints="NO" id="qnr-gI-tfG">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         </imageView>
                                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Ucp-aH-ZJj">
@@ -1363,11 +1363,11 @@
         <image name="AllyDomainTop2" width="39" height="12"/>
         <image name="AllyDomainTop3" width="35" height="12"/>
         <image name="AvatarBackground-M" width="90" height="90"/>
-        <image name="AvatarBackground-S" width="50" height="50"/>
         <image name="AvatarMask-L" width="119" height="119"/>
         <image name="AvatarMask-M" width="90" height="90"/>
         <image name="AvatarMask-S" width="50" height="50"/>
         <image name="AvatarRing-L" width="119" height="119"/>
+        <image name="AvatarRing-S" width="50" height="50"/>
         <image name="Background" width="320" height="480"/>
         <image name="BackgroundSkillz" width="320" height="480"/>
         <image name="DomainHeaderLineBackground" width="9" height="19"/>
@@ -1378,6 +1378,6 @@
         <image name="Star" width="27" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fpp-yH-HKh"/>
+        <segue reference="2kW-8g-BVj"/>
     </inferredMetricsTieBreakers>
 </document>
