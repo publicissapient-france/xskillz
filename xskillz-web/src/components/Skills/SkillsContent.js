@@ -4,6 +4,8 @@ import AutoComplete from 'material-ui/lib/auto-complete';
 import Paper from 'material-ui/lib/paper';
 import Avatar from 'material-ui/lib/avatar';
 
+import SkillUserItem from './SkillUserItem';
+
 import './styles';
 
 class SkillsContent extends Component {
@@ -43,14 +45,8 @@ class SkillsContent extends Component {
                 </div>
 
                 {users.map((user, index) => {
-                    //noinspection JSUnresolvedVariable
                     return (
-                        <div className="user-row">
-                            <Paper key={index} style={{padding: '1rem'}}>
-                                <Avatar src={user.gravatarUrl}/>
-                                {user.name}
-                            </Paper>
-                        </div>
+                        <SkillUserItem key={index} user={user}/>
                     )
                 })}
             </div>
