@@ -1,7 +1,7 @@
-var path = require('path');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
-var webpack = require('webpack');
-var merge = require('webpack-merge');
+const path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    webpack = require('webpack'),
+    merge = require('webpack-merge');
 
 const TARGET = process.env.npm_lifecycle_event;
 
@@ -44,13 +44,14 @@ var common = {
         ]
     },
     plugins: [
-        new HtmlwebpackPlugin({
+        new HtmlWebpackPlugin({
             title: 'Xskillz'
         })
     ]
 };
 
 if (TARGET === 'start' || !TARGET) {
+    //noinspection JSUnresolvedFunction
     module.exports = merge(common, {
         devtool: 'eval-source-map',
         devServer: {

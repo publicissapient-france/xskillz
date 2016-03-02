@@ -18,6 +18,7 @@ import HomePage from './components/HomePage.jsx';
 import ProfilePage from './components/ProfilePage.jsx';
 import SearchUserPage from './components/SearchUserPage.jsx';
 import SearchSkillPage from './components/SearchSkillPage.jsx';
+import SkillsPage from './components/SkillsPage';
 
 main();
 
@@ -32,6 +33,7 @@ function main() {
                 <Route path="profile" component={ProfilePage}/>
                 <Route path="user/search" component={SearchUserPage}/>
                 <Route path="skill/search" component={SearchSkillPage}/>
+                <Route path="skillz" components={SkillsPage}/>
             </Route>
         </Router>
     ), app);
