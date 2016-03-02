@@ -18,6 +18,7 @@
 		0546A9B31C6C9DDA00BEF295 /* SkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546A9B21C6C9DDA00BEF295 /* SkillView.swift */; };
 		0546A9B51C6C9E3100BEF295 /* SkillView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0546A9B41C6C9E3100BEF295 /* SkillView.xib */; };
 		054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CD1E51C469E1C002E637B /* MainViewController.swift */; };
+		056841821C87348E003C0458 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 056841811C87348E003C0458 /* GoogleService-Info.plist */; };
 		056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38441C19BE7F003984FD /* AppDelegate.swift */; };
 		056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38461C19BE7F003984FD /* HomeViewController.swift */; };
 		056F384A1C19BE7F003984FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056F38481C19BE7F003984FD /* Main.storyboard */; };
@@ -87,6 +88,8 @@
 		0546A9B21C6C9DDA00BEF295 /* SkillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillView.swift; sourceTree = "<group>"; };
 		0546A9B41C6C9E3100BEF295 /* SkillView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillView.xib; sourceTree = "<group>"; };
 		054CD1E51C469E1C002E637B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		056841811C87348E003C0458 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		056841831C873613003C0458 /* skillz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "skillz-Bridging-Header.h"; sourceTree = "<group>"; };
 		056F38411C19BE7F003984FD /* skillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38441C19BE7F003984FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056F38461C19BE7F003984FD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -202,11 +205,13 @@
 		056F38431C19BE7F003984FD /* skillz */ = {
 			isa = PBXGroup;
 			children = (
+				05353C5E1C579BAC00DD0DC6 /* AllyViewController.swift */,
 				056F38441C19BE7F003984FD /* AppDelegate.swift */,
 				056F38971C1B1DF3003984FD /* Assemblies */,
 				056F384B1C19BE7F003984FD /* Assets.xcassets */,
 				056F38721C1AD2F8003984FD /* Fonts */,
 				057B37081C298ED700FE3921 /* Global.swift */,
+				056841811C87348E003C0458 /* GoogleService-Info.plist */,
 				056F38461C19BE7F003984FD /* HomeViewController.swift */,
 				056F38501C19BE7F003984FD /* Info.plist */,
 				056F384D1C19BE7F003984FD /* LaunchScreen.storyboard */,
@@ -218,7 +223,7 @@
 				059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */,
 				056F38901C1B1B6B003984FD /* Settings */,
 				056F38871C1ADFB0003984FD /* UI */,
-				05353C5E1C579BAC00DD0DC6 /* AllyViewController.swift */,
+				056841831C873613003C0458 /* skillz-Bridging-Header.h */,
 			);
 			path = skillz;
 			sourceTree = "<group>";
@@ -418,7 +423,7 @@
 		056F38391C19BE7F003984FD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Xebia IT Architects";
 				TargetAttributes = {
@@ -462,6 +467,7 @@
 			files = (
 				0546A9B51C6C9E3100BEF295 /* SkillView.xib in Resources */,
 				056F38821C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf in Resources */,
+				056841821C87348E003C0458 /* GoogleService-Info.plist in Resources */,
 				056F384F1C19BE7F003984FD /* LaunchScreen.storyboard in Resources */,
 				056F384C1C19BE7F003984FD /* Assets.xcassets in Resources */,
 				056F387C1C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf in Resources */,
@@ -775,11 +781,14 @@
 			baseConfigurationReference = 83B41FD04A07A0F1DA91364F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = skillz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillz;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.xskillz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "skillz/skillz-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -788,11 +797,13 @@
 			baseConfigurationReference = 6A84CBB5AB6DBBF7FF12A463 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = skillz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillz;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.xskillz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "skillz/skillz-Bridging-Header.h";
 			};
 			name = Release;
 		};
