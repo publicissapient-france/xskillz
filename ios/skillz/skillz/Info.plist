@@ -20,8 +20,44 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>fcabb38c426eb4d270413b164597dce840653258</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>TyphoonInitialAssemblies</key>
+	<array>
+		<string>DataAccessAssembly</string>
+		<string>StoresAssembly</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SanFranciscoDisplay-Black.otf</string>
+		<string>SanFranciscoDisplay-Bold.otf</string>
+		<string>SanFranciscoDisplay-Heavy.otf</string>
+		<string>SanFranciscoDisplay-Light.otf</string>
+		<string>SanFranciscoDisplay-Medium.otf</string>
+		<string>SanFranciscoDisplay-Regular.otf</string>
+		<string>SanFranciscoDisplay-Semibold.otf</string>
+		<string>SanFranciscoDisplay-Thin.otf</string>
+		<string>SanFranciscoDisplay-Ultralight.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -34,28 +70,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>TyphoonInitialAssemblies</key>
-	<array>
-		<string>DataAccessAssembly</string>
-		<string>StoresAssembly</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SanFranciscoDisplay-Black.otf</string>
-		<string>SanFranciscoDisplay-Bold.otf</string>
-		<string>SanFranciscoDisplay-Heavy.otf</string>
-		<string>SanFranciscoDisplay-Light.otf</string>
-		<string>SanFranciscoDisplay-Medium.otf</string>
-		<string>SanFranciscoDisplay-Regular.otf</string>
-		<string>SanFranciscoDisplay-Semibold.otf</string>
-		<string>SanFranciscoDisplay-Thin.otf</string>
-		<string>SanFranciscoDisplay-Ultralight.otf</string>
 	</array>
 </dict>
 </plist>
