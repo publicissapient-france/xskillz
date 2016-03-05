@@ -5,8 +5,6 @@ import Paper from 'material-ui/lib/paper';
 import Avatar from 'material-ui/lib/avatar';
 import UserItem from './UserItem';
 
-import './styles';
-
 class UsersContent extends Component {
 
     constructor(props) {
