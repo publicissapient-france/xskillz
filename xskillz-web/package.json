@@ -12,7 +12,7 @@
     "build:production": "npm run clean && npm run build",
     "ci-test": "./node_modules/mocha/bin/mocha src/test --recursive --reporter mochawesome --compilers js:babel-core/register,scss:./src/test/null-compiler --require src/test/setup.js && ./node_modules/istanbul/lib/cli.js --include-all-sources cover ./node_modules/mocha/bin/_mocha -x \"mochawesome-reports/**\" -x \"scripts/**\" -x \"bin/**\" -x \"**.conf**.js\" -x \"dist/**\" -- -R spec src/test --recursive --compilers js:babel-core/register,scss:./src/test/null-compiler --require src/test/setup.js && ./node_modules/istanbul/lib/cli.js report clover",
     "ci-lint": "./node_modules/eslint/bin/eslint.js -f checkstyle src/** > reports/checkstyle-report.xml ; exit 0",
-    "deploy": "node ./scripts/deploy.js"
+    "deploy": "node ./scripts/deploy-surge.js"
   },
   "repository": {
     "type": "git",
@@ -119,6 +119,7 @@
     "rimraf": "^2.5.0",
     "sass-loader": "^3.0.0",
     "style-loader": "^0.13.0",
+    "surge": "^0.17.7",
     "url-loader": "^0.5.6",
     "webpack": "^1.9.6",
     "webpack-dev-middleware": "^1.2.0",
