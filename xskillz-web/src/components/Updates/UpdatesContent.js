@@ -12,6 +12,7 @@ class UpdatesContent extends Component {
     render() {
 
         const { loaded, list } = this.props.updates;
+        const { goToUsersByName, goToSkillsByName } = this.props;
 
         if (!loaded) {
             return (
@@ -23,7 +24,7 @@ class UpdatesContent extends Component {
             <div className="content">
                 {list.map((update, index)=> {
                     return (
-                        <UpdateItem update={update} key={index}/>
+                        <UpdateItem update={update} key={index} goToUsersByName={goToUsersByName} goToSkillsByName={goToSkillsByName}/>
                     );
                 })}
             </div>
