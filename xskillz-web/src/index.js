@@ -36,7 +36,15 @@ ReactDOM.render(
                        components={{main: SkillsPage, header: Header}}
                        dataTypePage="skills"/>
 
+                <Route path="skills?name=:name"
+                       components={{main: SkillsPage, header: Header}}
+                       dataTypePage="skills"/>
+
                 <Route path="users"
+                       components={{main: UsersPage, header: Header}}
+                       dataTypePage="users"/>
+
+                <Route path="users?name=:name"
                        components={{main: UsersPage, header: Header}}
                        dataTypePage="users"/>
 
