@@ -1,4 +1,3 @@
-import * as storage from 'redux-storage'
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -7,12 +6,10 @@ import reducer from '../reducers';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistory, routeReducer } from 'react-router-redux'
 
-import { engine } from '../engine';
-
 const logger = createLogger({
     collapsed: true,
     predicate: () =>
-    process.env.NODE_ENV === `development`, // eslint-disable-line no-unused-vars
+    process.env.NODE_ENV === `development` // eslint-disable-line no-unused-vars
 });
 
 const middleware = syncHistory(browserHistory);
@@ -20,7 +17,6 @@ const middleware = syncHistory(browserHistory);
 const createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
     middleware,
-    storage.createMiddleware(engine),
     logger
 )(createStore);
 

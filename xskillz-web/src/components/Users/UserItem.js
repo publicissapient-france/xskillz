@@ -6,11 +6,14 @@ import Badge from 'material-ui/lib/badge';
 import { redA400, grey500, grey200 } from 'material-ui/lib/styles/colors';
 import Stars from '../Skills/Stars';
 
+import LabelButton from '../LabelButton';
+
 class UserItem extends Component {
 
     render() {
 
         const user = this.props.user;
+        const { onUserClick, onSkillClick } = this.props;
 
         //noinspection JSUnresolvedVariable
         return (
@@ -22,8 +25,10 @@ class UserItem extends Component {
                             <Avatar src={user.gravatarUrl}/>
                         </div>
                         <div className="user-right">
-                            <p>{user.name}</p>
-                            <p>{user.experienceCounter} xp</p>
+                            <p>
+                                {user.name && <LabelButton label={user.name} onClick={()=>{onUserClick(user.name)}}/>}
+                            </p>
+                            <p style={{marginLeft: '2px'}}>{user.experienceCounter} XP</p>
                         </div>
                     </div>
                     {user.domains &&
@@ -34,9 +39,13 @@ class UserItem extends Component {
                                     <div className={`domain-name domain-${domain.name}`}>{domain.name}</div>
                                     <div>
                                         {domain.skills.map((skill, index) => {
+                                            //noinspection JSUnresolvedVariable
                                             return (
                                                 <div key={index} className="domain-info">
-                                                    <p>{skill.name} {skill.interested && <span style={{color: redA400}}>&#9829;</span>}{!skill.interested && <span style={{color: grey500}}>&#9825;</span>}</p>
+                                                    <p>{skill.name && <LabelButton label={skill.name}
+                                                                                   onClick={()=>{onSkillClick(skill.name)}}/>} {skill.interested &&
+                                                    <span style={{color: redA400}}>&#9829;</span>}{!skill.interested &&
+                                                    <span style={{color: grey500}}>&#9825;</span>}</p>
                                                     <Stars level={skill.level}/>
                                                 </div>
                                             )

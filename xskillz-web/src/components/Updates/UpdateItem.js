@@ -5,19 +5,15 @@ import Avatar from 'material-ui/lib/avatar';
 import FlatButton from 'material-ui/lib/flat-button';
 
 import LevelToHRValue from '../Skills/LevelToHRValue';
+import LabelButton from '../LabelButton';
 
 class UpdateItem extends Component {
 
     render() {
 
-        const { goToSkillsByName, goToUsersByName, update } = this.props;
+        const { onUserClick, onSkillClick, update } = this.props;
         const { user, skill } = update;
         const { name, companyName, gravatarUrl } = user;
-
-        const style = {
-            flatButton: {lineHeight: '18px', minWidth: 0},
-            labelStyle: {padding: '0 3px'}
-        };
 
         return (
             <div className="user-row">
@@ -28,14 +24,11 @@ class UpdateItem extends Component {
                             <Avatar src={gravatarUrl}/>
                         </div>
                         <div className="user-right">
-                            <FlatButton style={style.flatButton} labelStyle={style.labelStyle}
-                                        secondary={true} label={name} onClick={()=>{goToUsersByName(name)}}/>
+                            <LabelButton label={name} onClick={()=>{onUserClick(name)}}/>
                             &nbsp;est&nbsp;
                             <LevelToHRValue level={skill.level}/>
                             &nbsp;en&nbsp;
-                            <FlatButton style={style.flatButton} labelStyle={style.labelStyle}
-                                        secondary={true} label={skill.name}
-                                        onClick={()=>{goToSkillsByName(skill.name)}}/>
+                            <LabelButton label={skill.name} onClick={()=>{onSkillClick(skill.name)}}/>
                         </div>
                     </div>
                 </Paper>

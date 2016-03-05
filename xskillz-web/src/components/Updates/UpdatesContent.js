@@ -12,7 +12,7 @@ class UpdatesContent extends Component {
     render() {
 
         const { loaded, list } = this.props.updates;
-        const { goToUsersByName, goToSkillsByName } = this.props;
+        const { onUserClick, onSkillClick } = this.props;
 
         if (!loaded) {
             return (
@@ -20,11 +20,14 @@ class UpdatesContent extends Component {
             );
         }
 
+        const max = 20;
+        const maxUpdates = list.length > max ? max : list.length;
         return (
             <div className="content">
-                {list.map((update, index)=> {
+                {list.slice(0, maxUpdates).map((update, index)=> {
                     return (
-                        <UpdateItem update={update} key={index} goToUsersByName={goToUsersByName} goToSkillsByName={goToSkillsByName}/>
+                        <UpdateItem update={update} key={index} onUserClick={onUserClick}
+                                    onSkillClick={onSkillClick}/>
                     );
                 })}
             </div>

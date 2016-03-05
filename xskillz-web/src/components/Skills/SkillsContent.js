@@ -21,6 +21,8 @@ class SkillsContent extends Component {
         const { loaded } = this.props.skills;
         if (!loaded) {
             this.props.fetchSkills();
+        } else {
+            this.componentDidUpdate();
         }
     }
 
@@ -44,6 +46,7 @@ class SkillsContent extends Component {
     render() {
 
         const { loaded } = this.props.skills;
+        const { onUserClick } = this.props;
 
         if (!loaded) {
             return (
@@ -71,7 +74,7 @@ class SkillsContent extends Component {
 
                 {users.map((user, index) => {
                     return (
-                        <SkillUserItem key={index} user={user}/>
+                        <SkillUserItem key={index} user={user} onUserClick={onUserClick}/>
                     )
                 })}
             </div>

@@ -2,8 +2,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createLoader } from 'redux-storage';
-import { engine, load } from './engine';
 import { Router, Route, Redirect, browserHistory } from 'react-router';
 
 

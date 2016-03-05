@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchUpdatesByCompany: (companyId) => dispatch(fetchUpdatesByCompany(companyId)),
-        goToUsersByName: (name) => dispatch(routeActions.push(`/users?name=${name}`)),
-        goToSkillsByName: (name) => dispatch(routeActions.push(`/skills?name=${name}`))
+        onUserClick: (name) => dispatch(routeActions.push(`/users?name=${name}`)),
+        onSkillClick: (name) => dispatch(routeActions.push(`/skills?name=${name}`))
     };
 };
 

@@ -4,6 +4,7 @@ import AutoComplete from 'material-ui/lib/auto-complete';
 import Paper from 'material-ui/lib/paper';
 import Avatar from 'material-ui/lib/avatar';
 import UserItem from './UserItem';
+
 import CircularProgress from 'material-ui/lib/circular-progress';
 
 class UsersContent extends Component {
@@ -20,13 +21,8 @@ class UsersContent extends Component {
         const { loaded } = this.props.users;
         if (!loaded) {
             this.props.fetchUsers();
-        }
-    }
-
-    onNewRequest(name) {
-        var user = _.find(this.props.users.list, (s) => s.name === name);
-        if (user) {
-            this.props.getUserById(user.id, name);
+        } else {
+            this.componentDidUpdate();
         }
     }
 
@@ -40,9 +36,17 @@ class UsersContent extends Component {
         }
     }
 
+    onNewRequest(name) {
+        var user = _.find(this.props.users.list, (s) => s.name === name);
+        if (user) {
+            this.props.getUserById(user.id, name);
+        }
+    }
+
     render() {
 
         const { loaded } = this.props.users;
+        const { onUserClick, onSkillClick } = this.props;
 
         if (!loaded) {
             return (
@@ -68,7 +72,7 @@ class UsersContent extends Component {
                                   onNewRequest={this.onNewRequest}
                                   searchText={name}/>
                 </div>
-                <UserItem user={user}/>
+                <UserItem user={user} onUserClick={onUserClick} onSkillClick={onSkillClick}/>
             </div>
         )
     }
