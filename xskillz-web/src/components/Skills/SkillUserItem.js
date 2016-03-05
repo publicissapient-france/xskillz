@@ -5,11 +5,13 @@ import Avatar from 'material-ui/lib/avatar';
 import Badge from 'material-ui/lib/badge';
 import { redA400, grey500 } from 'material-ui/lib/styles/colors';
 
+import LabelButton from '../LabelButton';
+
 class SkillUserItem extends Component {
 
     render() {
 
-        const user = this.props.user;
+        const { onUserClick, user } = this.props;
 
         //noinspection JSUnresolvedVariable
         return (
@@ -21,7 +23,9 @@ class SkillUserItem extends Component {
                             <Avatar src={user.gravatarUrl}/>
                         </div>
                         <div className="user-right">
-                            <p>{user.name}</p>
+                            {user.name && <p>
+                                <LabelButton label={user.name} onClick={()=>{onUserClick(user.name)}}/>
+                            </p>}
                             <p>{user.experienceCounter} xp</p>
                             {user.interested && <p style={{color: redA400}}>&#9829;</p>}
                             {!user.interested && <p style={{color: grey500}}>&#9825;</p>}

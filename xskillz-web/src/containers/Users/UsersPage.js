@@ -21,7 +21,9 @@ const mapDispatchToProps = (dispatch) => {
         getUserById: (id, name) => {
             dispatch(getUserById(id));
             dispatch(routeActions.push(`/users?name=${name}`));
-        }
+        },
+        onUserClick: (name) => dispatch(routeActions.push(`/users?name=${name}`)),
+        onSkillClick: (name) => dispatch(routeActions.push(`/skills?name=${name}`))
     };
 };
 
