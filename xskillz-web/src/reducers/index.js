@@ -3,6 +3,7 @@ import { routeReducer } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form';
 import { skills } from './skills';
 import { users } from './users';
+import { updates } from './updates';
 
 import * as storage from 'redux-storage';
 
@@ -11,7 +12,8 @@ const reducer = storage.reducer(combineReducers({
     routing: routeReducer,
     /* your reducers */
     skills,
-    users
+    users,
+    updates
 }));
 
 export default reducer;

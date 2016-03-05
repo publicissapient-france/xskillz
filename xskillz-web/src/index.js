@@ -12,6 +12,7 @@ import { NotFound } from 'containers/NotFound';
 import SkillsPage from 'containers/Skills/SkillsPage';
 import UsersPage from 'containers/Users/UsersPage';
 import Header from 'containers/Header/Header';
+import UpdatesPage from 'containers/Updates/UpdatesPage';
 
 import configureStore from './store/configureStore';
 
@@ -23,9 +24,13 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
 
-            <Redirect from="/" to="skills"/>
+            <Redirect from="/" to="updates"/>
 
             <Route path="/" component={App}>
+
+                <Route path="updates"
+                       components={{main: UpdatesPage, header: Header}}
+                       dataType="timeline"/>
 
                 <Route path="skills"
                        components={{main: SkillsPage, header: Header}}

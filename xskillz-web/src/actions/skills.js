@@ -1,14 +1,13 @@
 import fetch from 'isomorphic-fetch';
 
 export const REQUEST_SKILLS = 'REQUEST_SKILLS';
+export const RECEIVE_SKILLS = 'RECEIVE_SKILLS';
 
 export function requestSkills() {
     return {
         type: REQUEST_SKILLS
     }
 }
-
-export const RECEIVE_SKILLS = 'RECEIVE_SKILLS';
 
 export function receiveSkills(skills) {
     return {

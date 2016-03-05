@@ -13,7 +13,8 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => {
     return {
         goToSkills: () => dispatch(routeActions.push('/skills')),
-        goToUsers: () => dispatch(routeActions.push('/users'))
+        goToUsers: () => dispatch(routeActions.push('/users')),
+        goToUpdates: () => dispatch(routeActions.push('/updates'))
     };
 };
 
