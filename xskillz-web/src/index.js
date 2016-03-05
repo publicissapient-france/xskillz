@@ -11,6 +11,7 @@ import { App } from 'containers/App';
 import { NotFound } from 'containers/NotFound';
 import SkillsPage from 'containers/Skills/SkillsPage';
 import UsersPage from 'containers/Users/UsersPage';
+import Header from 'containers/Header/Header';
 
 import configureStore from './store/configureStore';
 
@@ -27,11 +28,11 @@ ReactDOM.render(
             <Route path="/" component={App}>
 
                 <Route path="skills"
-                       components={{main: SkillsPage}}
+                       components={{main: SkillsPage, header: Header}}
                        dataTypePage="skills"/>
 
                 <Route path="users"
-                       components={{main: UsersPage}}
+                       components={{main: UsersPage, header: Header}}
                        dataTypePage="users"/>
 
                 <Route status={404}
