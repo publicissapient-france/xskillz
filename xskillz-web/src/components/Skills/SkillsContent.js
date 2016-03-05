@@ -24,11 +24,20 @@ class SkillsContent extends Component {
         }
     }
 
+    componentDidUpdate() {
+        const { name } = this.props.location.query;
+        const { loaded } = this.props.skills;
+
+        if (loaded && name && this.search) {
+            this.onNewRequest(name);
+            this.search = false;
+        }
+    }
+
     onNewRequest(name) {
         var skill = _.find(this.props.skills.list, (s) => s.name === name);
         if (skill) {
-            const { id, name } = skill;
-            this.props.fetchUsersBySkillId(id, name);
+            this.props.fetchUsersBySkillId(skill.id, name);
         }
     }
 
@@ -49,12 +58,6 @@ class SkillsContent extends Component {
         _.each(skills, (s) => nameArray.push(s.name));
 
         const { name } = this.props.location.query;
-
-        if (name && this.search) {
-            this.onNewRequest(name);
-        }
-
-        this.search = false;
 
         return (
             <div className="content">

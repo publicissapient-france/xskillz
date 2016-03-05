@@ -10,16 +10,34 @@ class UsersContent extends Component {
 
     constructor(props) {
         super(props);
+
         this.onNewRequest = this.onNewRequest.bind(this);
+
+        this.search = true;
     }
 
     componentDidMount() {
-        this.props.fetchUsers();
+        const { loaded } = this.props.users;
+        if (!loaded) {
+            this.props.fetchUsers();
+        }
     }
 
     onNewRequest(name) {
-        const id = _.find(this.props.users.list, (s) => s.name === name).id;
-        this.props.getUserById(id);
+        var user = _.find(this.props.users.list, (s) => s.name === name);
+        if (user) {
+            this.props.getUserById(user.id, name);
+        }
+    }
+
+    componentDidUpdate() {
+        const { name } = this.props.location.query;
+        const { loaded } = this.props.users;
+
+        if (loaded && name && this.search) {
+            this.onNewRequest(name);
+            this.search = false;
+        }
     }
 
     render() {
@@ -37,9 +55,9 @@ class UsersContent extends Component {
         const user = this.props.users.user;
 
         var nameArray = [];
-        if (users) {
-            _.each(users, (u) => nameArray.push(u.name));
-        }
+        _.each(users, (u) => nameArray.push(u.name));
+
+        const { name } = this.props.location.query;
 
         return (
             <div className="content">
@@ -47,7 +65,8 @@ class UsersContent extends Component {
                     <AutoComplete hintText={'Enter user name...'}
                                   dataSource={nameArray}
                                   filter={AutoComplete.fuzzyFilter}
-                                  onNewRequest={this.onNewRequest}/>
+                                  onNewRequest={this.onNewRequest}
+                                  searchText={name}/>
                 </div>
                 <UserItem user={user}/>
             </div>

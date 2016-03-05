@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { routeActions } from 'react-router-redux';
 
 import UsersContent from '../../components/Users/UsersContent'
 
@@ -17,8 +18,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchUsers: () => dispatch(fetchUsers()),
-        getUserById: (userId) => {
-            dispatch(getUserById(userId))
+        getUserById: (id, name) => {
+            dispatch(getUserById(id));
+            dispatch(routeActions.push(`/users?name=${name}`));
         }
     };
 };
