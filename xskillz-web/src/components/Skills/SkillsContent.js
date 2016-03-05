@@ -6,8 +6,6 @@ import Avatar from 'material-ui/lib/avatar';
 
 import SkillUserItem from './SkillUserItem';
 
-import './styles';
-
 class SkillsContent extends Component {
 
     constructor(props) {

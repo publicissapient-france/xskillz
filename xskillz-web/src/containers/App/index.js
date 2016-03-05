@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './styles'
+import '../../styles/main'
 
 export class App extends Component {
 
