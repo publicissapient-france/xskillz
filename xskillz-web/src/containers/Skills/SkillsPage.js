@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { routeActions } from 'react-router-redux';
 
 import SkillsContent from '../../components/Skills/SkillsContent'
 
@@ -18,7 +19,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchSkills: () => dispatch(fetchSkills()),
-        fetchUsersBySkillId: (skillId) => dispatch(fetchUsersBySkill(skillId))
+        fetchUsersBySkillId: (id, name) => {
+            dispatch(fetchUsersBySkill(id));
+            dispatch(routeActions.push(`/skills?name=${name}`));
+        }
     };
 };
 

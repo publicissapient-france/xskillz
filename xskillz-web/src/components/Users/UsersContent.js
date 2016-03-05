@@ -36,16 +36,17 @@ class UsersContent extends Component {
 
         const user = this.props.users.user;
 
-        var usernameArray = [];
+        var nameArray = [];
         if (users) {
-            _.each(users, (u) => usernameArray.push(u.name));
+            _.each(users, (u) => nameArray.push(u.name));
         }
 
         return (
             <div className="content">
                 <div className="auto-complete">
                     <AutoComplete hintText={'Enter user name...'}
-                                  dataSource={usernameArray}
+                                  dataSource={nameArray}
+                                  filter={AutoComplete.fuzzyFilter}
                                   onNewRequest={this.onNewRequest}/>
                 </div>
                 <UserItem user={user}/>

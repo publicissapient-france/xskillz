@@ -11,21 +11,30 @@ class SkillsContent extends Component {
 
     constructor(props) {
         super(props);
+
         this.onNewRequest = this.onNewRequest.bind(this);
+
+        this.search = true;
     }
 
     componentDidMount() {
-        this.props.fetchSkills();
+        const { loaded } = this.props.skills;
+        if (!loaded) {
+            this.props.fetchSkills();
+        }
     }
 
     onNewRequest(name) {
-        const id = _.find(this.props.skills.list, (s) => s.name === name).id;
-        this.props.fetchUsersBySkillId(id);
+        var skill = _.find(this.props.skills.list, (s) => s.name === name);
+        if (skill) {
+            const { id, name } = skill;
+            this.props.fetchUsersBySkillId(id, name);
+        }
     }
 
     render() {
 
-        const { loaded } = this.props.users;
+        const { loaded } = this.props.skills;
 
         if (!loaded) {
             return (
@@ -34,21 +43,27 @@ class SkillsContent extends Component {
         }
 
         var skills = this.props.skills.list;
-        var users = this.props.users.list;
+        var users = this.props.users.bySkill.list;
 
-        var skillNameArray = [];
-        if (skills && skills.length > 0) {
-            _.each(skills, (s) => {
-                skillNameArray.push(s.name);
-            });
+        var nameArray = [];
+        _.each(skills, (s) => nameArray.push(s.name));
+
+        const { name } = this.props.location.query;
+
+        if (name && this.search) {
+            this.onNewRequest(name);
         }
+
+        this.search = false;
 
         return (
             <div className="content">
                 <div className="auto-complete">
                     <AutoComplete hintText={'Enter skill name...'}
-                                  dataSource={skillNameArray}
-                                  onNewRequest={this.onNewRequest}/>
+                                  dataSource={nameArray}
+                                  filter={AutoComplete.fuzzyFilter}
+                                  onNewRequest={this.onNewRequest}
+                                  searchText={name}/>
                 </div>
 
                 {users.map((user, index) => {
