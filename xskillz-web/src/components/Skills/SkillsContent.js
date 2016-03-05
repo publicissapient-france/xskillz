@@ -3,6 +3,7 @@ import _ from 'lodash';
 import AutoComplete from 'material-ui/lib/auto-complete';
 import Paper from 'material-ui/lib/paper';
 import Avatar from 'material-ui/lib/avatar';
+import CircularProgress from 'material-ui/lib/circular-progress';
 
 import SkillUserItem from './SkillUserItem';
 
@@ -23,6 +24,14 @@ class SkillsContent extends Component {
     }
 
     render() {
+
+        const { loaded } = this.props.users;
+
+        if (!loaded) {
+            return (
+                <CircularProgress style={{position: 'absolute', top: '10rem', margin: 'auto', left: 0, right: 0}}/>
+            );
+        }
 
         var skills = this.props.skills.list;
         var users = this.props.users.list;
