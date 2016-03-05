@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { routeActions } from 'react-router-redux';
 
 import UpdatesContent from '../../components/Updates/UpdatesContent'
 
@@ -15,7 +16,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUpdatesByCompany: (companyId) => dispatch(fetchUpdatesByCompany(companyId))
+        fetchUpdatesByCompany: (companyId) => dispatch(fetchUpdatesByCompany(companyId)),
+        goToUsersByName: (name) => dispatch(routeActions.push(`/users?name=${name}`)),
+        goToSkillsByName: (name) => dispatch(routeActions.push(`/skills?name=${name}`))
     };
 };
 
