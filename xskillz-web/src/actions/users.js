@@ -1,6 +1,10 @@
 import fetch from 'isomorphic-fetch';
 
 export const REQUEST_USERS_BY_SKILL = 'REQUEST_USERS_BY_SKILL';
+export const REQUEST_USERS = 'REQUEST_USERS';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const REQUEST_USER_BY_ID = 'REQUEST_USER_BY_ID';
+export const RECEIVE_USER_BY_ID = 'RECEIVE_USER_BY_ID';
 
 export function requestUsersBySkill(skillId) {
     return {
@@ -22,15 +26,11 @@ export function fetchUsersBySkill(skillId) {
     }
 }
 
-export const REQUEST_USERS = 'REQUEST_USERS';
-
 export function requestUsers() {
     return {
         type: REQUEST_USERS
     }
 }
-
-export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 export function receiveUsers(users) {
     return {
@@ -41,8 +41,6 @@ export function receiveUsers(users) {
     }
 }
 
-export const REQUEST_USER_BY_ID = 'REQUEST_USER_BY_ID';
-
 export function requestUserById(userId) {
     return {
         type: REQUEST_USER_BY_ID,
@@ -51,8 +49,6 @@ export function requestUserById(userId) {
         }
     }
 }
-
-export const RECEIVE_USER_BY_ID = 'RECEIVE_USER_BY_ID';
 
 export function receiveUserById(user) {
     return {
