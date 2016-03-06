@@ -1,0 +1,12 @@
+{
+  "name": "node-neo4j-template",
+  "description": "A sample Node.js + Neo4j app.",
+  "version": "0.0.0",
+  "author": "Aseem Kishore <aseem.kishore@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "express": "^3.2.0",
+    "jade": "^0.26.3",
+    "neo4j": "2.0.0-RC2"
+  }
+}
