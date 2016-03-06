@@ -9,6 +9,7 @@ import java.util.Date;
 @Getter
 public class SkillUpdate {
     private final DomainSkill skill;
+
     private final BasicUserProfile user;
     private final Date date;
 
@@ -21,4 +22,5 @@ public class SkillUpdate {
     public String getId() {
         return user.getId().toString() + "-" + skill.getId().toString();
     }
+
 }

@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RestController
 public class GetLastUpdatesController extends SkillzController {
@@ -21,17 +22,31 @@ public class GetLastUpdatesController extends SkillzController {
     private UserSkillRepository userSkillRepository;
 
     @RequestMapping("/companies/{company}/updates")
-    public List<SkillUpdate> getCompanyUpdates(@PathVariable Company company) {
+    public Map<Long, List<SkillUpdate>> getCompanyUpdates(@PathVariable Company company) {
         return userSkillRepository.
-                findTop100ByCompany(company, new PageRequest(0, 100)).stream().
-                map(SkillUpdate::new).collect(toList());
+                findTop100ByCompany(company, new PageRequest(0, 100))
+                .stream()
+                .map(SkillUpdate::new)
+                .collect(Collectors.groupingBy(new Function<SkillUpdate, Long>() {
+                    @Override
+                    public Long apply(SkillUpdate t) {
+                        return t.getUser().getId();
+                    }
+                }));
     }
 
     @RequestMapping("/updates")
-    public List<SkillUpdate> getAllUpdates() {
+    public Map<Long, List<SkillUpdate>> getAllUpdates() {
         return userSkillRepository.
-                findTop100ByOrderByUpdatedAtDesc().stream().
-                map(SkillUpdate::new).collect(toList());
+                findTop100ByOrderByUpdatedAtDesc()
+                .stream()
+                .map(SkillUpdate::new)
+                .collect(Collectors.groupingBy(new Function<SkillUpdate, Long>() {
+                    @Override
+                    public Long apply(SkillUpdate t) {
+                        return t.getUser().getId();
+                    }
+                }));
     }
 
 }
