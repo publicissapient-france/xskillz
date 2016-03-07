@@ -2,10 +2,23 @@ import React, { Component, PropTypes } from 'react';
 
 import Paper from 'material-ui/lib/paper';
 import Avatar from 'material-ui/lib/avatar';
+import { deepPurple300, purple300, pink300 } from 'material-ui/lib/styles/colors';
 
 class LevelToHRValue extends Component {
 
     render() {
+
+        const style = {
+            beginner: {
+                fontStyle: 'italic'
+            },
+            confirmed: {
+                fontStyle: 'italic'
+            },
+            expert: {
+                fontStyle: 'italic'
+            }
+        };
 
         const level = this.props.level;
 
@@ -13,13 +26,13 @@ class LevelToHRValue extends Component {
 
         switch (level) {
             case 0:
-                wording = 'débutant';
+                wording = <span style={style.beginner}>débutant</span>;
                 break;
             case 1:
-                wording = 'confirmé';
+                wording = <span style={style.confirmed}>confirmé</span>;
                 break;
             default:
-                wording = 'expert';
+                wording = <span style={style.expert}>expert</span>;
                 break;
         }
 

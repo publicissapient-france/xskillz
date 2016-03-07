@@ -6,14 +6,14 @@ import FlatButton from 'material-ui/lib/flat-button';
 
 import LevelToHRValue from '../Skills/LevelToHRValue';
 import LabelButton from '../LabelButton';
+import SkillCard from '../Skills/SkillCard';
 
 class UpdateItem extends Component {
 
     render() {
 
-        const { onUserClick, onSkillClick, update } = this.props;
-        const { user, skill } = update;
-        const { name, companyName, gravatarUrl } = user;
+        const { onUserClick, update } = this.props;
+        const { name, companyName, gravatarUrl } = update.user;
 
         return (
             <div className="user-row">
@@ -25,11 +25,15 @@ class UpdateItem extends Component {
                         </div>
                         <div className="user-right">
                             <LabelButton label={name} onClick={()=>{onUserClick(name)}}/>
-                            &nbsp;est&nbsp;
-                            <LevelToHRValue level={skill.level}/>
-                            &nbsp;en&nbsp;
-                            <LabelButton label={skill.name} onClick={()=>{onSkillClick(skill.name)}}/>
+                            &nbsp;a mis à jour {update.updates.length} skill{update.updates.length>1?'s':''}.
                         </div>
+                    </div>
+                    <div className="domains-content">
+                        {update.updates.map((update, index) => {
+                            return (
+                                <SkillCard skill={update.skill} key={index}/>
+                            )
+                        })}
                     </div>
                 </Paper>
             </div>

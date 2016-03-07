@@ -28,7 +28,7 @@ ReactDOM.render(
 
                 <Route path="updates"
                        components={{main: UpdatesPage, header: Header}}
-                       dataType="timeline"/>
+                       dataTypePage="updates"/>
 
                 <Route path="skills"
                        components={{main: SkillsPage, header: Header}}

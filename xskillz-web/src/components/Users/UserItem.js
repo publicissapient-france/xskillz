@@ -7,6 +7,7 @@ import { redA400, grey500, grey200 } from 'material-ui/lib/styles/colors';
 import Stars from '../Skills/Stars';
 
 import LabelButton from '../LabelButton';
+import SkillCard from '../Skills/SkillCard';
 
 class UserItem extends Component {
 
@@ -35,19 +36,13 @@ class UserItem extends Component {
                     <div style={{paddingBottom: '.1rem'}}>
                         {user.domains.map((domain, index) => {
                             return (
-                                <div key={index} className="user-domain">
+                                <div key={index} className="domains-content">
                                     <div className={`domain-name domain-${domain.name}`}>{domain.name}</div>
                                     <div>
                                         {domain.skills.map((skill, index) => {
                                             //noinspection JSUnresolvedVariable
                                             return (
-                                                <div key={index} className="domain-info">
-                                                    <p>{skill.name && <LabelButton label={skill.name}
-                                                                                   onClick={()=>{onSkillClick(skill.name)}}/>} {skill.interested &&
-                                                    <span style={{color: redA400}}>&#9829;</span>}{!skill.interested &&
-                                                    <span style={{color: grey500}}>&#9825;</span>}</p>
-                                                    <Stars level={skill.level}/>
-                                                </div>
+                                                <SkillCard key={index} skill={skill} />
                                             )
                                         })}
                                     </div>

@@ -10,7 +10,7 @@ body {
     }
 
     .user-row {
-        margin: .8rem;
+        margin: .6rem .5em;
     }
 
     p {
@@ -38,6 +38,14 @@ body {
         .user-right {
             margin: .8rem;
         }
+    }
+
+    .domain-info {
+        float: left;
+        padding: .5rem;
+        margin: .5em 0 0 .5em;
+        border: solid 1px #EEEEEE;
+        border-radius: 2px;
     }
 
 }
