@@ -26,9 +26,11 @@ copy = () => {
                 fs.copy('index.html', deployDir + '/index.html', function (err) {
                     if (err) return console.error(err);
                     fs.copy(deployDir + '/index.html', deployDir + '/200.html', function (err) {
-                        if (err) return console.error(err);
-                        console.info('Successfully copied files');
-                        deploy();
+                        fs.copy('manifest.json', deployDir + '/manifest.json', function (err) {
+                            if (err) return console.error(err);
+                            console.info('Successfully copied files');
+                            deploy();
+                        });
                     });
                 });
             });
