@@ -34,19 +34,19 @@ const common = {
         loaders: [
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=8192&mimetype=application/font-woff'
+                loader: 'url?limit=2048&mimetype=application/font-woff'
             },
             {
                 test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=8192&mimetype=application/font-woff2'
+                loader: 'url?limit=2048&mimetype=application/font-woff2'
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=8192&mimetype=application/octet-stream'
+                loader: 'url?limit=2048&mimetype=application/octet-stream'
             },
             {
                 test: /\.otf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=8192&mimetype=application/font-otf'
+                loader: 'url?limit=2048&mimetype=application/font-otf'
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -54,7 +54,7 @@ const common = {
             },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=8192&mimetype=image/svg+xml'
+                loader: 'url?limit=2048&mimetype=image/svg+xml'
             },
             {
                 test: /\.js$/,
@@ -63,7 +63,7 @@ const common = {
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: 'url?limit=8192'
+                loader: 'url?limit=2048'
             }
         ]
     },

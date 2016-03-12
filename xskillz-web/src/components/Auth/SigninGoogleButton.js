@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 
+import RaisedButton from 'material-ui/lib/raised-button';
+import FontIcon from 'material-ui/lib/font-icon';
+import { red800 } from 'material-ui/lib/styles/colors';
+
 const gApiConfig = {
     client_id: '197689696095-r3nte77lvj6gs2kur7uordeov7kbh7f6.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/plus.me',
     api_key: 'AIzaSyByEQ-sEGAn_zOe9onWOWifVn-sXSyWVVY'
+};
+
+const styles = {
+    wrapper: {margin: '25% auto 0', textAlign: 'center'},
+    gButton: {
+        cursor: 'pointer',
+        width: '191px',
+        height: '46px',
+        padding: '0 1rem',
+        margin: '3rem auto',
+        background: `url(${require('../../assets/btn_google_signin_light_normal_web.png')})`
+    },
+    error: {
+        color: red800
+    }
 };
 
 class SigninGoogleButton extends Component {
@@ -14,6 +33,8 @@ class SigninGoogleButton extends Component {
         this.checkAuth = this.checkAuth.bind(this);
         this.handleAuthResult = this.handleAuthResult.bind(this);
         this.handleAuthClick = this.handleAuthClick.bind(this);
+
+        this.state = {error: false};
     }
 
     handleClientLoad() {
@@ -46,8 +67,10 @@ class SigninGoogleButton extends Component {
     handleAuthResult(authResult) {
         if (authResult && !authResult.error) {
             console.log('logged');
+            // TODO back end sync
         } else {
-            console.log('not logged');
+            // TODO error message
+            this.setState({error: true});
         }
     }
 
@@ -61,8 +84,19 @@ class SigninGoogleButton extends Component {
 
     render() {
 
+        const { error } = this.state;
+
         return (
-            <button onClick={this.handleAuthClick}>Signin</button>
+            <div style={styles.wrapper}>
+                <h1>Welcome on<br/>XskillZ
+                </h1>
+                <div style={styles.gButton}
+                     onClick={this.handleAuthClick}>
+                </div>
+                {error && <div style={styles.error}>
+                    You have to log with your company Google address.
+                </div>}
+            </div>
         )
     }
 
