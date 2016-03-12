@@ -103,11 +103,11 @@
             <version>1.4.188</version>
         </dependency>
 
-        <dependency>
+        <!--dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>3.2.1</version>
-        </dependency>
+        </dependency-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -133,7 +133,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
+            <!--plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>3.2.1</version>
@@ -142,7 +142,7 @@
                     <user>skillz</user>
                     <password>hXa3zD6DfDqBH9rS</password>
                 </configuration>
-            </plugin>
+            </plugin-->
         </plugins>
     </build>
 

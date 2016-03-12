@@ -63,7 +63,7 @@ public class Skill implements Validable {
 
     public int getNumAllies() {
         List<UserSkill> users = getUsers();
-        if(users == null) {
+        if (users == null) {
             return 0;
         }
         return users.size();

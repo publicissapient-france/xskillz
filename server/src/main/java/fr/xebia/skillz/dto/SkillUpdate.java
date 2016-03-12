@@ -1,5 +1,6 @@
 package fr.xebia.skillz.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.xebia.skillz.model.DomainSkill;
 import fr.xebia.skillz.model.UserSkill;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import java.util.Date;
 public class SkillUpdate {
     private final DomainSkill skill;
 
+    @JsonIgnore
     private final BasicUserProfile user;
     private final Date date;
 
