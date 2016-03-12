@@ -36,13 +36,13 @@ class UserItem extends Component {
                     <div style={{paddingBottom: '.1rem'}}>
                         {user.domains.map((domain, index) => {
                             return (
-                                <div key={index} className="domains-content">
+                                <div key={index} className={`domains-content domain-${domain.name}`}>
                                     <div className={`domain-name domain-${domain.name}`}>{domain.name}</div>
                                     <div>
                                         {domain.skills.map((skill, index) => {
                                             //noinspection JSUnresolvedVariable
                                             return (
-                                                <SkillCard key={index} skill={skill} />
+                                                <SkillCard key={index} skill={skill}/>
                                             )
                                         })}
                                     </div>

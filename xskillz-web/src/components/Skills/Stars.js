@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Paper from 'material-ui/lib/paper';
 import Avatar from 'material-ui/lib/avatar';
 import Badge from 'material-ui/lib/badge';
-import { grey200 } from 'material-ui/lib/styles/colors';
+import { grey300 } from 'material-ui/lib/styles/colors';
 
 class Stars extends Component {
 
@@ -13,9 +13,9 @@ class Stars extends Component {
 
         return (
             <div>
-                {level > 0 ? <span style={{color: 'gold'}}>&#x2605;</span> : <span style={{color: grey200}}>&#x2605;</span>}
-                {level > 1 ? <span style={{color: 'gold'}}>&#x2605;</span> : <span style={{color: grey200}}>&#x2605;</span>}
-                {level > 2 ? <span style={{color: 'gold'}}>&#x2605;</span> : <span style={{color: grey200}}>&#x2605;</span>}
+                {level > 0 ? <span style={{color: 'gold'}}>&#x2605;</span> : <span style={{color: grey300}}>&#x2605;</span>}
+                {level > 1 ? <span style={{color: 'gold'}}>&#x2605;</span> : <span style={{color: grey300}}>&#x2605;</span>}
+                {level > 2 ? <span style={{color: 'gold'}}>&#x2605;</span> : <span style={{color: grey300}}>&#x2605;</span>}
             </div>
         )
     }

@@ -1,3 +1,39 @@
+.domain-Agile {
+    background-color: $color-agile-light;
+}
+
+.domain-Back {
+    background-color: $color-back-light;
+}
+
+.domain-Cloud {
+    background-color: $color-cloud-light;
+}
+
+.domain-Craft {
+    background-color: $color-craft-light;
+}
+
+.domain-Data {
+    background-color: $color-data-light;
+}
+
+.domain-Devops {
+    background-color: $color-devops-light;
+}
+
+.domain-Loisirs {
+    background-color: $color-loisirs-light;
+}
+
+.domain-Mobile {
+    background-color: $color-mobile-light;
+}
+
+.domain-Front {
+    background-color: $color-front-light;
+}
+
 .domains-content {
 
     @include clearfix;
@@ -46,5 +82,9 @@
 
     .domain-Mobile {
         background-color: $color-mobile;
+    }
+
+    .domain-Front {
+        background-color: $color-front;
     }
 }
