@@ -11,6 +11,7 @@ import SkillsPage from 'containers/Skills/SkillsPage';
 import UsersPage from 'containers/Users/UsersPage';
 import Header from 'containers/Header/Header';
 import UpdatesPage from 'containers/Updates/UpdatesPage';
+import SigninPage from 'containers/Auth/SigninPage';
 
 import configureStore from './store/configureStore';
 
@@ -25,6 +26,10 @@ ReactDOM.render(
             <Redirect from="/" to="updates"/>
 
             <Route path="/" component={App}>
+
+                <Route path="signin"
+                       components={{main: SigninPage}}
+                       dataTypePage="signin"/>
 
                 <Route path="updates"
                        components={{main: UpdatesPage, header: Header}}
