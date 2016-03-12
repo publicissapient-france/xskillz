@@ -12,7 +12,7 @@ class UpdateItem extends Component {
 
     render() {
 
-        const { onUserClick, update } = this.props;
+        const { onUserClick, update, onSkillClick } = this.props;
         const { name, companyName, gravatarUrl } = update.user;
 
         return (
@@ -31,7 +31,7 @@ class UpdateItem extends Component {
                     <div className="domains-content">
                         {update.updates.map((update, index) => {
                             return (
-                                <SkillCard skill={update.skill} key={index}/>
+                                <SkillCard skill={update.skill} key={index} onSkillClick={onSkillClick}/>
                             )
                         })}
                     </div>

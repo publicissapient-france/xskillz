@@ -10,6 +10,7 @@ class SkillCard extends Component {
     render() {
 
         const { name, level, interested } = this.props.skill;
+        const onSkillClick = this.props.onSkillClick;
 
         return (
             <div className="domain-info">

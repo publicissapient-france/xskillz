@@ -42,7 +42,7 @@ class UserItem extends Component {
                                         {domain.skills.map((skill, index) => {
                                             //noinspection JSUnresolvedVariable
                                             return (
-                                                <SkillCard key={index} skill={skill}/>
+                                                <SkillCard key={index} skill={skill} onSkillClick={onSkillClick}/>
                                             )
                                         })}
                                     </div>
