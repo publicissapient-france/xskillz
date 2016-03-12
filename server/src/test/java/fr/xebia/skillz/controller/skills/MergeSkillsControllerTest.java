@@ -24,8 +24,8 @@ public class MergeSkillsControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_merge_two_skills() {
-        UserSkill java6 = addSkillController.addSkill(new SkillRequest("Java6", INTERESTED, LEVEL_BEGINNER.getValue()), createPrincipalFor("jsmadja@xebia.fr"));
-        UserSkill java = addSkillController.addSkill(new SkillRequest("Java", INTERESTED, LEVEL_BEGINNER.getValue()), createPrincipalFor("blacroix@xebia.fr"));
+        UserSkill java6 = addSkillController.addSkill(new SkillRequest("Java6", INTERESTED, LEVEL_BEGINNER.getValue()), "token_jsm");
+        UserSkill java = addSkillController.addSkill(new SkillRequest("Java", INTERESTED, LEVEL_BEGINNER.getValue()), "token_bla");
 
         assertThat(getSkillsController.getSkills().stream().filter(s -> s.getName().equalsIgnoreCase("Java6")).count()).isEqualTo(1);
         assertThat(getSkillsController.getSkills().stream().filter(s -> s.getName().equalsIgnoreCase("Java")).count()).isEqualTo(1);

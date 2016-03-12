@@ -1,6 +1,7 @@
 package fr.xebia.skillz;
 
 import fr.xebia.skillz.annotation.ManagerOnly;
+import fr.xebia.skillz.controller.SignInController;
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.repository.UserRepository;
 import fr.xebia.skillz.technical.UnauthorizedException;
@@ -23,7 +24,7 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter {
         if (handler != null && handler instanceof HandlerMethod) {
             ManagerOnly annotation = ((HandlerMethod) handler).getMethodAnnotation(ManagerOnly.class);
             if (annotation != null) {
-                User user = userRepository.findByEmail(request.getUserPrincipal().getName());
+                User user = userRepository.findById(SignInController.TOKENS.get(request.getHeader("token")));
                 if (!user.isManager()) {
                     throw new UnauthorizedException();
                 }

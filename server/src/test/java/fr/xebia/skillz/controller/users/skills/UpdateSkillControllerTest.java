@@ -32,8 +32,7 @@ public class UpdateSkillControllerTest extends TransactionSkillzTest {
         Skill javaSkill = new Skill("Java123", XEBIA);
 
         SkillRequest addRequest = new SkillRequest(javaSkill.getName(), INTERESTED, LEVEL_BEGINNER.getValue());
-        Principal principal = createPrincipalFor("jsmadja@xebia.fr");
-        addController.addSkill(addRequest, principal);
+        addController.addSkill(addRequest, "token_jsm");
 
         User user = userRepository.findByEmail("jsmadja@xebia.fr");
 
@@ -41,7 +40,7 @@ public class UpdateSkillControllerTest extends TransactionSkillzTest {
 
         SkillRequest updateRequest = new SkillRequest(javaSkill.getName(), NOT_INTERESTED, LEVEL_EXPERT.getValue());
 
-        updateController.updateSkill(updateRequest, principal);
+        updateController.updateSkill(updateRequest, "token_jsm");
 
         user = userRepository.findByEmail("jsmadja@xebia.fr");
         assertThat(user.hasSkill(javaSkill, LEVEL_EXPERT, NOT_INTERESTED)).isTrue();

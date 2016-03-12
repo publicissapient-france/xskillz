@@ -1,9 +1,11 @@
 package fr.xebia.skillz.controller.users.skills;
 
+import fr.xebia.skillz.controller.SignInController;
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import fr.xebia.skillz.repository.UserRepository;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,8 +29,7 @@ public class AddSkillControllerTest extends TransactionSkillzTest {
         Skill javaSkill = new Skill("Java123", XEBIA);
 
         SkillRequest skillRequest = new SkillRequest(javaSkill.getName(), INTERESTED, LEVEL_BEGINNER.getValue());
-        Principal principal = createPrincipalFor("jsmadja@xebia.fr");
-        controller.addSkill(skillRequest, principal);
+        controller.addSkill(skillRequest, "token_jsm");
 
         User user = userRepository.findByEmail("jsmadja@xebia.fr");
 
@@ -38,15 +39,15 @@ public class AddSkillControllerTest extends TransactionSkillzTest {
     @Test
     public void should_reuse_previously_created_skill() {
         SkillRequest jsmadjaSkillRequest = new SkillRequest("Java123", INTERESTED, LEVEL_BEGINNER.getValue());
-        controller.addSkill(jsmadjaSkillRequest, createPrincipalFor("jsmadja@xebia.fr"));
+        controller.addSkill(jsmadjaSkillRequest, "token_jsm");
 
         User jsmadja = userRepository.findByEmail("jsmadja@xebia.fr");
         Skill previouslyCreatedSkill = jsmadja.getSkillByName("Java123");
 
         SkillRequest blacroixSkillRequest = new SkillRequest("JAVA123", INTERESTED, LEVEL_BEGINNER.getValue());
-        controller.addSkill(blacroixSkillRequest, createPrincipalFor("blacroix@xebia.fr"));
+        controller.addSkill(blacroixSkillRequest, "token_bla");
 
-        User blacroix = userRepository.findByEmail("blacroix@xebia.fr");
+        User blacroix = userRepository.findByEmail("token_bla");
         Skill createdSkill = blacroix.getSkillByName("Java123");
 
         assertThat(createdSkill.getId()).isEqualTo(previouslyCreatedSkill.getId());

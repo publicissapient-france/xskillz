@@ -17,4 +17,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Collection<User> findAllByOrderByNameAsc();
 
     Collection<User> findAllByCompanyOrderByNameAsc(Company company);
+
 }

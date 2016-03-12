@@ -18,8 +18,6 @@
         <spring-data-jpa.version>1.6.0.RELEASE</spring-data-jpa.version>
         <mysql-connector-java.version>5.1.36</mysql-connector-java.version>
         <lombok.version>1.16.4</lombok.version>
-        <spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
-        <spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
     </properties>
 
     <dependencies>
@@ -37,12 +35,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <version>${spring-boot.version}</version>
         </dependency>
 
         <dependency>
@@ -121,24 +113,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
-            <version>${spring-social-security.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-config</artifactId>
-            <version>${spring-social-security.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-google</artifactId>
-            <version>${spring-social-google.version}</version>
         </dependency>
 
     </dependencies>

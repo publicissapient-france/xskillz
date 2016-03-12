@@ -31,13 +31,12 @@ public class DeleteSkillControllerTest extends TransactionSkillzTest {
         Skill javaSkill = new Skill("Java123", XEBIA);
 
         SkillRequest skillRequest = new SkillRequest(javaSkill.getName(), INTERESTED, LEVEL_BEGINNER.getValue());
-        Principal principal = createPrincipalFor("jsmadja@xebia.fr");
-        UserSkill userSkill = addController.addSkill(skillRequest, principal);
+        UserSkill userSkill = addController.addSkill(skillRequest, "token_jsm");
 
         User user = userRepository.findByEmail("jsmadja@xebia.fr");
         assertThat(user.hasSkill(javaSkill, LEVEL_BEGINNER, INTERESTED)).isTrue();
 
-        deleteController.deleteSkill(userSkill, principal);
+        deleteController.deleteSkill(userSkill, "token_jsm");
 
         user = userRepository.findByEmail("jsmadja@xebia.fr");
         assertThat(user.hasSkill(javaSkill, LEVEL_BEGINNER, INTERESTED)).isFalse();
