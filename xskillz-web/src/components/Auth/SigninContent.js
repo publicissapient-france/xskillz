@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-import SigninGoogleApiWrapper from './SigninGoogleApiWrapper';
+import SigninGoogleButton from './SigninGoogleButton';
 
 class SigninContent extends Component {
 
     render() {
 
         return (
-            <SigninGoogleApiWrapper asyncScriptOnLoad={()=>{console.log('loaded');}}/>
+            <div>
+                <SigninGoogleButton/>
+            </div>
         )
     }
 
