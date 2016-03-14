@@ -17,7 +17,8 @@ class SigninGoogleButton extends Component {
     }
 
     onSignin(googleUser) {
-        console.log(googleUser.getBasicProfile().getEmail());
+        //noinspection JSUnresolvedFunction
+        this.props.apiSignin(googleUser.getBasicProfile().getEmail());
     }
 
     initGApi() {

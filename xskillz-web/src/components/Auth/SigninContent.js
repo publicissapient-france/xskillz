@@ -6,9 +6,11 @@ class SigninContent extends Component {
 
     render() {
 
+        const { apiSignin } = this.props;
+
         return (
             <div>
-                <SigninGoogleButton/>
+                <SigninGoogleButton apiSignin={apiSignin}/>
             </div>
         )
     }
