@@ -58,7 +58,7 @@ class SigninGoogleButton extends Component {
     render() {
 
         return (
-            <div id="g-signin2"></div>
+            <div style={{margin: 'auto', width: '120px'}} id="g-signin2"></div>
         )
     }
 

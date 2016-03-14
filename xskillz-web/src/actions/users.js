@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import { routeActions } from 'react-router-redux';
 
 export const REQUEST_USERS_BY_SKILL = 'REQUEST_USERS_BY_SKILL';
 export const RECEIVE_USERS_BY_SKILL = 'RECEIVE_USERS_BY_SKILL';
@@ -24,7 +25,13 @@ export function fetchUsersBySkill(skillId) {
         dispatch(requestUsersBySkill(skillId));
 
         return fetch(`http://52.29.198.81:8080/skills/${skillId}/users`)
-            .then(response => response.json())
+            .then((response) => {
+                if (response.status >= 400 && response.status <= 403) {
+                    dispatch(routeActions.push('/signin'));
+                } else {
+                    return response.json();
+                }
+            })
             .then(json => dispatch(receiveUsersBySkill(json, skillId)));
     }
 }
@@ -87,7 +94,13 @@ export function fetchUsers() {
         dispatch(requestUsers());
 
         return fetch('http://52.29.198.81:8080/users')
-            .then(response => response.json())
+            .then((response) => {
+                if (response.status >= 400 && response.status <= 403) {
+                    dispatch(routeActions.push('/signin'));
+                } else {
+                    return response.json();
+                }
+            })
             .then(json => dispatch(receiveUsers(json)))
     };
 }

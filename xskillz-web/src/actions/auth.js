@@ -15,12 +15,18 @@ export function apiSigninSuccess(user) {
     }
 }
 
-export function apiSigninError(response) {
+export function apiSigninError() {
+
+    //noinspection JSUnresolvedVariable,JSUnresolvedFunction
+    var auth2 = gapi.auth2.getAuthInstance();
+    //noinspection JSUnresolvedFunction
+    auth2.signOut().then(function () {
+    });
+
+    store.remove('token');
+
     return {
-        type: API_SIGNIN_ERROR,
-        payload: {
-            response: _.pick(response, Object.getOwnPropertyNames(response))
-        }
+        type: API_SIGNIN_ERROR
     }
 }
 
@@ -41,7 +47,7 @@ export function apiSignin(email) {
         return fetch('http://52.29.198.81:8080/signin', config)
             .then((response) => {
                 if (response.status >= 400) {
-                    dispatch(apiSigninError(response));
+                    throw new Error("Signin error");
                 } else {
                     return response.json();
                 }
@@ -49,6 +55,9 @@ export function apiSignin(email) {
             .then((json) => {
                 dispatch(apiSigninSuccess(json));
                 dispatch(routeActions.push('/updates'));
+            })
+            .catch(() => {
+                dispatch(apiSigninError())
             });
     }
 }
