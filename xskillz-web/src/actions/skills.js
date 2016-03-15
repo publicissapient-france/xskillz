@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { routeActions } from 'react-router-redux';
+import store from 'store';
 
 export const REQUEST_SKILLS = 'REQUEST_SKILLS';
 export const RECEIVE_SKILLS = 'RECEIVE_SKILLS';
@@ -24,7 +25,15 @@ export function fetchSkills() {
 
         dispatch(requestSkills());
 
-        return fetch('http://52.29.198.81:8080/skills')
+        const config = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'token': store.get('token')
+            }
+        };
+
+        return fetch('http://52.29.198.81:8080/skills', config)
             .then((response) => {
                 if (response.status >= 400 && response.status <= 403) {
                     dispatch(routeActions.push('/signin'));

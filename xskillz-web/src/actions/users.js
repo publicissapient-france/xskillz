@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { routeActions } from 'react-router-redux';
+import store from 'store';
 
 export const REQUEST_USERS_BY_SKILL = 'REQUEST_USERS_BY_SKILL';
 export const RECEIVE_USERS_BY_SKILL = 'RECEIVE_USERS_BY_SKILL';
@@ -24,7 +25,15 @@ export function fetchUsersBySkill(skillId) {
 
         dispatch(requestUsersBySkill(skillId));
 
-        return fetch(`http://52.29.198.81:8080/skills/${skillId}/users`)
+        const config = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'token': store.get('token')
+            }
+        };
+
+        return fetch(`http://52.29.198.81:8080/skills/${skillId}/users`, config)
             .then((response) => {
                 if (response.status >= 400 && response.status <= 403) {
                     dispatch(routeActions.push('/signin'));
@@ -83,8 +92,22 @@ export function getUserById(userId) {
     return (dispatch) => {
         dispatch(requestUserById(userId));
 
-        return fetch(`http://52.29.198.81:8080/users/${userId}`)
-            .then(response => response.json())
+        const config = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'token': store.get('token')
+            }
+        };
+
+        return fetch(`http://52.29.198.81:8080/users/${userId}`, config)
+            .then((response) => {
+                if (response.status >= 400 && response.status <= 403) {
+                    dispatch(routeActions.push('/signin'));
+                } else {
+                    return response.json();
+                }
+            })
             .then(json => dispatch(receiveUserById(json)));
     };
 }
@@ -93,7 +116,15 @@ export function fetchUsers() {
     return (dispatch) => {
         dispatch(requestUsers());
 
-        return fetch('http://52.29.198.81:8080/users')
+        const config = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'token': store.get('token')
+            }
+        };
+
+        return fetch('http://52.29.198.81:8080/users', config)
             .then((response) => {
                 if (response.status >= 400 && response.status <= 403) {
                     dispatch(routeActions.push('/signin'));
