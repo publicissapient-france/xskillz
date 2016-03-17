@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     @IBOutlet weak var backgroundImagaView: UIImageView!
     @IBOutlet weak var googleConnectButton: UIButton!
 
+    var session: Session!
     
     // MARK: - Init
     override func viewDidLoad() {
@@ -39,6 +40,10 @@ class HomeViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     func signInSucceed(idToken: NSString!, name: NSString!, email: NSString!) {
         DLog("token:\(idToken) ; name:\(name) ; email:\(email)")
         
+        self.session.googleToken = idToken
+        self.session.googleName = name
+        self.session.googleEMail = email
+        
         self.performSegueWithIdentifier("showHome", sender: nil)
     }
     
@@ -52,7 +57,7 @@ class HomeViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
         withError error: NSError!) {
             if (error == nil) {
                 // Perform any operations on signed in user here.
-                let userId = user.userID                  // For client-side use only!
+//                let userId = user.userID                  // For client-side use only!
                 let idToken = user.authentication.idToken // Safe to send to the server
                 let name = user.profile.name
                 let email = user.profile.email

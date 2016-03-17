@@ -64,6 +64,7 @@
 	<array>
 		<string>DataAccessAssembly</string>
 		<string>StoresAssembly</string>
+		<string>RootAssembly</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

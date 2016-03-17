@@ -16,6 +16,7 @@ public typealias UsersTask = Task<ProgressTask, [User], NSError>
 public typealias UserTask = Task<ProgressTask, User, NSError>
 
 public class UsersDataAccess: AbstractDataAccess {
+    
     init() {
         super.init(root: NetworkSettings.root())
     }
@@ -56,20 +57,6 @@ public class UsersDataAccess: AbstractDataAccess {
                             fulfill(user)
                         })
                     }
-            }
-        }
-        
-        return task
-    }
-    
-    class func getUserAvatarImage(user: User!) -> UserAvatarTask {
-        AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
-        let task = UserAvatarTask { fullfill, reject in
-            AbstractDataAccess.GET(user.gravatarUrl).validate().responseImage { response in
-                if let image = response.result.value {
-                    AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
-                    fullfill(image)
-                }
             }
         }
         

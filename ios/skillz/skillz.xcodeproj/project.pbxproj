@@ -18,6 +18,8 @@
 		0546A9B31C6C9DDA00BEF295 /* SkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546A9B21C6C9DDA00BEF295 /* SkillView.swift */; };
 		0546A9B51C6C9E3100BEF295 /* SkillView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0546A9B41C6C9E3100BEF295 /* SkillView.xib */; };
 		054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CD1E51C469E1C002E637B /* MainViewController.swift */; };
+		0567E9F21C9B015300118220 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E9F11C9B015300118220 /* Session.swift */; };
+		0567E9F41C9B02BF00118220 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E9F31C9B02BF00118220 /* RootAssembly.swift */; };
 		056841821C87348E003C0458 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 056841811C87348E003C0458 /* GoogleService-Info.plist */; };
 		056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38441C19BE7F003984FD /* AppDelegate.swift */; };
 		056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38461C19BE7F003984FD /* HomeViewController.swift */; };
@@ -88,6 +90,8 @@
 		0546A9B21C6C9DDA00BEF295 /* SkillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillView.swift; sourceTree = "<group>"; };
 		0546A9B41C6C9E3100BEF295 /* SkillView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillView.xib; sourceTree = "<group>"; };
 		054CD1E51C469E1C002E637B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0567E9F11C9B015300118220 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		0567E9F31C9B02BF00118220 /* RootAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		056841811C87348E003C0458 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		056841831C873613003C0458 /* skillz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "skillz-Bridging-Header.h"; sourceTree = "<group>"; };
 		056F38411C19BE7F003984FD /* skillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,8 +322,9 @@
 		056F38971C1B1DF3003984FD /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
-				056F38981C1B1E13003984FD /* StoresAssembly.swift */,
 				056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */,
+				0567E9F31C9B02BF00118220 /* RootAssembly.swift */,
+				056F38981C1B1E13003984FD /* StoresAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 				057B370B1C29A04D00FE3921 /* User.swift */,
 				059D09521C45418200CBF519 /* Skill.swift */,
 				059D09541C4541C000CBF519 /* Domain.swift */,
+				0567E9F11C9B015300118220 /* Session.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -620,8 +626,10 @@
 				059D09551C4541C000CBF519 /* Domain.swift in Sources */,
 				0546A9B31C6C9DDA00BEF295 /* SkillView.swift in Sources */,
 				059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */,
+				0567E9F41C9B02BF00118220 /* RootAssembly.swift in Sources */,
 				059D09591C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift in Sources */,
 				057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */,
+				0567E9F21C9B015300118220 /* Session.swift in Sources */,
 				05353C631C58D65400DD0DC6 /* SkillCollectionViewCell.swift in Sources */,
 				0546A9B11C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift in Sources */,
 				05353C5F1C579BAC00DD0DC6 /* AllyViewController.swift in Sources */,

@@ -16,6 +16,7 @@ public typealias ProgressTask = (bytesWritten: Int64, totalBytesWritten: Int64, 
 public class AbstractDataAccess: NSObject {
     
     private var root: String
+    public var session: Session!
     
     init(root: String) {
         self.root = root
@@ -23,16 +24,20 @@ public class AbstractDataAccess: NSObject {
     
     public func GET(endpoint: String, absolute: Bool = false) -> Request {
         if absolute {
-            return Alamofire.request(.GET, endpoint)
+            return Alamofire.request(.GET, endpoint, parameters: nil, encoding: ParameterEncoding.JSON, headers: self.headers())
         }
         else {
             let path = self.root + endpoint
-            return Alamofire.request(.GET, path)
+            return Alamofire.request(.GET, path, parameters: nil, encoding: ParameterEncoding.JSON, headers: self.headers())
         }
     }
     
-    class func GET(path: String) -> Request {
-        return Alamofire.request(.GET, path)
+    private func headers() -> [String: String]? {
+        var headers: [String: String]? = nil
+        if ((self.session.googleToken) != nil) {
+            headers = ["token": (self.session.googleToken as? String)!]
+        }
+        return headers
     }
     
     class func activityIndicatorInStatusBarVisible(visible: Bool) -> Void {

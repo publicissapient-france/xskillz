@@ -11,10 +11,13 @@ import Typhoon
 
 public class DataAccessAssembly: TyphoonAssembly {
     
+    public var rootAssembly: RootAssembly!
+    
     public dynamic func usersDataAccess() -> AnyObject {
         return TyphoonDefinition.withClass(UsersDataAccess.self) {
             (definition) in
             
+            definition.injectProperty("session", with: self.rootAssembly.session())
             definition.scope = TyphoonScope.Singleton
         }
     }
@@ -23,6 +26,7 @@ public class DataAccessAssembly: TyphoonAssembly {
         return TyphoonDefinition.withClass(SkillsDataAccess.self) {
             (definition) in
             
+            definition.injectProperty("session", with: self.rootAssembly.session())
             definition.scope = TyphoonScope.Singleton
         }
     }

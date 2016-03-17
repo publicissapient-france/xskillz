@@ -63,8 +63,4 @@ public class UsersStore: NSObject {
         
         return Task.some(tasks)
     }
-    
-    class func getUserAvatarImage(user: User!) -> UserAvatarTask {
-        return UsersDataAccess.getUserAvatarImage(user)
-    }
 }
