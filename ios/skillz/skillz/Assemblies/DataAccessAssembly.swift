@@ -13,6 +13,15 @@ public class DataAccessAssembly: TyphoonAssembly {
     
     public var rootAssembly: RootAssembly!
     
+    public dynamic func signInDataAccess() -> AnyObject {
+        return TyphoonDefinition.withClass(SignInDataAccess.self) {
+            (definition) in
+            
+            definition.injectProperty("session", with: self.rootAssembly.session())
+            definition.scope = TyphoonScope.Singleton
+        }
+    }
+    
     public dynamic func usersDataAccess() -> AnyObject {
         return TyphoonDefinition.withClass(UsersDataAccess.self) {
             (definition) in

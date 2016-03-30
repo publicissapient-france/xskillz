@@ -50,6 +50,10 @@
 		057B37091C298ED700FE3921 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B37081C298ED700FE3921 /* Global.swift */; };
 		057B370C1C29A04D00FE3921 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370B1C29A04D00FE3921 /* User.swift */; };
 		057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370D1C29ABE900FE3921 /* RealmStore.swift */; };
+		058646F31CAA9DD500B9C9D3 /* SignInStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058646F21CAA9DD500B9C9D3 /* SignInStore.swift */; };
+		058646F51CAAA01500B9C9D3 /* SignInDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058646F41CAAA01500B9C9D3 /* SignInDataAccess.swift */; };
+		058647331CAC2D5F00B9C9D3 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058647321CAC2D5F00B9C9D3 /* SignIn.swift */; };
+		058647361CAC33D300B9C9D3 /* SignInDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058647351CAC33D300B9C9D3 /* SignInDelegate.swift */; };
 		059D094F1C453C4200CBF519 /* SearchSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */; };
 		059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09501C45413E00CBF519 /* SkillsDataAccess.swift */; };
 		059D09531C45418200CBF519 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09521C45418200CBF519 /* Skill.swift */; };
@@ -129,6 +133,10 @@
 		057B37081C298ED700FE3921 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		057B370B1C29A04D00FE3921 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		057B370D1C29ABE900FE3921 /* RealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStore.swift; sourceTree = "<group>"; };
+		058646F21CAA9DD500B9C9D3 /* SignInStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStore.swift; sourceTree = "<group>"; };
+		058646F41CAAA01500B9C9D3 /* SignInDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInDataAccess.swift; sourceTree = "<group>"; };
+		058647321CAC2D5F00B9C9D3 /* SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		058647351CAC33D300B9C9D3 /* SignInDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInDelegate.swift; sourceTree = "<group>"; };
 		059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSkillViewController.swift; sourceTree = "<group>"; };
 		059D09501C45413E00CBF519 /* SkillsDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsDataAccess.swift; sourceTree = "<group>"; };
 		059D09521C45418200CBF519 /* Skill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
@@ -298,6 +306,8 @@
 				056F38931C1B1C88003984FD /* AbstractDataAccess.swift */,
 				059D09501C45413E00CBF519 /* SkillsDataAccess.swift */,
 				056F38951C1B1C9F003984FD /* UsersDataAccess.swift */,
+				058646F41CAAA01500B9C9D3 /* SignInDataAccess.swift */,
+				058647351CAC33D300B9C9D3 /* SignInDelegate.swift */,
 			);
 			path = DataAccess;
 			sourceTree = "<group>";
@@ -307,6 +317,7 @@
 			children = (
 				056F389A1C1B1F60003984FD /* UsersStore.swift */,
 				059D09561C4547C100CBF519 /* SkillsStore.swift */,
+				058646F21CAA9DD500B9C9D3 /* SignInStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				059D09521C45418200CBF519 /* Skill.swift */,
 				059D09541C4541C000CBF519 /* Domain.swift */,
 				0567E9F11C9B015300118220 /* Session.swift */,
+				058647321CAC2D5F00B9C9D3 /* SignIn.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -635,8 +647,10 @@
 				05353C5F1C579BAC00DD0DC6 /* AllyViewController.swift in Sources */,
 				059D095B1C455B5D00CBF519 /* Fonts.swift in Sources */,
 				056F388B1C1AE075003984FD /* Colors.swift in Sources */,
+				058647331CAC2D5F00B9C9D3 /* SignIn.swift in Sources */,
 				056F38941C1B1C88003984FD /* AbstractDataAccess.swift in Sources */,
 				056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */,
+				058646F31CAA9DD500B9C9D3 /* SignInStore.swift in Sources */,
 				056F38861C1AD477003984FD /* SearchAllyViewController.swift in Sources */,
 				0541EB6D1C4D21160032636A /* AllySkillCollectionViewCell.swift in Sources */,
 				056F389D1C1B2AEC003984FD /* DataAccessAssembly.swift in Sources */,
@@ -648,7 +662,9 @@
 				059D094F1C453C4200CBF519 /* SearchSkillViewController.swift in Sources */,
 				05353C611C58D50800DD0DC6 /* AllyDomainCollectionReusableView.swift in Sources */,
 				0526D3F71C3D153A0001A217 /* AllyCollectionViewCell.swift in Sources */,
+				058646F51CAAA01500B9C9D3 /* SignInDataAccess.swift in Sources */,
 				059D09571C4547C100CBF519 /* SkillsStore.swift in Sources */,
+				058647361CAC33D300B9C9D3 /* SignInDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

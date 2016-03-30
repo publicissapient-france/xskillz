@@ -6,7 +6,15 @@
   Copyright © 2015 Xebia IT Architects. All rights reserved.
 */
 
+"action.ok" = "OK";
+"action.cancel" = "Annuler";
+
+
 "welcome" = "Bienvenue !";
+
+"signin.error.unauthorized.alert.title" = "Oops";
+"signin.error.unauthorized.alert.message" = "Votre adresse email \"%@\" n'est pas autorisée pour cette application.";
+"signin.error.unauthorized.alert.action.try_another_account" = "Choisir un autre compte";
 
 "app.title" = "Skillz";
 

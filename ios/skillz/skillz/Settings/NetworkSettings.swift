@@ -9,7 +9,7 @@
 import UIKit
 
 enum Endpoints : String {
-    case Users = "users/", Skills = "skills/"
+    case Users = "users/", Skills = "skills/", SignIn = "signin/"
 }
 
 class NetworkSettings: NSObject {

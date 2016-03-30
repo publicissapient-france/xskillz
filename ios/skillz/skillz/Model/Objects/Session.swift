@@ -13,4 +13,5 @@ public class Session: Object {
     dynamic var googleEMail: NSString?
     dynamic var googleName: NSString?
     dynamic var googleToken: NSString?
+    dynamic var skillzToken: NSString?
 }

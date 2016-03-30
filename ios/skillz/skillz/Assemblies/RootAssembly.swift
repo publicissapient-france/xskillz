@@ -29,7 +29,7 @@ public class RootAssembly: TyphoonAssembly {
         return TyphoonDefinition.withClass(HomeViewController.self) {
             (definition) in
             
-            definition.injectProperty("session", with: self.session())
+            definition.injectProperty("signInStore", with: self.storesAssembly.signInStore())
             definition.scope = TyphoonScope.ObjectGraph
         }
     }

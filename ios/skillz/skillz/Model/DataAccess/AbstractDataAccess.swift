@@ -22,20 +22,30 @@ public class AbstractDataAccess: NSObject {
         self.root = root
     }
     
-    public func GET(endpoint: String, absolute: Bool = false) -> Request {
+    public func GET(endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> Request {
         if absolute {
-            return Alamofire.request(.GET, endpoint, parameters: nil, encoding: ParameterEncoding.JSON, headers: self.headers())
+            return Alamofire.request(.GET, endpoint, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
         }
         else {
             let path = self.root + endpoint
-            return Alamofire.request(.GET, path, parameters: nil, encoding: ParameterEncoding.JSON, headers: self.headers())
+            return Alamofire.request(.GET, path, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
+        }
+    }
+    
+    public func POST(endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> Request {
+        if absolute {
+            return Alamofire.request(.POST, endpoint, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
+        }
+        else {
+            let path = self.root + endpoint
+            return Alamofire.request(.POST, path, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
         }
     }
     
     private func headers() -> [String: String]? {
         var headers: [String: String]? = nil
-        if ((self.session.googleToken) != nil) {
-            headers = ["token": (self.session.googleToken as? String)!]
+        if ((self.session.skillzToken) != nil) {
+            headers = ["token": (self.session.skillzToken as? String)!]
         }
         return headers
     }
