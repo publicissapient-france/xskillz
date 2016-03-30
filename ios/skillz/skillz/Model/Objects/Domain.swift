@@ -18,7 +18,7 @@ enum DomainIDMapping: Int {
     case Devops = 6
     case Data = 7
     case Loisirs = 12
-    case Front = 15
+    case Front = 8
 }
 
 public class Domain: Object {
@@ -31,31 +31,31 @@ public class Domain: Object {
     public func color() -> UIColor {
         switch self.id {
         case DomainIDMapping.Agile.rawValue:
-            return UIColor(rgba: "#93a6ad")
+            return UIColor(rgba: "#d7d5d0")
             
         case DomainIDMapping.Craft.rawValue:
-            return UIColor(rgba: "#b9dd80")
+            return UIColor(rgba: "#afcd37")
             
         case DomainIDMapping.Mobile.rawValue:
-            return UIColor(rgba: "#62949b")
+            return UIColor(rgba: "#6186eb")
             
         case DomainIDMapping.Back.rawValue:
-            return UIColor(rgba: "#d14939")
+            return UIColor(rgba: "#e23d27")
             
         case DomainIDMapping.Cloud.rawValue:
-            return UIColor(rgba: "#555e96")
+            return UIColor(rgba: "#06a99c")
             
         case DomainIDMapping.Devops.rawValue:
-            return UIColor(rgba: "#fed453")
+            return UIColor(rgba: "#f99b1d")
             
         case DomainIDMapping.Data.rawValue:
-            return UIColor(rgba: "#f6638f")
+            return UIColor(rgba: "#df0075")
             
         case DomainIDMapping.Loisirs.rawValue:
             return UIColor(rgba: "#000000")
             
         case DomainIDMapping.Front.rawValue:
-            return UIColor(rgba: "#fd9632")
+            return UIColor(rgba: "#00a0d4")
             
         default:
             return UIColor.blackColor()
