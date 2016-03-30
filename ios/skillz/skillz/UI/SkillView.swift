@@ -10,6 +10,7 @@ import UIKit
 
 class SkillView: UIView {
     
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var lifeImageView: UIImageView!
     @IBOutlet weak var skillLabel: UILabel!
     @IBOutlet weak var skillLabelTrailingConstraint: NSLayoutConstraint!

@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate, SignInDelegate,
     
     // MARK: - SignInDelegate
     func signInSucceed(email: String, silently: Bool) {
-        self.performSegueWithIdentifier("showHome", sender: nil)
+        self.performSegueWithIdentifier("ShowHome", sender: nil)
     }
     
     func signInFailed(email: String?, error: NSError, silently: Bool) {

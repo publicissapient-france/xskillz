@@ -13,6 +13,7 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var backgroundColorView: UIView!
     
     var skillViews: [SkillView] = []
+    var skillSelected: ((Skill) -> (Void))?
     
     var skills: [Skill]! {
         didSet {
@@ -20,6 +21,7 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
             for skill: Skill in self.skills {
                 skillView = SkillView.loadFromNib()
                 skillView.skill = skill
+                skillView.button.addTarget(self, action: Selector("skillAction:"), forControlEvents: UIControlEvents.TouchUpInside)
                 self.addSubview(skillView);
                 self.skillViews.append(skillView)
             }
@@ -111,5 +113,11 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
             currentX += (frameRect.size.width + spacing)
             skillView.frame = frameRect
         }
+    }
+    
+    func skillAction(sender: UIButton) {
+        let skillView: SkillView = sender.superview as! SkillView
+        let skill: Skill = skillView.skill
+        self.skillSelected!(skill)
     }
 }

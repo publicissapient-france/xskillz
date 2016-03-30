@@ -137,6 +137,9 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell: AllySkillsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("AllySkillsCell", forIndexPath: indexPath) as! AllySkillsCollectionViewCell
             cell.skills = self.skillsFromIndexPath(indexPath);
             cell.domain = self.domainFromSection(indexPath.section)
+            cell.skillSelected = { [weak self] (skill: Skill) -> () in
+                // TODO
+            }
             return cell
             
         case CellType.Unknown:
@@ -290,4 +293,18 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBAction func actionClose() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+    // MARK: - Segues
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        switch segue.identifier! {
+//        case "ShowSkill":
+//            let viewController = segue.destinationViewController as! SearchSkillViewController
+//            viewController.selectedSkill = sender as! Skill
+//            break
+//            
+//        default:
+//            break
+//        }
+//    }
 }
