@@ -28,6 +28,8 @@ public class Domain implements Validable {
     @ManyToOne
     private Company company;
 
+    private String color;
+
     Domain() {
     }
 
@@ -55,5 +57,12 @@ public class Domain implements Validable {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String getColor() {
+        if(this.color == null) {
+            return "#000000";
+        }
+        return this.color;
     }
 }

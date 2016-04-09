@@ -1,5 +1,6 @@
 package fr.xebia.skillz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 
@@ -132,5 +133,10 @@ public class UserSkill implements Validable {
         public static Level of(int level) {
             return Level.values()[level];
         }
+    }
+
+    @JsonIgnore
+    public User getUser() {
+        return user;
     }
 }
