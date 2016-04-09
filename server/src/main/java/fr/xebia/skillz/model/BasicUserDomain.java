@@ -27,6 +27,10 @@ public class BasicUserDomain {
         return domain.getId();
     }
 
+    public String getColor() {
+        return domain.getColor();
+    }
+
     public Long getScore() {
         return userSkills.stream().collect(summingLong(UserSkill::getLevel));
     }
