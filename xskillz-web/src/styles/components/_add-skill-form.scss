@@ -1,0 +1,28 @@
+.add-skill-form {
+
+    margin: auto;
+    height: 5rem;
+    width: 34rem;
+
+    .content {
+        padding: .5rem 2rem;
+        display: flex;
+
+        .autocomplete {
+
+        }
+
+        .stars {
+            margin: .7rem .5rem 0 1rem;
+        }
+
+        .heart {
+            margin: .7rem .5rem 0 .5rem;
+        }
+
+        .button {
+            margin: .4rem 0 0 1rem;
+        }
+    }
+
+}

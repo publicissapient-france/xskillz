@@ -6,15 +6,18 @@ import { routeActions } from 'react-router-redux';
 
 import HeaderContent from '../../components/Header/HeaderContent';
 
-const mapStateToProps = () => {
-    return {}
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         goToSkills: () => dispatch(routeActions.push('/skills')),
         goToUsers: () => dispatch(routeActions.push('/users')),
-        goToUpdates: () => dispatch(routeActions.push('/updates'))
+        goToUpdates: () => dispatch(routeActions.push('/updates')),
+        goToMe: () => dispatch(routeActions.push('/me'))
     };
 };
 
