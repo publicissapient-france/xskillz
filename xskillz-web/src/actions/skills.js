@@ -41,20 +41,20 @@ export function skillAdded(skill) {
     return {
         type: SKILL_ADDED,
         payload: {
-            skill: skill
+            skill
         }
-    }
+    };
 }
 
 export function addSkill(skill) {
     return dispatch => {
-
         const config = {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'token': store.get('token')
-            }
+                'Content-Type': 'application/json',
+                token: store.get('token')
+            },
+            body: JSON.stringify(skill)
         };
 
         return fetch('http://52.29.198.81:8080/skills', config)
@@ -68,5 +68,5 @@ export function addSkill(skill) {
                 }
             })
             .then(json => dispatch(skillAdded(json)));
-    }
+    };
 }

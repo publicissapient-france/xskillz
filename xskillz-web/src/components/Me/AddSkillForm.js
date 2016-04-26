@@ -2,14 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Paper from 'material-ui/lib/paper';
-import Stars from '../Skills/Stars';
-import { grey500 } from 'material-ui/lib/styles/colors';
+import Snackbar from 'material-ui/lib/snackbar';
+import EditableStars from './EditableStars';
+import EditableLike from './EditableLike';
 import _ from 'lodash';
 
 class AddSkillForm extends Component {
     constructor(props) {
         super(props);
+
         this.onSkillSelected = this.onSkillSelected.bind(this);
+        this.onStarSelected = this.onStarSelected.bind(this);
+        this.onLikeSelected = this.onLikeSelected.bind(this);
+        this.onSubmitClicked = this.onSubmitClicked.bind(this);
+        this.skill = {};
     }
 
     componentDidMount() {
@@ -20,12 +26,27 @@ class AddSkillForm extends Component {
     }
 
     onSkillSelected(name) {
-        console.log(`${name} chosen`);
+        this.skill.name = name;
+    }
+
+    onStarSelected(count) {
+        this.skill.level = count;
+    }
+
+    onLikeSelected(like) {
+        this.skill.interested = like;
+    }
+
+    onSubmitClicked() {
+        if (this.skill.name && this.skill.level && this.skill.interested !== undefined) {
+            this.props.addSkill(this.skill);
+        }
     }
 
     render() {
         const nameArray = [];
         _.each(this.props.skills.list, skill => nameArray.push(skill.name));
+        const { newSkill } = this.props.skills;
 
         return (
             <div className="add-skill-form">
@@ -35,19 +56,21 @@ class AddSkillForm extends Component {
                             <AutoComplete hintText={'Enter skill name...'}
                                           dataSource={nameArray}
                                           filter={AutoComplete.fuzzyFilter}
-                                          onNewRequest={this.onSkillSelected}/>
+                                          onNewRequest={this.onSkillSelected}
+                                          fullWidth/>
                         </div>
                         <div className="stars">
-                            <Stars level={0}/>
+                            <EditableStars mark={0} handleClick={this.onStarSelected}/>
                         </div>
                         <div className="heart">
-                            <span style={{ color: grey500 }}>&#9825;</span>
+                            <EditableLike like={false} handleClick={this.onLikeSelected}/>
                         </div>
                         <div className="button">
-                            <RaisedButton label="Add skill"/>
+                            <RaisedButton primary label="Add skill" onClick={this.onSubmitClicked}/>
                         </div>
                     </div>
                 </Paper>
+                <Snackbar open={newSkill.id} message={`${newSkill.name} added`} autoHideDuration={2000}/>
             </div>
         );
     }
@@ -55,7 +78,8 @@ class AddSkillForm extends Component {
 
 AddSkillForm.propTypes = {
     skills: PropTypes.object.isRequired,
-    fetchSkills: PropTypes.func.isRequired
+    fetchSkills: PropTypes.func.isRequired,
+    addSkill: PropTypes.func.isRequired
 };
 
 export default AddSkillForm;

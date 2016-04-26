@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MeContent from '../../components/Me/MeContent';
 
 import { fetchMe } from '../../actions/action.me';
-import { fetchSkills } from '../../actions/skills';
+import { fetchSkills, addSkill } from '../../actions/skills';
 
 const mapStateToProps = state => {
     return {
@@ -15,7 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchMe: () => dispatch(fetchMe()),
-        fetchSkills: () => dispatch(fetchSkills())
+        fetchSkills: () => dispatch(fetchSkills()),
+        addSkill: skill => dispatch(addSkill(skill))
     };
 };
 
