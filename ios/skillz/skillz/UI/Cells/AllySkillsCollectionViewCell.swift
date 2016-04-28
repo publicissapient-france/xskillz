@@ -29,7 +29,7 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
     }
     var domain: Domain! {
         didSet {
-            self.backgroundColorView.backgroundColor = self.domain.color()
+            self.backgroundColorView.backgroundColor = self.domain.colorObject()
         }
     }
     

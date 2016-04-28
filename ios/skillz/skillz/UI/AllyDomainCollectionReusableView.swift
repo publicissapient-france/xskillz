@@ -20,16 +20,16 @@ class AllyDomainCollectionReusableView: UICollectionReusableView {
         didSet {
             self.domainLabel.text = self.domain.name.uppercaseString
             self.backgroundLineImageView.image = self.backgroundLineImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-            self.backgroundLineImageView.tintColor = self.domain.color()
+            self.backgroundLineImageView.tintColor = self.domain.colorObject()
             self.backgroundMiddleImageView.image = self.backgroundMiddleImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-            self.backgroundMiddleImageView.tintColor = self.domain.color()
-            self.backgroundColorView.backgroundColor = self.domain.color()
+            self.backgroundMiddleImageView.tintColor = self.domain.colorObject()
+            self.backgroundColorView.backgroundColor = self.domain.colorObject()
         }
     }
     var previousDomain: Domain? {
         didSet {
             if (self.previousDomain != nil) {
-                self.topBackgroundColorView.backgroundColor = self.previousDomain!.color()
+                self.topBackgroundColorView.backgroundColor = self.previousDomain!.colorObject()
             }
             else {
                 self.topBackgroundColorView.backgroundColor = UIColor.clearColor();

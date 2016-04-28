@@ -22,43 +22,14 @@ enum DomainIDMapping: Int {
 }
 
 public class Domain: Object {
+    dynamic var color: String = ""
     dynamic var id: Int = 0
     dynamic var name: String = ""
     dynamic var score: Int = 0
     
     let skills: List<Skill> = List<Skill>()
     
-    public func color() -> UIColor {
-        switch self.id {
-        case DomainIDMapping.Agile.rawValue:
-            return UIColor(rgba: "#d7d5d0")
-            
-        case DomainIDMapping.Craft.rawValue:
-            return UIColor(rgba: "#afcd37")
-            
-        case DomainIDMapping.Mobile.rawValue:
-            return UIColor(rgba: "#6186eb")
-            
-        case DomainIDMapping.Back.rawValue:
-            return UIColor(rgba: "#e23d27")
-            
-        case DomainIDMapping.Cloud.rawValue:
-            return UIColor(rgba: "#06a99c")
-            
-        case DomainIDMapping.Devops.rawValue:
-            return UIColor(rgba: "#f99b1d")
-            
-        case DomainIDMapping.Data.rawValue:
-            return UIColor(rgba: "#df0075")
-            
-        case DomainIDMapping.Loisirs.rawValue:
-            return UIColor(rgba: "#000000")
-            
-        case DomainIDMapping.Front.rawValue:
-            return UIColor(rgba: "#00a0d4")
-            
-        default:
-            return UIColor.blackColor()
-        }
+    public func colorObject() -> UIColor {
+        return UIColor(rgba: self.color)
     }
 }
