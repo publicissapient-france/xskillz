@@ -12,47 +12,50 @@ import SkillCard from '../Skills/SkillCard';
 class UserItem extends Component {
 
     render() {
-
         const user = this.props.user;
         const { onUserClick, onSkillClick } = this.props;
 
-        //noinspection JSUnresolvedVariable
-        return (
-            <div className="user-row">
-                <Paper>
-                    <div className="company-name">{user.companyName}</div>
-                    <div className="user-content">
-                        <div className="user-left">
-                            <Avatar src={user.gravatarUrl}/>
+        // noinspection JSUnresolvedVariable
+        if (user) {
+            return (
+                <div className="user-row">
+                    <Paper>
+                        <div className="company-name">{user.companyName}</div>
+                        <div className="user-content">
+                            <div className="user-left">
+                                <Avatar src={user.gravatarUrl}/>
+                            </div>
+                            <div className="user-right">
+                                <p>
+                                    {user.name &&
+                                    <LabelButton label={user.name} onClick={()=>{onUserClick(user.name)}}/>}
+                                </p>
+                                <p style={{marginLeft: '2px'}}>{user.experienceCounter} XP</p>
+                            </div>
                         </div>
-                        <div className="user-right">
-                            <p>
-                                {user.name && <LabelButton label={user.name} onClick={()=>{onUserClick(user.name)}}/>}
-                            </p>
-                            <p style={{marginLeft: '2px'}}>{user.experienceCounter} XP</p>
-                        </div>
-                    </div>
-                    {user.domains &&
-                    <div style={{paddingBottom: '.1rem'}}>
-                        {user.domains.map((domain, index) => {
-                            return (
-                                <div key={index} className={`domains-content domain-${domain.name}`}>
-                                    <div className={`domain-name domain-${domain.name}`}>{domain.name}</div>
-                                    <div>
-                                        {domain.skills.map((skill, index) => {
-                                            //noinspection JSUnresolvedVariable
-                                            return (
-                                                <SkillCard key={index} skill={skill} onSkillClick={onSkillClick}/>
-                                            )
-                                        })}
+                        {user.domains &&
+                        <div style={{paddingBottom: '.1rem'}}>
+                            {user.domains.map((domain, index) => {
+                                return (
+                                    <div key={index} className={`domains-content domain-${domain.name}`}>
+                                        <div className={`domain-name domain-${domain.name}`}>{domain.name}</div>
+                                        <div>
+                                            {domain.skills.map((skill, index) => {
+                                                // noinspection JSUnresolvedVariable
+                                                return (
+                                                    <SkillCard key={index} skill={skill} onSkillClick={onSkillClick}/>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })}
-                    </div>}
-                </Paper>
-            </div>
-        )
+                                );
+                            })}
+                        </div>}
+                    </Paper>
+                </div>
+            );
+        }
+        return <div></div>;
     }
 
 }

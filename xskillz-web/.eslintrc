@@ -1,26 +1,14 @@
 {
-  "parser": "babel-eslint",
-  "extends": "eslint-config-airbnb",
-  "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true
-  },
-  "globals": {
-    "connect": true
-  },
   "rules": {
-    "max-len": 0,
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2,
-    "block-scoped-var": 0,
-    "padded-blocks": 0,
-    "no-console": 0,
-    "id-length": 0,
-    "no-unused-expressions": 0,
+    "comma-dangle": 0,
+    "indent": [2, 4, {"SwitchCase": 1}],
+    "react/jsx-indent-props": 0,
+    "react/jsx-closing-bracket-location": [2, "after-props"],
+    "jsx-quotes": 1,
+    "quotes": [2, "single"],
+    "eol-last": 0,
+    "arrow-parens": [2, "as-needed"],
+    "max-len": [2, 120]
   },
-  "plugins": [
-    "react"
-  ]
+  "extends": "airbnb"
 }

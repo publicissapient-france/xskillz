@@ -12,6 +12,7 @@ import UsersPage from 'containers/Users/UsersPage';
 import Header from 'containers/Header/Header';
 import UpdatesPage from 'containers/Updates/UpdatesPage';
 import SigninPage from 'containers/Auth/SigninPage';
+import MePage from 'containers/Me/MePage';
 
 import configureStore from './store/configureStore';
 
@@ -50,6 +51,10 @@ ReactDOM.render(
                 <Route path="users?name=:name"
                        components={{main: UsersPage, header: Header}}
                        dataTypePage="users"/>
+
+                <Route path="me"
+                       components={{main: MePage, header: Header}}
+                       dataTypePage="me"/>
 
                 <Route status={404}
                        path="*"
