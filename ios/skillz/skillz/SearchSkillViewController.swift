@@ -218,16 +218,16 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            let skill: Skill = self.skillFromIndexPath(indexPath)!
-            let view: SkillStarsCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "SkillStarsReusableView", forIndexPath: indexPath) as! SkillStarsCollectionReusableView
-            view.level = self.skillLevelFromSection(indexPath.section)
-            return view
-            
-        default:
-            assert(false, "Unexpected element kind")
-        }
+        //        switch kind {
+        //        case UICollectionElementKindSectionHeader:
+        let skill: Skill = self.skillFromIndexPath(indexPath)!
+        let view: SkillStarsCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "SkillStarsReusableView", forIndexPath: indexPath) as! SkillStarsCollectionReusableView
+        view.level = self.skillLevelFromSection(indexPath.section)
+        return view
+        //
+        //        default:
+        //            assert(false, "Unexpected element kind")
+        //        }
     }
     
     

@@ -171,16 +171,15 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "AllyDomainReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
-            view.domain = self.domainFromSection(indexPath.section)
-            view.previousDomain = self.domainFromSection(indexPath.section - 1)
-            return view
-            
-        default:
-            assert(false, "Unexpected element kind")
-        }
+        //        switch kind {
+        //        case UICollectionElementKindSectionHeader:
+        let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "AllyDomainReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
+        view.domain = self.domainFromSection(indexPath.section)
+        view.previousDomain = self.domainFromSection(indexPath.section - 1)
+        return view
+        //        default:
+        //            assert(false, "Unexpected element kind")
+        //        }
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
