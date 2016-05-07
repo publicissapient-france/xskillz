@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
-import AutoComplete from 'material-ui/lib/auto-complete';
-import Paper from 'material-ui/lib/paper';
-import Avatar from 'material-ui/lib/avatar';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import AutoComplete from 'material-ui/AutoComplete';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import SkillUserItem from './SkillUserItem';
 

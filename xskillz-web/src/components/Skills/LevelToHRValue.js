@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import Paper from 'material-ui/lib/paper';
-import Avatar from 'material-ui/lib/avatar';
-import { deepPurple300, purple300, pink300 } from 'material-ui/lib/styles/colors';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
+import { deepPurple300, purple300, pink300 } from 'material-ui/styles/colors';
 
 class LevelToHRValue extends Component {
 

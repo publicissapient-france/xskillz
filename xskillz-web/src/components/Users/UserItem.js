@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
-import Paper from 'material-ui/lib/paper';
-import Avatar from 'material-ui/lib/avatar';
-import Badge from 'material-ui/lib/badge';
-import { redA400, grey500, grey200 } from 'material-ui/lib/styles/colors';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
+import Badge from 'material-ui/Badge';
+import { redA400, grey500, grey200 } from 'material-ui/styles/colors';
 import Stars from '../Skills/Stars';
 
 import LabelButton from '../LabelButton';

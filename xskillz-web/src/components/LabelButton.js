@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import Paper from 'material-ui/lib/paper';
-import Avatar from 'material-ui/lib/avatar';
-import FlatButton from 'material-ui/lib/flat-button';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
+import FlatButton from 'material-ui/FlatButton';
 
 class UpdateItem extends Component {
 

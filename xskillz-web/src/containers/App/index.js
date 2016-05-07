@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import '../../styles/main'
+import '../../styles/main';
 
 export class App extends Component {
 
@@ -8,12 +10,14 @@ export class App extends Component {
         const { header, main, footer } = this.props;
         const { dataTypePage } = this.props.main.props.route;
         return (
-            <div id="container" data-page-type={dataTypePage}>
-                {header}
-                {footer}
-                {main}
-                <div id="additional-layer"></div>
-            </div>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div id="container" data-page-type={dataTypePage}>
+                    {header}
+                    {footer}
+                    {main}
+                    <div id="additional-layer"></div>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }

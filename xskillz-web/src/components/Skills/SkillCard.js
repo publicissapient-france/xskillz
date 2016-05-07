@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { redA400, grey500, grey200 } from 'material-ui/lib/styles/colors';
+import { redA400, grey500, grey200 } from 'material-ui/styles/colors';
 
 import Stars from '../Skills/Stars';
 import LabelButton from '../LabelButton';

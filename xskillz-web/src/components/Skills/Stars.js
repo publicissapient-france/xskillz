@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
-import { grey300 } from 'material-ui/lib/styles/colors';
+import { grey300 } from 'material-ui/styles/colors';
 
 class Stars extends Component {
 

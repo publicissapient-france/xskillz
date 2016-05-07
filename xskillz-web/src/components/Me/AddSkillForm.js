@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import AutoComplete from 'material-ui/lib/auto-complete';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Paper from 'material-ui/lib/paper';
-import Snackbar from 'material-ui/lib/snackbar';
+import AutoComplete from 'material-ui/AutoComplete';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
 import EditableStars from './EditableStars';
 import EditableLike from './EditableLike';
 import _ from 'lodash';
@@ -38,7 +38,7 @@ class AddSkillForm extends Component {
     }
 
     onSubmitClicked() {
-        if (this.skill.name && this.skill.level && this.skill.interested !== undefined) {
+        if (this.skill.name) {
             this.props.addSkill(this.skill);
         }
     }
@@ -70,7 +70,7 @@ class AddSkillForm extends Component {
                         </div>
                     </div>
                 </Paper>
-                <Snackbar open={newSkill.id} message={`${newSkill.name} added`} autoHideDuration={2000}/>
+                <Snackbar open={newSkill.id !== undefined} message={`${newSkill.name} added`} autoHideDuration={2000}/>
             </div>
         );
     }

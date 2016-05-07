@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { grey500, redA400 } from 'material-ui/lib/styles/colors';
+import { grey500, redA400 } from 'material-ui/styles/colors';
 
 class EditableLike extends Component {
 

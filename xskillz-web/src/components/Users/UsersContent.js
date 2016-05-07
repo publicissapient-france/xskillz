@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
-import AutoComplete from 'material-ui/lib/auto-complete';
-import Paper from 'material-ui/lib/paper';
-import Avatar from 'material-ui/lib/avatar';
+import AutoComplete from 'material-ui/AutoComplete';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
 import UserItem from './UserItem';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 class UsersContent extends Component {
 

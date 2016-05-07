@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { red900 } from 'material-ui/lib/styles/colors';
+import { red900 } from 'material-ui/styles/colors';
 
 import SigninGoogleButton from './SigninGoogleButton';
 
