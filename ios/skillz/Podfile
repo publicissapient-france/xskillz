@@ -18,6 +18,6 @@ pod 'Typhoon'
 
 pod 'UIColor_Hex_Swift'
 
-target :'skillzTests', :exclusive => true do
+target :'XSkillzTests', :exclusive => true do
 	pod 'Kiwi'
 end

@@ -98,17 +98,17 @@
 		0567E9F31C9B02BF00118220 /* RootAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		056841811C87348E003C0458 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		056841831C873613003C0458 /* skillz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "skillz-Bridging-Header.h"; sourceTree = "<group>"; };
-		056F38411C19BE7F003984FD /* skillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		056F38411C19BE7F003984FD /* XSkillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XSkillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38441C19BE7F003984FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056F38461C19BE7F003984FD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		056F38491C19BE7F003984FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056F384B1C19BE7F003984FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		056F384E1C19BE7F003984FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		056F38501C19BE7F003984FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		056F38551C19BE7F003984FD /* skillzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = skillzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		056F38551C19BE7F003984FD /* XSkillz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XSkillz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38591C19BE7F003984FD /* skillzTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skillzTests.swift; sourceTree = "<group>"; };
 		056F385B1C19BE7F003984FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		056F38601C19BE7F003984FD /* skillzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = skillzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		056F38601C19BE7F003984FD /* XSkillz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XSkillz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38641C19BE7F003984FD /* skillzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skillzUITests.swift; sourceTree = "<group>"; };
 		056F38661C19BE7F003984FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056F38731C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Black.otf"; sourceTree = "<group>"; };
@@ -207,9 +207,9 @@
 		056F38421C19BE7F003984FD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				056F38411C19BE7F003984FD /* skillz.app */,
-				056F38551C19BE7F003984FD /* skillzTests.xctest */,
-				056F38601C19BE7F003984FD /* skillzUITests.xctest */,
+				056F38411C19BE7F003984FD /* XSkillz.app */,
+				056F38551C19BE7F003984FD /* XSkillz.xctest */,
+				056F38601C19BE7F003984FD /* XSkillz.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,9 +375,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		056F38401C19BE7F003984FD /* skillz */ = {
+		056F38401C19BE7F003984FD /* XSkillz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 056F38691C19BE7F003984FD /* Build configuration list for PBXNativeTarget "skillz" */;
+			buildConfigurationList = 056F38691C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillz" */;
 			buildPhases = (
 				DC9405F8B119784C5A9F4F94 /* Check Pods Manifest.lock */,
 				056F383D1C19BE7F003984FD /* Sources */,
@@ -391,14 +391,14 @@
 			);
 			dependencies = (
 			);
-			name = skillz;
+			name = XSkillz;
 			productName = skillz;
-			productReference = 056F38411C19BE7F003984FD /* skillz.app */;
+			productReference = 056F38411C19BE7F003984FD /* XSkillz.app */;
 			productType = "com.apple.product-type.application";
 		};
-		056F38541C19BE7F003984FD /* skillzTests */ = {
+		056F38541C19BE7F003984FD /* XSkillzTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 056F386C1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "skillzTests" */;
+			buildConfigurationList = 056F386C1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillzTests" */;
 			buildPhases = (
 				B4E85ABD2A47D4D8840500D8 /* Check Pods Manifest.lock */,
 				056F38511C19BE7F003984FD /* Sources */,
@@ -412,14 +412,14 @@
 			dependencies = (
 				056F38571C19BE7F003984FD /* PBXTargetDependency */,
 			);
-			name = skillzTests;
+			name = XSkillzTests;
 			productName = skillzTests;
-			productReference = 056F38551C19BE7F003984FD /* skillzTests.xctest */;
+			productReference = 056F38551C19BE7F003984FD /* XSkillz.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		056F385F1C19BE7F003984FD /* skillzUITests */ = {
+		056F385F1C19BE7F003984FD /* XSkillzUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 056F386F1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "skillzUITests" */;
+			buildConfigurationList = 056F386F1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillzUITests" */;
 			buildPhases = (
 				056F385C1C19BE7F003984FD /* Sources */,
 				056F385D1C19BE7F003984FD /* Frameworks */,
@@ -430,9 +430,9 @@
 			dependencies = (
 				056F38621C19BE7F003984FD /* PBXTargetDependency */,
 			);
-			name = skillzUITests;
+			name = XSkillzUITests;
 			productName = skillzUITests;
-			productReference = 056F38601C19BE7F003984FD /* skillzUITests.xctest */;
+			productReference = 056F38601C19BE7F003984FD /* XSkillz.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -458,7 +458,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 056F383C1C19BE7F003984FD /* Build configuration list for PBXProject "skillz" */;
+			buildConfigurationList = 056F383C1C19BE7F003984FD /* Build configuration list for PBXProject "XSkillz" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -471,9 +471,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				056F38401C19BE7F003984FD /* skillz */,
-				056F38541C19BE7F003984FD /* skillzTests */,
-				056F385F1C19BE7F003984FD /* skillzUITests */,
+				056F38401C19BE7F003984FD /* XSkillz */,
+				056F38541C19BE7F003984FD /* XSkillzTests */,
+				056F385F1C19BE7F003984FD /* XSkillzUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -689,12 +689,12 @@
 /* Begin PBXTargetDependency section */
 		056F38571C19BE7F003984FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 056F38401C19BE7F003984FD /* skillz */;
+			target = 056F38401C19BE7F003984FD /* XSkillz */;
 			targetProxy = 056F38561C19BE7F003984FD /* PBXContainerItemProxy */;
 		};
 		056F38621C19BE7F003984FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 056F38401C19BE7F003984FD /* skillz */;
+			target = 056F38401C19BE7F003984FD /* XSkillz */;
 			targetProxy = 056F38611C19BE7F003984FD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -812,7 +812,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.xskillz;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XSkillz;
 				SWIFT_OBJC_BRIDGING_HEADER = "skillz/skillz-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -828,7 +828,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.xskillz;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XSkillz;
 				SWIFT_OBJC_BRIDGING_HEADER = "skillz/skillz-Bridging-Header.h";
 			};
 			name = Release;
@@ -841,8 +841,8 @@
 				INFOPLIST_FILE = skillzTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skillz.app/skillz";
+				PRODUCT_NAME = XSkillz;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XSkillz.app/XSkillz";
 			};
 			name = Debug;
 		};
@@ -854,8 +854,8 @@
 				INFOPLIST_FILE = skillzTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skillz.app/skillz";
+				PRODUCT_NAME = XSkillz;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XSkillz.app/XSkillz";
 			};
 			name = Release;
 		};
@@ -865,7 +865,7 @@
 				INFOPLIST_FILE = skillzUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XSkillz;
 				TEST_TARGET_NAME = skillz;
 				USES_XCTRUNNER = YES;
 			};
@@ -877,7 +877,7 @@
 				INFOPLIST_FILE = skillzUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XSkillz;
 				TEST_TARGET_NAME = skillz;
 				USES_XCTRUNNER = YES;
 			};
@@ -886,7 +886,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		056F383C1C19BE7F003984FD /* Build configuration list for PBXProject "skillz" */ = {
+		056F383C1C19BE7F003984FD /* Build configuration list for PBXProject "XSkillz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				056F38671C19BE7F003984FD /* Debug */,
@@ -895,7 +895,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		056F38691C19BE7F003984FD /* Build configuration list for PBXNativeTarget "skillz" */ = {
+		056F38691C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				056F386A1C19BE7F003984FD /* Debug */,
@@ -904,7 +904,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		056F386C1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "skillzTests" */ = {
+		056F386C1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillzTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				056F386D1C19BE7F003984FD /* Debug */,
@@ -913,7 +913,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		056F386F1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "skillzUITests" */ = {
+		056F386F1C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillzUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				056F38701C19BE7F003984FD /* Debug */,
