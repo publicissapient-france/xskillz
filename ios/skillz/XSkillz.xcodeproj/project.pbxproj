@@ -234,8 +234,8 @@
 				056F38851C1AD477003984FD /* SearchAllyViewController.swift */,
 				059D094E1C453C4200CBF519 /* SearchSkillViewController.swift */,
 				056F38901C1B1B6B003984FD /* Settings */,
-				056F38871C1ADFB0003984FD /* UI */,
 				056841831C873613003C0458 /* skillz-Bridging-Header.h */,
+				056F38871C1ADFB0003984FD /* UI */,
 			);
 			path = skillz;
 			sourceTree = "<group>";

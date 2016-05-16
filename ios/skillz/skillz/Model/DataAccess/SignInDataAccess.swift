@@ -46,6 +46,9 @@ public class SignInDataAccess: AbstractDataAccess, GIDSignInDelegate {
         self.googleSignIn(true)
     }
     
+    public func hasAlreadyAuth() -> Bool {
+        return GIDSignIn.sharedInstance().hasAuthInKeychain()
+    }
     
     
     // MARK: - Private API
@@ -79,10 +82,10 @@ public class SignInDataAccess: AbstractDataAccess, GIDSignInDelegate {
         AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         GIDSignIn.sharedInstance().delegate = self
         if (silently) {
-            GIDSignIn.sharedInstance().signIn()
+            GIDSignIn.sharedInstance().signInSilently()
         }
         else {
-            GIDSignIn.sharedInstance().signInSilently()
+            GIDSignIn.sharedInstance().signIn()
         }
     }
     

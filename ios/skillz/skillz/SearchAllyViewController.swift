@@ -11,10 +11,12 @@ import SwiftTask
 
 class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var alliesCollectionView: UICollectionView!
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var swipeLabel: UILabel!
+    @IBOutlet weak var swipeTutoView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var loadingVisible: Bool! {
         didSet {
@@ -30,6 +32,11 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     var users: [User]?
     var searchString: String?
     var searchTimer: NSTimer?
+    var swipeTutoHidden: Bool! {
+        didSet {
+            self.swipeTutoView.hidden = self.swipeTutoHidden
+        }
+    }
     
     
     // MARK: - Init
@@ -38,6 +45,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         
         self.titleLabel.text = i18n("search_ally.title").uppercaseString
         self.searchTextField.placeholder = i18n("search_ally.textfield.placeholder")
+        self.swipeLabel.text = i18n("search_ally.swipe")
     }
     
     
@@ -62,6 +70,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     private func clearResults() -> Void {
         self.users = nil
         self.alliesCollectionView.reloadData()
+        self.swipeTutoView.hidden = true
     }
     
     func updateSearchTimer(timer: NSTimer) {
@@ -116,6 +125,12 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (self.users != nil) {
+            if ((self.swipeTutoHidden) != nil) {
+                self.swipeTutoView.hidden = true
+            }
+            else {
+                self.swipeTutoView.hidden = (users!.count > 0)
+            }
             return self.users!.count
         }
         return 0

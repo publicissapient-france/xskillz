@@ -9,6 +9,9 @@
 import UIKit
 
 public class SignInStore: NSObject {
+    
+    public var signInDataAccess: SignInDataAccess!
+    
     public func setDelegate(delegate: SignInDelegate) -> Void {
         self.signInDataAccess.delegate = delegate
     }
@@ -16,8 +19,6 @@ public class SignInStore: NSObject {
     public func getDelegate() -> SignInDelegate {
         return self.signInDataAccess.delegate!
     }
-    
-    public var signInDataAccess: SignInDataAccess!
     
     public func signIn(selectAccount: Bool = false) {
         DLog()
@@ -27,5 +28,9 @@ public class SignInStore: NSObject {
     public func signInSilently() {
         DLog()
         return self.signInDataAccess.signInSilently()
+    }
+    
+    public func hasAlreadyAuth() -> Bool {
+        return self.signInDataAccess.hasAlreadyAuth()
     }
 }

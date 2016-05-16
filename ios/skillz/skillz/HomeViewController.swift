@@ -29,8 +29,14 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate, SignInDelegate,
         
         GIDSignIn.sharedInstance().uiDelegate = self
         self.signInStore.setDelegate(self)
-        self.signInStore.signInSilently()
-//        self.googleConnectButton.setTitle(i18n("welcome").uppercaseString, forState: UIControlState.Normal)
+        if (self.signInStore.hasAlreadyAuth()) {
+            self.googleConnectButton.userInteractionEnabled = false
+            self.signInStore.signInSilently()
+        }
+        else {
+            self.googleConnectButton.userInteractionEnabled = true
+        }
+        self.googleConnectButton.setTitle(i18n("welcome").uppercaseString, forState: UIControlState.Normal)
     }
     
     

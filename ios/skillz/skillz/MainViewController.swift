@@ -63,9 +63,23 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         return self.viewControllers[(index - 1)]
     }
     
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if (previousViewControllers.first == self.searchAllyViewController()) {
+            self.searchAllyViewController().swipeTutoHidden = true
+        }
+    }
+    
     
     // MARK: - Helpers
     private func indexOfViewController(viewController: UIViewController) -> Int {
         return self.viewControllers.indexOf(viewController)!
+    }
+    
+    private func searchAllyViewController() -> SearchAllyViewController {
+        return self.viewControllers.first as! SearchAllyViewController
+    }
+    
+    private func searchSkillViewController() -> SearchSkillViewController {
+        return self.viewControllers.last as! SearchSkillViewController
     }
 }
