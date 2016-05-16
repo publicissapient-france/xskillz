@@ -1,0 +1,6 @@
+framework module Kiwi {
+  umbrella header "Pods-XSkillzTests-Kiwi-umbrella.h"
+
+  export *
+  module * { export * }
+}

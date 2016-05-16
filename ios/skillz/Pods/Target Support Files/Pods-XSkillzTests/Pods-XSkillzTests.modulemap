@@ -1,0 +1,6 @@
+framework module Pods_XSkillzTests {
+  umbrella header "Pods-XSkillzTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
