@@ -12,8 +12,5 @@ xcuserdata
 profile
 DerivedData
 *.hmap
-*.xccheckout
-*.xcworkspace
-!default.xcworkspace
 *.gcno
 *.gcda
