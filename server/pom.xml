@@ -102,11 +102,11 @@
             <version>1.4.188</version>
         </dependency>
 
-        <dependency>
+        <!--dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>3.2.1</version>
-        </dependency>
+        </dependency-->
     </dependencies>
 
     <build>

@@ -26,4 +26,12 @@ public class SkillUpdate {
     public BasicUserProfile getUser() {
         return user;
     }
+
+    public DomainSkill getSkill() {
+        return skill;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 }
