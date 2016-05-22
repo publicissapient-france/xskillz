@@ -17,7 +17,8 @@ CREATE TABLE Company (
 CREATE TABLE Domain (
   id         BIGINT(20) NOT NULL,
   name       VARCHAR(255) DEFAULT NULL,
-  company_id BIGINT(20)   DEFAULT NULL
+  company_id BIGINT(20)   DEFAULT NULL,
+  color VARCHAR(255) DEFAULT '#000000'
 );
 
 

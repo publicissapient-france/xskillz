@@ -19,7 +19,7 @@ public class GetSkillsControllerTest extends TransactionSkillzTest {
 
     @Test
     public void should_get_all_skills_from_all_companies_() {
-        assertThat(toJson(controller.getSkills())).isEqualTo("[{\"id\":1,\"name\":\"Java\",\"domain\":{\"id\":2,\"name\":\"Craft\"},\"numAllies\":2},{\"id\":2,\"name\":\"Javascript\",\"domain\":{\"id\":2,\"name\":\"Craft\"},\"numAllies\":0},{\"id\":4,\"name\":\"Product Management\",\"domain\":{\"id\":9,\"name\":\"Méthodo\"},\"numAllies\":1},{\"id\":3,\"name\":\"Scala\",\"domain\":{\"id\":2,\"name\":\"Craft\"},\"numAllies\":0}]");
+        assertThat(toJson(controller.getSkills())).isEqualTo("[{\"domain\":{\"color\":\"#FF0000\",\"id\":2,\"name\":\"Craft\"},\"id\":1,\"name\":\"Java\",\"numAllies\":2},{\"domain\":{\"color\":\"#FF0000\",\"id\":2,\"name\":\"Craft\"},\"id\":2,\"name\":\"Javascript\",\"numAllies\":0},{\"domain\":{\"color\":\"#FF0000\",\"id\":9,\"name\":\"Méthodo\"},\"id\":4,\"name\":\"Product Management\",\"numAllies\":1},{\"domain\":{\"color\":\"#FF0000\",\"id\":2,\"name\":\"Craft\"},\"id\":3,\"name\":\"Scala\",\"numAllies\":0}]");
     }
 
     @Test

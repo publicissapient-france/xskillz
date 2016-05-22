@@ -30,4 +30,6 @@ public interface UserSkillRepository extends CrudRepository<UserSkill, Long> {
     @Modifying
     @Query("UPDATE UserSkill us SET us.skill = :to where us.skill = :from")
     void replaceSkillBy(@Param("from") Skill skillFrom, @Param("to") Skill skillTo);
+
+    UserSkill findByUserAndId(User user, Long id);
 }

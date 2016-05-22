@@ -2,7 +2,6 @@ package fr.xebia.skillz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,7 +9,6 @@ import java.util.Date;
 import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@Getter
 @Entity
 @NamedEntityGraph(name = "UserSkill.detail",
         attributeNodes = {@NamedAttributeNode("skill"), @NamedAttributeNode("user")})
@@ -117,7 +115,27 @@ public class UserSkill implements Validable {
         return domain;
     }
 
-    @Getter
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public boolean isInterested() {
+        return interested;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
     public enum Level {
         LEVEL_NO_EXPERIENCE(0),
         LEVEL_BEGINNER(1),
@@ -132,6 +150,10 @@ public class UserSkill implements Validable {
 
         public static Level of(int level) {
             return Level.values()[level];
+        }
+
+        public int getValue() {
+            return value;
         }
     }
 

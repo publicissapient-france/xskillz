@@ -2,6 +2,7 @@ package fr.xebia.skillz.controller.users.skills;
 
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
+import fr.xebia.skillz.model.UserSkill;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import fr.xebia.skillz.repository.UserRepository;
 import org.junit.Test;
@@ -32,15 +33,15 @@ public class UpdateSkillControllerTest extends TransactionSkillzTest {
         Skill javaSkill = new Skill("Java123", XEBIA);
 
         SkillRequest addRequest = new SkillRequest(javaSkill.getName(), INTERESTED, LEVEL_BEGINNER.getValue());
-        addController.addSkill(addRequest, "token_jsm");
+        UserSkill us = addController.addSkill(addRequest, "token_jsm");
 
         User user = userRepository.findByEmail("jsmadja@xebia.fr");
 
         assertThat(user.hasSkill(javaSkill, LEVEL_BEGINNER, INTERESTED)).isTrue();
 
-        SkillRequest updateRequest = new SkillRequest(javaSkill.getName(), NOT_INTERESTED, LEVEL_EXPERT.getValue());
+        SkillRequest updateRequest = new SkillRequest(us.getId(), javaSkill.getName(), NOT_INTERESTED, LEVEL_EXPERT.getValue());
 
-        updateController.updateSkill(updateRequest, "token_jsm");
+        updateController.updateSkill(updateRequest, updateRequest.id, "token_jsm");
 
         user = userRepository.findByEmail("jsmadja@xebia.fr");
         assertThat(user.hasSkill(javaSkill, LEVEL_EXPERT, NOT_INTERESTED)).isTrue();

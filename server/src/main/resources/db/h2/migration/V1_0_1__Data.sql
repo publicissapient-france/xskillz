@@ -2,21 +2,21 @@ INSERT INTO Company VALUES (1, 'Xebia');
 INSERT INTO Company VALUES (2, 'WeScale');
 INSERT INTO Company VALUES (3, 'Thiga');
 
-INSERT INTO Domain VALUES (1, 'Agile', 1);
-INSERT INTO Domain VALUES (2, 'Craft', 1);
-INSERT INTO Domain VALUES (3, 'Mobile', 1);
-INSERT INTO Domain VALUES (4, 'Back', 1);
-INSERT INTO Domain VALUES (5, 'Cloud', 1);
-INSERT INTO Domain VALUES (6, 'Devops', 1);
-INSERT INTO Domain VALUES (7, 'Data', 1);
+INSERT INTO Domain VALUES (1, 'Agile', 1, '#FF0000');
+INSERT INTO Domain VALUES (2, 'Craft', 1, '#FF0000');
+INSERT INTO Domain VALUES (3, 'Mobile', 1, '#FF0000');
+INSERT INTO Domain VALUES (4, 'Back', 1, '#FF0000');
+INSERT INTO Domain VALUES (5, 'Cloud', 1, '#FF0000');
+INSERT INTO Domain VALUES (6, 'Devops', 1, '#FF0000');
+INSERT INTO Domain VALUES (7, 'Data', 1, '#FF0000');
 
-INSERT INTO Domain VALUES (9, 'Méthodo', 3);
-INSERT INTO Domain VALUES (10, 'Métier', 3);
-INSERT INTO Domain VALUES (11, 'Digital', 3);
+INSERT INTO Domain VALUES (9, 'Méthodo', 3, '#FF0000');
+INSERT INTO Domain VALUES (10, 'Métier', 3, '#FF0000');
+INSERT INTO Domain VALUES (11, 'Digital', 3, '#FF0000');
 
-INSERT INTO Domain VALUES (12, 'Loisirs', 1);
-INSERT INTO Domain VALUES (13, 'Loisirs', 2);
-INSERT INTO Domain VALUES (14, 'Loisirs', 3);
+INSERT INTO Domain VALUES (12, 'Loisirs', 1, '#FF0000');
+INSERT INTO Domain VALUES (13, 'Loisirs', 2, '#FF0000');
+INSERT INTO Domain VALUES (14, 'Loisirs', 3, '#FF0000');
 
 
 INSERT INTO Role VALUES (1, 'Manager', 1);

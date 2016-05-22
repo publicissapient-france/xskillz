@@ -1,7 +1,7 @@
 package fr.xebia.skillz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@Getter
 @Entity
+@JsonPropertyOrder(alphabetic = true)
 public class Domain implements Validable {
 
     public static Domain none = new Domain(0L, "Sans catégorie");
@@ -64,5 +64,14 @@ public class Domain implements Validable {
             return "#000000";
         }
         return this.color;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

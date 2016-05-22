@@ -1,10 +1,12 @@
 package fr.xebia.skillz.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 @JsonInclude(NON_EMPTY)
+@JsonPropertyOrder(alphabetic = true)
 public class DomainSkill implements Comparable<DomainSkill> {
     private final UserSkill userSkill;
 

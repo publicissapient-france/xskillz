@@ -1,15 +1,12 @@
 package fr.xebia.skillz.controller.users.skills;
 
-import fr.xebia.skillz.controller.SignInController;
 import fr.xebia.skillz.model.Skill;
 import fr.xebia.skillz.model.User;
+import fr.xebia.skillz.model.UserSkill;
 import fr.xebia.skillz.repository.TransactionSkillzTest;
 import fr.xebia.skillz.repository.UserRepository;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.security.Principal;
 
 import static fr.xebia.skillz.model.Company.XEBIA;
 import static fr.xebia.skillz.model.UserSkill.INTERESTED;
@@ -39,7 +36,7 @@ public class AddSkillControllerTest extends TransactionSkillzTest {
     @Test
     public void should_reuse_previously_created_skill() {
         SkillRequest jsmadjaSkillRequest = new SkillRequest("Java123", INTERESTED, LEVEL_BEGINNER.getValue());
-        controller.addSkill(jsmadjaSkillRequest, "token_jsm");
+        UserSkill us = controller.addSkill(jsmadjaSkillRequest, "token_jsm");
 
         User jsmadja = userRepository.findByEmail("jsmadja@xebia.fr");
         Skill previouslyCreatedSkill = jsmadja.getSkillByName("Java123");
@@ -47,7 +44,7 @@ public class AddSkillControllerTest extends TransactionSkillzTest {
         SkillRequest blacroixSkillRequest = new SkillRequest("JAVA123", INTERESTED, LEVEL_BEGINNER.getValue());
         controller.addSkill(blacroixSkillRequest, "token_bla");
 
-        User blacroix = userRepository.findByEmail("token_bla");
+        User blacroix = userRepository.findByEmail("blacroix@xebia.fr");
         Skill createdSkill = blacroix.getSkillByName("Java123");
 
         assertThat(createdSkill.getId()).isEqualTo(previouslyCreatedSkill.getId());

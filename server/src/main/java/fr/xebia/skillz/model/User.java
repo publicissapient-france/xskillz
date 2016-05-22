@@ -1,8 +1,6 @@
 package fr.xebia.skillz.model;
 
 import fr.xebia.skillz.model.UserSkill.Level;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,8 +10,6 @@ import java.util.*;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.PERSIST;
 
-@Setter
-@Getter
 @Entity
 public class User implements Serializable, Validable {
 
@@ -99,4 +95,36 @@ public class User implements Serializable, Validable {
         return this.skills.stream().filter(p -> p.hasSkillName(name)).findFirst().get().getSkill();
     }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getDiploma() {
+        return diploma;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public Set<UserSkill> getSkills() {
+        return skills;
+    }
+
+    public void setDiploma(LocalDate diploma) {
+        this.diploma = diploma;
+    }
 }

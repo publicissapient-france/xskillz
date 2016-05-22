@@ -1,9 +1,7 @@
 package fr.xebia.skillz.dto;
 
 import fr.xebia.skillz.model.UserSkill;
-import lombok.Getter;
 
-@Getter
 public class SkilledUserProfile extends BasicUserProfile {
 
     private final boolean interested;

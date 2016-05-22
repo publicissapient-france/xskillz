@@ -1,8 +1,7 @@
 package fr.xebia.skillz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,11 +10,10 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Setter
-@Getter
 @Entity
 @NamedEntityGraph(name = "Skill.detail",
         attributeNodes = {@NamedAttributeNode("domain")})
+@JsonPropertyOrder(alphabetic = true)
 public class Skill implements Validable {
 
     @Id
@@ -90,5 +88,26 @@ public class Skill implements Validable {
 
     public boolean hasName(String name) {
         return this.name.equalsIgnoreCase(name);
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Domain getDomain() {
+        return domain;
+    }
+
+    public List<UserSkill> getUsers() {
+        return users;
+    }
+
+    public void setDomain(Domain domain) {
+        this.domain = domain;
     }
 }

@@ -19,7 +19,7 @@ public class GetUserControllerTest extends TransactionSkillzTest {
     @Test
     public void should_get_user_by_id() {
         BasicUserProfile user = controller.getUser(userRepository.findById(1L));
-        assertThat(toJson(user)).isEqualTo("{\"companyName\":\"Xebia\",\"domains\":[{\"skills\":[{\"name\":\"Java\",\"id\":1,\"level\":3,\"interested\":true}],\"name\":\"Craft\",\"id\":2,\"score\":3}],\"experienceCounter\":10,\"gravatarUrl\":\"http://gravatar.com/avatar/7cad4fe46a8abe2eab1263b02b3c12bc\",\"id\":1,\"name\":\"Julien Smadja\",\"score\":3}");
+        assertThat(toJson(user)).isEqualTo("{\"companyName\":\"Xebia\",\"domains\":[{\"color\":\"#FF0000\",\"id\":2,\"name\":\"Craft\",\"score\":3,\"skills\":[{\"id\":1,\"interested\":true,\"level\":3,\"name\":\"Java\"}]}],\"experienceCounter\":10,\"gravatarUrl\":\"http://gravatar.com/avatar/7cad4fe46a8abe2eab1263b02b3c12bc\",\"id\":1,\"name\":\"Julien Smadja\",\"score\":3}");
     }
 
 }

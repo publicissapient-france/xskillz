@@ -1,10 +1,13 @@
 package fr.xebia.skillz.model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 import java.util.Map;
 
 import static java.util.stream.Collectors.summingLong;
 
+@JsonPropertyOrder(alphabetic = true)
 public class BasicUserDomain {
 
     private Domain domain;

@@ -3,11 +3,9 @@ package fr.xebia.skillz.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.xebia.skillz.model.DomainSkill;
 import fr.xebia.skillz.model.UserSkill;
-import lombok.Getter;
 
 import java.util.Date;
 
-@Getter
 public class SkillUpdate {
     private final DomainSkill skill;
 
@@ -25,4 +23,7 @@ public class SkillUpdate {
         return user.getId().toString() + "-" + skill.getId().toString();
     }
 
+    public BasicUserProfile getUser() {
+        return user;
+    }
 }

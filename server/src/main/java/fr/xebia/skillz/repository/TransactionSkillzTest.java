@@ -26,7 +26,7 @@ public abstract class TransactionSkillzTest {
     }
 
     @BeforeClass
-    public void beforeClass() {
+    public static void beforeClass() {
         SignInController.TOKENS.put("token_jsm", 1L);
         SignInController.TOKENS.put("token_bla", 2L);
     }

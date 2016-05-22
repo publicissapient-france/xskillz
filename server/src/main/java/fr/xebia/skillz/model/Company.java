@@ -1,7 +1,6 @@
 package fr.xebia.skillz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +8,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import java.util.List;
 
-@Getter
 @Entity
 public class Company implements Validable {
 
@@ -71,5 +69,22 @@ public class Company implements Validable {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Domain> getDomains() {
+        return domains;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
     }
 }

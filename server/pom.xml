@@ -17,7 +17,6 @@
         <spring-boot.version>1.2.5.RELEASE</spring-boot.version>
         <spring-data-jpa.version>1.6.0.RELEASE</spring-data-jpa.version>
         <mysql-connector-java.version>5.1.36</mysql-connector-java.version>
-        <lombok.version>1.16.4</lombok.version>
     </properties>
 
     <dependencies>
@@ -103,18 +102,11 @@
             <version>1.4.188</version>
         </dependency>
 
-        <!--dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>3.2.1</version>
-        </dependency-->
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
