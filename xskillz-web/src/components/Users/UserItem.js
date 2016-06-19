@@ -13,7 +13,7 @@ class UserItem extends Component {
 
     render() {
         const user = this.props.user;
-        const { onUserClick, onSkillClick } = this.props;
+        const { onUserClick, onSkillClick, updateSkill, removeSkill } = this.props;
 
         // noinspection JSUnresolvedVariable
         if (user) {
@@ -43,7 +43,8 @@ class UserItem extends Component {
                                             {domain.skills.map((skill, index) => {
                                                 // noinspection JSUnresolvedVariable
                                                 return (
-                                                    <SkillCard key={index} skill={skill} onSkillClick={onSkillClick}/>
+                                                    <SkillCard updateSkill={updateSkill} key={index} skill={skill}
+                                                               onSkillClick={onSkillClick} removeSkill={removeSkill}/>
                                                 );
                                             })}
                                         </div>

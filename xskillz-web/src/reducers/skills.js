@@ -1,4 +1,4 @@
-import { RECEIVE_SKILLS, SKILL_ADDED } from '../actions/skills';
+import { RECEIVE_SKILLS, SKILL_GOT } from '../actions/skills';
 
 const initialState = {
     list: [],
@@ -13,9 +13,9 @@ export function skills(state = initialState, action) {
                 list: action.payload.skills,
                 loaded: true
             });
-        case SKILL_ADDED:
+        case SKILL_GOT:
             return Object.assign({}, state, {
-                newSkill: action.payload.skill.skill
+                skill: action.payload.skill.skill
             });
         default:
             return state;

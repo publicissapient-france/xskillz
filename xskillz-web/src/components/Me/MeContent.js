@@ -14,10 +14,19 @@ class MeContent extends Component {
 
     render() {
         const user = this.props.me.body;
+        const { updateSkill, removeSkill } = this.props;
+
         return (
             <div className="content">
-                <AddSkillForm skills={this.props.skills} fetchSkills={this.props.fetchSkills} addSkill={this.props.addSkill}/>
-                <UserItem user={user} onUserClick={()=>{}} onSkillClick={()=>{}}/>
+                <AddSkillForm
+                    skills={this.props.skills}
+                    fetchSkills={this.props.fetchSkills}
+                    addSkill={this.props.addSkill}/>
+                <UserItem user={user}
+                          onUserClick={()=>{}}
+                          onSkillClick={()=>{}}
+                          updateSkill={updateSkill}
+                          removeSkill={removeSkill}/>
             </div>
         );
     }
