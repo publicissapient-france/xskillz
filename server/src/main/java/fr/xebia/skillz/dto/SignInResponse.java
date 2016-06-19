@@ -15,4 +15,12 @@ public class SignInResponse {
         this.email = email;
         this.token = token;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getToken() {
+        return token;
+    }
 }
