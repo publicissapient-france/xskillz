@@ -1,6 +1,0 @@
-framework module JHChainableAnimations {
-  umbrella header "Pods-JHChainableAnimations-umbrella.h"
-
-  export *
-  module * { export * }
-}

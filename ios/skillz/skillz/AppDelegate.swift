@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.setupFabric()
-        self.setupGoogleSignIn()
         
         return true
     }
@@ -48,28 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    @available(iOS 9.0, *)
-    func application(application: UIApplication, openURL url: NSURL, options: [String: AnyObject]) -> Bool {
-            return GIDSignIn.sharedInstance().handleURL(url,
-                sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String?,
-                annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
-    }
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-            return GIDSignIn.sharedInstance().handleURL(url,
-                sourceApplication: sourceApplication,
-                annotation: annotation)
-    }
-    
     
     // MARK: - App setups
     func setupFabric() {
         Fabric.with([Crashlytics.self])
-    }
-    
-    func setupGoogleSignIn() {
-        var configureError: NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
     }
 }

@@ -4,20 +4,16 @@ use_frameworks!
 # ignore all warnings from all Pods
 inhibit_all_warnings!
 
-pod 'Alamofire'
-pod 'AlamofireImage'
-pod 'Crashlytics'
-pod 'DeviceKit'
-pod 'Fabric'
-pod 'Google/SignIn'
-pod 'JHChainableAnimations'
-pod 'Masonry'
-pod 'ReactKit'
-pod 'RealmSwift'
-pod 'Typhoon'
-
-pod 'UIColor_Hex_Swift'
-
-target :'XSkillzTests', :exclusive => true do
-	pod 'Kiwi'
+target :'XSkillz' do
+    pod 'Alamofire'
+    pod 'AlamofireImage'
+    pod 'Crashlytics'
+    pod 'DeviceKit'
+    pod 'Fabric'
+    pod 'JHChainableAnimations'
+    pod 'Masonry'
+    pod 'ReactKit'
+    pod 'RealmSwift'
+    pod 'Typhoon'
+    pod 'UIColor_Hex_Swift'
 end

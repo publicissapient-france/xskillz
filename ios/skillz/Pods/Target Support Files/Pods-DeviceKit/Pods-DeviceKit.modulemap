@@ -1,6 +1,0 @@
-framework module DeviceKit {
-  umbrella header "Pods-DeviceKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

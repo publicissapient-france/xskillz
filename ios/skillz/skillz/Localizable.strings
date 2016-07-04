@@ -12,10 +12,6 @@
 
 "welcome" = "Bienvenue !";
 
-"signin.error.unauthorized.alert.title" = "Oops";
-"signin.error.unauthorized.alert.message" = "Votre adresse email \"%@\" n'est pas autorisée pour cette application.";
-"signin.error.unauthorized.alert.action.try_another_account" = "Choisir un autre compte";
-
 "app.title" = "Skillz";
 
 "search_ally.title" = "Rechercher+un+allié";

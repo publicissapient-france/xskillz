@@ -13,15 +13,6 @@ public class StoresAssembly: TyphoonAssembly {
     
     public var dataAccessAssembly: DataAccessAssembly!
     
-    public dynamic func signInStore() -> AnyObject {
-        return TyphoonDefinition.withClass(SignInStore.self) {
-            (definition) in
-            
-            definition.injectProperty("signInDataAccess", with: self.dataAccessAssembly.signInDataAccess())
-            definition.scope = TyphoonScope.Singleton
-        }
-    }
-    
     public dynamic func usersStore() -> AnyObject {
         return TyphoonDefinition.withClass(UsersStore.self) {
             (definition) in
