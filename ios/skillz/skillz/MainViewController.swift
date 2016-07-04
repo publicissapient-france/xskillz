@@ -22,6 +22,7 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.skillzLabel.font = Fonts.screenTitleFont()
         self.skillzLabel.text = i18n("app.title").uppercaseString
         
         if (self.view.bounds.size.width == 675.0) { // iPhone 6

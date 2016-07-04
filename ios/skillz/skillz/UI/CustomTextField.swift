@@ -16,8 +16,4 @@ class CustomTextField: UITextField {
         self.layer.backgroundColor = UIColor.whiteColor().CGColor
         self.tintColor = Colors.mainColor()
     }
-
-//    override func drawRect(rect: CGRect) {
-//    }
-
 }

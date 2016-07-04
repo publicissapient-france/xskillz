@@ -43,6 +43,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.titleLabel.font = Fonts.screenTitleFont()
         self.titleLabel.text = i18n("search_skill.title").uppercaseString
         self.searchTextField.placeholder = i18n("search_skill.textfield.placeholder")
     }

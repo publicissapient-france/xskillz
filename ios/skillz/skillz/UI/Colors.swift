@@ -19,4 +19,10 @@ class Colors: NSObject {
         return UIColor(rgba: "#6e6e6e")
     }
     
+    
+    static func colorizeImageView(imageView: UIImageView!, color: UIColor!) {
+        let image: UIImage = imageView.image!
+        imageView.image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        imageView.tintColor = color
+    }
 }

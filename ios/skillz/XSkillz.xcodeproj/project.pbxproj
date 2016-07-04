@@ -27,15 +27,6 @@
 		056F384F1C19BE7F003984FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056F384D1C19BE7F003984FD /* LaunchScreen.storyboard */; };
 		056F385A1C19BE7F003984FD /* skillzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38591C19BE7F003984FD /* skillzTests.swift */; };
 		056F38651C19BE7F003984FD /* skillzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38641C19BE7F003984FD /* skillzUITests.swift */; };
-		056F387C1C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38731C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf */; };
-		056F387D1C1AD2F8003984FD /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38741C1AD2F8003984FD /* SanFranciscoDisplay-Bold.otf */; };
-		056F387E1C1AD2F8003984FD /* SanFranciscoDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38751C1AD2F8003984FD /* SanFranciscoDisplay-Heavy.otf */; };
-		056F387F1C1AD2F8003984FD /* SanFranciscoDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38761C1AD2F8003984FD /* SanFranciscoDisplay-Light.otf */; };
-		056F38801C1AD2F8003984FD /* SanFranciscoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38771C1AD2F8003984FD /* SanFranciscoDisplay-Medium.otf */; };
-		056F38811C1AD2F8003984FD /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38781C1AD2F8003984FD /* SanFranciscoDisplay-Regular.otf */; };
-		056F38821C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F38791C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf */; };
-		056F38831C1AD2F8003984FD /* SanFranciscoDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F387A1C1AD2F8003984FD /* SanFranciscoDisplay-Thin.otf */; };
-		056F38841C1AD2F8003984FD /* SanFranciscoDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 056F387B1C1AD2F8003984FD /* SanFranciscoDisplay-Ultralight.otf */; };
 		056F38861C1AD477003984FD /* SearchAllyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38851C1AD477003984FD /* SearchAllyViewController.swift */; };
 		056F38891C1ADFCB003984FD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38881C1ADFCB003984FD /* CustomTextField.swift */; };
 		056F388B1C1AE075003984FD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F388A1C1AE075003984FD /* Colors.swift */; };
@@ -56,6 +47,10 @@
 		059D09571C4547C100CBF519 /* SkillsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09561C4547C100CBF519 /* SkillsStore.swift */; };
 		059D09591C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */; };
 		059D095B1C455B5D00CBF519 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D095A1C455B5D00CBF519 /* Fonts.swift */; };
+		05A21B041D2A978900CC1DE4 /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B001D2A978000CC1DE4 /* Comfortaa-Bold.ttf */; };
+		05A21B051D2A978900CC1DE4 /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */; };
+		05A21B061D2A978900CC1DE4 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */; };
+		05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */; };
 		15B1E9EB867FCEE47C25914F /* Pods_XSkillz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6FD6F3EB963FC72708DF41 /* Pods_XSkillz.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,15 +99,6 @@
 		056F38601C19BE7F003984FD /* XSkillz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XSkillz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38641C19BE7F003984FD /* skillzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skillzUITests.swift; sourceTree = "<group>"; };
 		056F38661C19BE7F003984FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		056F38731C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Black.otf"; sourceTree = "<group>"; };
-		056F38741C1AD2F8003984FD /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
-		056F38751C1AD2F8003984FD /* SanFranciscoDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Heavy.otf"; sourceTree = "<group>"; };
-		056F38761C1AD2F8003984FD /* SanFranciscoDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Light.otf"; sourceTree = "<group>"; };
-		056F38771C1AD2F8003984FD /* SanFranciscoDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Medium.otf"; sourceTree = "<group>"; };
-		056F38781C1AD2F8003984FD /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
-		056F38791C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Semibold.otf"; sourceTree = "<group>"; };
-		056F387A1C1AD2F8003984FD /* SanFranciscoDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Thin.otf"; sourceTree = "<group>"; };
-		056F387B1C1AD2F8003984FD /* SanFranciscoDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		056F38851C1AD477003984FD /* SearchAllyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAllyViewController.swift; sourceTree = "<group>"; };
 		056F38881C1ADFCB003984FD /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		056F388A1C1AE075003984FD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -133,6 +119,10 @@
 		059D09561C4547C100CBF519 /* SkillsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsStore.swift; sourceTree = "<group>"; };
 		059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillSearchListCollectionViewCell.swift; sourceTree = "<group>"; };
 		059D095A1C455B5D00CBF519 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		05A21B001D2A978000CC1DE4 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
+		05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Light.ttf"; sourceTree = "<group>"; };
+		05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
+		05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Steelworks Vintage Demo.ttf"; sourceTree = "<group>"; };
 		8AE9E8DFF2768557275F659A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCD71D6AF63ABD682468D48 /* Pods-XSkillz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XSkillz.release.xcconfig"; path = "Pods/Target Support Files/Pods-XSkillz/Pods-XSkillz.release.xcconfig"; sourceTree = "<group>"; };
 		ED6FD6F3EB963FC72708DF41 /* Pods_XSkillz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XSkillz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,15 +236,10 @@
 		056F38721C1AD2F8003984FD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				056F38731C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf */,
-				056F38741C1AD2F8003984FD /* SanFranciscoDisplay-Bold.otf */,
-				056F38751C1AD2F8003984FD /* SanFranciscoDisplay-Heavy.otf */,
-				056F38761C1AD2F8003984FD /* SanFranciscoDisplay-Light.otf */,
-				056F38771C1AD2F8003984FD /* SanFranciscoDisplay-Medium.otf */,
-				056F38781C1AD2F8003984FD /* SanFranciscoDisplay-Regular.otf */,
-				056F38791C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf */,
-				056F387A1C1AD2F8003984FD /* SanFranciscoDisplay-Thin.otf */,
-				056F387B1C1AD2F8003984FD /* SanFranciscoDisplay-Ultralight.otf */,
+				05A21B001D2A978000CC1DE4 /* Comfortaa-Bold.ttf */,
+				05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */,
+				05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */,
+				05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -459,20 +444,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A21B051D2A978900CC1DE4 /* Comfortaa-Light.ttf in Resources */,
 				0546A9B51C6C9E3100BEF295 /* SkillView.xib in Resources */,
-				056F38821C1AD2F8003984FD /* SanFranciscoDisplay-Semibold.otf in Resources */,
+				05A21B041D2A978900CC1DE4 /* Comfortaa-Bold.ttf in Resources */,
+				05A21B061D2A978900CC1DE4 /* Comfortaa-Regular.ttf in Resources */,
 				056F384F1C19BE7F003984FD /* LaunchScreen.storyboard in Resources */,
 				056F384C1C19BE7F003984FD /* Assets.xcassets in Resources */,
-				056F387C1C1AD2F8003984FD /* SanFranciscoDisplay-Black.otf in Resources */,
-				056F38801C1AD2F8003984FD /* SanFranciscoDisplay-Medium.otf in Resources */,
-				056F38831C1AD2F8003984FD /* SanFranciscoDisplay-Thin.otf in Resources */,
 				056F384A1C19BE7F003984FD /* Main.storyboard in Resources */,
-				056F387E1C1AD2F8003984FD /* SanFranciscoDisplay-Heavy.otf in Resources */,
-				056F38811C1AD2F8003984FD /* SanFranciscoDisplay-Regular.otf in Resources */,
+				05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */,
 				057B37071C298CEB00FE3921 /* Localizable.strings in Resources */,
-				056F387D1C1AD2F8003984FD /* SanFranciscoDisplay-Bold.otf in Resources */,
-				056F38841C1AD2F8003984FD /* SanFranciscoDisplay-Ultralight.otf in Resources */,
-				056F387F1C1AD2F8003984FD /* SanFranciscoDisplay-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

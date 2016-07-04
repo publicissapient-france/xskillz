@@ -68,15 +68,11 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SanFranciscoDisplay-Black.otf</string>
-		<string>SanFranciscoDisplay-Bold.otf</string>
-		<string>SanFranciscoDisplay-Heavy.otf</string>
-		<string>SanFranciscoDisplay-Light.otf</string>
+		<string>Comfortaa-Bold.ttf</string>
+		<string>Comfortaa-Light.ttf</string>
+		<string>Comfortaa-Regular.ttf</string>
+		<string>Steelworks Vintage Demo.ttf</string>
 		<string>SanFranciscoDisplay-Medium.otf</string>
-		<string>SanFranciscoDisplay-Regular.otf</string>
-		<string>SanFranciscoDisplay-Semibold.otf</string>
-		<string>SanFranciscoDisplay-Thin.otf</string>
-		<string>SanFranciscoDisplay-Ultralight.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

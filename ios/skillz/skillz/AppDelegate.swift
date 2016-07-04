@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - App life cycle
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
         self.setupFabric()
         
         return true

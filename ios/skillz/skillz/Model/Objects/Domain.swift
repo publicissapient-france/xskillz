@@ -29,7 +29,7 @@ public class Domain: Object {
     
     let skills: List<Skill> = List<Skill>()
     
-    public func colorObject() -> UIColor {
+    public func colorObject() -> UIColor! {
         return UIColor(rgba: self.color)
     }
 }
