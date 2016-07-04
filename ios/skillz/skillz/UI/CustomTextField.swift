@@ -11,9 +11,6 @@ import UIKit
 class CustomTextField: UITextField {
     
     override func awakeFromNib() {
-        self.layer.borderColor = Colors.mainColor().CGColor
-        self.layer.borderWidth = 3.0
-        self.layer.backgroundColor = UIColor.whiteColor().CGColor
         self.tintColor = Colors.mainColor()
     }
 }

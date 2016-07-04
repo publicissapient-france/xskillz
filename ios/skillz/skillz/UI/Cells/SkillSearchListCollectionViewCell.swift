@@ -21,7 +21,7 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
         didSet {
             self.backgroundColor = (self.highlighted ? Colors.mainColor() : UIColor.whiteColor())
             self.updateNameLabel()
-            self.numberOfUsersLabel.textColor = (self.highlighted ? UIColor.whiteColor() : Colors.greyColor())
+            self.numberOfUsersLabel.textColor = (self.highlighted ? UIColor.whiteColor() : Colors.mainColor())
             self.separatorView.hidden = self.highlighted
         }
     }
@@ -29,7 +29,7 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
         didSet {
             self.backgroundColor = (self.selected ? Colors.mainColor() : UIColor.whiteColor())
             self.updateNameLabel()
-            self.numberOfUsersLabel.textColor = (self.selected ? UIColor.whiteColor() : Colors.greyColor())
+            self.numberOfUsersLabel.textColor = (self.selected ? UIColor.whiteColor() : Colors.mainColor())
             self.separatorView.hidden = self.selected
         }
     }
