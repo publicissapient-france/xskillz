@@ -36,7 +36,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
             let topDomains: [Domain] = (self.user?.techDomainsSortedByScore())!
             
             if (topDomains.count > 0) {
-                Colors.colorizeImageView(self.avatarRingImageView, color: topDomains[0].colorObject())
+                Colors.colorizeImageView(self.avatarRingImageView, color: topDomains[0].colorObject)
             }
             
             var topDomainView: UIView
@@ -51,9 +51,9 @@ class AllyCollectionViewCell: UICollectionViewCell {
                 }
                 else {
                     let domain: Domain = topDomains[i]
-                    Colors.colorizeImageView(topDomainImageView, color: domain.colorObject())
+                    Colors.colorizeImageView(topDomainImageView, color: domain.colorObject)
                     topDomainView.hidden = false
-                    topDomainLabel.attributedText = self.formatDomainName(domain.name, color: domain.colorObject())
+                    topDomainLabel.attributedText = self.formatDomainName(domain.name, color: domain.colorObject)
                 }
             }
         }

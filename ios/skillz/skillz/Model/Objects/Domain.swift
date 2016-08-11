@@ -29,7 +29,25 @@ public class Domain: Object {
     
     let skills: List<Skill> = List<Skill>()
     
-    public func colorObject() -> UIColor! {
-        return UIColor(rgba: self.color)
+    var colorObject: UIColor! {
+        get {
+            return UIColor(rgba: self.color)
+        }
     }
+    
+    var pictoImage: UIImage! {
+        get {
+            switch self.id {
+            case DomainIDMapping.Mobile.rawValue:
+                return UIImage(named: "DomainPictoMobile")
+                
+            default:
+                return UIImage(named: "DomainPictoMobile")
+            }
+        }
+    }
+    
+//    override public static func ignoredProperties() -> [String] {
+//        return ["colorObject", "pictoImage"]
+//    }
 }

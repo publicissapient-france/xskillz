@@ -36,6 +36,8 @@
 		056F38991C1B1E13003984FD /* StoresAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38981C1B1E13003984FD /* StoresAssembly.swift */; };
 		056F389B1C1B1F60003984FD /* UsersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F389A1C1B1F60003984FD /* UsersStore.swift */; };
 		056F389D1C1B2AEC003984FD /* DataAccessAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */; };
+		05722C861D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05722C851D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift */; };
+		05722C881D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05722C871D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift */; };
 		057B37071C298CEB00FE3921 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 057B37061C298CEB00FE3921 /* Localizable.strings */; };
 		057B37091C298ED700FE3921 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B37081C298ED700FE3921 /* Global.swift */; };
 		057B370C1C29A04D00FE3921 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370B1C29A04D00FE3921 /* User.swift */; };
@@ -108,6 +110,8 @@
 		056F38981C1B1E13003984FD /* StoresAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresAssembly.swift; sourceTree = "<group>"; };
 		056F389A1C1B1F60003984FD /* UsersStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersStore.swift; sourceTree = "<group>"; };
 		056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessAssembly.swift; sourceTree = "<group>"; };
+		05722C851D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		05722C871D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRankedCollectionViewCell.swift; sourceTree = "<group>"; };
 		057B37061C298CEB00FE3921 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		057B37081C298ED700FE3921 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		057B370B1C29A04D00FE3921 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -161,9 +165,11 @@
 				0526D3F61C3D153A0001A217 /* AllyCollectionViewCell.swift */,
 				0541EB6C1C4D21160032636A /* AllySkillCollectionViewCell.swift */,
 				0546A9B01C6C9D2000BEF295 /* AllySkillsCollectionViewCell.swift */,
+				05722C851D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift */,
 				05353C621C58D65400DD0DC6 /* SkillCollectionViewCell.swift */,
 				059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */,
 				0500F2951C5918E9002BAEF9 /* SkillStarsCollectionViewCell.swift */,
+				05722C871D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				057B370C1C29A04D00FE3921 /* User.swift in Sources */,
 				056F389B1C1B1F60003984FD /* UsersStore.swift in Sources */,
 				056F38891C1ADFCB003984FD /* CustomTextField.swift in Sources */,
+				05722C881D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift in Sources */,
 				059D09531C45418200CBF519 /* Skill.swift in Sources */,
 				0500F2961C5918E9002BAEF9 /* SkillStarsCollectionViewCell.swift in Sources */,
 				054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */,
@@ -557,6 +564,7 @@
 				05353C5F1C579BAC00DD0DC6 /* AllyViewController.swift in Sources */,
 				059D095B1C455B5D00CBF519 /* Fonts.swift in Sources */,
 				056F388B1C1AE075003984FD /* Colors.swift in Sources */,
+				05722C861D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift in Sources */,
 				056F38941C1B1C88003984FD /* AbstractDataAccess.swift in Sources */,
 				056F38471C19BE7F003984FD /* HomeViewController.swift in Sources */,
 				056F38861C1AD477003984FD /* SearchAllyViewController.swift in Sources */,
@@ -688,7 +696,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
