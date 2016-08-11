@@ -15,15 +15,20 @@ class DomainTitleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pictoImageView: UIImageView!
     @IBOutlet weak var resultsNumberLabel: UILabel!
     
-    var domain: Domain! {
+    var domain: Domain? {
         didSet {
-            let index = self.domain.name.startIndex.advancedBy(1)
-            self.domainFirstLetterLabel.text = self.domain.name.substringToIndex(index).uppercaseString
-            self.domainFirstLetterLabel.textColor = self.domain.colorObject
-            self.domainLabel.text = self.domain.name.substringFromIndex(index).uppercaseString
-            self.lineView.backgroundColor = self.domain.colorObject
-            self.pictoImageView.image = self.domain.pictoImage
-            Colors.colorizeImageView(self.pictoImageView, color: self.domain.colorObject)
+            if (self.domain != nil) {
+                let index = self.domain!.name.startIndex.advancedBy(1)
+                self.domainFirstLetterLabel.text = self.domain!.name.substringToIndex(index).uppercaseString
+                self.domainFirstLetterLabel.textColor = self.domain!.colorObject
+                self.domainLabel.text = self.domain!.name.substringFromIndex(index).uppercaseString
+                self.lineView.backgroundColor = self.domain!.colorObject
+                self.pictoImageView.image = self.domain!.pictoImage
+                Colors.colorizeImageView(self.pictoImageView, color: self.domain!.colorObject)
+            }
+            else {
+                // TODO: default domain
+            }
         }
     }
     var numberOfResultsText: String? {

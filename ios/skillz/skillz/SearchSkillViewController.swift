@@ -193,7 +193,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         }
         else {
             if (self.users != nil) {
-                return (1 + 4)
+                return (1 + self.numberOfSkillsLevels())
             }
             return 0
         }
@@ -213,7 +213,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
                 
                 let numberOfUsers = self.numberOfUsers
                 let stringFormat = i18n(self.users?.count > 1 ? "search_skill.number_of_allies.plural" : "search_skill.number_of_allies.singular")
-                domainTitleCell.domain = self.selectedSkill!.domain!
+                domainTitleCell.domain = self.selectedSkill!.domain
                 domainTitleCell.numberOfResultsText = String(format: stringFormat, numberOfUsers)
                 
                 return domainTitleCell
@@ -221,9 +221,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             else {
                 let usersRankedCell: UsersRankedCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("UsersRankedCell", forIndexPath: indexPath) as! UsersRankedCollectionViewCell
                 
-                usersRankedCell.rank = (4 - indexPath.row)
-                usersRankedCell.domain = self.selectedSkill!.domain!
-                
+                let users = self.usersForSkillFromIndexPath(indexPath)
+                usersRankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)
+                usersRankedCell.domain = self.selectedSkill!.domain
+                usersRankedCell.users = users
                 return usersRankedCell
             }
         }
@@ -234,9 +235,6 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (collectionView == self.skillsSearchListCollectionView) {
             self.selectSkill(self.skillFromIndexPath(indexPath)!)
-        }
-        else {
-            self.selectAlly(self.userFromIndexPath(indexPath)!)
         }
     }
     
@@ -268,10 +266,6 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         return value
     }
     
-    private func userFromIndexPath(indexPath: NSIndexPath) -> User? {
-        return self.usersForSkillAtSection(indexPath.section)![indexPath.row]
-    }
-    
     private func skillFromIndexPath(indexPath: NSIndexPath) -> Skill? {
         if (self.skills != nil) {
             return self.skills![indexPath.row]
@@ -279,44 +273,33 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         return nil
     }
     
-    private func skillLevelFromSection(section: Int) -> SkillLevel! {
-        var skillLevelIndex = SkillLevel.NoSkill.rawValue
-        var index = (self.numberOfSectionsInCollectionView(self.skillsResultsListCollectionView) - 1)
-        for var i = 0; i < self.users?.count; i += 1 {
+    private func skillLevelFromIndexPath(indexPath: NSIndexPath) -> SkillLevel! {
+        var skillLevelIndex = SkillLevel.Expert.rawValue
+        var index = 1
+        for var i = 3; i >= 0; i -= 1 {
             if (self.users![i].count == 0) {
-                skillLevelIndex += 1
+                skillLevelIndex -= 1
                 continue
             }
-            if (index == section) {
+            if (index == indexPath.row) {
                 return SkillLevel(rawValue: skillLevelIndex)
             }
-            skillLevelIndex += 1
+            skillLevelIndex -= 1
             index += 1
         }
         return SkillLevel.NoSkill
     }
     
-    private func usersForSkillAtSection(section: Int) -> [User]? {
+    private func usersForSkillFromIndexPath(indexPath: NSIndexPath) -> [User]? {
         var index = -1
         for skillUsers:[User] in self.users!.reverse() {
             if skillUsers.count > 0 {
                 index += 1
             }
-            if index == section {
+            if index == (indexPath.row - 1) {
                 return skillUsers
             }
         }
         return nil
-    }
-    
-    private func isUserHasSkillSelectedAsFavorite(user: User) -> Bool {
-        for domain:Domain in user.domains {
-            for skill:Skill in domain.skills {
-                if (skill.id == self.selectedSkill!.id) {
-                    return skill.interested
-                }
-            }
-        }
-        return false
     }
 }

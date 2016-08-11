@@ -15,25 +15,30 @@ class UsersRankedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var starsLightenBackgroundView: UIView!
     @IBOutlet weak var usersContentView: UIView!
     
-    var domain: Domain! {
+    var domain: Domain? {
         didSet {
-            self.mainBackgroundView.backgroundColor = self.domain.colorObject
-            self.starsBackgroundView.backgroundColor = self.domain.colorObject
+            if (self.domain != nil) {
+                self.mainBackgroundView.backgroundColor = self.domain!.colorObject
+                self.starsBackgroundView.backgroundColor = self.domain!.colorObject
+            }
+            else {
+                // TODO : default colors
+            }
         }
     }
-    var rank: Int = 0 {
+    var skillLevel: SkillLevel = .NoSkill {
         didSet {
             let starsImage: UIImage!
-            switch self.rank {
-            case 3:
+            switch self.skillLevel {
+            case .Expert:
                 starsImage = UIImage(named: "StarsExpert")
                 self.starsLightenBackgroundView.alpha = 0.15
                 
-            case 2:
+            case .Confirmed:
                 starsImage = UIImage(named: "StarsConfirmed")
                 self.starsLightenBackgroundView.alpha = 0.30
                 
-            case 1:
+            case .Beginner:
                 starsImage = UIImage(named: "StarsBeginner")
                 self.starsLightenBackgroundView.alpha = 0.45
                 
@@ -42,6 +47,11 @@ class UsersRankedCollectionViewCell: UICollectionViewCell {
                 self.starsLightenBackgroundView.alpha = 0.60
             }
             self.starsImageView.image = starsImage
+        }
+    }
+    var users: [User]! {
+        didSet {
+            
         }
     }
     
