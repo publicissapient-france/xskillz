@@ -30,17 +30,17 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var headerXPLabel: UILabel!
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    @IBOutlet weak var loadingActivityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var skillsCollectionView: UICollectionView!
     
     var ally: User!
     var loadingVisible: Bool! {
         didSet {
             if (self.loadingVisible == true) {
-                self.loadingView.startAnimating()
+                self.loadingActivityIndicatorView.startAnimating()
             }
             else {
-                self.loadingView.stopAnimating()
+                self.loadingActivityIndicatorView.stopAnimating()
             }
         }
     }

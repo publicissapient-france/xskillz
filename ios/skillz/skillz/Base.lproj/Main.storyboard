@@ -693,7 +693,7 @@
                         <outlet property="headerXPLabel" destination="Cxz-Ce-KAH" id="K9y-67-8vA"/>
                         <outlet property="headerXPView" destination="J9C-k6-fiN" id="H5J-Tt-bRE"/>
                         <outlet property="headerXPYearsLabel" destination="3pX-lC-dXy" id="5zk-AF-MNN"/>
-                        <outlet property="loadingView" destination="6N7-aB-ifG" id="yj2-Fj-ArS"/>
+                        <outlet property="loadingActivityIndicatorView" destination="6N7-aB-ifG" id="hjy-Kj-c9l"/>
                         <outlet property="skillsCollectionView" destination="acb-Rt-wda" id="Nsl-EQ-rrR"/>
                     </connections>
                 </viewController>
