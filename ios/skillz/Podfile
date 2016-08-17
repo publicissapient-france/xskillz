@@ -11,9 +11,9 @@ target :'XSkillz' do
     pod 'DeviceKit'
     pod 'Fabric'
     pod 'JHChainableAnimations'
-    pod 'Masonry'
     pod 'ReactKit'
     pod 'RealmSwift'
+    pod 'SnapKit'
     pod 'Typhoon'
     pod 'UIColor_Hex_Swift'
 end

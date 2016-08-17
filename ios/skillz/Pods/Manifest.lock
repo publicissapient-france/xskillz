@@ -7,7 +7,6 @@ PODS:
   - DeviceKit (0.3.2)
   - Fabric (1.6.7)
   - JHChainableAnimations (1.3.0)
-  - Masonry (1.0.1)
   - ReactKit (0.12.0):
     - SwiftTask (~> 4.0.0)
   - Realm (1.0.1):
@@ -15,6 +14,7 @@ PODS:
   - Realm/Headers (1.0.1)
   - RealmSwift (1.0.1):
     - Realm (= 1.0.1)
+  - SnapKit (0.22.0)
   - SwiftTask (4.0.0)
   - Typhoon (3.4.8):
     - Typhoon/no-arc (= 3.4.8)
@@ -28,9 +28,9 @@ DEPENDENCIES:
   - DeviceKit
   - Fabric
   - JHChainableAnimations
-  - Masonry
   - ReactKit
   - RealmSwift
+  - SnapKit
   - Typhoon
   - UIColor_Hex_Swift
 
@@ -41,14 +41,14 @@ SPEC CHECKSUMS:
   DeviceKit: 79182140c0aa8daaf4f4b3920e0b079f5fa9db79
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   JHChainableAnimations: 22085fcb04ca87349e584573558e637f659fd769
-  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
   Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
   RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
   Typhoon: f2390ad976bd1acaf5680b837781720faf5ff909
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
 
-PODFILE CHECKSUM: fe45e98be952cba1df65c78356e18a10c210e3fe
+PODFILE CHECKSUM: 26e7554a5b30fe17f631e8c64fb03b1869bd9741
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1

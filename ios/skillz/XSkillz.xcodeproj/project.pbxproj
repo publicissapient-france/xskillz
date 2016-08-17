@@ -38,6 +38,8 @@
 		056F389D1C1B2AEC003984FD /* DataAccessAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */; };
 		05722C861D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05722C851D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift */; };
 		05722C881D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05722C871D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift */; };
+		05722C8C1D5CC9130024B4B7 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05722C8B1D5CC9130024B4B7 /* UserView.swift */; };
+		05722C8E1D5CC9200024B4B7 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05722C8D1D5CC9200024B4B7 /* UserView.xib */; };
 		057B37071C298CEB00FE3921 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 057B37061C298CEB00FE3921 /* Localizable.strings */; };
 		057B37091C298ED700FE3921 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B37081C298ED700FE3921 /* Global.swift */; };
 		057B370C1C29A04D00FE3921 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370B1C29A04D00FE3921 /* User.swift */; };
@@ -112,6 +114,8 @@
 		056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessAssembly.swift; sourceTree = "<group>"; };
 		05722C851D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		05722C871D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRankedCollectionViewCell.swift; sourceTree = "<group>"; };
+		05722C8B1D5CC9130024B4B7 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		05722C8D1D5CC9200024B4B7 /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		057B37061C298CEB00FE3921 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		057B37081C298ED700FE3921 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		057B370B1C29A04D00FE3921 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				0541EB6A1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift */,
 				0546A9B21C6C9DDA00BEF295 /* SkillView.swift */,
 				0546A9B41C6C9E3100BEF295 /* SkillView.xib */,
+				05722C8B1D5CC9130024B4B7 /* UserView.swift */,
+				05722C8D1D5CC9200024B4B7 /* UserView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -349,13 +355,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 056F38691C19BE7F003984FD /* Build configuration list for PBXNativeTarget "XSkillz" */;
 			buildPhases = (
-				8C80946901A37253AEFC4320 /* 📦 Check Pods Manifest.lock */,
+				8C80946901A37253AEFC4320 /* [CP] Check Pods Manifest.lock */,
 				056F383D1C19BE7F003984FD /* Sources */,
 				056F383E1C19BE7F003984FD /* Frameworks */,
 				056F383F1C19BE7F003984FD /* Resources */,
 				0568417E1C871B89003C0458 /* ShellScript */,
-				7E93F05129C5B6633E0DD768 /* 📦 Embed Pods Frameworks */,
-				53C26A9AD66861C28169FA41 /* 📦 Copy Pods Resources */,
+				7E93F05129C5B6633E0DD768 /* [CP] Embed Pods Frameworks */,
+				53C26A9AD66861C28169FA41 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -459,6 +465,7 @@
 				056F384A1C19BE7F003984FD /* Main.storyboard in Resources */,
 				05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */,
 				057B37071C298CEB00FE3921 /* Localizable.strings in Resources */,
+				05722C8E1D5CC9200024B4B7 /* UserView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,14 +499,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" fe3cf72fb501f8cb71e1066e2ca2f6d97e3a5737 20d46e30ccde574663a8af24af8ff60f18e384332aeca6d048189ce89ebaba00";
 		};
-		53C26A9AD66861C28169FA41 /* 📦 Copy Pods Resources */ = {
+		53C26A9AD66861C28169FA41 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,14 +514,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XSkillz/Pods-XSkillz-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7E93F05129C5B6633E0DD768 /* 📦 Embed Pods Frameworks */ = {
+		7E93F05129C5B6633E0DD768 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,14 +529,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XSkillz/Pods-XSkillz-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C80946901A37253AEFC4320 /* 📦 Check Pods Manifest.lock */ = {
+		8C80946901A37253AEFC4320 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +558,7 @@
 				059D09531C45418200CBF519 /* Skill.swift in Sources */,
 				0500F2961C5918E9002BAEF9 /* SkillStarsCollectionViewCell.swift in Sources */,
 				054CD1E61C469E1C002E637B /* MainViewController.swift in Sources */,
+				05722C8C1D5CC9130024B4B7 /* UserView.swift in Sources */,
 				0541EB6B1C4D0D2F0032636A /* SkillStarsCollectionReusableView.swift in Sources */,
 				059D09551C4541C000CBF519 /* Domain.swift in Sources */,
 				0546A9B31C6C9DDA00BEF295 /* SkillView.swift in Sources */,

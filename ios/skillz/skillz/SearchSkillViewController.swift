@@ -222,6 +222,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
                 let usersRankedCell: UsersRankedCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("UsersRankedCell", forIndexPath: indexPath) as! UsersRankedCollectionViewCell
                 
                 let users = self.usersForSkillFromIndexPath(indexPath)
+                usersRankedCell.skill = self.selectedSkill
                 usersRankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)
                 usersRankedCell.domain = self.selectedSkill!.domain
                 usersRankedCell.users = users
@@ -247,7 +248,13 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             return CGSizeMake(self.skillsSearchListCollectionView.bounds.size.width, SkillSearchListCollectionViewCell.cellDefaultHeight())
         }
         else {
-            return CGSizeMake(self.skillsResultsListCollectionView.bounds.size.width, (indexPath.row == 0) ? DomainTitleCollectionViewCell.cellDefaultHeight() : UsersRankedCollectionViewCell.cellDefaultHeight())
+            if (indexPath.row == 0) {
+                return CGSizeMake(self.skillsResultsListCollectionView.bounds.size.width, DomainTitleCollectionViewCell.cellDefaultHeight())
+            }
+            else {
+                let cellHeight = UsersRankedCollectionViewCell.cellHeight(self.usersForSkillFromIndexPath(indexPath), width: self.skillsResultsListCollectionView.bounds.size.width)
+                return CGSizeMake(self.skillsResultsListCollectionView.bounds.size.width, cellHeight)
+            }
         }
     }
     

@@ -58,7 +58,6 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
         var currentY: CGFloat = 0.0
         var lineWidth: CGFloat = 0.0
         let spacing: CGFloat = 20.0
-        var firstItemOfNewLine: Bool = false
         var skillViewsToCenter: [SkillView] = []
         for skillView: SkillView in self.skillViews {
             skillView.sizeToFit()
@@ -66,10 +65,8 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
             frameRect.origin.x = currentX
             frameRect.origin.y = currentY
             skillView.frame = frameRect
-            firstItemOfNewLine = false
             if (self.isSkillViewOutOfBounds(skillView)) {
                 // new line
-                firstItemOfNewLine = true
                 currentX = 0.0
                 currentY += AllySkillsCollectionViewCell.cellDefaultHeight()
                 frameRect.origin.x = currentX
@@ -118,6 +115,8 @@ class AllySkillsCollectionViewCell: UICollectionViewCell {
     func skillAction(sender: UIButton) {
         let skillView: SkillView = sender.superview as! SkillView
         let skill: Skill = skillView.skill
-        self.skillSelected!(skill)
+        if (self.skillSelected != nil) {
+            self.skillSelected!(skill)
+        }
     }
 }

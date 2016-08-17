@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Masonry
+import SnapKit
 
 class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
@@ -41,8 +41,8 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         
         let superview = self.view
         self.view.addSubview(pageViewController.view)
-        pageViewController.view.mas_makeConstraints { make in
-            make.edges.equalTo()(superview)
+        pageViewController.view.snp_makeConstraints { (make) in
+            make.edges.equalTo(superview)
         }
     }
     
