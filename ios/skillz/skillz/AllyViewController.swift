@@ -15,19 +15,23 @@ enum CellType : Int {
 }
 
 class AllyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var avatarLoadingView: UIActivityIndicatorView!
-    @IBOutlet weak var avatarMaskImageView: UIImageView!
-    @IBOutlet weak var avatarView: UIView!
-    @IBOutlet weak var companyLabel: UILabel!
-    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerBackgroundView: UIView!
+    @IBOutlet weak var headerLineView: UIView!
+    @IBOutlet weak var headerAvatarView: UIView!
+    @IBOutlet weak var headerAvatarImageView: UIImageView!
+    @IBOutlet weak var headerAvatarMaskImageView: UIImageView!
+    @IBOutlet weak var headerAvatarBackgroundImageView: UIImageView!
+    @IBOutlet weak var headerAvatarActivityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var headerNameLabel: UILabel!
+    @IBOutlet weak var headerCompanyLabel: UILabel!
+    @IBOutlet weak var headerXPView: UIView!
+    @IBOutlet weak var headerXPYearsLabel: UILabel!
+    @IBOutlet weak var headerXPLabel: UILabel!
+    
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var skillsCollectionView: UICollectionView!
-    @IBOutlet weak var xpLabel: UILabel!
-    @IBOutlet weak var xpView: UIView!
     
     var ally: User!
     var loadingVisible: Bool! {
@@ -51,55 +55,31 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.avatarImageView.layer.mask = self.avatarMaskImageView.layer
-        self.layout()
-        self.skillsCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.Old.union(NSKeyValueObservingOptions.New), context: nil)
-//        let flowLayout: UICollectionViewFlowLayout = self.skillsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        if #available(iOS 9.0, *) {
-//            flowLayout.sectionHeadersPinToVisibleBounds = true
-//        }
-        self.loadingVisible = true
+        self.headerAvatarImageView.layer.mask = self.headerAvatarMaskImageView.layer
+        self.headerNameLabel.text = self.ally.name.uppercaseString
+        self.headerCompanyLabel.text = self.ally.companyName.uppercaseString
+        self.headerXPYearsLabel.text = String(self.ally.experienceCounter)
         self.usersStore.getFullUser(self.ally)
             .success { [weak self] (user:User) -> Void in
                 self?.loadAvatar()
                 self?.ally = user
-                self?.skillsCollectionView.reloadData()
+//                self?.skillsCollectionView.reloadData()
                 self?.loadingVisible = false
         }
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if (keyPath! == "contentSize" && object as! UICollectionView == self.skillsCollectionView) {
-            if (change != nil) {
-                let oldValue = change![NSKeyValueChangeOldKey]?.CGSizeValue()
-                let newValue = change![NSKeyValueChangeNewKey]?.CGSizeValue()
-                if (newValue?.height != oldValue?.height) {
-                    self.skillsCollectionViewReloadDataComplete()
-                }
-            }
-        }
-    }
-    
-    private func skillsCollectionViewReloadDataComplete() -> Void {
-    }
-    
-    private func layout() -> Void {
-        self.nameLabel.text = self.ally.name
-        self.companyLabel.text = self.ally.companyName
-        self.xpLabel.text = String(self.ally.experienceCounter)
     }
     
     private func loadAvatar() -> Void {
         if (self.ally == nil) {
             return
         }
-        self.avatarLoadingView.startAnimating()
-        self.avatarImageView.af_setImageWithURL(NSURL(string: (self.ally.gravatarUrl))!,
+        
+        self.headerAvatarActivityIndicatorView.startAnimating()
+        self.headerAvatarImageView.af_setImageWithURL(NSURL(string: (self.ally.gravatarUrl))!,
             placeholderImage: nil,
             filter: nil,
             imageTransition: UIImageView.ImageTransition.None,
             completion:{ [weak self] response in
-                self?.avatarLoadingView.stopAnimating()
+                self?.headerAvatarActivityIndicatorView.stopAnimating()
             }
         )
     }
@@ -117,7 +97,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         var numberOfLevels = 0
         for skill: Skill in skills! {
             if (levels[skill.level] == 0) {
-                numberOfLevels++
+                numberOfLevels += 1
             }
             levels[skill.level] = 1
         }
@@ -170,22 +150,6 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        //        switch kind {
-        //        case UICollectionElementKindSectionHeader:
-        let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "AllyDomainReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
-        view.domain = self.domainFromSection(indexPath.section)
-        view.previousDomain = self.domainFromSection(indexPath.section - 1)
-        return view
-        //        default:
-        //            assert(false, "Unexpected element kind")
-        //        }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
     
     // MARK: - Helpers
     private func cellTypeFromIndexPath(indexPath: NSIndexPath) -> CellType {
@@ -220,11 +184,11 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
                 if (index == indexPath.row) {
                     return CellType.Level
                 }
-                index++
+                index += 1
                 if (index == indexPath.row) {
                     return CellType.Skill
                 }
-                index++
+                index += 1
             }
         }
         return CellType.Unknown
@@ -242,7 +206,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func skillsFromIndexPath(indexPath: NSIndexPath) -> [Skill]? {
-        return self.dataFromIndexPath(indexPath) as! [Skill]
+        return self.dataFromIndexPath(indexPath) as? [Skill]
     }
     
     private func dataFromIndexPath(indexPath: NSIndexPath) -> AnyObject? {
@@ -277,11 +241,11 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
                 if (index == indexPath.row) {
                     return NSNumber(integer: skillsLevel[0].level)
                 }
-                index++
+                index += 1
                 if (index == indexPath.row) {
                     return skillsLevel
                 }
-                index++
+                index += 1
             }
         }
         return nil
@@ -292,18 +256,4 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBAction func actionClose() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    // MARK: - Segues
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        switch segue.identifier! {
-//        case "ShowSkill":
-//            let viewController = segue.destinationViewController as! SearchSkillViewController
-//            viewController.selectedSkill = sender as! Skill
-//            break
-//            
-//        default:
-//            break
-//        }
-//    }
 }

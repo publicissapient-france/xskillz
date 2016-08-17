@@ -54,7 +54,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     private func updateSearch(search: String, delay: NSTimeInterval = 0.0) {
         if (delay > 0.0) {
             self.searchTimer?.invalidate()
-            self.searchTimer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: Selector("updateSearchTimer:"), userInfo: search, repeats: false)
+            self.searchTimer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: #selector(SearchAllyViewController.updateSearchTimer(_:)), userInfo: search, repeats: false)
             return
         }
         self.clearResults()
