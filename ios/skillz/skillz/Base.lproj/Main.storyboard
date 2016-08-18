@@ -24,15 +24,13 @@
             <string>Comfortaa</string>
             <string>Comfortaa</string>
             <string>Comfortaa</string>
+            <string>Comfortaa</string>
+            <string>Comfortaa</string>
+            <string>Comfortaa</string>
         </mutableArray>
         <mutableArray key="SanFranciscoDisplay-Medium.otf">
             <string>SanFranciscoDisplay-Medium</string>
             <string>SanFranciscoDisplay-Medium</string>
-        </mutableArray>
-        <mutableArray key="SanFranciscoDisplay-Regular.otf">
-            <string>SanFranciscoDisplay-Regular</string>
-            <string>SanFranciscoDisplay-Regular</string>
-            <string>SanFranciscoDisplay-Regular</string>
         </mutableArray>
         <mutableArray key="Steelworks Vintage Demo.ttf">
             <string>SteelworksVintageDemo</string>
@@ -233,9 +231,9 @@
                                                                                 <constraint firstAttribute="width" constant="54" id="jqz-x7-Bo7"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcu-hv-txx">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcu-hv-txx">
                                                                             <rect key="frame" x="57" y="0.0" width="30" height="12"/>
-                                                                            <fontDescription key="fontDescription" name="SanFranciscoDisplay-Regular" family="San Francisco Display" pointSize="12"/>
+                                                                            <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="12"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -260,9 +258,9 @@
                                                                                 <constraint firstAttribute="width" constant="39" id="RYh-in-3FU"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yna-f3-bTv">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yna-f3-bTv">
                                                                             <rect key="frame" x="42" y="0.0" width="30" height="12"/>
-                                                                            <fontDescription key="fontDescription" name="SanFranciscoDisplay-Regular" family="San Francisco Display" pointSize="12"/>
+                                                                            <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="12"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -287,9 +285,9 @@
                                                                                 <constraint firstAttribute="width" constant="35" id="gDd-mO-WZU"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9n-Dw-w4B">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9n-Dw-w4B">
                                                                             <rect key="frame" x="38" y="0.0" width="30" height="12"/>
-                                                                            <fontDescription key="fontDescription" name="SanFranciscoDisplay-Regular" family="San Francisco Display" pointSize="12"/>
+                                                                            <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="12"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -371,7 +369,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Florent Capon" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDb-gI-hUe">
-                                                            <rect key="frame" x="105" y="12" width="141" height="21"/>
+                                                            <rect key="frame" x="100" y="12" width="141" height="21"/>
                                                             <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="20"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -380,7 +378,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="bdh-Ad-Kn7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fDb-gI-hUe" secondAttribute="trailing" id="5Qp-pE-lXQ"/>
-                                                        <constraint firstItem="fDb-gI-hUe" firstAttribute="leading" secondItem="cBJ-RM-VS0" secondAttribute="trailing" constant="5" id="5UJ-G6-GqL"/>
+                                                        <constraint firstItem="fDb-gI-hUe" firstAttribute="leading" secondItem="cBJ-RM-VS0" secondAttribute="trailing" id="5UJ-G6-GqL"/>
                                                         <constraint firstAttribute="bottom" secondItem="cBJ-RM-VS0" secondAttribute="bottom" id="7ei-r2-pk4"/>
                                                         <constraint firstItem="u5R-Dz-wA3" firstAttribute="top" secondItem="04q-o2-Qra" secondAttribute="top" id="CaH-c8-fyw"/>
                                                         <constraint firstItem="cBJ-RM-VS0" firstAttribute="top" secondItem="04q-o2-Qra" secondAttribute="top" id="ISM-8Y-Bh1"/>
@@ -826,6 +824,9 @@
                             <constraint firstAttribute="trailing" secondItem="au5-1K-Peg" secondAttribute="trailing" id="r0b-16-MaM"/>
                             <constraint firstItem="Tp0-fL-vZi" firstAttribute="top" secondItem="Op2-do-E7o" secondAttribute="bottom" id="ykX-qQ-RvD"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5Gm-tO-btt" appends="YES" id="FaD-Va-MtZ"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="Tp0-fL-vZi" id="p9c-7N-LDm"/>
@@ -847,6 +848,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Aw-07-A4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="5Gm-tO-btt">
+                    <connections>
+                        <action selector="handleGesture:" destination="u9S-rv-Slk" id="dFr-1v-4Kl"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1430" y="2402"/>
         </scene>
@@ -1212,6 +1218,6 @@
         <image name="SwipeTuto" width="123" height="104"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2kW-8g-BVj"/>
+        <segue reference="fpp-yH-HKh"/>
     </inferredMetricsTieBreakers>
 </document>

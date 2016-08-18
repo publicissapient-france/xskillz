@@ -29,7 +29,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
     
     var user: User? {
         didSet {
-            self.nameLabel.text = self.user?.name
+            self.nameLabel.text = self.user?.name.uppercaseString
             self.xpLabel.text = String((self.user?.experienceCounter)!)
             self.avatarImageView.af_setImageWithURL(NSURL(string: (self.user?.gravatarUrl)!)!)
             

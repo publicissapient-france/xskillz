@@ -40,12 +40,10 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     var usersStore: UsersStore!
     
+    var interactor:Interactor? = nil
+    
     
     // MARK: - Init
-    deinit {
-        self.skillsCollectionView.removeObserver(self, forKeyPath: "contentSize")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -168,5 +166,38 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: - Actions
     @IBAction func actionClose() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
+        
+        let percentThreshold:CGFloat = 0.3
+        
+        // convert y-position to downward pull progress (percentage)
+        let translation = sender.translationInView(view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        guard let interactor = interactor else { return }
+        
+        switch sender.state {
+        case .Began:
+            interactor.hasStarted = true
+            dismissViewControllerAnimated(true, completion: nil)
+        case .Changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.updateInteractiveTransition(progress)
+        case .Cancelled:
+            interactor.hasStarted = false
+            interactor.cancelInteractiveTransition()
+        case .Ended:
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finishInteractiveTransition()
+                : interactor.cancelInteractiveTransition()
+        default:
+            break
+        }
     }
 }

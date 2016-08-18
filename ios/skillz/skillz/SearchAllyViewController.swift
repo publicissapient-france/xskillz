@@ -18,6 +18,8 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     @IBOutlet weak var swipeTutoView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    let interactor = Interactor()
+    
     var loadingVisible: Bool! {
         didSet {
             if (self.loadingVisible == true) {
@@ -90,6 +92,8 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         switch segue.identifier! {
         case "ShowAlly":
             let viewController = segue.destinationViewController as! AllyViewController
+            viewController.transitioningDelegate = self
+            viewController.interactor = self.interactor
             viewController.ally = sender as! User
             break
             
@@ -164,5 +168,15 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             return self.users![indexPath.row]
         }
         return nil
+    }
+}
+
+extension SearchAllyViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }
