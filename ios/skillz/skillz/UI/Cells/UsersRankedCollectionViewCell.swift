@@ -59,7 +59,7 @@ class UsersRankedCollectionViewCell: UICollectionViewCell {
                 userView.button.removeTarget(self, action: #selector(userAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 userView.removeFromSuperview()
             }
-            userViews = []
+            self.userViews = []
             
             for user: User in self.users {
                 userView = UserView.loadFromNib()
@@ -129,10 +129,6 @@ class UsersRankedCollectionViewCell: UICollectionViewCell {
         
         let totalHeight = UsersRankedCollectionViewCell.layoutUserViews(contentView.subviews as! [UserView])
         return max(UsersRankedCollectionViewCell.cellDefaultHeight(), (totalHeight + 8.0 + 8.0)) // top padding + bottom padding
-    }
-    
-    class private func isUserViewOutOfBounds(userView: UserView) -> Bool {
-        return (userView.frame.origin.x + userView.frame.size.width) > userView.superview!.bounds.size.width
     }
     
     

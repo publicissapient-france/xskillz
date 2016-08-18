@@ -5,8 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SanFranciscoDisplay-Semibold.otf">
-            <string>SanFranciscoDisplay-Semibold</string>
+        <mutableArray key="Comfortaa-Regular.ttf">
+            <string>Comfortaa</string>
+            <string>Comfortaa</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,19 +19,20 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Objective-C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-w1-lcV">
                     <rect key="frame" x="0.0" y="0.0" width="81" height="23"/>
-                    <fontDescription key="fontDescription" name="SanFranciscoDisplay-Semibold" family="San Francisco Display" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Life-S" translatesAutoresizingMaskIntoConstraints="NO" id="wtx-EK-eaF">
-                    <rect key="frame" x="86" y="6" width="12" height="11"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="wtx-EK-eaF">
+                    <rect key="frame" x="85" y="6" width="13" height="11"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="11" id="AC0-lE-99I"/>
-                        <constraint firstAttribute="width" constant="12" id="MZb-BM-k4v"/>
+                        <constraint firstAttribute="width" constant="13" id="MZb-BM-k4v"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYI-vo-L4E">
                     <rect key="frame" x="0.0" y="0.0" width="98" height="23"/>
+                    <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="13"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -52,7 +54,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="button" destination="RYI-vo-L4E" id="mut-ID-M85"/>
-                <outlet property="lifeImageView" destination="wtx-EK-eaF" id="GmQ-hc-p64"/>
+                <outlet property="likeImageView" destination="wtx-EK-eaF" id="1TJ-rl-kKP"/>
                 <outlet property="skillLabel" destination="NAT-w1-lcV" id="gfq-1d-5dF"/>
                 <outlet property="skillLabelTrailingConstraint" destination="MmK-F9-cZE" id="Mxf-h1-apO"/>
             </connections>
@@ -60,6 +62,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Life-S" width="12" height="11"/>
+        <image name="Like" width="13" height="11"/>
     </resources>
 </document>

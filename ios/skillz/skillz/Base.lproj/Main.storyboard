@@ -524,7 +524,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="30"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UsersRankedCell" id="Hi6-h9-Lgk" customClass="UsersRankedCollectionViewCell" customModule="XSkillz" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SkillsRankedCell" id="Hi6-h9-Lgk" customClass="SkillsRankedCollectionViewCell" customModule="XSkillz" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="33" width="414" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -584,10 +584,10 @@
                                                 <size key="customSize" width="414" height="40"/>
                                                 <connections>
                                                     <outlet property="mainBackgroundView" destination="DYV-2W-Z3V" id="tEi-0B-AF6"/>
+                                                    <outlet property="skillsContentView" destination="mJB-fv-IlT" id="5pc-do-4yr"/>
                                                     <outlet property="starsBackgroundView" destination="1E3-sR-dxx" id="bxR-tx-pwW"/>
                                                     <outlet property="starsImageView" destination="vdE-7G-uwN" id="3AV-Bw-QMJ"/>
                                                     <outlet property="starsLightenBackgroundView" destination="Ucl-T0-XOD" id="5AV-74-SYw"/>
-                                                    <outlet property="usersContentView" destination="mJB-fv-IlT" id="MlQ-Q5-bra"/>
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DomainTitleCell" id="Dkw-aP-e33" customClass="DomainTitleCollectionViewCell" customModule="XSkillz" customModuleProvider="target">

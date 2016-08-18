@@ -55,6 +55,7 @@
 		05A21B051D2A978900CC1DE4 /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */; };
 		05A21B061D2A978900CC1DE4 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */; };
 		05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */; };
+		05A9FEE71D65D93B002D5656 /* SkillsRankedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEE61D65D93B002D5656 /* SkillsRankedCollectionViewCell.swift */; };
 		15B1E9EB867FCEE47C25914F /* Pods_XSkillz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6FD6F3EB963FC72708DF41 /* Pods_XSkillz.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Light.ttf"; sourceTree = "<group>"; };
 		05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Steelworks Vintage Demo.ttf"; sourceTree = "<group>"; };
+		05A9FEE61D65D93B002D5656 /* SkillsRankedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsRankedCollectionViewCell.swift; sourceTree = "<group>"; };
 		8AE9E8DFF2768557275F659A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCD71D6AF63ABD682468D48 /* Pods-XSkillz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XSkillz.release.xcconfig"; path = "Pods/Target Support Files/Pods-XSkillz/Pods-XSkillz.release.xcconfig"; sourceTree = "<group>"; };
 		ED6FD6F3EB963FC72708DF41 /* Pods_XSkillz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XSkillz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 				05722C851D5C82740024B4B7 /* DomainTitleCollectionViewCell.swift */,
 				05353C621C58D65400DD0DC6 /* SkillCollectionViewCell.swift */,
 				059D09581C4556EC00CBF519 /* SkillSearchListCollectionViewCell.swift */,
+				05A9FEE61D65D93B002D5656 /* SkillsRankedCollectionViewCell.swift */,
 				0500F2951C5918E9002BAEF9 /* SkillStarsCollectionViewCell.swift */,
 				05722C871D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift */,
 			);
@@ -552,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				057B370C1C29A04D00FE3921 /* User.swift in Sources */,
+				05A9FEE71D65D93B002D5656 /* SkillsRankedCollectionViewCell.swift in Sources */,
 				056F389B1C1B1F60003984FD /* UsersStore.swift in Sources */,
 				056F38891C1ADFCB003984FD /* CustomTextField.swift in Sources */,
 				05722C881D5C9B0D0024B4B7 /* UsersRankedCollectionViewCell.swift in Sources */,

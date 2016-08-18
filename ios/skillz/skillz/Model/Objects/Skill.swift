@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-enum SkillLevel : Int {
+public enum SkillLevel : Int {
     case NoSkill
     case Beginner
     case Confirmed

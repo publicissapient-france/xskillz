@@ -47,7 +47,13 @@ public class Domain: Object {
         }
     }
     
-//    override public static func ignoredProperties() -> [String] {
-//        return ["colorObject", "pictoImage"]
-//    }
+    public func skillsOfLevel(level: SkillLevel) -> [Skill] {
+        var skills = [Skill]()
+        for skill in self.skills {
+            if skill.skillLevel == level {
+                skills.append(skill)
+            }
+        }
+        return skills
+    }
 }
