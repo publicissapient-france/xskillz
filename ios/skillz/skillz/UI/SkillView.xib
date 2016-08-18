@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Objective-C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-w1-lcV">
-                    <rect key="frame" x="0.0" y="0.0" width="81" height="23"/>
+                    <rect key="frame" x="0.0" y="0.0" width="83" height="23"/>
                     <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                 <constraint firstItem="RYI-vo-L4E" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GcK-li-TGg"/>
                 <constraint firstItem="NAT-w1-lcV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IHX-cp-kwg"/>
                 <constraint firstAttribute="bottom" secondItem="RYI-vo-L4E" secondAttribute="bottom" id="J4y-el-yo6"/>
-                <constraint firstAttribute="trailing" secondItem="NAT-w1-lcV" secondAttribute="trailing" constant="17" id="MmK-F9-cZE"/>
+                <constraint firstAttribute="trailing" secondItem="NAT-w1-lcV" secondAttribute="trailing" constant="15" id="MmK-F9-cZE"/>
                 <constraint firstAttribute="bottom" secondItem="NAT-w1-lcV" secondAttribute="bottom" id="Mvo-yX-iPO"/>
                 <constraint firstItem="RYI-vo-L4E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SN7-MD-vHH"/>
             </constraints>

@@ -24,7 +24,7 @@ class SkillView: UIView {
         didSet {
             self.skillLabel.text = self.skill.name
             self.likeImageView.hidden = !self.skill.interested
-            self.skillLabelTrailingConstraint.constant = self.skill.interested ? 18.0 : 0.0
+            self.skillLabelTrailingConstraint.constant = self.skill.interested ? 15.0 : 0.0
         }
     }
     
@@ -43,7 +43,7 @@ class SkillView: UIView {
     class func size(skill: Skill) -> CGSize {
         var skillNameLabelWidth: CGFloat = (skill.name as NSString).boundingRectWithSize(CGSizeMake(CGFloat.max, 0.0), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 13.0)], context: nil).width
         if (skill.interested) {
-            skillNameLabelWidth += (5.0 + 13.0)
+            skillNameLabelWidth += 15.0
         }
         return CGSizeMake((skillNameLabelWidth + 1.0), self.defaultHeight())
     }
