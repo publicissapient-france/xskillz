@@ -9,31 +9,35 @@
 import UIKit
 
 class AllyDomainCollectionReusableView: UICollectionReusableView {
-    
+    @IBOutlet weak var domainFirstLetterLabel: UILabel!
     @IBOutlet weak var domainLabel: UILabel!
-    @IBOutlet weak var backgroundColorView: UIView!
-    @IBOutlet weak var backgroundLineImageView: UIImageView!
-    @IBOutlet weak var backgroundMiddleImageView: UIImageView!
-    @IBOutlet weak var topBackgroundColorView: UIView!
+    @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak var pictoImageView: UIImageView!
+    @IBOutlet weak var resultsNumberLabel: UILabel!
     
-    var domain: Domain! {
+    var domain: Domain? {
         didSet {
-            self.domainLabel.text = self.domain.name.uppercaseString
-            self.backgroundLineImageView.image = self.backgroundLineImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-            self.backgroundLineImageView.tintColor = self.domain.colorObject
-            self.backgroundMiddleImageView.image = self.backgroundMiddleImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-            self.backgroundMiddleImageView.tintColor = self.domain.colorObject
-            self.backgroundColorView.backgroundColor = self.domain.colorObject
-        }
-    }
-    var previousDomain: Domain? {
-        didSet {
-            if (self.previousDomain != nil) {
-                self.topBackgroundColorView.backgroundColor = self.previousDomain!.colorObject
+            if (self.domain != nil) {
+                let index = self.domain!.name.startIndex.advancedBy(1)
+                self.domainFirstLetterLabel.text = self.domain!.name.substringToIndex(index).uppercaseString
+                self.domainFirstLetterLabel.textColor = self.domain!.colorObject
+                self.domainLabel.text = self.domain!.name.substringFromIndex(index).uppercaseString
+                self.lineView.backgroundColor = self.domain!.colorObject
+                self.pictoImageView.image = self.domain!.pictoImage
+                Colors.colorizeImageView(self.pictoImageView, color: self.domain!.colorObject)
             }
             else {
-                self.topBackgroundColorView.backgroundColor = UIColor.clearColor();
+                // TODO: default domain
             }
         }
+    }
+    var numberOfResultsText: String? {
+        didSet {
+            self.resultsNumberLabel.text = self.numberOfResultsText
+        }
+    }
+    
+    class func cellDefaultHeight() -> CGFloat {
+        return 33.0
     }
 }

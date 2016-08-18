@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum CellType : Int {
-    case Unknown
-    case Level
-    case Skill
-}
-
 class AllyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerBackgroundView: UIView!
@@ -45,7 +39,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     var usersStore: UsersStore!
-
+    
     
     // MARK: - Init
     deinit {
@@ -59,11 +53,14 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.headerNameLabel.text = self.ally.name.uppercaseString
         self.headerCompanyLabel.text = self.ally.companyName.uppercaseString
         self.headerXPYearsLabel.text = String(self.ally.experienceCounter)
+//        if #available(iOS 9, *) {
+//            (self.skillsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
+//        }
         self.usersStore.getFullUser(self.ally)
             .success { [weak self] (user:User) -> Void in
                 self?.loadAvatar()
                 self?.ally = user
-//                self?.skillsCollectionView.reloadData()
+                self?.skillsCollectionView.reloadData()
                 self?.loadingVisible = false
         }
     }
@@ -75,11 +72,11 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         self.headerAvatarActivityIndicatorView.startAnimating()
         self.headerAvatarImageView.af_setImageWithURL(NSURL(string: (self.ally.gravatarUrl))!,
-            placeholderImage: nil,
-            filter: nil,
-            imageTransition: UIImageView.ImageTransition.None,
-            completion:{ [weak self] response in
-                self?.headerAvatarActivityIndicatorView.stopAnimating()
+                                                      placeholderImage: nil,
+                                                      filter: nil,
+                                                      imageTransition: UIImageView.ImageTransition.None,
+                                                      completion:{ [weak self] response in
+                                                        self?.headerAvatarActivityIndicatorView.stopAnimating()
             }
         )
     }
@@ -101,99 +98,37 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             levels[skill.level] = 1
         }
-        return (numberOfLevels * 2)
+        return numberOfLevels
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        switch self.cellTypeFromIndexPath(indexPath) {
-        case CellType.Level:
-            let cell: SkillStarsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillStarsCell", forIndexPath: indexPath) as! SkillStarsCollectionViewCell
-            cell.level = SkillLevel.Expert
-            cell.level = self.levelFromIndexPath(indexPath)
-            cell.domain = self.domainFromSection(indexPath.section)
-            return cell
-            
-        case CellType.Skill:
-            let cell: AllySkillsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("AllySkillsCell", forIndexPath: indexPath) as! AllySkillsCollectionViewCell
-            cell.skills = self.skillsFromIndexPath(indexPath);
-            cell.domain = self.domainFromSection(indexPath.section)
-            cell.skillSelected = { [weak self] (skill: Skill) -> () in
-                // TODO
-            }
-            return cell
-            
-        case CellType.Unknown:
-            return UICollectionViewCell()
-        }
+        let usersRankedCell: UsersRankedCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("UsersRankedCell", forIndexPath: indexPath) as! UsersRankedCollectionViewCell
+        let domain = self.domainFromSection(indexPath.section)
+        let skills = domain!.skills
+        //        usersRankedCell.skill = self.selectedSkill
+        usersRankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
+        usersRankedCell.domain = domain
+        return usersRankedCell
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let domain = self.domainFromSection(indexPath.section)
+        let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "AllyDomainCollectionReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
+        let numberOfSkills = domain?.skills.count
+        let stringFormat = i18n(numberOfSkills > 1 ? "ally.number_of_skills.plural" : "ally.number_of_skills.singular")
+        view.domain = domain
+        view.numberOfResultsText = String(format: stringFormat, numberOfSkills!)
+        return view
     }
     
     
     // MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            switch self.cellTypeFromIndexPath(indexPath) {
-            case CellType.Level:
-                return CGSizeMake(self.skillsCollectionView.bounds.size.width, SkillStarsCollectionViewCell.cellDefaultHeight())
-                
-            case CellType.Skill:
-                //            let cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! SkillCollectionViewCell
-                //            return CGSizeMake(cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).width, SkillCollectionViewCell.cellDefaultHeight())
-                let cellTemp: AllySkillsCollectionViewCell = AllySkillsCollectionViewCell()
-                cellTemp.frame = CGRectMake(0.0, 0.0, self.skillsCollectionView.bounds.size.width, 100.0)
-                cellTemp.skills = self.skillsFromIndexPath(indexPath)
-                cellTemp.layoutSubviews()
-                return CGSizeMake(self.skillsCollectionView.bounds.size.width, cellTemp.cellHeight())
-                
-            case CellType.Unknown:
-                return CGSizeZero
-            }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(self.skillsCollectionView.bounds.size.width, 100.0)
     }
     
     
     // MARK: - Helpers
-    private func cellTypeFromIndexPath(indexPath: NSIndexPath) -> CellType {
-        let skills = self.domainFromSection(indexPath.section)?.skills
-        var noSkillSkills = [Skill]()
-        var beginnerSkills = [Skill]()
-        var confirmedSkills = [Skill]()
-        var expertSkills = [Skill]()
-        for skill: Skill in skills! {
-            switch skill.skillLevel {
-            case SkillLevel.NoSkill:
-                noSkillSkills.append(skill)
-                break
-                
-            case SkillLevel.Beginner:
-                beginnerSkills.append(skill)
-                break
-                
-            case SkillLevel.Confirmed:
-                confirmedSkills.append(skill)
-                break
-                
-            case SkillLevel.Expert:
-                expertSkills.append(skill)
-                break
-            }
-        }
-        let allSkillsLevels = [expertSkills, confirmedSkills, beginnerSkills, noSkillSkills]
-        var index = 0
-        for skillsLevel: [Skill] in allSkillsLevels {
-            if (skillsLevel.count > 0) {
-                if (index == indexPath.row) {
-                    return CellType.Level
-                }
-                index += 1
-                if (index == indexPath.row) {
-                    return CellType.Skill
-                }
-                index += 1
-            }
-        }
-        return CellType.Unknown
-    }
-    
     private func domainFromSection(section: Int) -> Domain? {
         if (self.ally != nil && section >= 0 && section < self.ally!.domains.count) {
             return self.ally!.domains[section]
@@ -201,54 +136,23 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         return nil
     }
     
-    private func levelFromIndexPath(indexPath: NSIndexPath) -> SkillLevel? {
-        return SkillLevel(rawValue: (self.dataFromIndexPath(indexPath) as! NSNumber).integerValue)
-    }
-    
-    private func skillsFromIndexPath(indexPath: NSIndexPath) -> [Skill]? {
-        return self.dataFromIndexPath(indexPath) as? [Skill]
-    }
-    
-    private func dataFromIndexPath(indexPath: NSIndexPath) -> AnyObject? {
-        let skills = self.domainFromSection(indexPath.section)?.skills
-        var noSkillSkills = [Skill]()
-        var beginnerSkills = [Skill]()
-        var confirmedSkills = [Skill]()
-        var expertSkills = [Skill]()
-        for skill: Skill in skills! {
-            switch skill.skillLevel {
-            case SkillLevel.NoSkill:
-                noSkillSkills.append(skill)
-                break
-                
-            case SkillLevel.Beginner:
-                beginnerSkills.append(skill)
-                break
-                
-            case SkillLevel.Confirmed:
-                confirmedSkills.append(skill)
-                break
-                
-            case SkillLevel.Expert:
-                expertSkills.append(skill)
-                break
+    private func skillLevelFromIndexPath(indexPath: NSIndexPath) -> SkillLevel? {
+        let domain = self.domainFromSection(indexPath.section)
+        let skills = domain!.skills
+        var levels = [0, 0, 0, 0]
+        for skill: Skill in skills {
+            levels[(4 - skill.level)] += 1
+        }
+        var levelIndex = -1
+        for i in 0 ..< levels.count {
+            if (levels[i] > 0) {
+                levelIndex += 1
+            }
+            if (levelIndex == indexPath.row) {
+                return SkillLevel(rawValue: (4 - i))
             }
         }
-        let allSkillsLevels = [expertSkills, confirmedSkills, beginnerSkills, noSkillSkills]
-        var index = 0
-        for skillsLevel: [Skill] in allSkillsLevels {
-            if (skillsLevel.count > 0) {
-                if (index == indexPath.row) {
-                    return NSNumber(integer: skillsLevel[0].level)
-                }
-                index += 1
-                if (index == indexPath.row) {
-                    return skillsLevel
-                }
-                index += 1
-            }
-        }
-        return nil
+        return SkillLevel.Beginner
     }
     
     

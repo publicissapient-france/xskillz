@@ -22,3 +22,6 @@
 "search_skill.textfield.placeholder" = "Compétence";
 "search_skill.number_of_allies.plural" = "%i alliés trouvés";
 "search_skill.number_of_allies.singular" = "%i allié trouvé";
+
+"ally.number_of_skills.plural" = "%i skills";
+"ally.number_of_skills.singular" = "%i skill";
