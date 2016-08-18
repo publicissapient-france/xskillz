@@ -15,10 +15,14 @@ class SkillView: UIView {
     @IBOutlet weak var skillLabel: UILabel!
     @IBOutlet weak var skillLabelTrailingConstraint: NSLayoutConstraint!
 
+    var color: UIColor! {
+        didSet {
+            Colors.colorizeImageView(self.likeImageView, color: color)
+        }
+    }
     var skill: Skill! {
         didSet {
             self.skillLabel.text = self.skill.name
-            Colors.colorizeImageView(self.likeImageView, color: skill.domain?.colorObject)
             self.likeImageView.hidden = !self.skill.interested
             self.skillLabelTrailingConstraint.constant = self.skill.interested ? 18.0 : 0.0
         }

@@ -64,6 +64,7 @@ class SkillsRankedCollectionViewCell: UICollectionViewCell {
             for skill: Skill in self.skills {
                 skillView = SkillView.loadFromNib()
                 skillView.skill = skill
+                skillView.color = self.domain!.colorObject
                 skillView.button.addTarget(self, action: #selector(skillAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 self.skillsContentView.addSubview(skillView)
                 self.skillViews.append(skillView)
