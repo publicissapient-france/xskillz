@@ -142,7 +142,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         let skills = domain!.skills
         var levels = [0, 0, 0, 0]
         for skill: Skill in skills {
-            levels[(4 - skill.level)] += 1
+            levels[(3 - skill.level)] += 1
         }
         var levelIndex = -1
         for i in 0 ..< levels.count {
@@ -150,7 +150,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
                 levelIndex += 1
             }
             if (levelIndex == indexPath.row) {
-                return SkillLevel(rawValue: (4 - i))
+                return SkillLevel(rawValue: (3 - i))
             }
         }
         return SkillLevel.NoSkill
