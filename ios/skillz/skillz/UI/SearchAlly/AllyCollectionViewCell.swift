@@ -29,15 +29,20 @@ class AllyCollectionViewCell: UICollectionViewCell {
     
     var user: User? {
         didSet {
-            self.nameLabel.text = self.user?.name.uppercaseString
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 0.8
+            paragraphStyle.headIndent = 5.0
+            let attributedString = NSMutableAttributedString(string: (self.user?.name.uppercaseString)!)
+            attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+            self.nameLabel.attributedText = attributedString
             self.xpLabel.text = String((self.user?.experienceCounter)!)
             self.avatarImageView.af_setImageWithURL(NSURL(string: (self.user?.gravatarUrl)!)!)
             
             let topDomains: [Domain] = (self.user?.techDomainsSortedByScore())!
             
-            if (topDomains.count > 0) {
-                Colors.colorizeImageView(self.avatarRingImageView, color: topDomains[0].colorObject)
-            }
+//            if (topDomains.count > 0) {
+//                Colors.colorizeImageView(self.avatarRingImageView, color: topDomains[0].colorObject)
+//            }
             
             var topDomainView: UIView
             var topDomainImageView: UIImageView
@@ -53,7 +58,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
                     let domain: Domain = topDomains[i]
                     Colors.colorizeImageView(topDomainImageView, color: domain.colorObject)
                     topDomainView.hidden = false
-                    topDomainLabel.attributedText = self.formatDomainName(domain.name, color: domain.colorObject)
+                    topDomainLabel.attributedText = self.formatDomainName(domain.name, domainRank: (i + 1), color: domain.colorObject)
                 }
             }
         }
@@ -64,6 +69,13 @@ class AllyCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10.0
+        
+        var attrString = NSMutableAttributedString(string: "Swift Answer")
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        
+
         self.avatarImageView.layer.mask = self.avatarMaskImageView.layer
     }
     
@@ -76,28 +88,28 @@ class AllyCollectionViewCell: UICollectionViewCell {
     }
     
     class func cellDefaultHeight() -> CGFloat {
-        return 143.0
+        return 140.0
     }
     
     // MARK: - Private
-    private func formatDomainName(name: NSString, color: UIColor) -> NSAttributedString {
+    private func formatDomainName(name: NSString, domainRank: NSInteger, color: UIColor) -> NSAttributedString {
         let formattedString: NSMutableAttributedString = NSMutableAttributedString()
-        formattedString.appendAttributedString(NSAttributedString(string: name.substringToIndex(1).uppercaseString, attributes: self.domainFirstLetterAttribute(color)))
-        formattedString.appendAttributedString(NSAttributedString(string: name.substringFromIndex(1).uppercaseString, attributes: self.domainDefaultAttribute()))
+        formattedString.appendAttributedString(NSAttributedString(string: name.substringToIndex(1).uppercaseString, attributes: self.domainFirstLetterAttribute(domainRank, color: color)))
+        formattedString.appendAttributedString(NSAttributedString(string: name.substringFromIndex(1).uppercaseString, attributes: self.domainDefaultAttribute(domainRank)))
         return formattedString
     }
     
-    private func domainFirstLetterAttribute(color: UIColor) -> [String : AnyObject] {
+    private func domainFirstLetterAttribute(domainRank: NSInteger, color: UIColor) -> [String : AnyObject] {
         return [
             NSForegroundColorAttributeName: color,
-            NSFontAttributeName: Fonts.mainFont(FontsStyle.Bold, size: 14.0)
+            NSFontAttributeName: Fonts.mainFont(FontsStyle.Bold, size: (13.0 - CGFloat(domainRank - 1) * 2.0))
         ]
     }
     
-    private func domainDefaultAttribute() -> [String : AnyObject] {
+    private func domainDefaultAttribute(domainRank: NSInteger) -> [String : AnyObject] {
         return [
             NSForegroundColorAttributeName: Colors.greyColor(),
-            NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 14.0)
+            NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: (13.0 - CGFloat(domainRank - 1) * 2.0))
         ]
     }
 }
