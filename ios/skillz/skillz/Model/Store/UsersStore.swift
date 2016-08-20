@@ -13,6 +13,7 @@ import SwiftTask
 public class UsersStore: NSObject {
     
     var users: [User]? = nil
+    var getUsersFromSearchTask: UsersTask? = nil
     
     public var usersDataAccess: UsersDataAccess!
     
@@ -37,8 +38,10 @@ public class UsersStore: NSObject {
             task = self.getAllUsers()
         }
         
+        self.getUsersFromSearchTask?.cancel()
+        self.getUsersFromSearchTask = task
         var results = [User]()
-        return task
+        return self.getUsersFromSearchTask!
             .success { (users: [User]) -> UsersTask in
                 for user: User in users {
                     if user.name.lowercaseString.containsString(searchString.lowercaseString) {

@@ -12,6 +12,7 @@ import SwiftTask
 public class SkillsStore: NSObject {
     
     var skills: [Skill]? = nil
+    var getSkillsFromSearchTask: SkillsTask? = nil
     
     public var skillsDataAccess: SkillsDataAccess!
 
@@ -36,6 +37,8 @@ public class SkillsStore: NSObject {
             task = self.getAllSkills()
         }
         
+        self.getSkillsFromSearchTask?.cancel()
+        self.getSkillsFromSearchTask = task
         var results = [Skill]()
         return task
             .success { (skills: [Skill]) -> SkillsTask in
