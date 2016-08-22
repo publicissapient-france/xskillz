@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerBackgroundView: UIView!
     @IBOutlet weak var headerLineView: UIView!
@@ -25,7 +25,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loadingActivityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var skillsCollectionView: UICollectionView!
+    @IBOutlet weak var skillsTableView: UITableView!
     
     var ally: User!
     var loadingVisible: Bool! {
@@ -51,14 +51,14 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.headerNameLabel.text = self.ally.name.uppercaseString
         self.headerCompanyLabel.text = self.ally.companyName.uppercaseString
         self.headerXPYearsLabel.text = String(self.ally.experienceCounter)
-//        if #available(iOS 9, *) {
-//            (self.skillsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
-//        }
+        self.skillsTableView.registerNib(UINib(nibName: "RankedTableViewCell", bundle: nil), forCellReuseIdentifier: "RankedTableViewCell")
+        self.skillsTableView.rowHeight = UITableViewAutomaticDimension
+        self.skillsTableView.estimatedRowHeight = 40.0
         self.usersStore.getFullUser(self.ally)
             .success { [weak self] (user:User) -> Void in
                 self?.loadAvatar()
                 self?.ally = user
-                self?.skillsCollectionView.reloadData()
+                self?.skillsTableView.reloadData()
                 self?.loadingVisible = false
         }
     }
@@ -67,7 +67,7 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         if (self.ally == nil) {
             return
         }
-        
+        UITableViewAutomaticDimension
         self.headerAvatarActivityIndicatorView.startAnimating()
         self.headerAvatarImageView.af_setImageWithURL(NSURL(string: (self.ally.gravatarUrl))!,
                                                       placeholderImage: nil,
@@ -82,11 +82,51 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     // MARK: - Delegates
     // MARK: UICollectionViewDataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+//        return 1
+//        return self.ally.domains.count
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        let skills = self.domainFromSection(section)?.skills
+//        var levels = [0, 0, 0, 0]
+//        var numberOfLevels = 0
+//        for skill: Skill in skills! {
+//            if (levels[skill.level] == 0) {
+//                numberOfLevels += 1
+//            }
+//            levels[skill.level] = 1
+//        }
+//        return numberOfLevels
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//        let skillsRankedCell: SkillsRankedCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillsRankedCell", forIndexPath: indexPath) as! SkillsRankedCollectionViewCell
+//        let domain = self.domainFromSection(indexPath.section)
+//        let skills = self.skillsFromIndexPath(indexPath)
+//        skillsRankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
+//        skillsRankedCell.domain = domain
+//        skillsRankedCell.skills = skills
+//        return skillsRankedCell
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+//        let domain = self.domainFromSection(indexPath.section)
+//        let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "AllyDomainCollectionReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
+//        let numberOfSkills = domain?.skills.count
+//        let stringFormat = i18n(numberOfSkills > 1 ? "ally.number_of_skills.plural" : "ally.number_of_skills.singular")
+//        view.domain = domain
+//        view.numberOfResultsText = String(format: stringFormat, numberOfSkills!)
+//        return view
+//    }
+    
+    
+    // MARK: UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.ally.domains.count
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let skills = self.domainFromSection(section)?.skills
         var levels = [0, 0, 0, 0]
         var numberOfLevels = 0
@@ -99,32 +139,30 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
         return numberOfLevels
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let skillsRankedCell: SkillsRankedCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillsRankedCell", forIndexPath: indexPath) as! SkillsRankedCollectionViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let rankedCell: RankedTableViewCell = tableView.dequeueReusableCellWithIdentifier("RankedTableViewCell", forIndexPath: indexPath) as! RankedTableViewCell
         let domain = self.domainFromSection(indexPath.section)
         let skills = self.skillsFromIndexPath(indexPath)
-        skillsRankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
-        skillsRankedCell.domain = domain
-        skillsRankedCell.skills = skills
-        return skillsRankedCell
+        rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
+        rankedCell.domain = domain
+        rankedCell.collectionDataSource = AllyRankedSkillsDataSource(skills: skills)
+        
+        return rankedCell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let domain = self.domainFromSection(indexPath.section)
-        let view: AllyDomainCollectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "AllyDomainCollectionReusableView", forIndexPath: indexPath) as! AllyDomainCollectionReusableView
-        let numberOfSkills = domain?.skills.count
-        let stringFormat = i18n(numberOfSkills > 1 ? "ally.number_of_skills.plural" : "ally.number_of_skills.singular")
-        view.domain = domain
-        view.numberOfResultsText = String(format: stringFormat, numberOfSkills!)
-        return view
-    }
+    //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //        let domain = self.domainFromSection(section)
+    //        let view: AllyDomainCollectionReusableView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("AllyDomainCollectionReusableView") as! AllyDomainCollectionReusableView
+    //        let numberOfSkills = domain?.skills.count
+    //        let stringFormat = i18n(numberOfSkills > 1 ? "ally.number_of_skills.plural" : "ally.number_of_skills.singular")
+    //        view.domain = domain
+    //        view.numberOfResultsText = String(format: stringFormat, numberOfSkills!)
+    //        return view
+    //    }
     
     
-    // MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let cellHeight = SkillsRankedCollectionViewCell.cellHeight(self.skillsFromIndexPath(indexPath), width: self.skillsCollectionView.bounds.size.width)
-        return CGSizeMake(self.skillsCollectionView.bounds.size.width, cellHeight)
-    }
+    // MARK: UITableViewDelegate
+    
     
     
     // MARK: - Helpers
@@ -169,7 +207,6 @@ class AllyViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
-        
         let percentThreshold:CGFloat = 0.3
         
         // convert y-position to downward pull progress (percentage)
