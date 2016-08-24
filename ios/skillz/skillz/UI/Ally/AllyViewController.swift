@@ -48,7 +48,12 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         self.headerAvatarImageView.layer.mask = self.headerAvatarMaskImageView.layer
-        self.headerNameLabel.text = self.ally.name.uppercaseString
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 0.8
+        paragraphStyle.headIndent = 5.0
+        let attributedString = NSMutableAttributedString(string: (self.ally.name.uppercaseString))
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        self.headerNameLabel.attributedText = attributedString
         self.headerCompanyLabel.text = self.ally.companyName.uppercaseString
         self.headerXPYearsLabel.text = String(self.ally.experienceCounter)
         self.skillsTableView.backgroundColor = UIColor.clearColor()
