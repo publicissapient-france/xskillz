@@ -10,6 +10,7 @@ import UIKit
 class SkillCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var skillLabel: UILabel!
+    @IBOutlet weak var skillLabelTrailingConstraint: NSLayoutConstraint!
     
     var color: UIColor! {
         didSet {
@@ -20,13 +21,17 @@ class SkillCollectionViewCell: UICollectionViewCell {
         didSet {
             self.skillLabel.text = self.skill.name
             self.likeImageView.hidden = !self.skill.interested
+            self.skillLabelTrailingConstraint.constant = (self.skill.interested ? 23.0 : 5.0)
         }
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    class func cellSize(skill: Skill) -> CGSize {
+        let labelWidth: CGFloat = (skill.name as NSString).boundingRectWithSize(CGSizeMake(CGFloat.max, 0.0), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 13.0)], context: nil).width
+        
+        return CGSizeMake((labelWidth + (skill.interested ? 23.0 : 5.0)), self.cellDefaultHeight())
     }
-//    override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        let size = self.contentView.systemLayoutSizeFittingSize(layoutAttributes.size)
-//    }
+    
+    class func cellDefaultHeight() -> CGFloat {
+        return 40.0
+    }
 }

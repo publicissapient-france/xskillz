@@ -46,11 +46,8 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Z9P-c7-8UL">
-                        <rect key="frame" x="40" y="0.0" width="270" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="oZ7-bu-Z4R"/>
-                        </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="uJt-rr-Lk1">
+                        <rect key="frame" x="35" y="0.0" width="280" height="40"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="b3m-SL-zZ7">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -66,15 +63,14 @@
                     <constraint firstAttribute="bottom" secondItem="Z9P-c7-8UL" secondAttribute="bottom" id="biu-yR-Bf9"/>
                     <constraint firstItem="s06-zV-6jt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bpJ-GP-AFd"/>
                     <constraint firstItem="s06-zV-6jt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="f2S-Ut-QOh"/>
-                    <constraint firstAttribute="trailing" secondItem="Z9P-c7-8UL" secondAttribute="trailing" constant="10" id="lgP-Yu-cy8"/>
+                    <constraint firstAttribute="trailing" secondItem="Z9P-c7-8UL" secondAttribute="trailing" constant="5" id="lgP-Yu-cy8"/>
                     <constraint firstItem="w03-ur-2mF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lv2-yA-U5R"/>
                     <constraint firstAttribute="bottom" secondItem="w03-ur-2mF" secondAttribute="bottom" id="oOV-kn-Byy"/>
-                    <constraint firstItem="Z9P-c7-8UL" firstAttribute="leading" secondItem="s06-zV-6jt" secondAttribute="trailing" constant="10" id="v30-qF-T84"/>
+                    <constraint firstItem="Z9P-c7-8UL" firstAttribute="leading" secondItem="s06-zV-6jt" secondAttribute="trailing" constant="5" id="v30-qF-T84"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="collectionView" destination="Z9P-c7-8UL" id="dJn-JC-2AY"/>
-                <outlet property="collectionViewHeightConstraint" destination="oZ7-bu-Z4R" id="AgW-c7-Jvf"/>
                 <outlet property="mainBackgroundView" destination="w03-ur-2mF" id="MBW-y4-aM9"/>
                 <outlet property="starsImageView" destination="A6m-RP-i90" id="pXm-3i-ley"/>
                 <outlet property="starsLightenBackgroundView" destination="8Cb-Pf-A8n" id="dJa-rx-p8v"/>

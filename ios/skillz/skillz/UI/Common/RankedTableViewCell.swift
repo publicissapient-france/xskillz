@@ -18,8 +18,6 @@ class RankedTableViewCell: UITableViewCell {
     var collectionDataSource: UICollectionViewDataSource? {
         didSet {
             self.collectionView.dataSource = self.collectionDataSource
-            let height = self.collectionView.collectionViewLayout.collectionViewContentSize().height
-            self.collectionViewHeightConstraint.constant = max(40.0, height)
         }
     }
     var domain: Domain? {
@@ -60,15 +58,39 @@ class RankedTableViewCell: UITableViewCell {
     
     
     // MARK: - Init
+    class func loadFromNib() -> RankedTableViewCell {
+        return UINib(nibName: "RankedTableViewCell", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! RankedTableViewCell
+    }
+    
+    class func cellHeight(width: CGFloat, skills: [Skill]?) -> CGFloat {
+        if skills == nil {
+            return self.cellDefaultHeight()
+        }
+        
+        let collectionViewWidth = (width - 30.0 - 5.0 - 5.0)
+        var numberOfRows = 1
+        var rowWidth: CGFloat = 0.0
+        for skill in skills! {
+            let cellWidth = min(SkillCollectionViewCell.cellSize(skill).width, width)
+            rowWidth += cellWidth
+            if (rowWidth > collectionViewWidth) {
+                rowWidth = cellWidth
+                numberOfRows += 1
+            }
+        }
+        
+        return (CGFloat(numberOfRows) * SkillCollectionViewCell.cellDefaultHeight())
+    }
+    
+    class func cellDefaultHeight() -> CGFloat {
+        return 40.0
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.collectionView.backgroundColor = UIColor.clearColor()
         self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 100.0, height: 40.0)
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
     }
 }

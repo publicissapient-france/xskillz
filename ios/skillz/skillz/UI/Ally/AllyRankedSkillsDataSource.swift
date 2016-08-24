@@ -8,10 +8,12 @@
 import UIKit
 
 class AllyRankedSkillsDataSource: NSObject, UICollectionViewDataSource {
+    var domain: Domain!
     var skills: [Skill]!
     
     // MARK: - Init
-    init(skills: [Skill]!) {
+    init(domain: Domain!, skills: [Skill]!) {
+        self.domain = domain
         self.skills = skills
     }
     
@@ -30,6 +32,7 @@ class AllyRankedSkillsDataSource: NSObject, UICollectionViewDataSource {
         let skill = self.skillFromIndexPath(indexPath)
         
         cell.skill = skill
+        cell.color = self.domain.colorObject
         
         return cell
     }

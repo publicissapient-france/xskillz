@@ -13,23 +13,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SkillCollectionViewCell" id="gTV-IL-0wX" customClass="SkillCollectionViewCell" customModule="XSkillz" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="104" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
+                <rect key="frame" x="0.0" y="0.0" width="104" height="40"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wYP-g6-30d">
-                        <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
+                        <rect key="frame" x="0.0" y="0.0" width="104" height="40"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="0Mo-tv-W42">
-                                <rect key="frame" x="81" y="15" width="13" height="11"/>
+                                <rect key="frame" x="86" y="14" width="13" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="11" id="jQc-yA-m2i"/>
                                     <constraint firstAttribute="width" constant="13" id="w4b-7O-Zrb"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Objective-C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAu-oo-lDI">
-                                <rect key="frame" x="0.0" y="14" width="76" height="13"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Objective-C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAu-oo-lDI">
+                                <rect key="frame" x="5" y="12" width="76" height="16"/>
                                 <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -37,10 +37,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0Mo-tv-W42" firstAttribute="leading" secondItem="PAu-oo-lDI" secondAttribute="trailing" constant="5" id="39z-7P-eFo"/>
-                            <constraint firstAttribute="trailing" secondItem="0Mo-tv-W42" secondAttribute="trailing" id="Q0U-ld-3dN"/>
+                            <constraint firstAttribute="trailing" secondItem="PAu-oo-lDI" secondAttribute="trailing" constant="23" id="59K-LX-tMO"/>
+                            <constraint firstItem="0Mo-tv-W42" firstAttribute="leading" secondItem="PAu-oo-lDI" secondAttribute="trailing" constant="5" id="QEl-u1-fcG"/>
                             <constraint firstAttribute="height" constant="40" id="W83-oW-cmQ"/>
-                            <constraint firstItem="PAu-oo-lDI" firstAttribute="leading" secondItem="wYP-g6-30d" secondAttribute="leading" id="cdo-s8-nF1"/>
+                            <constraint firstItem="PAu-oo-lDI" firstAttribute="leading" secondItem="wYP-g6-30d" secondAttribute="leading" constant="5" id="cdo-s8-nF1"/>
                             <constraint firstItem="PAu-oo-lDI" firstAttribute="centerY" secondItem="wYP-g6-30d" secondAttribute="centerY" id="gdb-Ja-GBo"/>
                             <constraint firstItem="0Mo-tv-W42" firstAttribute="centerY" secondItem="PAu-oo-lDI" secondAttribute="centerY" id="oBo-Xp-nup"/>
                         </constraints>
@@ -58,8 +58,9 @@
             <connections>
                 <outlet property="likeImageView" destination="0Mo-tv-W42" id="dlz-q8-Aga"/>
                 <outlet property="skillLabel" destination="PAu-oo-lDI" id="S0h-hW-wcy"/>
+                <outlet property="skillLabelTrailingConstraint" destination="59K-LX-tMO" id="pak-ir-7zw"/>
             </connections>
-            <point key="canvasLocation" x="547" y="443"/>
+            <point key="canvasLocation" x="259" y="367"/>
         </collectionViewCell>
     </objects>
     <resources>
