@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		05348FAB1D6DB307001FE172 /* DomainTitleCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05348FAA1D6DB307001FE172 /* DomainTitleCollectionView.xib */; };
 		05348FAD1D6DB626001FE172 /* DomainTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05348FAC1D6DB626001FE172 /* DomainTitleCollectionViewCell.swift */; };
+		05348FAF1D6DBF41001FE172 /* SkillRankedUsersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05348FAE1D6DBF41001FE172 /* SkillRankedUsersDataSource.swift */; };
+		05348FB21D6DBFDD001FE172 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05348FB01D6DBFDD001FE172 /* UserCollectionViewCell.swift */; };
+		05348FB31D6DBFDD001FE172 /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05348FB11D6DBFDD001FE172 /* UserCollectionViewCell.xib */; };
 		0567E9F21C9B015300118220 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E9F11C9B015300118220 /* Session.swift */; };
 		0567E9F41C9B02BF00118220 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E9F31C9B02BF00118220 /* RootAssembly.swift */; };
 		056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38441C19BE7F003984FD /* AppDelegate.swift */; };
@@ -83,6 +86,9 @@
 /* Begin PBXFileReference section */
 		05348FAA1D6DB307001FE172 /* DomainTitleCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DomainTitleCollectionView.xib; sourceTree = "<group>"; };
 		05348FAC1D6DB626001FE172 /* DomainTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		05348FAE1D6DBF41001FE172 /* SkillRankedUsersDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillRankedUsersDataSource.swift; sourceTree = "<group>"; };
+		05348FB01D6DBFDD001FE172 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		05348FB11D6DBFDD001FE172 /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
 		0567E9F11C9B015300118220 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		0567E9F31C9B02BF00118220 /* RootAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		056841831C873613003C0458 /* skillz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "skillz-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -377,7 +383,10 @@
 			isa = PBXGroup;
 			children = (
 				05A9FF071D67006E002D5656 /* SearchSkillViewController.swift */,
+				05348FAE1D6DBF41001FE172 /* SkillRankedUsersDataSource.swift */,
 				05A9FF081D67006E002D5656 /* SkillSearchListCollectionViewCell.swift */,
+				05348FB01D6DBFDD001FE172 /* UserCollectionViewCell.swift */,
+				05348FB11D6DBFDD001FE172 /* UserCollectionViewCell.xib */,
 				05A9FF091D67006E002D5656 /* UsersRankedCollectionViewCell.swift */,
 				05A9FF0A1D67006E002D5656 /* UserView.swift */,
 				05A9FF0B1D67006E002D5656 /* UserView.xib */,
@@ -520,6 +529,7 @@
 				056F384F1C19BE7F003984FD /* LaunchScreen.storyboard in Resources */,
 				05A9FF2D1D6B1C65002D5656 /* SkillCollectionViewCell.xib in Resources */,
 				056F384C1C19BE7F003984FD /* Assets.xcassets in Resources */,
+				05348FB31D6DBFDD001FE172 /* UserCollectionViewCell.xib in Resources */,
 				056F384A1C19BE7F003984FD /* Main.storyboard in Resources */,
 				05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */,
 				057B37071C298CEB00FE3921 /* Localizable.strings in Resources */,
@@ -627,6 +637,7 @@
 				05A9FF191D67006E002D5656 /* AllyCollectionViewCell.swift in Sources */,
 				05A9FF1D1D67006E002D5656 /* UsersRankedCollectionViewCell.swift in Sources */,
 				057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */,
+				05348FAF1D6DBF41001FE172 /* SkillRankedUsersDataSource.swift in Sources */,
 				0567E9F21C9B015300118220 /* Session.swift in Sources */,
 				05A9FF0D1D67006E002D5656 /* AllyViewController.swift in Sources */,
 				05A9FF261D6B13D8002D5656 /* RankedTableViewCell.swift in Sources */,
@@ -637,6 +648,7 @@
 				056F389D1C1B2AEC003984FD /* DataAccessAssembly.swift in Sources */,
 				056F38991C1B1E13003984FD /* StoresAssembly.swift in Sources */,
 				05A9FF151D67006E002D5656 /* DomainTitleCollectionView.swift in Sources */,
+				05348FB21D6DBFDD001FE172 /* UserCollectionViewCell.swift in Sources */,
 				057B37091C298ED700FE3921 /* Global.swift in Sources */,
 				056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */,
 				05A9FF1C1D67006E002D5656 /* SkillSearchListCollectionViewCell.swift in Sources */,

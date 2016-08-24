@@ -1,5 +1,5 @@
 //
-//  AllyRankedSkillsDataSource.swift
+//  SkillRankedUsersDataSource.swift
 //  XSkillz
 //
 //  Copyright © 2016 Xebia IT Architects. All rights reserved.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class AllyRankedSkillsDataSource: NSObject, UICollectionViewDataSource {
+class SkillRankedUsersDataSource: NSObject, UICollectionViewDataSource {
     var domain: Domain?
-    var skills: [Skill]!
+    var users: [User]!
     
     // MARK: - Init
-    init(domain: Domain?, skills: [Skill]!) {
+    init(domain: Domain?, users: [User]!) {
         self.domain = domain
-        self.skills = skills
+        self.users = users
     }
     
     
@@ -24,24 +24,25 @@ class AllyRankedSkillsDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.skills.count
+        return self.users.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: SkillCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillCollectionViewCell", forIndexPath: indexPath) as! SkillCollectionViewCell
-        let skill = self.skillFromIndexPath(indexPath)
+        let cell: UserCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("UserCollectionViewCell", forIndexPath: indexPath) as! UserCollectionViewCell
+        let user = self.userFromIndexPath(indexPath)
         
-        cell.skill = skill
+        cell.user = user
         if self.domain != nil {
             cell.color = self.domain!.colorObject
         }
+        cell.loadAvatar()
         
         return cell
     }
     
     
     // MARK: - Helpers
-    func skillFromIndexPath(indexPath: NSIndexPath) -> Skill! {
-        return self.skills[indexPath.row]
+    func userFromIndexPath(indexPath: NSIndexPath) -> User! {
+        return self.users[indexPath.row]
     }
 }

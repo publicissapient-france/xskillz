@@ -28,6 +28,11 @@ class DomainTitleCollectionView: UITableViewHeaderFooterView {
             }
             else {
                 // TODO: default domain
+                self.domainFirstLetterLabel.text = "N"
+                self.domainFirstLetterLabel.textColor = UIColor.blackColor()
+                self.domainLabel.text = "on classé".uppercaseString
+                self.lineView.backgroundColor = UIColor.blackColor()
+                self.pictoImageView.image = nil
             }
         }
     }

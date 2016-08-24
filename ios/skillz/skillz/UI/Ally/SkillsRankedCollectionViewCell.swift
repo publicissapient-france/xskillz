@@ -23,7 +23,7 @@ class SkillsRankedCollectionViewCell: UICollectionViewCell {
                 self.starsBackgroundView.backgroundColor = self.domain!.colorObject
             }
             else {
-                // TODO : default colors
+                // TODO: default colors
             }
         }
     }

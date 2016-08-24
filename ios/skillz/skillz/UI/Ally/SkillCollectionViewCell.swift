@@ -25,6 +25,8 @@ class SkillCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
+    // MARK: - Size
     class func cellSize(skill: Skill) -> CGSize {
         let labelWidth: CGFloat = (skill.name as NSString).boundingRectWithSize(CGSizeMake(CGFloat.max, 0.0), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 13.0)], context: nil).width
         

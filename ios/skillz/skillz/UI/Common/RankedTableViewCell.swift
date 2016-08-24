@@ -27,7 +27,9 @@ class RankedTableViewCell: UITableViewCell {
                 self.starsView.backgroundColor = self.domain!.colorObject
             }
             else {
-                // TODO : default colors
+                // TODO: default colors
+                self.mainBackgroundView.backgroundColor = UIColor.blackColor()
+                self.starsView.backgroundColor = UIColor.blackColor()
             }
         }
     }
@@ -82,6 +84,26 @@ class RankedTableViewCell: UITableViewCell {
         return (CGFloat(numberOfRows) * SkillCollectionViewCell.cellDefaultHeight())
     }
     
+    class func cellHeight(width: CGFloat, users: [User]?) -> CGFloat {
+        if users == nil {
+            return self.cellDefaultHeight()
+        }
+        
+        let collectionViewWidth = (width - 30.0 - 5.0 - 5.0)
+        var numberOfRows = 1
+        var rowWidth: CGFloat = 0.0
+        for user in users! {
+            let cellWidth = min(UserCollectionViewCell.cellSize(user).width, width)
+            rowWidth += cellWidth
+            if (rowWidth > collectionViewWidth) {
+                rowWidth = cellWidth
+                numberOfRows += 1
+            }
+        }
+        
+        return (CGFloat(numberOfRows) * UserCollectionViewCell.cellDefaultHeight())
+    }
+    
     class func cellDefaultHeight() -> CGFloat {
         return 40.0
     }
@@ -91,6 +113,8 @@ class RankedTableViewCell: UITableViewCell {
         
         self.collectionView.backgroundColor = UIColor.clearColor()
         self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
+        self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
+        // TODO: refacto
         (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 100.0, height: 40.0)
     }
 }

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Comfortaa-Regular.ttf">
+            <string>Comfortaa</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCollectionViewCell" id="gTV-IL-0wX" customClass="UserCollectionViewCell" customModule="XSkillz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pj8-Fv-lWz">
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YfM-dF-hfx">
+                                <rect key="frame" x="5" y="8" width="25" height="25"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvatarMask-S" translatesAutoresizingMaskIntoConstraints="NO" id="TdJ-vx-rF7">
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wGk-y8-pXb">
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="3Uy-hC-1Qz"/>
+                                            <constraint firstAttribute="width" constant="25" id="foK-Yy-T7c"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="TdJ-vx-rF7" firstAttribute="width" secondItem="wGk-y8-pXb" secondAttribute="width" id="3D7-Ga-cFs"/>
+                                    <constraint firstItem="wGk-y8-pXb" firstAttribute="leading" secondItem="YfM-dF-hfx" secondAttribute="leading" id="8OI-tJ-L1P"/>
+                                    <constraint firstItem="wGk-y8-pXb" firstAttribute="top" secondItem="YfM-dF-hfx" secondAttribute="top" id="QT4-mX-JY7"/>
+                                    <constraint firstAttribute="trailing" secondItem="wGk-y8-pXb" secondAttribute="trailing" id="SYX-cA-vZb"/>
+                                    <constraint firstItem="TdJ-vx-rF7" firstAttribute="centerY" secondItem="wGk-y8-pXb" secondAttribute="centerY" id="TDW-Yy-pzT"/>
+                                    <constraint firstItem="TdJ-vx-rF7" firstAttribute="centerX" secondItem="wGk-y8-pXb" secondAttribute="centerX" id="Tqt-CZ-qEV"/>
+                                    <constraint firstAttribute="bottom" secondItem="wGk-y8-pXb" secondAttribute="bottom" id="hR1-lt-pu1"/>
+                                    <constraint firstItem="TdJ-vx-rF7" firstAttribute="height" secondItem="wGk-y8-pXb" secondAttribute="height" id="rDa-Y9-bXL"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="M2G-Zb-K0x">
+                                <rect key="frame" x="20" y="22" width="13" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="13" id="bhZ-ex-zRL"/>
+                                    <constraint firstAttribute="height" constant="11" id="rxF-g4-fIE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Florent Capon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yf1-we-Qyv">
+                                <rect key="frame" x="38" y="14" width="83" height="13"/>
+                                <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yf1-we-Qyv" firstAttribute="leading" secondItem="YfM-dF-hfx" secondAttribute="trailing" constant="8" id="4io-kt-FWp"/>
+                            <constraint firstItem="yf1-we-Qyv" firstAttribute="centerY" secondItem="wGk-y8-pXb" secondAttribute="centerY" id="8h8-lc-hsw"/>
+                            <constraint firstItem="YfM-dF-hfx" firstAttribute="centerY" secondItem="pj8-Fv-lWz" secondAttribute="centerY" id="Dfz-ug-KQk"/>
+                            <constraint firstItem="M2G-Zb-K0x" firstAttribute="bottom" secondItem="YfM-dF-hfx" secondAttribute="bottom" id="KZW-iq-JHq"/>
+                            <constraint firstItem="yf1-we-Qyv" firstAttribute="leading" secondItem="M2G-Zb-K0x" secondAttribute="trailing" constant="8" id="XgK-J9-LwN"/>
+                            <constraint firstItem="YfM-dF-hfx" firstAttribute="leading" secondItem="pj8-Fv-lWz" secondAttribute="leading" constant="5" id="cH0-Ag-fRd"/>
+                            <constraint firstItem="M2G-Zb-K0x" firstAttribute="trailing" secondItem="YfM-dF-hfx" secondAttribute="trailing" constant="3" id="iwV-N3-uAO"/>
+                            <constraint firstAttribute="trailing" secondItem="yf1-we-Qyv" secondAttribute="trailing" constant="5" id="vQo-9B-fl1"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="XgK-J9-LwN"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="pj8-Fv-lWz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5Rz-q7-6A8"/>
+                <constraint firstItem="pj8-Fv-lWz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RQ3-mK-73M"/>
+                <constraint firstAttribute="trailing" secondItem="pj8-Fv-lWz" secondAttribute="trailing" id="djr-dW-XIA"/>
+                <constraint firstAttribute="bottom" secondItem="pj8-Fv-lWz" secondAttribute="bottom" id="xve-DK-wxT"/>
+            </constraints>
+            <size key="customSize" width="261" height="132"/>
+            <connections>
+                <outlet property="likeImageView" destination="M2G-Zb-K0x" id="qeU-Mu-NL7"/>
+                <outlet property="userImageView" destination="wGk-y8-pXb" id="SD2-5G-5iQ"/>
+                <outlet property="userMaskImageView" destination="TdJ-vx-rF7" id="dNZ-Dx-51Q"/>
+                <outlet property="userNameLabel" destination="yf1-we-Qyv" id="dcb-Mu-RV0"/>
+            </connections>
+            <point key="canvasLocation" x="506" y="522"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="AvatarMask-S" width="50" height="50"/>
+        <image name="Like" width="13" height="11"/>
+    </resources>
+</document>
