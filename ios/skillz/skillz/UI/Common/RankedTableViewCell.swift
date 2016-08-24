@@ -64,6 +64,7 @@ class RankedTableViewCell: UITableViewCell {
         return UINib(nibName: "RankedTableViewCell", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! RankedTableViewCell
     }
     
+    // TODO: refacto cellHeight methods
     class func cellHeight(width: CGFloat, skills: [Skill]?) -> CGFloat {
         if skills == nil {
             return self.cellDefaultHeight()
@@ -112,9 +113,9 @@ class RankedTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         self.collectionView.backgroundColor = UIColor.clearColor()
+        // TODO: refacto
         self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
-        // TODO: refacto
-        (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 100.0, height: 40.0)
+        (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 10.0, height: 40.0)
     }
 }
