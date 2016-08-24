@@ -37,12 +37,9 @@
 		05A21B051D2A978900CC1DE4 /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */; };
 		05A21B061D2A978900CC1DE4 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */; };
 		05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */; };
-		05A9FF0C1D67006E002D5656 /* AllyDomainCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEF31D67006E002D5656 /* AllyDomainCollectionReusableView.swift */; };
 		05A9FF0D1D67006E002D5656 /* AllyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEF41D67006E002D5656 /* AllyViewController.swift */; };
 		05A9FF0E1D67006E002D5656 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEF61D67006E002D5656 /* DismissAnimator.swift */; };
 		05A9FF0F1D67006E002D5656 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEF71D67006E002D5656 /* Interactor.swift */; };
-		05A9FF111D67006E002D5656 /* SkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEF91D67006E002D5656 /* SkillView.swift */; };
-		05A9FF121D67006E002D5656 /* SkillView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A9FEFA1D67006E002D5656 /* SkillView.xib */; };
 		05A9FF131D67006E002D5656 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEFC1D67006E002D5656 /* Colors.swift */; };
 		05A9FF141D67006E002D5656 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEFD1D67006E002D5656 /* CustomTextField.swift */; };
 		05A9FF151D67006E002D5656 /* DomainTitleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FEFE1D67006E002D5656 /* DomainTitleCollectionView.swift */; };
@@ -53,8 +50,6 @@
 		05A9FF1A1D67006E002D5656 /* SearchAllyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FF051D67006E002D5656 /* SearchAllyViewController.swift */; };
 		05A9FF1B1D67006E002D5656 /* SearchSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FF071D67006E002D5656 /* SearchSkillViewController.swift */; };
 		05A9FF1C1D67006E002D5656 /* SkillSearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FF081D67006E002D5656 /* SkillSearchListCollectionViewCell.swift */; };
-		05A9FF1E1D67006E002D5656 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FF0A1D67006E002D5656 /* UserView.swift */; };
-		05A9FF1F1D67006E002D5656 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A9FF0B1D67006E002D5656 /* UserView.xib */; };
 		05A9FF261D6B13D8002D5656 /* RankedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FF241D6B13D8002D5656 /* RankedTableViewCell.swift */; };
 		05A9FF271D6B13D8002D5656 /* RankedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A9FF251D6B13D8002D5656 /* RankedTableViewCell.xib */; };
 		05A9FF291D6B19AC002D5656 /* AllyRankedSkillsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A9FF281D6B19AC002D5656 /* AllyRankedSkillsDataSource.swift */; };
@@ -118,12 +113,9 @@
 		05A21B011D2A978000CC1DE4 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Light.ttf"; sourceTree = "<group>"; };
 		05A21B021D2A978000CC1DE4 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		05A21B031D2A978000CC1DE4 /* Steelworks Vintage Demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Steelworks Vintage Demo.ttf"; sourceTree = "<group>"; };
-		05A9FEF31D67006E002D5656 /* AllyDomainCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyDomainCollectionReusableView.swift; sourceTree = "<group>"; };
 		05A9FEF41D67006E002D5656 /* AllyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyViewController.swift; sourceTree = "<group>"; };
 		05A9FEF61D67006E002D5656 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		05A9FEF71D67006E002D5656 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		05A9FEF91D67006E002D5656 /* SkillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillView.swift; sourceTree = "<group>"; };
-		05A9FEFA1D67006E002D5656 /* SkillView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillView.xib; sourceTree = "<group>"; };
 		05A9FEFC1D67006E002D5656 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		05A9FEFD1D67006E002D5656 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		05A9FEFE1D67006E002D5656 /* DomainTitleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTitleCollectionView.swift; sourceTree = "<group>"; };
@@ -134,8 +126,6 @@
 		05A9FF051D67006E002D5656 /* SearchAllyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAllyViewController.swift; sourceTree = "<group>"; };
 		05A9FF071D67006E002D5656 /* SearchSkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSkillViewController.swift; sourceTree = "<group>"; };
 		05A9FF081D67006E002D5656 /* SkillSearchListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillSearchListCollectionViewCell.swift; sourceTree = "<group>"; };
-		05A9FF0A1D67006E002D5656 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		05A9FF0B1D67006E002D5656 /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		05A9FF241D6B13D8002D5656 /* RankedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankedTableViewCell.swift; sourceTree = "<group>"; };
 		05A9FF251D6B13D8002D5656 /* RankedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankedTableViewCell.xib; sourceTree = "<group>"; };
 		05A9FF281D6B19AC002D5656 /* AllyRankedSkillsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyRankedSkillsDataSource.swift; sourceTree = "<group>"; };
@@ -319,14 +309,11 @@
 		05A9FEF21D67006E002D5656 /* Ally */ = {
 			isa = PBXGroup;
 			children = (
-				05A9FEF31D67006E002D5656 /* AllyDomainCollectionReusableView.swift */,
 				05A9FF281D6B19AC002D5656 /* AllyRankedSkillsDataSource.swift */,
 				05A9FEF41D67006E002D5656 /* AllyViewController.swift */,
 				05A9FEF51D67006E002D5656 /* ModalDismissTransition */,
 				05A9FF2A1D6B1C65002D5656 /* SkillCollectionViewCell.swift */,
 				05A9FF2B1D6B1C65002D5656 /* SkillCollectionViewCell.xib */,
-				05A9FEF91D67006E002D5656 /* SkillView.swift */,
-				05A9FEFA1D67006E002D5656 /* SkillView.xib */,
 			);
 			path = Ally;
 			sourceTree = "<group>";
@@ -379,8 +366,6 @@
 				05A9FF081D67006E002D5656 /* SkillSearchListCollectionViewCell.swift */,
 				05348FB01D6DBFDD001FE172 /* UserCollectionViewCell.swift */,
 				05348FB11D6DBFDD001FE172 /* UserCollectionViewCell.xib */,
-				05A9FF0A1D67006E002D5656 /* UserView.swift */,
-				05A9FF0B1D67006E002D5656 /* UserView.xib */,
 			);
 			path = SearchSkill;
 			sourceTree = "<group>";
@@ -515,7 +500,6 @@
 				05A21B041D2A978900CC1DE4 /* Comfortaa-Bold.ttf in Resources */,
 				05A21B061D2A978900CC1DE4 /* Comfortaa-Regular.ttf in Resources */,
 				05A9FF271D6B13D8002D5656 /* RankedTableViewCell.xib in Resources */,
-				05A9FF121D67006E002D5656 /* SkillView.xib in Resources */,
 				05348FAB1D6DB307001FE172 /* DomainTitleCollectionView.xib in Resources */,
 				056F384F1C19BE7F003984FD /* LaunchScreen.storyboard in Resources */,
 				05A9FF2D1D6B1C65002D5656 /* SkillCollectionViewCell.xib in Resources */,
@@ -524,7 +508,6 @@
 				056F384A1C19BE7F003984FD /* Main.storyboard in Resources */,
 				05A21B071D2A978900CC1DE4 /* Steelworks Vintage Demo.ttf in Resources */,
 				057B37071C298CEB00FE3921 /* Localizable.strings in Resources */,
-				05A9FF1F1D67006E002D5656 /* UserView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,7 +597,6 @@
 				057B370C1C29A04D00FE3921 /* User.swift in Sources */,
 				056F389B1C1B1F60003984FD /* UsersStore.swift in Sources */,
 				05A9FF161D67006E002D5656 /* Fonts.swift in Sources */,
-				05A9FF111D67006E002D5656 /* SkillView.swift in Sources */,
 				05A9FF0F1D67006E002D5656 /* Interactor.swift in Sources */,
 				059D09531C45418200CBF519 /* Skill.swift in Sources */,
 				059D09551C4541C000CBF519 /* Domain.swift in Sources */,
@@ -622,7 +604,6 @@
 				059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */,
 				05A9FF1A1D67006E002D5656 /* SearchAllyViewController.swift in Sources */,
 				0567E9F41C9B02BF00118220 /* RootAssembly.swift in Sources */,
-				05A9FF1E1D67006E002D5656 /* UserView.swift in Sources */,
 				05A9FF291D6B19AC002D5656 /* AllyRankedSkillsDataSource.swift in Sources */,
 				05A9FF191D67006E002D5656 /* AllyCollectionViewCell.swift in Sources */,
 				057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */,
@@ -630,7 +611,6 @@
 				0567E9F21C9B015300118220 /* Session.swift in Sources */,
 				05A9FF0D1D67006E002D5656 /* AllyViewController.swift in Sources */,
 				05A9FF261D6B13D8002D5656 /* RankedTableViewCell.swift in Sources */,
-				05A9FF0C1D67006E002D5656 /* AllyDomainCollectionReusableView.swift in Sources */,
 				05A9FF171D67006E002D5656 /* HomeViewController.swift in Sources */,
 				05A9FF131D67006E002D5656 /* Colors.swift in Sources */,
 				056F38941C1B1C88003984FD /* AbstractDataAccess.swift in Sources */,
