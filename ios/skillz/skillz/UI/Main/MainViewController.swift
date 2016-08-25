@@ -44,6 +44,11 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         pageViewController.view.snp_makeConstraints { (make) in
             make.edges.equalTo(superview)
         }
+        
+        self.searchAllyViewController().onSkillSelect = { [weak self] (skill) in
+            self?.pageViewController.setViewControllers([(self?.searchSkillViewController())!], direction: .Forward, animated: false, completion: nil)
+            self?.searchSkillViewController().selectSkill(skill)
+        }
     }
     
     
@@ -76,11 +81,11 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         return self.viewControllers.indexOf(viewController)!
     }
     
-    private func searchAllyViewController() -> SearchAllyViewController {
+    private func searchAllyViewController() -> SearchAllyViewController! {
         return self.viewControllers.first as! SearchAllyViewController
     }
     
-    private func searchSkillViewController() -> SearchSkillViewController {
+    private func searchSkillViewController() -> SearchSkillViewController! {
         return self.viewControllers.last as! SearchSkillViewController
     }
 }

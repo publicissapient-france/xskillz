@@ -38,6 +38,7 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             self.swipeTutoView.hidden = self.swipeTutoHidden
         }
     }
+    var onSkillSelect: SkillSelectType?
     
     
     // MARK: - Init
@@ -162,6 +163,11 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             viewController.transitioningDelegate = self
             viewController.interactor = self.interactor
             viewController.ally = sender as! User
+            viewController.onSkillSelect = { [weak self] (skill) in
+                if self?.onSkillSelect != nil {
+                    self?.onSkillSelect!(skill: skill!)
+                }
+            }
             break
             
         default:

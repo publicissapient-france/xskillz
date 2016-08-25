@@ -40,6 +40,7 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     var usersStore: UsersStore!
+    var onSkillSelect: SkillSelectType?
     
     
     // MARK: - Init
@@ -83,6 +84,10 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         )
     }
     
+    func close() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     // MARK: - Delegates
     // MARK: UITableViewDataSource
@@ -113,7 +118,10 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         rankedCell.domain = domain
         rankedCell.collectionDataSource = AllyRankedSkillsDataSource(domain: domain, skills: skills)
         rankedCell.onSkillSelect = { [weak self] (skill) in
-            NSLog("onSkillSelect: \(skill)")
+            if self?.onSkillSelect != nil {
+                self?.onSkillSelect!(skill: skill!)
+                self?.close()
+            }
         }
         
         return rankedCell
@@ -178,7 +186,7 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - Actions
     @IBAction func actionClose() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.close()
     }
     
     @IBAction func handleGesture(sender: UIPanGestureRecognizer) {

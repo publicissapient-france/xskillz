@@ -67,8 +67,8 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
             self.starsImageView.image = starsImage
         }
     }
-    var onSkillSelect:SkillSelectType?
-    var onUserSelect:UserSelectType?
+    var onSkillSelect: SkillSelectType?
+    var onUserSelect: UserSelectType?
     
     
     // MARK: - Init
@@ -143,6 +143,11 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
             if self.collectionDataSource!.isKindOfClass(AllyRankedSkillsDataSource) {
                 let skill = (self.collectionDataSource as! AllyRankedSkillsDataSource).skillFromIndexPath(indexPath)
                 if self.onSkillSelect != nil {
+                    // TODO: fix this... maybe we can update REST response to get domain?
+                    let realm = try! RealmStore.defaultStore()
+                    realm.beginWrite()
+                    skill.domain = self.domain
+                    try! realm.commitWrite()
                     self.onSkillSelect!(skill: skill!)
                 }
             }

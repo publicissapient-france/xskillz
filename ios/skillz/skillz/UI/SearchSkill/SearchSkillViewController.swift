@@ -82,7 +82,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     
     
     // MARK: - Results
-    private func selectSkill(skill: Skill) -> Void {
+    func selectSkill(skill: Skill) -> Void {
         self.loadingVisible = true
         self.selectedSkill = skill
         self.searchTextField.text = skill.name
@@ -308,6 +308,9 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             viewController.transitioningDelegate = self
             viewController.interactor = self.interactor
             viewController.ally = sender as! User
+            viewController.onSkillSelect = { [weak self] (skill) in
+                self?.selectSkill(skill)
+            }
             break
             
         default:
