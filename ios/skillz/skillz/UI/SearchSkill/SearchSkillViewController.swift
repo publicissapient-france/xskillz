@@ -20,6 +20,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     @IBOutlet weak var skillsSearchListWrapperView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    let interactor = Interactor()
     var loadingVisible: Bool! {
         didSet {
             if (self.loadingVisible == true) {
@@ -138,20 +139,6 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     
-    // MARK: - Segues
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segue.identifier! {
-        case "ShowAlly":
-            let viewController = segue.destinationViewController as! AllyViewController
-            viewController.ally = sender as! User
-            break
-            
-        default:
-            break
-        }
-    }
-    
-    
     // MARK: - Delegates
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -208,12 +195,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
         return CGSizeMake(self.skillsSearchListCollectionView.bounds.size.width, SkillSearchListCollectionViewCell.cellDefaultHeight())
     }
     
     
-    // MARK: - Delegates
     // MARK: UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return (self.users != nil ? 1 : 0)
@@ -232,6 +217,9 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
         rankedCell.domain = domain
         rankedCell.collectionDataSource = SkillRankedUsersDataSource(domain: domain, users: users)
+        rankedCell.onUserSelect = { [weak self] (user) in
+            self?.selectAlly(user)
+        }
         
         return rankedCell
     }
@@ -309,5 +297,31 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             }
         }
         return nil
+    }
+    
+    
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "ShowAlly":
+            let viewController = segue.destinationViewController as! AllyViewController
+            viewController.transitioningDelegate = self
+            viewController.interactor = self.interactor
+            viewController.ally = sender as! User
+            break
+            
+        default:
+            break
+        }
+    }
+}
+
+extension SearchSkillViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }

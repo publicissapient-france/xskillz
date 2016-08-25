@@ -7,7 +7,10 @@
 
 import UIKit
 
-class RankedTableViewCell: UITableViewCell {
+typealias SkillSelectType = (skill: Skill!) -> Void
+typealias UserSelectType = (user: User!) -> Void
+
+class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainBackgroundView: UIView!
@@ -64,6 +67,8 @@ class RankedTableViewCell: UITableViewCell {
             self.starsImageView.image = starsImage
         }
     }
+    var onSkillSelect:SkillSelectType?
+    var onUserSelect:UserSelectType?
     
     
     // MARK: - Init
@@ -71,6 +76,20 @@ class RankedTableViewCell: UITableViewCell {
         return UINib(nibName: "RankedTableViewCell", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! RankedTableViewCell
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.estimatedItemSize = CGSize(width: 100.0, height: 40.0)
+        self.collectionView.backgroundColor = UIColor.clearColor()
+        self.collectionView.delegate = self
+        
+        // TODO: refacto
+        self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
+        self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
+    }
+    
+    
+    // MARK: - Helpers
     // TODO: refacto cellHeight methods
     class func cellHeight(width: CGFloat, skills: [Skill]?) -> CGFloat {
         if skills == nil {
@@ -116,13 +135,23 @@ class RankedTableViewCell: UITableViewCell {
         return 40.0
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.estimatedItemSize = CGSize(width: 100.0, height: 40.0)
-        self.collectionView.backgroundColor = UIColor.clearColor()
-        // TODO: refacto
-        self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
-        self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
+    
+    // MARK: UICollectionViewDelegate
+    // TODO: very ugly! Need to use protocols
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if self.collectionDataSource != nil {
+            if self.collectionDataSource!.isKindOfClass(AllyRankedSkillsDataSource) {
+                let skill = (self.collectionDataSource as! AllyRankedSkillsDataSource).skillFromIndexPath(indexPath)
+                if self.onSkillSelect != nil {
+                    self.onSkillSelect!(skill: skill!)
+                }
+            }
+            else if self.collectionDataSource!.isKindOfClass(SkillRankedUsersDataSource) {
+                let user = (self.collectionDataSource as! SkillRankedUsersDataSource).userFromIndexPath(indexPath)
+                if self.onUserSelect != nil {
+                    self.onUserSelect!(user: user!)
+                }
+            }
+        }
     }
 }

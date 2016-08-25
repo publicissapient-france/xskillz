@@ -28,6 +28,7 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var skillsTableView: UITableView!
     
     var ally: User!
+    var interactor:Interactor? = nil
     var loadingVisible: Bool! {
         didSet {
             if (self.loadingVisible == true) {
@@ -39,8 +40,6 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     var usersStore: UsersStore!
-    
-    var interactor:Interactor? = nil
     
     
     // MARK: - Init
@@ -113,6 +112,9 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
         rankedCell.domain = domain
         rankedCell.collectionDataSource = AllyRankedSkillsDataSource(domain: domain, skills: skills)
+        rankedCell.onSkillSelect = { [weak self] (skill) in
+            NSLog("onSkillSelect: \(skill)")
+        }
         
         return rankedCell
     }

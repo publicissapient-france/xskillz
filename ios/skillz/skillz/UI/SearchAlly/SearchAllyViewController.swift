@@ -19,7 +19,6 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     @IBOutlet weak var titleLabel: UILabel!
     
     let interactor = Interactor()
-    
     var loadingVisible: Bool! {
         didSet {
             if (self.loadingVisible == true) {
@@ -84,22 +83,6 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     // MARK: - Navigation
     private func selectAlly(ally: User) -> Void {
         self.performSegueWithIdentifier("ShowAlly", sender: ally)
-    }
-    
-    
-    // MARK: - Segues
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segue.identifier! {
-        case "ShowAlly":
-            let viewController = segue.destinationViewController as! AllyViewController
-            viewController.transitioningDelegate = self
-            viewController.interactor = self.interactor
-            viewController.ally = sender as! User
-            break
-            
-        default:
-            break
-        }
     }
     
     
@@ -168,6 +151,22 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             return self.users![indexPath.row]
         }
         return nil
+    }
+    
+    
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "ShowAlly":
+            let viewController = segue.destinationViewController as! AllyViewController
+            viewController.transitioningDelegate = self
+            viewController.interactor = self.interactor
+            viewController.ally = sender as! User
+            break
+            
+        default:
+            break
+        }
     }
 }
 
