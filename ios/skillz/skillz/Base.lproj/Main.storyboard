@@ -625,6 +625,17 @@
                                         <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70T-vJ-nmI">
+                                        <rect key="frame" x="157" y="20" width="100" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="OCn-Cp-X7Y"/>
+                                            <constraint firstAttribute="height" constant="40" id="SoG-sa-ZxU"/>
+                                        </constraints>
+                                        <state key="normal" image="CloseDown"/>
+                                        <connections>
+                                            <action selector="actionClose" destination="u9S-rv-Slk" eventType="touchUpInside" id="KRk-zX-OCj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -636,10 +647,12 @@
                                     <constraint firstItem="J9C-k6-fiN" firstAttribute="leading" secondItem="DvJ-Ea-rTW" secondAttribute="trailing" constant="-1" id="DI1-zr-HgU"/>
                                     <constraint firstItem="DvJ-Ea-rTW" firstAttribute="top" secondItem="0E4-T4-NGK" secondAttribute="bottom" id="E9p-nD-1VX"/>
                                     <constraint firstItem="0E4-T4-NGK" firstAttribute="bottom" secondItem="0HQ-zP-bIa" secondAttribute="bottom" constant="2" id="Fx3-Ao-7yW"/>
+                                    <constraint firstItem="70T-vJ-nmI" firstAttribute="centerX" secondItem="Op2-do-E7o" secondAttribute="centerX" id="GFl-1j-eBn"/>
                                     <constraint firstItem="ZV4-Lw-Hzz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FLg-kS-6t7" secondAttribute="trailing" id="IBX-ky-UBv"/>
                                     <constraint firstItem="FLg-kS-6t7" firstAttribute="leading" secondItem="IzQ-5o-AQx" secondAttribute="trailing" constant="2" id="KLO-lz-AHb"/>
                                     <constraint firstItem="0HQ-zP-bIa" firstAttribute="top" secondItem="Op2-do-E7o" secondAttribute="top" id="WOd-dQ-1da"/>
                                     <constraint firstItem="J9C-k6-fiN" firstAttribute="centerY" secondItem="0E4-T4-NGK" secondAttribute="centerY" id="cT0-8u-3h5"/>
+                                    <constraint firstItem="70T-vJ-nmI" firstAttribute="top" secondItem="Op2-do-E7o" secondAttribute="top" constant="20" id="e7D-Xy-1ix"/>
                                     <constraint firstAttribute="trailing" secondItem="J9C-k6-fiN" secondAttribute="trailing" constant="10" id="fgk-qP-XjB"/>
                                     <constraint firstAttribute="height" constant="160" id="ntK-2c-5fc"/>
                                     <constraint firstAttribute="trailing" secondItem="0HQ-zP-bIa" secondAttribute="trailing" id="pUv-ao-zJW"/>
@@ -899,6 +912,7 @@
         <image name="AllyXPBackground" width="54" height="54"/>
         <image name="Background" width="320" height="480"/>
         <image name="BackgroundSkillz" width="320" height="480"/>
+        <image name="CloseDown" width="38" height="21"/>
         <image name="LogoXL" width="325" height="298"/>
         <image name="SwipeTuto" width="123" height="104"/>
     </resources>
