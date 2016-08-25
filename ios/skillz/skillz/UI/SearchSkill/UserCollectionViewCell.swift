@@ -34,7 +34,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     class func cellSize(user: User) -> CGSize {
         let labelWidth: CGFloat = (user.name as NSString).boundingRectWithSize(CGSizeMake(CGFloat.max, 0.0), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 13.0)], context: nil).width
         
-        return CGSizeMake(labelWidth, self.cellDefaultHeight())
+        return CGSizeMake((38.0 + labelWidth + 5.0), self.cellDefaultHeight())
     }
     
     class func cellDefaultHeight() -> CGFloat {
