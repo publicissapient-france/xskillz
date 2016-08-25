@@ -108,6 +108,8 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let rankedCell: RankedTableViewCell = tableView.dequeueReusableCellWithIdentifier("RankedTableViewCell", forIndexPath: indexPath) as! RankedTableViewCell
         let domain = self.domainFromSection(indexPath.section)
         let skills = self.skillsFromIndexPath(indexPath)
+        
+        rankedCell.estimatedItemSize = CGSizeMake(2.0, RankedTableViewCell.cellDefaultHeight())
         rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
         rankedCell.domain = domain
         rankedCell.collectionDataSource = AllyRankedSkillsDataSource(domain: domain, skills: skills)

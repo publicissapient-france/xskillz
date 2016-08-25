@@ -228,6 +228,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         let users = self.usersForSkillFromIndexPath(indexPath)
         let rankedCell: RankedTableViewCell = tableView.dequeueReusableCellWithIdentifier("RankedTableViewCell", forIndexPath: indexPath) as! RankedTableViewCell
         
+        rankedCell.estimatedItemSize = CGSizeMake(100.0, RankedTableViewCell.cellDefaultHeight())
         rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
         rankedCell.domain = domain
         rankedCell.collectionDataSource = SkillRankedUsersDataSource(domain: domain, users: users)

@@ -33,6 +33,13 @@ class RankedTableViewCell: UITableViewCell {
             }
         }
     }
+    var estimatedItemSize: CGSize? {
+        didSet {
+            if estimatedItemSize != nil {
+                (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = self.estimatedItemSize!
+            }
+        }
+    }
     var skill: Skill?
     var skillLevel: SkillLevel = .NoSkill {
         didSet {
@@ -112,10 +119,10 @@ class RankedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.estimatedItemSize = CGSize(width: 100.0, height: 40.0)
         self.collectionView.backgroundColor = UIColor.clearColor()
         // TODO: refacto
         self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
-        (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 10.0, height: 40.0)
     }
 }
