@@ -17,7 +17,7 @@ enum DomainIDMapping: Int {
     case Cloud = 5
     case Devops = 6
     case Data = 7
-    case Loisirs = 12
+    case Leisure = 12
     case Front = 8
 }
 
@@ -38,11 +38,35 @@ public class Domain: Object {
     var pictoImage: UIImage! {
         get {
             switch self.id {
+            case DomainIDMapping.Agile.rawValue:
+                return UIImage(named: "DomainPictoAgile")
+                
+            case DomainIDMapping.Craft.rawValue:
+                return UIImage(named: "DomainPictoCraft")
+                
             case DomainIDMapping.Mobile.rawValue:
                 return UIImage(named: "DomainPictoMobile")
                 
+            case DomainIDMapping.Back.rawValue:
+                return UIImage(named: "DomainPictoBack")
+                
+            case DomainIDMapping.Cloud.rawValue:
+                return UIImage(named: "DomainPictoCloud")
+                
+            case DomainIDMapping.Devops.rawValue:
+                return UIImage(named: "DomainPictoDevOps")
+                
+            case DomainIDMapping.Data.rawValue:
+                return UIImage(named: "DomainPictoData")
+                
+            case DomainIDMapping.Leisure.rawValue:
+                return UIImage(named: "DomainPictoLeisure")
+                
+            case DomainIDMapping.Front.rawValue:
+                return UIImage(named: "DomainPictoFront")
+                
             default:
-                return UIImage(named: "DomainPictoMobile")
+                return UIImage(named: "DomainPictoDefault")
             }
         }
     }
