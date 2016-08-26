@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Comfortaa-Bold.ttf">
@@ -548,33 +547,49 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AllyXPBackground" translatesAutoresizingMaskIntoConstraints="NO" id="ZV4-Lw-Hzz">
                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pX-lC-dXy">
-                                                <rect key="frame" x="0.0" y="8" width="30" height="42"/>
-                                                <fontDescription key="fontDescription" name="SteelworksVintageDemo" family="Steelworks Vintage Demo" pointSize="38"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxz-Ce-KAH">
-                                                <rect key="frame" x="30" y="11" width="24" height="27"/>
-                                                <fontDescription key="fontDescription" name="SteelworksVintageDemo" family="Steelworks Vintage Demo" pointSize="25"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wj-Bb-J6e">
+                                                <rect key="frame" x="5" y="6" width="44" height="42"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pX-lC-dXy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="25.5" height="42"/>
+                                                        <fontDescription key="fontDescription" name="SteelworksVintageDemo" family="Steelworks Vintage Demo" pointSize="38"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxz-Ce-KAH">
+                                                        <rect key="frame" x="25.5" y="7.5" width="18.5" height="27"/>
+                                                        <fontDescription key="fontDescription" name="SteelworksVintageDemo" family="Steelworks Vintage Demo" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="42" id="DOX-lY-k00"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Cxz-Ce-KAH" secondAttribute="trailing" id="Ecc-gf-QR1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3pX-lC-dXy" secondAttribute="bottom" constant="76" id="TQk-pf-Y4c"/>
+                                                    <constraint firstItem="3pX-lC-dXy" firstAttribute="top" secondItem="9Wj-Bb-J6e" secondAttribute="top" id="c0r-6d-Cfl"/>
+                                                    <constraint firstItem="Cxz-Ce-KAH" firstAttribute="leading" secondItem="3pX-lC-dXy" secondAttribute="trailing" id="djt-zn-Eb0"/>
+                                                    <constraint firstItem="Cxz-Ce-KAH" firstAttribute="centerY" secondItem="3pX-lC-dXy" secondAttribute="centerY" id="jiH-SY-OhU"/>
+                                                    <constraint firstItem="3pX-lC-dXy" firstAttribute="leading" secondItem="9Wj-Bb-J6e" secondAttribute="leading" id="okQ-FB-cuf"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="TQk-pf-Y4c"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="3pX-lC-dXy" firstAttribute="centerY" secondItem="J9C-k6-fiN" secondAttribute="centerY" constant="2" id="03Q-cK-y8m"/>
                                             <constraint firstAttribute="trailing" secondItem="ZV4-Lw-Hzz" secondAttribute="trailing" id="3i0-xF-8RL"/>
                                             <constraint firstAttribute="bottom" secondItem="ZV4-Lw-Hzz" secondAttribute="bottom" id="EJS-R5-zGE"/>
-                                            <constraint firstItem="Cxz-Ce-KAH" firstAttribute="width" secondItem="J9C-k6-fiN" secondAttribute="width" multiplier="4:9" id="FJS-X0-Clr"/>
+                                            <constraint firstItem="9Wj-Bb-J6e" firstAttribute="centerX" secondItem="J9C-k6-fiN" secondAttribute="centerX" id="EP2-EX-rQa"/>
                                             <constraint firstItem="ZV4-Lw-Hzz" firstAttribute="top" secondItem="J9C-k6-fiN" secondAttribute="top" id="IdJ-Kw-cRb"/>
                                             <constraint firstAttribute="height" constant="54" id="OZ1-BM-lGo"/>
                                             <constraint firstAttribute="width" constant="54" id="ZEj-Lm-w8f"/>
                                             <constraint firstItem="ZV4-Lw-Hzz" firstAttribute="leading" secondItem="J9C-k6-fiN" secondAttribute="leading" id="b4A-ac-3zK"/>
-                                            <constraint firstItem="3pX-lC-dXy" firstAttribute="leading" secondItem="J9C-k6-fiN" secondAttribute="leading" id="g4y-WZ-yhP"/>
-                                            <constraint firstItem="Cxz-Ce-KAH" firstAttribute="top" secondItem="3pX-lC-dXy" secondAttribute="top" constant="3" id="gyz-H1-3Nm"/>
-                                            <constraint firstAttribute="trailing" secondItem="Cxz-Ce-KAH" secondAttribute="trailing" id="qWc-7e-fiL"/>
-                                            <constraint firstItem="3pX-lC-dXy" firstAttribute="width" secondItem="J9C-k6-fiN" secondAttribute="width" multiplier="5:9" id="zwa-v2-qKC"/>
+                                            <constraint firstItem="9Wj-Bb-J6e" firstAttribute="centerY" secondItem="J9C-k6-fiN" secondAttribute="centerY" id="qEi-se-cxe"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IzQ-5o-AQx">
