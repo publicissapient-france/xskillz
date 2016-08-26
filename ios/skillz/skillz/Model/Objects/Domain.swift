@@ -47,6 +47,19 @@ public class Domain: Object {
         }
     }
     
+    var isFoundation: Bool {
+        get {
+            return self.id == DomainIDMapping.Agile.rawValue ||
+                self.id == DomainIDMapping.Craft.rawValue ||
+                self.id == DomainIDMapping.Mobile.rawValue ||
+                self.id == DomainIDMapping.Back.rawValue ||
+                self.id == DomainIDMapping.Cloud.rawValue ||
+                self.id == DomainIDMapping.Devops.rawValue ||
+                self.id == DomainIDMapping.Data.rawValue ||
+                self.id == DomainIDMapping.Front.rawValue
+        }
+    }
+    
     public func skillsOfLevel(level: SkillLevel) -> [Skill] {
         var skills = [Skill]()
         for skill in self.skills {

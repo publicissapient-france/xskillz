@@ -32,14 +32,13 @@ class AllyCollectionViewCell: UICollectionViewCell {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineHeightMultiple = 0.8
             paragraphStyle.headIndent = 5.0
-            let attributedString = NSMutableAttributedString(string: (self.user?.name.uppercaseString)!)
+            let attributedString = NSMutableAttributedString(string: self.user!.name.uppercaseString)
             attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
             self.nameLabel.attributedText = attributedString
-            self.xpLabel.text = String((self.user?.experienceCounter)!)
-            self.avatarImageView.af_setImageWithURL(NSURL(string: (self.user?.gravatarUrl)!)!)
+            self.xpLabel.text = String(self.user!.experienceCounter)
+            self.avatarImageView.af_setImageWithURL(NSURL(string: self.user!.gravatarUrl)!)
             
-            let topDomains: [Domain] = (self.user?.techDomainsSortedByScore())!
-            
+            let topDomains = self.user!.foundationDomains(true)
 //            if (topDomains.count > 0) {
 //                Colors.colorizeImageView(self.avatarRingImageView, color: topDomains[0].colorObject)
 //            }

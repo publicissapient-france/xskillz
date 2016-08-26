@@ -151,7 +151,8 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Helpers
     private func domainFromSection(section: Int) -> Domain? {
         if (self.ally != nil && section >= 0 && section < self.ally!.domains.count) {
-            return self.ally!.domains[section]
+            let domains: [Domain] = self.ally!.foundationDomains(true) + self.ally!.noFoundationDomains(true)
+            return domains[section]
         }
         return nil
     }

@@ -18,15 +18,34 @@ public class User: Object {
     
     let domains: List<Domain> = List<Domain>()
     
-    public func techDomainsSortedByScore() -> [Domain] {
-        var sorted: [Domain] = self.domains.sort({$0.score > $1.score})
-        for i in 0 ..< sorted.count {
-            if sorted[i].id == DomainIDMapping.Loisirs.rawValue {
-                sorted.removeAtIndex(i)
-                break;
+    public func foundationDomains(orderedByScore: Bool = true) -> [Domain] {
+        var domains = [Domain]()
+        for domain in self.domains {
+            if domain.isFoundation {
+                domains.append(domain)
             }
         }
-        return sorted
+        
+        if orderedByScore {
+            domains = domains.sort({$0.score > $1.score})
+        }
+        
+        return domains
+    }
+    
+    public func noFoundationDomains(orderedByScore: Bool = true) -> [Domain] {
+        var domains = [Domain]()
+        for domain in self.domains {
+            if !domain.isFoundation {
+                domains.append(domain)
+            }
+        }
+        
+        if orderedByScore {
+            domains = domains.sort({$0.score > $1.score})
+        }
+        
+        return domains
     }
     
     public func findSkill(wantedSkill: Skill?) -> Skill? {
