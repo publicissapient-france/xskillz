@@ -286,4 +286,4 @@ See [Retry-able section](#retry-able).
 
 ## Licence
 
-[MIT](https://github.com/inamiy/SwiftTask/blob/master/LICENSE)
+[MIT](LICENSE)

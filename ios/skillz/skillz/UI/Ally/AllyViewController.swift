@@ -39,7 +39,7 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
-    var usersStore: UsersStore!
+    var usersStore: UsersStore = UsersStore.sharedInstance
     var onSkillSelect: SkillSelectType?
     
     
@@ -51,14 +51,14 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.8
         paragraphStyle.headIndent = 5.0
-        let attributedString = NSMutableAttributedString(string: (self.ally.name.uppercaseString))
+        let attributedString = NSMutableAttributedString(string: (self.ally.name.uppercased()))
         attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         self.headerNameLabel.attributedText = attributedString
-        self.headerCompanyLabel.text = self.ally.companyName.uppercaseString
+        self.headerCompanyLabel.text = self.ally.companyName.uppercased()
         self.headerXPYearsLabel.text = String(self.ally.experienceCounter)
-        self.skillsTableView.backgroundColor = UIColor.clearColor()
-        self.skillsTableView.registerNib(UINib(nibName: "RankedTableViewCell", bundle: nil), forCellReuseIdentifier: "RankedTableViewCell")
-        self.skillsTableView.registerNib(UINib(nibName: "DomainTitleCollectionView", bundle: nil), forHeaderFooterViewReuseIdentifier: "DomainTitleCollectionView")
+        self.skillsTableView.backgroundColor = UIColor.clear
+        self.skillsTableView.register(UINib(nibName: "RankedTableViewCell", bundle: nil), forCellReuseIdentifier: "RankedTableViewCell")
+        self.skillsTableView.register(UINib(nibName: "DomainTitleCollectionView", bundle: nil), forHeaderFooterViewReuseIdentifier: "DomainTitleCollectionView")
         self.usersStore.getFullUser(self.ally)
             .success { [weak self] (user:User) -> Void in
                 self?.loadAvatar()
@@ -68,16 +68,15 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    private func loadAvatar() -> Void {
+    fileprivate func loadAvatar() -> Void {
         if (self.ally == nil) {
             return
         }
-        UITableViewAutomaticDimension
         self.headerAvatarActivityIndicatorView.startAnimating()
-        self.headerAvatarImageView.af_setImageWithURL(NSURL(string: (self.ally.gravatarUrl))!,
+        self.headerAvatarImageView.af_setImage(withURL: URL(string: (self.ally.gravatarUrl))!,
                                                       placeholderImage: nil,
                                                       filter: nil,
-                                                      imageTransition: UIImageView.ImageTransition.None,
+                                                      imageTransition: UIImageView.ImageTransition.noTransition,
                                                       completion:{ [weak self] response in
                                                         self?.headerAvatarActivityIndicatorView.stopAnimating()
             }
@@ -85,17 +84,17 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func close() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - Delegates
     // MARK: UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.ally.domains.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let skills = self.domainFromSection(section)?.skills
         var levels = [0, 0, 0, 0]
         var numberOfLevels = 0
@@ -108,18 +107,18 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return numberOfLevels
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let rankedCell: RankedTableViewCell = tableView.dequeueReusableCellWithIdentifier("RankedTableViewCell", forIndexPath: indexPath) as! RankedTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let rankedCell: RankedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "RankedTableViewCell", for: indexPath) as! RankedTableViewCell
         let domain = self.domainFromSection(indexPath.section)
         let skills = self.skillsFromIndexPath(indexPath)
         
-        rankedCell.estimatedItemSize = CGSizeMake(2.0, RankedTableViewCell.cellDefaultHeight())
+        rankedCell.estimatedItemSize = CGSize(width: 2.0, height: RankedTableViewCell.cellDefaultHeight())
         rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
         rankedCell.domain = domain
         rankedCell.collectionDataSource = AllyRankedSkillsDataSource(domain: domain, skills: skills)
         rankedCell.onSkillSelect = { [weak self] (skill) in
             if self?.onSkillSelect != nil {
-                self?.onSkillSelect!(skill: skill!)
+                self?.onSkillSelect!(skill!)
                 self?.close()
             }
         }
@@ -127,29 +126,29 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return rankedCell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let skills = self.skillsFromIndexPath(indexPath)
         let cellHeight = RankedTableViewCell.cellHeight(tableView.bounds.size.width, skills: skills)
         return cellHeight
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let domain = self.domainFromSection(section)
-        let view: DomainTitleCollectionView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("DomainTitleCollectionView") as! DomainTitleCollectionView
+        let view: DomainTitleCollectionView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DomainTitleCollectionView") as! DomainTitleCollectionView
         let numberOfSkills = domain?.skills.count
-        let stringFormat = i18n(numberOfSkills > 1 ? "ally.number_of_skills.plural" : "ally.number_of_skills.singular")
+        let stringFormat = i18n(numberOfSkills! > 1 ? "ally.number_of_skills.plural" : "ally.number_of_skills.singular")
         view.domain = domain
         view.numberOfResultsText = String(format: stringFormat, numberOfSkills!)
         return view
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return (section == 0 ? DomainTitleCollectionView.defaultHeight() : DomainTitleCollectionView.defaultHeightWithSpacing())
     }
     
     
     // MARK: - Helpers
-    private func domainFromSection(section: Int) -> Domain? {
+    fileprivate func domainFromSection(_ section: Int) -> Domain? {
         if (self.ally != nil && section >= 0 && section < self.ally!.domains.count) {
             let domains: [Domain] = self.ally!.foundationDomains(true) + self.ally!.noFoundationDomains(true)
             return domains[section]
@@ -157,7 +156,7 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return nil
     }
     
-    private func skillLevelFromIndexPath(indexPath: NSIndexPath) -> SkillLevel! {
+    fileprivate func skillLevelFromIndexPath(_ indexPath: IndexPath) -> SkillLevel! {
         let domain = self.domainFromSection(indexPath.section)
         let skills = domain!.skills
         var levels = [0, 0, 0, 0]
@@ -173,13 +172,13 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 return SkillLevel(rawValue: (3 - i))
             }
         }
-        return SkillLevel.NoSkill
+        return SkillLevel.noSkill
     }
     
-    private func skillsFromIndexPath(indexPath: NSIndexPath) -> [Skill] {
+    fileprivate func skillsFromIndexPath(_ indexPath: IndexPath) -> [Skill] {
         let domain = self.domainFromSection(indexPath.section)
         let skillLevel = self.skillLevelFromIndexPath(indexPath)
-        let skills = domain!.skillsOfLevel(skillLevel)
+        let skills = domain!.skillsOfLevel(skillLevel!)
         
         return skills
     }
@@ -190,11 +189,11 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.close()
     }
     
-    @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
         let percentThreshold:CGFloat = 0.3
         
         // convert y-position to downward pull progress (percentage)
-        let translation = sender.translationInView(view)
+        let translation = sender.translation(in: view)
         let verticalMovement = translation.y / view.bounds.height
         let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
         let downwardMovementPercent = fminf(downwardMovement, 1.0)
@@ -203,20 +202,20 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let interactor = interactor else { return }
         
         switch sender.state {
-        case .Began:
+        case .began:
             interactor.hasStarted = true
-            dismissViewControllerAnimated(true, completion: nil)
-        case .Changed:
+            dismiss(animated: true, completion: nil)
+        case .changed:
             interactor.shouldFinish = progress > percentThreshold
-            interactor.updateInteractiveTransition(progress)
-        case .Cancelled:
+            interactor.update(progress)
+        case .cancelled:
             interactor.hasStarted = false
-            interactor.cancelInteractiveTransition()
-        case .Ended:
+            interactor.cancel()
+        case .ended:
             interactor.hasStarted = false
             interactor.shouldFinish
-                ? interactor.finishInteractiveTransition()
-                : interactor.cancelInteractiveTransition()
+                ? interactor.finish()
+                : interactor.cancel()
         default:
             break
         }

@@ -13,36 +13,36 @@ import AlamofireImage
 public typealias ProgressMultiTasks = (completedCount: Int, totalCount: Int)
 public typealias ProgressTask = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
 
-public class AbstractDataAccess: NSObject {
+open class AbstractDataAccess: NSObject {
     
-    private var root: String
-    public var session: Session!
+    fileprivate var root: String
+    open var session: Session = Session.sharedInstance
     
     init(root: String) {
         self.root = root
     }
     
-    public func GET(endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> Request {
+    open func GET(_ endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> DataRequest {
         if absolute {
-            return Alamofire.request(.GET, endpoint, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
+            return Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
         }
         else {
             let path = self.root + endpoint
-            return Alamofire.request(.GET, path, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
+            return Alamofire.request(path, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
         }
     }
     
-    public func POST(endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> Request {
+    open func POST(_ endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> DataRequest {
         if absolute {
-            return Alamofire.request(.POST, endpoint, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
+            return Alamofire.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
         }
         else {
             let path = self.root + endpoint
-            return Alamofire.request(.POST, path, parameters: parameters, encoding: ParameterEncoding.JSON, headers: self.headers())
+            return Alamofire.request(path, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
         }
     }
     
-    private func headers() -> [String: String]? {
+    fileprivate func headers() -> [String: String]? {
         var headers: [String: String]? = nil
         if ((self.session.skillzToken) != nil) {
             headers = ["token": (self.session.skillzToken as? String)!]
@@ -50,7 +50,7 @@ public class AbstractDataAccess: NSObject {
         return headers
     }
     
-    class func activityIndicatorInStatusBarVisible(visible: Bool) -> Void {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = visible
+    class func activityIndicatorInStatusBarVisible(_ visible: Bool) -> Void {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = visible
     }
 }

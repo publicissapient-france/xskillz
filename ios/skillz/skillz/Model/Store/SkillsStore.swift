@@ -9,14 +9,15 @@
 import UIKit
 import SwiftTask
 
-public class SkillsStore: NSObject {
+open class SkillsStore: NSObject {
+    static let sharedInstance = SkillsStore()
     
     var skills: [Skill]? = nil
     var getSkillsFromSearchTask: SkillsTask? = nil
     
-    public var skillsDataAccess: SkillsDataAccess!
+    open var skillsDataAccess: SkillsDataAccess = SkillsDataAccess.sharedInstance
 
-    public func getAllSkills() -> SkillsTask {
+    open func getAllSkills() -> SkillsTask {
         return self.skillsDataAccess.getAllSkills()
             .success { [weak self] (skills: [Skill]) -> SkillsTask in
                 self?.skills = skills
@@ -26,7 +27,7 @@ public class SkillsStore: NSObject {
         }
     }
     
-    public func getSkillsFromSearch(searchString: String) -> SkillsTask {
+    open func getSkillsFromSearch(_ searchString: String) -> SkillsTask {
         let task: SkillsTask
         if (self.skills != nil) {
             task = SkillsTask { fullfill, reject in
@@ -43,7 +44,7 @@ public class SkillsStore: NSObject {
         return task
             .success { (skills: [Skill]) -> SkillsTask in
                 for skill: Skill in skills {
-                    if skill.name.lowercaseString.containsString(searchString.lowercaseString) {
+                    if skill.name.lowercased().contains(searchString.lowercased()) {
                         results.append(skill)
                     }
                 }
@@ -53,7 +54,7 @@ public class SkillsStore: NSObject {
         }
     }
     
-    public func getAllUsersForSkill(skill: Skill) -> UsersTask {
+    open func getAllUsersForSkill(_ skill: Skill) -> UsersTask {
         return self.skillsDataAccess.getAllUsersForSkill(skill)
     }
 }

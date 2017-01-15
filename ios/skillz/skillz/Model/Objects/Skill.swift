@@ -10,13 +10,13 @@ import Foundation
 import RealmSwift
 
 public enum SkillLevel : Int {
-    case NoSkill
-    case Beginner
-    case Confirmed
-    case Expert
+    case noSkill
+    case beginner
+    case confirmed
+    case expert
 }
 
-public class Skill: Object {
+open class Skill: Object {
     dynamic var domain: Domain? = nil
     dynamic var level: Int = 0
     dynamic var id: Int = 0
@@ -25,10 +25,10 @@ public class Skill: Object {
     dynamic var numAllies: Int = 0
     
     var skillLevel: SkillLevel {
-        return self.level == 0 ? SkillLevel.NoSkill
-        : self.level == 1 ? SkillLevel.Beginner
-        : self.level == 2 ? SkillLevel.Confirmed
-        : self.level == 3 ? SkillLevel.Expert
-        : SkillLevel.NoSkill
+        return self.level == 0 ? SkillLevel.noSkill
+        : self.level == 1 ? SkillLevel.beginner
+        : self.level == 2 ? SkillLevel.confirmed
+        : self.level == 3 ? SkillLevel.expert
+        : SkillLevel.noSkill
     }
 }

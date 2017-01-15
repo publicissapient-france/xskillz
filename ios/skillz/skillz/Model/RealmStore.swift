@@ -9,9 +9,9 @@
 import Foundation
 import RealmSwift
 
-public class RealmStore : NSObject {
+open class RealmStore : NSObject {
     
-    public static func inMemoryStore() throws -> Realm {
+    open static func inMemoryStore() throws -> Realm {
         do {
             let realm = try Realm(configuration: Realm.Configuration(inMemoryIdentifier: "InMemory"))
             return realm
@@ -20,7 +20,7 @@ public class RealmStore : NSObject {
         }
     }
     
-    public static func persistStore() throws -> Realm {
+    open static func persistStore() throws -> Realm {
         do {
             let realm = try Realm()
             return realm
@@ -29,7 +29,7 @@ public class RealmStore : NSObject {
         }
     }
     
-    public static func defaultStore() throws -> Realm {
+    open static func defaultStore() throws -> Realm {
         do {
             let realm = try self.inMemoryStore()
             return realm

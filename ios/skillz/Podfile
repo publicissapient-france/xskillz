@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 # ignore all warnings from all Pods
@@ -11,9 +11,8 @@ target :'XSkillz' do
     pod 'DeviceKit'
     pod 'Fabric'
     pod 'JHChainableAnimations'
-    pod 'ReactKit'
+    pod 'SwiftTask', :git => 'https://github.com/ReactKit/SwiftTask/', :branch => 'swift/3.0'
     pod 'RealmSwift'
     pod 'SnapKit'
-    pod 'Typhoon'
     pod 'UIColor_Hex_Swift'
 end

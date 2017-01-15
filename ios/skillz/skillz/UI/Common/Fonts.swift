@@ -9,29 +9,29 @@
 import UIKit
 
 enum FontsStyle : Int {
-    case Bold
-    case Light
-    case Regular
-    case SemiBold
+    case bold
+    case light
+    case regular
+    case semiBold
 }
 
 class Fonts: NSObject {
     
     static func logAllFonts() {
-        for family in UIFont.familyNames() {
+        for family in UIFont.familyNames {
             print("\(family)")
             
-            for name in UIFont.fontNamesForFamilyName(family) {
+            for name in UIFont.fontNames(forFamilyName: family) {
                 print("   \(name)")
             }
         }
     }
     
-    static func mainFont(style:FontsStyle = FontsStyle.Regular, size: CGFloat = 12.0) -> UIFont! {
+    static func mainFont(_ style:FontsStyle = FontsStyle.regular, size: CGFloat = 12.0) -> UIFont! {
         return self.fontComfortaa(style, size: size)
     }
     
-    static func screenTitleFont(size: CGFloat = 12.0) -> UIFont! {
+    static func screenTitleFont(_ size: CGFloat = 12.0) -> UIFont! {
         var fontName: String
         
         fontName = "SanFranciscoDisplay-Medium"
@@ -39,19 +39,19 @@ class Fonts: NSObject {
         return UIFont(name: fontName, size: size)
     }
     
-    static func xpFont(size: CGFloat = 12.0) -> UIFont! {
-        return self.fontSteelworksVintage(FontsStyle.Regular)
+    static func xpFont(_ size: CGFloat = 12.0) -> UIFont! {
+        return self.fontSteelworksVintage(FontsStyle.regular)
     }
     
     
-    static func fontComfortaa(style:FontsStyle = FontsStyle.Regular, size: CGFloat = 12.0) -> UIFont! {
+    static func fontComfortaa(_ style:FontsStyle = FontsStyle.regular, size: CGFloat = 12.0) -> UIFont! {
         var fontName: String
         
         switch style {
-        case FontsStyle.Bold:
+        case FontsStyle.bold:
             fontName = "Comfortaa-Bold"
             
-        case FontsStyle.Light:
+        case FontsStyle.light:
             fontName = "Comfortaa-Light";
             
         default:
@@ -61,7 +61,7 @@ class Fonts: NSObject {
         return UIFont(name: fontName, size: size)
     }
     
-    static func fontSteelworksVintage(style:FontsStyle = FontsStyle.Regular, size: CGFloat = 12.0) -> UIFont! {
+    static func fontSteelworksVintage(_ style:FontsStyle = FontsStyle.regular, size: CGFloat = 12.0) -> UIFont! {
         var fontName: String
         
         fontName = "SteelworksVintageDemo"

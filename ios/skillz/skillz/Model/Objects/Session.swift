@@ -9,7 +9,9 @@
 import Foundation
 import RealmSwift
 
-public class Session: Object {
+open class Session: Object {
+    static let sharedInstance = Session()
+    
     dynamic var googleEMail: NSString?
     dynamic var googleName: NSString?
     dynamic var googleToken: NSString?

@@ -19,16 +19,16 @@ class AllyRankedSkillsDataSource: NSObject, UICollectionViewDataSource {
     
     
     // MARK: - UICollectionViewDataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.skills.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: SkillCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillCollectionViewCell", forIndexPath: indexPath) as! SkillCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: SkillCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SkillCollectionViewCell", for: indexPath) as! SkillCollectionViewCell
         let skill = self.skillFromIndexPath(indexPath)
         
         cell.skill = skill
@@ -41,7 +41,7 @@ class AllyRankedSkillsDataSource: NSObject, UICollectionViewDataSource {
     
     
     // MARK: - Helpers
-    func skillFromIndexPath(indexPath: NSIndexPath) -> Skill! {
+    func skillFromIndexPath(_ indexPath: IndexPath) -> Skill! {
         return self.skills[indexPath.row]
     }
 }

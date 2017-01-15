@@ -10,18 +10,18 @@ import Foundation
 import RealmSwift
 
 enum DomainIDMapping: Int {
-    case Agile = 1
-    case Craft = 2
-    case Mobile = 3
-    case Back = 4
-    case Cloud = 5
-    case Devops = 6
-    case Data = 7
-    case Leisure = 12
-    case Front = 8
+    case agile = 1
+    case craft = 2
+    case mobile = 3
+    case back = 4
+    case cloud = 5
+    case devops = 6
+    case data = 7
+    case leisure = 12
+    case front = 8
 }
 
-public class Domain: Object {
+open class Domain: Object {
     dynamic var color: String = ""
     dynamic var id: Int = 0
     dynamic var name: String = ""
@@ -31,38 +31,38 @@ public class Domain: Object {
     
     var colorObject: UIColor! {
         get {
-            return UIColor(rgba: self.color)
+            return UIColor(self.color)
         }
     }
     
     var pictoImage: UIImage! {
         get {
             switch self.id {
-            case DomainIDMapping.Agile.rawValue:
+            case DomainIDMapping.agile.rawValue:
                 return UIImage(named: "DomainPictoAgile")
                 
-            case DomainIDMapping.Craft.rawValue:
+            case DomainIDMapping.craft.rawValue:
                 return UIImage(named: "DomainPictoCraft")
                 
-            case DomainIDMapping.Mobile.rawValue:
+            case DomainIDMapping.mobile.rawValue:
                 return UIImage(named: "DomainPictoMobile")
                 
-            case DomainIDMapping.Back.rawValue:
+            case DomainIDMapping.back.rawValue:
                 return UIImage(named: "DomainPictoBack")
                 
-            case DomainIDMapping.Cloud.rawValue:
+            case DomainIDMapping.cloud.rawValue:
                 return UIImage(named: "DomainPictoCloud")
                 
-            case DomainIDMapping.Devops.rawValue:
+            case DomainIDMapping.devops.rawValue:
                 return UIImage(named: "DomainPictoDevOps")
                 
-            case DomainIDMapping.Data.rawValue:
+            case DomainIDMapping.data.rawValue:
                 return UIImage(named: "DomainPictoData")
                 
-            case DomainIDMapping.Leisure.rawValue:
+            case DomainIDMapping.leisure.rawValue:
                 return UIImage(named: "DomainPictoLeisure")
                 
-            case DomainIDMapping.Front.rawValue:
+            case DomainIDMapping.front.rawValue:
                 return UIImage(named: "DomainPictoFront")
                 
             default:
@@ -73,18 +73,18 @@ public class Domain: Object {
     
     var isFoundation: Bool {
         get {
-            return self.id == DomainIDMapping.Agile.rawValue ||
-                self.id == DomainIDMapping.Craft.rawValue ||
-                self.id == DomainIDMapping.Mobile.rawValue ||
-                self.id == DomainIDMapping.Back.rawValue ||
-                self.id == DomainIDMapping.Cloud.rawValue ||
-                self.id == DomainIDMapping.Devops.rawValue ||
-                self.id == DomainIDMapping.Data.rawValue ||
-                self.id == DomainIDMapping.Front.rawValue
+            return self.id == DomainIDMapping.agile.rawValue ||
+                self.id == DomainIDMapping.craft.rawValue ||
+                self.id == DomainIDMapping.mobile.rawValue ||
+                self.id == DomainIDMapping.back.rawValue ||
+                self.id == DomainIDMapping.cloud.rawValue ||
+                self.id == DomainIDMapping.devops.rawValue ||
+                self.id == DomainIDMapping.data.rawValue ||
+                self.id == DomainIDMapping.front.rawValue
         }
     }
     
-    public func skillsOfLevel(level: SkillLevel) -> [Skill] {
+    open func skillsOfLevel(_ level: SkillLevel) -> [Skill] {
         var skills = [Skill]()
         for skill in self.skills {
             if skill.skillLevel == level {

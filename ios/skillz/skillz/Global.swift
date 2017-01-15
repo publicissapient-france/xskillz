@@ -8,10 +8,19 @@
 
 import Foundation
 
-func i18n(key:String) -> String {
+func i18n(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }
 
-func DLog(message: AnyObject = "", function: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
-    print(file.componentsSeparatedByString("/").last, function, " #", line, ":", message)
+func i18n(_ key: String, defaultValue: String) -> String {
+    return NSLocalizedString(key, tableName: nil, bundle: Bundle.main, value: defaultValue, comment: "")
+}
+
+func DLog(_ message: String = "", function: String = #function, file: String = #file, line: Int = #line) {
+    #if DEBUG
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        print(">>>", dateFormatter.string(from: Date()), "|", file.components(separatedBy: "/").last!, function, "#", line, ":", message)
+    #else
+    #endif
 }

@@ -12,7 +12,6 @@
 		05348FB21D6DBFDD001FE172 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05348FB01D6DBFDD001FE172 /* UserCollectionViewCell.swift */; };
 		05348FB31D6DBFDD001FE172 /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05348FB11D6DBFDD001FE172 /* UserCollectionViewCell.xib */; };
 		0567E9F21C9B015300118220 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E9F11C9B015300118220 /* Session.swift */; };
-		0567E9F41C9B02BF00118220 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E9F31C9B02BF00118220 /* RootAssembly.swift */; };
 		056F38451C19BE7F003984FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38441C19BE7F003984FD /* AppDelegate.swift */; };
 		056F384A1C19BE7F003984FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056F38481C19BE7F003984FD /* Main.storyboard */; };
 		056F384C1C19BE7F003984FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056F384B1C19BE7F003984FD /* Assets.xcassets */; };
@@ -22,9 +21,7 @@
 		056F38921C1B1B7A003984FD /* NetworkSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38911C1B1B7A003984FD /* NetworkSettings.swift */; };
 		056F38941C1B1C88003984FD /* AbstractDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38931C1B1C88003984FD /* AbstractDataAccess.swift */; };
 		056F38961C1B1C9F003984FD /* UsersDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38951C1B1C9F003984FD /* UsersDataAccess.swift */; };
-		056F38991C1B1E13003984FD /* StoresAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F38981C1B1E13003984FD /* StoresAssembly.swift */; };
 		056F389B1C1B1F60003984FD /* UsersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F389A1C1B1F60003984FD /* UsersStore.swift */; };
-		056F389D1C1B2AEC003984FD /* DataAccessAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */; };
 		057B37071C298CEB00FE3921 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 057B37061C298CEB00FE3921 /* Localizable.strings */; };
 		057B37091C298ED700FE3921 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B37081C298ED700FE3921 /* Global.swift */; };
 		057B370C1C29A04D00FE3921 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B370B1C29A04D00FE3921 /* User.swift */; };
@@ -81,7 +78,6 @@
 		05348FB01D6DBFDD001FE172 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		05348FB11D6DBFDD001FE172 /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
 		0567E9F11C9B015300118220 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		0567E9F31C9B02BF00118220 /* RootAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		056841831C873613003C0458 /* skillz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "skillz-Bridging-Header.h"; sourceTree = "<group>"; };
 		056F38411C19BE7F003984FD /* XSkillz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XSkillz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056F38441C19BE7F003984FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,9 +94,7 @@
 		056F38911C1B1B7A003984FD /* NetworkSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSettings.swift; sourceTree = "<group>"; };
 		056F38931C1B1C88003984FD /* AbstractDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDataAccess.swift; sourceTree = "<group>"; };
 		056F38951C1B1C9F003984FD /* UsersDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersDataAccess.swift; sourceTree = "<group>"; };
-		056F38981C1B1E13003984FD /* StoresAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresAssembly.swift; sourceTree = "<group>"; };
 		056F389A1C1B1F60003984FD /* UsersStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersStore.swift; sourceTree = "<group>"; };
-		056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessAssembly.swift; sourceTree = "<group>"; };
 		057B37061C298CEB00FE3921 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		057B37081C298ED700FE3921 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		057B370B1C29A04D00FE3921 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -189,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				056F38441C19BE7F003984FD /* AppDelegate.swift */,
-				056F38971C1B1DF3003984FD /* Assemblies */,
 				056F384B1C19BE7F003984FD /* Assets.xcassets */,
 				056F38721C1AD2F8003984FD /* Fonts */,
 				057B37081C298ED700FE3921 /* Global.swift */,
@@ -270,16 +263,6 @@
 				056F38911C1B1B7A003984FD /* NetworkSettings.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		056F38971C1B1DF3003984FD /* Assemblies */ = {
-			isa = PBXGroup;
-			children = (
-				056F389C1C1B2AEC003984FD /* DataAccessAssembly.swift */,
-				0567E9F31C9B02BF00118220 /* RootAssembly.swift */,
-				056F38981C1B1E13003984FD /* StoresAssembly.swift */,
-			);
-			path = Assemblies;
 			sourceTree = "<group>";
 		};
 		057B370A1C29A03800FE3921 /* Objects */ = {
@@ -460,13 +443,16 @@
 				TargetAttributes = {
 					056F38401C19BE7F003984FD = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0820;
 					};
 					056F38541C19BE7F003984FD = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 056F38401C19BE7F003984FD;
 					};
 					056F385F1C19BE7F003984FD = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 056F38401C19BE7F003984FD;
 					};
 				};
@@ -583,7 +569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -603,7 +589,6 @@
 				05A9FF181D67006E002D5656 /* MainViewController.swift in Sources */,
 				059D09511C45413E00CBF519 /* SkillsDataAccess.swift in Sources */,
 				05A9FF1A1D67006E002D5656 /* SearchAllyViewController.swift in Sources */,
-				0567E9F41C9B02BF00118220 /* RootAssembly.swift in Sources */,
 				05A9FF291D6B19AC002D5656 /* AllyRankedSkillsDataSource.swift in Sources */,
 				05A9FF191D67006E002D5656 /* AllyCollectionViewCell.swift in Sources */,
 				057B370E1C29ABE900FE3921 /* RealmStore.swift in Sources */,
@@ -614,8 +599,6 @@
 				05A9FF171D67006E002D5656 /* HomeViewController.swift in Sources */,
 				05A9FF131D67006E002D5656 /* Colors.swift in Sources */,
 				056F38941C1B1C88003984FD /* AbstractDataAccess.swift in Sources */,
-				056F389D1C1B2AEC003984FD /* DataAccessAssembly.swift in Sources */,
-				056F38991C1B1E13003984FD /* StoresAssembly.swift in Sources */,
 				05A9FF151D67006E002D5656 /* DomainTitleCollectionView.swift in Sources */,
 				05348FB21D6DBFDD001FE172 /* UserCollectionViewCell.swift in Sources */,
 				057B37091C298ED700FE3921 /* Global.swift in Sources */,
@@ -718,7 +701,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -757,7 +740,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -777,6 +760,7 @@
 				PRODUCT_NAME = XSkillz;
 				SWIFT_OBJC_BRIDGING_HEADER = "skillz/skillz-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -792,6 +776,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.xskillz;
 				PRODUCT_NAME = XSkillz;
 				SWIFT_OBJC_BRIDGING_HEADER = "skillz/skillz-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -803,6 +788,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzTests;
 				PRODUCT_NAME = XSkillz;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XSkillz.app/XSkillz";
 			};
 			name = Debug;
@@ -815,6 +801,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzTests;
 				PRODUCT_NAME = XSkillz;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XSkillz.app/XSkillz";
 			};
 			name = Release;
@@ -826,6 +813,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzUITests;
 				PRODUCT_NAME = XSkillz;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = skillz;
 				USES_XCTRUNNER = YES;
 			};
@@ -838,6 +826,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.xebia.skillzUITests;
 				PRODUCT_NAME = XSkillz;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = skillz;
 				USES_XCTRUNNER = YES;
 			};

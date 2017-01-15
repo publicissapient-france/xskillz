@@ -21,7 +21,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     }
     var like: Bool = false {
         didSet {
-            self.likeImageView.hidden = !self.like
+            self.likeImageView.isHidden = !self.like
         }
     }
     var user: User! {
@@ -31,10 +31,10 @@ class UserCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Size
-    class func cellSize(user: User) -> CGSize {
-        let labelWidth: CGFloat = (user.name as NSString).boundingRectWithSize(CGSizeMake(CGFloat.max, 0.0), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 13.0)], context: nil).width
+    class func cellSize(_ user: User) -> CGSize {
+        let labelWidth: CGFloat = (user.name as NSString).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 0.0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.regular, size: 13.0)], context: nil).width
         
-        return CGSizeMake((38.0 + labelWidth + 5.0), self.cellDefaultHeight())
+        return CGSize(width: (38.0 + labelWidth + 5.0), height: self.cellDefaultHeight())
     }
     
     class func cellDefaultHeight() -> CGFloat {
@@ -52,6 +52,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Avatar
     func loadAvatar() {
-        self.userImageView.af_setImageWithURL(NSURL(string: (self.user.gravatarUrl))!)
+        self.userImageView.af_setImage(withURL: URL(string: (self.user.gravatarUrl))!)
     }
 }

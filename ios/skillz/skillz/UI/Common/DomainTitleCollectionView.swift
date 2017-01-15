@@ -18,10 +18,10 @@ class DomainTitleCollectionView: UITableViewHeaderFooterView {
     var domain: Domain? {
         didSet {
             if (self.domain != nil) {
-                let index = self.domain!.name.startIndex.advancedBy(1)
-                self.domainFirstLetterLabel.text = self.domain!.name.substringToIndex(index).uppercaseString
+                let index = self.domain!.name.characters.index(self.domain!.name.startIndex, offsetBy: 1)
+                self.domainFirstLetterLabel.text = self.domain!.name.substring(to: index).uppercased()
                 self.domainFirstLetterLabel.textColor = self.domain!.colorObject
-                self.domainLabel.text = self.domain!.name.substringFromIndex(index).uppercaseString
+                self.domainLabel.text = self.domain!.name.substring(from: index).uppercased()
                 self.lineView.backgroundColor = self.domain!.colorObject
                 self.pictoImageView.image = self.domain!.pictoImage
                 Colors.colorizeImageView(self.pictoImageView, color: self.domain!.colorObject)
@@ -29,9 +29,9 @@ class DomainTitleCollectionView: UITableViewHeaderFooterView {
             else {
                 // TODO: default domain
                 self.domainFirstLetterLabel.text = "N"
-                self.domainFirstLetterLabel.textColor = UIColor.blackColor()
-                self.domainLabel.text = "on classé".uppercaseString
-                self.lineView.backgroundColor = UIColor.blackColor()
+                self.domainFirstLetterLabel.textColor = UIColor.black
+                self.domainLabel.text = "on classé".uppercased()
+                self.lineView.backgroundColor = UIColor.black
                 self.pictoImageView.image = nil
             }
         }

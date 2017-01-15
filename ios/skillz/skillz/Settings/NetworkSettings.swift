@@ -9,20 +9,20 @@
 import UIKit
 
 enum Endpoints : String {
-    case Users = "users/", Skills = "skills/"
+    case Users = "api/mobile/users/", Skills = "api/mobile/skills/"
 }
 
 class NetworkSettings: NSObject {
     static func root() -> String {
-        return "http://52.29.198.81:8080/"
+        return "http://skillz.xebia.fr/"
     }
     
-    static func usersForSkill(skill: Skill) -> String {
+    static func usersForSkill(_ skill: Skill) -> String {
         let endpoint = Endpoints.Skills.rawValue
         return "\(endpoint)\(skill.id)/users"
     }
     
-    static func user(user: User) -> String {
+    static func user(_ user: User) -> String {
         let endpoint = Endpoints.Users.rawValue
         return "\(endpoint)\(user.id)"
     }

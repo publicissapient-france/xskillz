@@ -1,25 +1,20 @@
 PODS:
-  - Alamofire (3.4.1)
-  - AlamofireImage (2.4.0):
-    - Alamofire (~> 3.3)
-  - Crashlytics (3.7.1):
+  - Alamofire (4.2.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - DeviceKit (0.3.2)
-  - Fabric (1.6.7)
+  - DeviceKit (1.0.0)
+  - Fabric (1.6.11)
   - JHChainableAnimations (1.3.0)
-  - ReactKit (0.12.0):
-    - SwiftTask (~> 4.0.0)
-  - Realm (1.0.1):
-    - Realm/Headers (= 1.0.1)
-  - Realm/Headers (1.0.1)
-  - RealmSwift (1.0.1):
-    - Realm (= 1.0.1)
-  - SnapKit (0.22.0)
-  - SwiftTask (4.0.0)
-  - Typhoon (3.4.8):
-    - Typhoon/no-arc (= 3.4.8)
-  - Typhoon/no-arc (3.4.8)
-  - UIColor_Hex_Swift (2.1)
+  - Realm (2.1.0):
+    - Realm/Headers (= 2.1.0)
+  - Realm/Headers (2.1.0)
+  - RealmSwift (2.1.0):
+    - Realm (= 2.1.0)
+  - SnapKit (3.0.2)
+  - SwiftTask (5.0.0)
+  - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -28,27 +23,34 @@ DEPENDENCIES:
   - DeviceKit
   - Fabric
   - JHChainableAnimations
-  - ReactKit
   - RealmSwift
   - SnapKit
-  - Typhoon
+  - SwiftTask (from `https://github.com/ReactKit/SwiftTask/`, branch `swift/3.0`)
   - UIColor_Hex_Swift
 
+EXTERNAL SOURCES:
+  SwiftTask:
+    :branch: swift/3.0
+    :git: https://github.com/ReactKit/SwiftTask/
+
+CHECKOUT OPTIONS:
+  SwiftTask:
+    :commit: 98f89883509d27229d60ff3f2ececdd82a46d674
+    :git: https://github.com/ReactKit/SwiftTask/
+
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
-  DeviceKit: 79182140c0aa8daaf4f4b3920e0b079f5fa9db79
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  DeviceKit: ddead7f3a7c9603ba3a63cb748566428c38dd11f
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   JHChainableAnimations: 22085fcb04ca87349e584573558e637f659fd769
-  ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
-  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
-  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
-  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
-  SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
-  Typhoon: f2390ad976bd1acaf5680b837781720faf5ff909
-  UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
+  Realm: bc829ad0ef3d4eea70c34cfcc3b1704d18d50df1
+  RealmSwift: a4d4abbf0088c337cab5b738054395842e4b3052
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SwiftTask: 7fcd92f8ac16876e82c0e4ced0cea7e028456b6b
+  UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 26e7554a5b30fe17f631e8c64fb03b1869bd9741
+PODFILE CHECKSUM: ef3bb2cf856401782de5ba7d112fc95639b0e9b7
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

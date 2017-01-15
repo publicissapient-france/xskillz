@@ -10,14 +10,15 @@ import UIKit
 import SwiftTask
 //AsyncSwift
 
-public class UsersStore: NSObject {
+open class UsersStore: NSObject {
+    static let sharedInstance = UsersStore()
     
     var users: [User]? = nil
     var getUsersFromSearchTask: UsersTask? = nil
     
-    public var usersDataAccess: UsersDataAccess!
+    open var usersDataAccess: UsersDataAccess = UsersDataAccess.sharedInstance
     
-    public func getAllUsers() -> UsersTask {
+    open func getAllUsers() -> UsersTask {
         return self.usersDataAccess.getAllUsers()
             .success { [weak self] (users: [User]) -> UsersTask in
                 self?.users = users
@@ -27,7 +28,7 @@ public class UsersStore: NSObject {
         }
     }
     
-    public func getUsersFromSearch(searchString: String) -> UsersTask {
+    open func getUsersFromSearch(_ searchString: String) -> UsersTask {
         let task: UsersTask
         if (self.users != nil) {
             task = UsersTask { fullfill, reject in
@@ -44,7 +45,7 @@ public class UsersStore: NSObject {
         return self.getUsersFromSearchTask!
             .success { (users: [User]) -> UsersTask in
                 for user: User in users {
-                    if user.name.lowercaseString.containsString(searchString.lowercaseString) {
+                    if user.name.lowercased().contains(searchString.lowercased()) {
                         results.append(user)
                     }
                 }
@@ -54,11 +55,11 @@ public class UsersStore: NSObject {
         }
     }
     
-    public func getFullUser(user: User) -> UserTask {
+    open func getFullUser(_ user: User) -> UserTask {
         return self.usersDataAccess.getFullUser(user)
     }
     
-    public func getFullUsers(users: [User]) -> FullUsersTask {
+    open func getFullUsers(_ users: [User]) -> FullUsersTask {
         var tasks = [UserTask]()
         for user: User in users {
             tasks.append(self.getFullUser(user))

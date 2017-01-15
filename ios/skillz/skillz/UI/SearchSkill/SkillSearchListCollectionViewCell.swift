@@ -17,20 +17,20 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
     var skill: Skill?
     var searchString: String?
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            self.backgroundColor = (self.highlighted ? Colors.mainColor() : UIColor.whiteColor())
+            self.backgroundColor = (self.isHighlighted ? Colors.mainColor() : UIColor.white)
             self.updateNameLabel()
-            self.numberOfUsersLabel.textColor = (self.highlighted ? UIColor.whiteColor() : Colors.mainColor())
-            self.separatorView.hidden = self.highlighted
+            self.numberOfUsersLabel.textColor = (self.isHighlighted ? UIColor.white : Colors.mainColor())
+            self.separatorView.isHidden = self.isHighlighted
         }
     }
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            self.backgroundColor = (self.selected ? Colors.mainColor() : UIColor.whiteColor())
+            self.backgroundColor = (self.isSelected ? Colors.mainColor() : UIColor.white)
             self.updateNameLabel()
-            self.numberOfUsersLabel.textColor = (self.selected ? UIColor.whiteColor() : Colors.mainColor())
-            self.separatorView.hidden = self.selected
+            self.numberOfUsersLabel.textColor = (self.isSelected ? UIColor.white : Colors.mainColor())
+            self.separatorView.isHidden = self.isSelected
         }
     }
     
@@ -53,7 +53,7 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
     
     
     // MARK: - Public API
-    func skill(skill: Skill, searchString: String) -> Void {
+    func skill(_ skill: Skill, searchString: String) -> Void {
         self.skill = skill
         self.searchString = searchString
         
@@ -63,11 +63,11 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
     
     
     // MARK: - Private API
-    private func updateNameLabel() {
+    fileprivate func updateNameLabel() {
         var components = self.stringComponents((self.skill?.name)!, searchString: self.searchString!)
         let fullString: NSMutableAttributedString = NSMutableAttributedString()
-        for var i = 0; i < components.count; i++ {
-            fullString.appendAttributedString(NSAttributedString(string: components[i], attributes: (components[i].lowercaseString == searchString!.lowercaseString) ? self.skillNameMatchAttribute() : self.skillNameDefaultAttribute()))
+        for i in 0 ..< components.count {
+            fullString.append(NSAttributedString(string: components[i], attributes: (components[i].lowercased() == searchString!.lowercased()) ? self.skillNameMatchAttribute() : self.skillNameDefaultAttribute()))
         }
         
         self.nameLabel.attributedText = fullString
@@ -75,19 +75,19 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
     
     
     // MARK: - Helpers
-    private func stringComponents(string: String, searchString: String) -> [String] {
+    fileprivate func stringComponents(_ string: String, searchString: String) -> [String] {
         var components = [String]()
         var lastIndex: Int = 0
         
-        for var i = 0; i < string.characters.count; i++ {
-            var part = string.substringFromIndex((string.startIndex.advancedBy(i)))
-            part = part.substringToIndex(string.startIndex.advancedBy(min(part.characters.count, (self.searchString?.characters.count)!)))
-            if (part.lowercaseString == searchString.lowercaseString) {
+        for var i in 0 ..< string.characters.count {
+            var part = string.substring(from: (string.characters.index(string.startIndex, offsetBy: i)))
+            part = part.substring(to: string.characters.index(string.startIndex, offsetBy: min(part.characters.count, (self.searchString?.characters.count)!)))
+            if (part.lowercased() == searchString.lowercased()) {
                 if (components.count == 0 && i > 0) {
-                    components.append(string.substringToIndex(string.startIndex.advancedBy(i)))
+                    components.append(string.substring(to: string.characters.index(string.startIndex, offsetBy: i)))
                 }
                 else if (lastIndex < i) {
-                    components.append(string.substringFromIndex(string.startIndex.advancedBy(lastIndex)).substringToIndex(string.startIndex.advancedBy(i - lastIndex)))
+                    components.append(string.substring(from: string.characters.index(string.startIndex, offsetBy: lastIndex)).substring(to: string.characters.index(string.startIndex, offsetBy: i - lastIndex)))
                 }
                 components.append(part)
                 lastIndex = (i + (self.searchString?.characters.count)!)
@@ -95,27 +95,27 @@ class SkillSearchListCollectionViewCell: UICollectionViewCell {
             }
         }
         if (lastIndex < (string.characters.count)) {
-            components.append(string.substringFromIndex(string.startIndex.advancedBy(lastIndex)))
+            components.append(string.substring(from: string.characters.index(string.startIndex, offsetBy: lastIndex)))
         }
         
         return components
     }
     
-    private func skillNameFontSize() -> CGFloat {
+    fileprivate func skillNameFontSize() -> CGFloat {
         return 17.0
     }
     
-    private func skillNameDefaultAttribute() -> [String : AnyObject] {
+    fileprivate func skillNameDefaultAttribute() -> [String : AnyObject] {
         return [
-            NSForegroundColorAttributeName: (self.highlighted || self.selected ? UIColor.whiteColor() : Colors.greyColor()),
-            NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: self.skillNameFontSize())
+            NSForegroundColorAttributeName: (self.isHighlighted || self.isSelected ? UIColor.white : Colors.greyColor()),
+            NSFontAttributeName: Fonts.mainFont(FontsStyle.regular, size: self.skillNameFontSize())
         ]
     }
     
-    private func skillNameMatchAttribute() -> [String : AnyObject] {
+    fileprivate func skillNameMatchAttribute() -> [String : AnyObject] {
         return [
-            NSForegroundColorAttributeName: (self.highlighted || self.selected ? UIColor.whiteColor() : Colors.mainColor()),
-            NSFontAttributeName: Fonts.mainFont(FontsStyle.Bold, size: self.skillNameFontSize())
+            NSForegroundColorAttributeName: (self.isHighlighted || self.isSelected ? UIColor.white : Colors.mainColor()),
+            NSFontAttributeName: Fonts.mainFont(FontsStyle.bold, size: self.skillNameFontSize())
         ]
     }
 }

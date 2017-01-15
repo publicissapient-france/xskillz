@@ -23,37 +23,37 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         super.viewDidLoad()
         
         self.skillzLabel.font = Fonts.screenTitleFont()
-        self.skillzLabel.text = i18n("app.title").uppercaseString
+        self.skillzLabel.text = i18n("app.title").uppercased()
         
         if (self.view.bounds.size.width == 675.0) { // iPhone 6
             self.backgroundImageView.image = UIImage(named: "Background~iphone6")
         }
         
-        let searchAllyViewController: SearchAllyViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchAllyViewController") as! SearchAllyViewController
-        let searchSkillViewController: SearchSkillViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchSkillViewController") as! SearchSkillViewController
+        let searchAllyViewController: SearchAllyViewController = self.storyboard?.instantiateViewController(withIdentifier: "SearchAllyViewController") as! SearchAllyViewController
+        let searchSkillViewController: SearchSkillViewController = self.storyboard?.instantiateViewController(withIdentifier: "SearchSkillViewController") as! SearchSkillViewController
         
         self.viewControllers = Array(arrayLiteral: searchAllyViewController, searchSkillViewController)
         
-        self.pageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
-        self.pageViewController.setViewControllers([self.viewControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        self.pageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
+        self.pageViewController.setViewControllers([self.viewControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
         
         let superview = self.view
         self.view.addSubview(pageViewController.view)
         pageViewController.view.snp_makeConstraints { (make) in
-            make.edges.equalTo(superview)
+            make.edges.equalTo(superview!)
         }
         
         self.searchAllyViewController().onSkillSelect = { [weak self] (skill) in
-            self?.pageViewController.setViewControllers([(self?.searchSkillViewController())!], direction: .Forward, animated: false, completion: nil)
-            self?.searchSkillViewController().selectSkill(skill)
+            self?.pageViewController.setViewControllers([(self?.searchSkillViewController())!], direction: .forward, animated: false, completion: nil)
+            self?.searchSkillViewController().selectSkill(skill!)
         }
     }
     
     
     // MARK: - UIPageViewControllerDataSource
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let index = self.indexOfViewController(viewController)
         if (index == (self.viewControllers.count - 1)) {
             return nil
@@ -61,7 +61,7 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         return self.viewControllers[(index + 1)]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let index = self.indexOfViewController(viewController)
         if (index == 0) {
             return nil
@@ -69,7 +69,7 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         return self.viewControllers[(index - 1)]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (previousViewControllers.first == self.searchAllyViewController()) {
             self.searchAllyViewController().swipeTutoHidden = true
         }
@@ -77,15 +77,15 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     
     
     // MARK: - Helpers
-    private func indexOfViewController(viewController: UIViewController) -> Int {
-        return self.viewControllers.indexOf(viewController)!
+    fileprivate func indexOfViewController(_ viewController: UIViewController) -> Int {
+        return self.viewControllers.index(of: viewController)!
     }
     
-    private func searchAllyViewController() -> SearchAllyViewController! {
+    fileprivate func searchAllyViewController() -> SearchAllyViewController! {
         return self.viewControllers.first as! SearchAllyViewController
     }
     
-    private func searchSkillViewController() -> SearchSkillViewController! {
+    fileprivate func searchSkillViewController() -> SearchSkillViewController! {
         return self.viewControllers.last as! SearchSkillViewController
     }
 }

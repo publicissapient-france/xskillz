@@ -19,16 +19,16 @@ class SkillRankedUsersDataSource: NSObject, UICollectionViewDataSource {
     
     
     // MARK: - UICollectionViewDataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.users.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: UserCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("UserCollectionViewCell", forIndexPath: indexPath) as! UserCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: UserCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCollectionViewCell", for: indexPath) as! UserCollectionViewCell
         let user = self.userFromIndexPath(indexPath)
         
         cell.user = user
@@ -42,7 +42,7 @@ class SkillRankedUsersDataSource: NSObject, UICollectionViewDataSource {
     
     
     // MARK: - Helpers
-    func userFromIndexPath(indexPath: NSIndexPath) -> User! {
+    func userFromIndexPath(_ indexPath: IndexPath) -> User! {
         return self.users[indexPath.row]
     }
 }

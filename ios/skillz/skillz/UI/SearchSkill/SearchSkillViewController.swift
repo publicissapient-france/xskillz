@@ -41,10 +41,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     var searchString: String?
     var selectedSkill: Skill?
-    var skillsStore: SkillsStore!
+    var skillsStore: SkillsStore = SkillsStore.sharedInstance
+    var usersStore: UsersStore = UsersStore.sharedInstance
     var skills: [Skill]?
     var users: [[User]]?
-    var usersStore: UsersStore!
     
     
     // MARK: - Init
@@ -52,16 +52,16 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         super.viewDidLoad()
         
         self.titleLabel.font = Fonts.screenTitleFont()
-        self.titleLabel.text = i18n("search_skill.title").uppercaseString
+        self.titleLabel.text = i18n("search_skill.title").uppercased()
         self.searchTextField.placeholder = i18n("search_skill.textfield.placeholder")
-        self.skillsResultsListTableView.backgroundColor = UIColor.clearColor()
-        self.skillsResultsListTableView.registerNib(UINib(nibName: "RankedTableViewCell", bundle: nil), forCellReuseIdentifier: "RankedTableViewCell")
-        self.skillsResultsListTableView.registerNib(UINib(nibName: "DomainTitleCollectionView", bundle: nil), forHeaderFooterViewReuseIdentifier: "DomainTitleCollectionView")
+        self.skillsResultsListTableView.backgroundColor = UIColor.clear
+        self.skillsResultsListTableView.register(UINib(nibName: "RankedTableViewCell", bundle: nil), forCellReuseIdentifier: "RankedTableViewCell")
+        self.skillsResultsListTableView.register(UINib(nibName: "DomainTitleCollectionView", bundle: nil), forHeaderFooterViewReuseIdentifier: "DomainTitleCollectionView")
     }
     
     
     // MARK: - Search
-    private func updateSearch(search: String) {
+    fileprivate func updateSearch(_ search: String) {
         self.loadingVisible = true
         self.users = nil
         self.skillsResultsListTableView.reloadData()
@@ -71,7 +71,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
                 self?.loadingVisible = false
                 self?.skills = skills
                 self?.skillsSearchListCollectionView.reloadData()
-                NSTimer.scheduledTimerWithTimeInterval(0.05, target: self!, selector: #selector(SearchSkillViewController.resizeSearchListCollection), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: 0.05, target: self!, selector: #selector(SearchSkillViewController.resizeSearchListCollection), userInfo: nil, repeats: false)
                 
         }
     }
@@ -82,12 +82,12 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     
     
     // MARK: - Results
-    func selectSkill(skill: Skill) -> Void {
+    func selectSkill(_ skill: Skill) -> Void {
         self.loadingVisible = true
         self.selectedSkill = skill
         self.searchTextField.text = skill.name
         self.searchTextField.resignFirstResponder()
-        self.skillsSearchListWrapperView.hidden = true
+        self.skillsSearchListWrapperView.isHidden = true
         self.skillsStore.getAllUsersForSkill(skill)
             .success { [weak self] (users:[User]) -> FullUsersTask in
                 return (self?.usersStore.getFullUsers(users))!
@@ -99,7 +99,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         }
     }
     
-    private func orderUsers(users: [User]) -> Void {
+    fileprivate func orderUsers(_ users: [User]) -> Void {
         var noSkillUsers = [User]()
         var beginnerUsers = [User]()
         var confirmedUsers = [User]()
@@ -109,19 +109,19 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
                 for skill:Skill in domain.skills {
                     if (skill.id == self.selectedSkill!.id) {
                         switch skill.skillLevel {
-                        case SkillLevel.NoSkill:
+                        case SkillLevel.noSkill:
                             noSkillUsers.append(user)
                             break
                             
-                        case SkillLevel.Beginner:
+                        case SkillLevel.beginner:
                             beginnerUsers.append(user)
                             break
                             
-                        case SkillLevel.Confirmed:
+                        case SkillLevel.confirmed:
                             confirmedUsers.append(user)
                             break
                             
-                        case SkillLevel.Expert:
+                        case SkillLevel.expert:
                             expertUsers.append(user)
                             break
                         }
@@ -134,51 +134,51 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     
     
     // MARK: - Navigation
-    private func selectAlly(ally: User) -> Void {
-        self.performSegueWithIdentifier("ShowAlly", sender: ally)
+    fileprivate func selectAlly(_ ally: User) -> Void {
+        self.performSegue(withIdentifier: "ShowAlly", sender: ally)
     }
     
     
     // MARK: - Delegates
     // MARK: UITextFieldDelegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var newString:NSString = textField.text! as NSString
-        newString = newString.stringByReplacingCharactersInRange(range, withString: string)
+        newString = newString.replacingCharacters(in: range, with: string) as NSString
         self.updateSearch(newString as String)
         return true
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.updateSearch("")
         return true
     }
     
     
     // MARK: UICollectionViewDataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.skillsSearchListWrapperView.hidden = true
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.skillsSearchListWrapperView.isHidden = true
         if (self.searchString == nil || self.searchString!.characters.count < 2) {
             return 0
         }
         if (self.skills != nil) {
-            self.skillsSearchListWrapperView.hidden = (self.skills?.count == 0)
+            self.skillsSearchListWrapperView.isHidden = (self.skills?.count == 0)
             return self.skills!.count
         }
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let skill: Skill = self.skillFromIndexPath(indexPath)!
-        let skillCell: SkillSearchListCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SkillSearchListCell", forIndexPath: indexPath) as! SkillSearchListCollectionViewCell
+        let skillCell: SkillSearchListCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SkillSearchListCell", for: indexPath) as! SkillSearchListCollectionViewCell
         skillCell.skill(skill, searchString: self.searchString!)
         
         return skillCell
@@ -186,56 +186,56 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     
     
     // MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectSkill(self.skillFromIndexPath(indexPath)!)
     }
     
     
     // MARK: UICollectionViewDelegateFlowLayout
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(self.skillsSearchListCollectionView.bounds.size.width, SkillSearchListCollectionViewCell.cellDefaultHeight())
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.skillsSearchListCollectionView.bounds.size.width, height: SkillSearchListCollectionViewCell.cellDefaultHeight())
     }
     
     
     // MARK: UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return (self.users != nil ? 1 : 0)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.numberOfSkillsLevels()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         let domain = self.selectedSkill!.domain
         let users = self.usersForSkillFromIndexPath(indexPath)
-        let rankedCell: RankedTableViewCell = tableView.dequeueReusableCellWithIdentifier("RankedTableViewCell", forIndexPath: indexPath) as! RankedTableViewCell
+        let rankedCell: RankedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "RankedTableViewCell", for: indexPath) as! RankedTableViewCell
         
-        rankedCell.estimatedItemSize = CGSizeMake(100.0, RankedTableViewCell.cellDefaultHeight())
+        rankedCell.estimatedItemSize = CGSize(width: 100.0, height: RankedTableViewCell.cellDefaultHeight())
         rankedCell.skillLevel = self.skillLevelFromIndexPath(indexPath)!
         rankedCell.domain = domain
         rankedCell.collectionDataSource = SkillRankedUsersDataSource(domain: domain, users: users)
         rankedCell.onUserSelect = { [weak self] (user) in
-            self?.selectAlly(user)
+            self?.selectAlly(user!)
         }
         
         return rankedCell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         let users = self.usersForSkillFromIndexPath(indexPath)
         let cellHeight = RankedTableViewCell.cellHeight(tableView.bounds.size.width, users: users)
         
         return cellHeight
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let domain = self.selectedSkill!.domain
         let numberOfUsers = self.numberOfUsers
         let stringFormat = i18n(numberOfUsers > 1 ? "search_skill.number_of_allies.plural" : "search_skill.number_of_allies.singular")
-        let view: DomainTitleCollectionView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("DomainTitleCollectionView") as! DomainTitleCollectionView
+        let view: DomainTitleCollectionView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DomainTitleCollectionView") as! DomainTitleCollectionView
         
         view.domain = domain
         view.numberOfResultsText = String(format: stringFormat, numberOfUsers)
@@ -243,13 +243,13 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         return view
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return (section == 0 ? DomainTitleCollectionView.defaultHeight() : DomainTitleCollectionView.defaultHeightWithSpacing())
     }
     
     
     // MARK: - Helpers
-    private func numberOfSkillsLevels() -> Int {
+    fileprivate func numberOfSkillsLevels() -> Int {
         if self.users == nil {
             return 0
         }
@@ -262,15 +262,15 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
         return value
     }
     
-    private func skillFromIndexPath(indexPath: NSIndexPath) -> Skill? {
+    fileprivate func skillFromIndexPath(_ indexPath: IndexPath) -> Skill? {
         if (self.skills != nil) {
             return self.skills![indexPath.row]
         }
         return nil
     }
     
-    private func skillLevelFromIndexPath(indexPath: NSIndexPath) -> SkillLevel! {
-        var skillLevelIndex = SkillLevel.Expert.rawValue
+    fileprivate func skillLevelFromIndexPath(_ indexPath: IndexPath) -> SkillLevel! {
+        var skillLevelIndex = SkillLevel.expert.rawValue
         var index = 0
         for i in 0 ..< 4 {
             if (self.users![i].count == 0) {
@@ -283,10 +283,10 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             skillLevelIndex -= 1
             index += 1
         }
-        return SkillLevel.NoSkill
+        return SkillLevel.noSkill
     }
     
-    private func usersForSkillFromIndexPath(indexPath: NSIndexPath) -> [User]? {
+    fileprivate func usersForSkillFromIndexPath(_ indexPath: IndexPath) -> [User]? {
         var index = -1
         for skillUsers:[User] in self.users! {
             if skillUsers.count > 0 {
@@ -301,15 +301,15 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     
     
     // MARK: - Segues
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
         case "ShowAlly":
-            let viewController = segue.destinationViewController as! AllyViewController
+            let viewController = segue.destination as! AllyViewController
             viewController.transitioningDelegate = self
             viewController.interactor = self.interactor
             viewController.ally = sender as! User
             viewController.onSkillSelect = { [weak self] (skill) in
-                self?.selectSkill(skill)
+                self?.selectSkill(skill!)
             }
             break
             
@@ -320,11 +320,11 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
 }
 
 extension SearchSkillViewController: UIViewControllerTransitioningDelegate {
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissAnimator()
     }
     
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
 }

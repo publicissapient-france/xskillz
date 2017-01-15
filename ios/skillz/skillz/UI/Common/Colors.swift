@@ -12,17 +12,17 @@ import UIColor_Hex_Swift
 class Colors: NSObject {
     
     static func mainColor() -> UIColor {
-        return UIColor(rgba: "#7a3a76")
+        return UIColor("#7a3a76")
     }
     
     static func greyColor() -> UIColor {
-        return UIColor(rgba: "#6e6e6e")
+        return UIColor("#6e6e6e")
     }
     
     
-    static func colorizeImageView(imageView: UIImageView!, color: UIColor!) {
+    static func colorizeImageView(_ imageView: UIImageView!, color: UIColor!) {
         let image: UIImage = imageView.image!
-        imageView.image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        imageView.image = image.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         imageView.tintColor = color
     }
 }

@@ -20,17 +20,17 @@ class SkillCollectionViewCell: UICollectionViewCell {
     var skill: Skill! {
         didSet {
             self.skillLabel.text = self.skill.name
-            self.likeImageView.hidden = !self.skill.interested
+            self.likeImageView.isHidden = !self.skill.interested
             self.skillLabelTrailingConstraint.constant = (self.skill.interested ? 23.0 : 5.0)
         }
     }
     
     
     // MARK: - Size
-    class func cellSize(skill: Skill) -> CGSize {
-        let labelWidth: CGFloat = (skill.name as NSString).boundingRectWithSize(CGSizeMake(CGFloat.max, 0.0), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.Regular, size: 13.0)], context: nil).width
+    class func cellSize(_ skill: Skill) -> CGSize {
+        let labelWidth: CGFloat = (skill.name as NSString).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 0.0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: Fonts.mainFont(FontsStyle.regular, size: 13.0)], context: nil).width
         
-        return CGSizeMake((labelWidth + (skill.interested ? 23.0 : 5.0)), self.cellDefaultHeight())
+        return CGSize(width: (labelWidth + (skill.interested ? 23.0 : 5.0)), height: self.cellDefaultHeight())
     }
     
     class func cellDefaultHeight() -> CGFloat {

@@ -7,8 +7,8 @@
 
 import UIKit
 
-typealias SkillSelectType = (skill: Skill!) -> Void
-typealias UserSelectType = (user: User!) -> Void
+typealias SkillSelectType = (_ skill: Skill?) -> Void
+typealias UserSelectType = (_ user: User?) -> Void
 
 class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,8 +31,8 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
             }
             else {
                 // TODO: default colors
-                self.mainBackgroundView.backgroundColor = UIColor.blackColor()
-                self.starsView.backgroundColor = UIColor.blackColor()
+                self.mainBackgroundView.backgroundColor = UIColor.black
+                self.starsView.backgroundColor = UIColor.black
             }
         }
     }
@@ -44,19 +44,19 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
         }
     }
     var skill: Skill?
-    var skillLevel: SkillLevel = .NoSkill {
+    var skillLevel: SkillLevel = .noSkill {
         didSet {
             let starsImage: UIImage!
             switch self.skillLevel {
-            case .Expert:
+            case .expert:
                 starsImage = UIImage(named: "StarsExpert")
                 self.starsLightenBackgroundView.alpha = 0.15
                 
-            case .Confirmed:
+            case .confirmed:
                 starsImage = UIImage(named: "StarsConfirmed")
                 self.starsLightenBackgroundView.alpha = 0.30
                 
-            case .Beginner:
+            case .beginner:
                 starsImage = UIImage(named: "StarsBeginner")
                 self.starsLightenBackgroundView.alpha = 0.45
                 
@@ -73,25 +73,25 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
     
     // MARK: - Init
     class func loadFromNib() -> RankedTableViewCell {
-        return UINib(nibName: "RankedTableViewCell", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! RankedTableViewCell
+        return UINib(nibName: "RankedTableViewCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! RankedTableViewCell
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.estimatedItemSize = CGSize(width: 100.0, height: 40.0)
-        self.collectionView.backgroundColor = UIColor.clearColor()
+        self.collectionView.backgroundColor = UIColor.clear
         self.collectionView.delegate = self
         
         // TODO: refacto
-        self.collectionView.registerNib(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
-        self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
+        self.collectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
+        self.collectionView.register(UINib(nibName: "UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionViewCell")
     }
     
     
     // MARK: - Helpers
     // TODO: refacto cellHeight methods
-    class func cellHeight(width: CGFloat, skills: [Skill]?) -> CGFloat {
+    class func cellHeight(_ width: CGFloat, skills: [Skill]?) -> CGFloat {
         if skills == nil {
             return self.cellDefaultHeight()
         }
@@ -111,7 +111,7 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
         return (CGFloat(numberOfRows) * SkillCollectionViewCell.cellDefaultHeight())
     }
     
-    class func cellHeight(width: CGFloat, users: [User]?) -> CGFloat {
+    class func cellHeight(_ width: CGFloat, users: [User]?) -> CGFloat {
         if users == nil {
             return self.cellDefaultHeight()
         }
@@ -138,23 +138,23 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
     
     // MARK: UICollectionViewDelegate
     // TODO: very ugly! Need to use protocols
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if self.collectionDataSource != nil {
-            if self.collectionDataSource!.isKindOfClass(AllyRankedSkillsDataSource) {
+            if self.collectionDataSource!.isKind(of: AllyRankedSkillsDataSource.self) {
                 let skill = (self.collectionDataSource as! AllyRankedSkillsDataSource).skillFromIndexPath(indexPath)
                 if self.onSkillSelect != nil {
                     // TODO: fix this... maybe we can update REST response to get domain?
                     let realm = try! RealmStore.defaultStore()
                     realm.beginWrite()
-                    skill.domain = self.domain
+                    skill?.domain = self.domain
                     try! realm.commitWrite()
-                    self.onSkillSelect!(skill: skill!)
+                    self.onSkillSelect!(skill!)
                 }
             }
-            else if self.collectionDataSource!.isKindOfClass(SkillRankedUsersDataSource) {
+            else if self.collectionDataSource!.isKind(of: SkillRankedUsersDataSource.self) {
                 let user = (self.collectionDataSource as! SkillRankedUsersDataSource).userFromIndexPath(indexPath)
                 if self.onUserSelect != nil {
-                    self.onUserSelect!(user: user!)
+                    self.onUserSelect!(user!)
                 }
             }
         }

@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-public class User: Object {
+open class User: Object {
     dynamic var companyName: String = ""
     dynamic var experienceCounter: Int = 0
     dynamic var gravatarUrl: String = ""
@@ -18,7 +18,7 @@ public class User: Object {
     
     let domains: List<Domain> = List<Domain>()
     
-    public func foundationDomains(orderedByScore: Bool = true) -> [Domain] {
+    open func foundationDomains(_ orderedByScore: Bool = true) -> [Domain] {
         var domains = [Domain]()
         for domain in self.domains {
             if domain.isFoundation {
@@ -27,13 +27,13 @@ public class User: Object {
         }
         
         if orderedByScore {
-            domains = domains.sort({$0.score > $1.score})
+            domains = domains.sorted(by: {$0.score > $1.score})
         }
         
         return domains
     }
     
-    public func noFoundationDomains(orderedByScore: Bool = true) -> [Domain] {
+    open func noFoundationDomains(_ orderedByScore: Bool = true) -> [Domain] {
         var domains = [Domain]()
         for domain in self.domains {
             if !domain.isFoundation {
@@ -42,13 +42,13 @@ public class User: Object {
         }
         
         if orderedByScore {
-            domains = domains.sort({$0.score > $1.score})
+            domains = domains.sorted(by: {$0.score > $1.score})
         }
         
         return domains
     }
     
-    public func findSkill(wantedSkill: Skill?) -> Skill? {
+    open func findSkill(_ wantedSkill: Skill?) -> Skill? {
         if wantedSkill == nil {
             return nil
         }
@@ -62,7 +62,7 @@ public class User: Object {
         return nil
     }
     
-    public func isInterestedBySkill(skill: Skill?) -> Bool {
+    open func isInterestedBySkill(_ skill: Skill?) -> Bool {
         if skill == nil {
             return false
         }

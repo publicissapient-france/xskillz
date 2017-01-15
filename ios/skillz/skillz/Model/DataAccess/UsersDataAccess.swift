@@ -15,23 +15,25 @@ public typealias UserAvatarTask = Task<ProgressTask, UIImage, NSError>
 public typealias UsersTask = Task<ProgressTask, [User], NSError>
 public typealias UserTask = Task<ProgressTask, User, NSError>
 
-public class UsersDataAccess: AbstractDataAccess {
+open class UsersDataAccess: AbstractDataAccess {
+    static let sharedInstance = UsersDataAccess()
     
     init() {
         super.init(root: NetworkSettings.root())
     }
     
-    public func getAllUsers() -> UsersTask {
+    open func getAllUsers() -> UsersTask {
         AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = UsersTask { [weak self] progress, fulfill, reject, configure in
-            self?.GET(Endpoints.Users.rawValue).validate()
-                .responseJSON { response in
+            self?.GET(Endpoints.Users.rawValue).responseJSON { response in
                     if let JSON: NSArray = response.result.value as? NSArray {
                         let realm = try! RealmStore.defaultStore()
                         try! realm.write({ () -> Void in
                             var users = [User]()
                             for userDictionary in JSON {
+                                NSLog("A")
                                 let user = try! realm.create(User.self, value: userDictionary)
+                                NSLog("B")
                                 users.append(user)
                             }
                             AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
@@ -44,15 +46,16 @@ public class UsersDataAccess: AbstractDataAccess {
         return task
     }
     
-    public func getFullUser(user: User) -> UserTask {
+    open func getFullUser(_ user: User) -> UserTask {
         AbstractDataAccess.activityIndicatorInStatusBarVisible(true)
         let task = UserTask { [weak self] progress, fulfill, reject, configure in
-            self?.GET(NetworkSettings.user(user)).validate()
-                .responseJSON { response in
+            self?.GET(NetworkSettings.user(user)).responseJSON { response in
                     if let JSON: NSDictionary = response.result.value as? NSDictionary {
                         let realm = try! RealmStore.defaultStore()
                         try! realm.write({ () -> Void in
+                            NSLog("C")
                             let user = try! realm.create(User.self, value: JSON)
+                            NSLog("D")
                             AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                             fulfill(user)
                         })

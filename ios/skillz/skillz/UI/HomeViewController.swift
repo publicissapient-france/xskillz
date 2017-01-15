@@ -21,6 +21,6 @@ class HomeViewController: UIViewController, UIAlertViewDelegate {
             self.backgroundImagaView.image = UIImage(named: "BackgroundSkillz~iphone6")
         }
         
-        self.startButton.setTitle(i18n("welcome").uppercaseString, forState: UIControlState.Normal)
+        self.startButton.setTitle(i18n("welcome").uppercased(), for: UIControlState())
     }
 }

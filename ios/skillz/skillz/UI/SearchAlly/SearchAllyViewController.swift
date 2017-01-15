@@ -29,13 +29,13 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
             }
         }
     }
-    var usersStore: UsersStore!
+    var usersStore: UsersStore = UsersStore.sharedInstance
     var users: [User]?
     var searchString: String?
-    var searchTimer: NSTimer?
+    var searchTimer: Timer?
     var swipeTutoHidden: Bool! {
         didSet {
-            self.swipeTutoView.hidden = self.swipeTutoHidden
+            self.swipeTutoView.isHidden = self.swipeTutoHidden
         }
     }
     var onSkillSelect: SkillSelectType?
@@ -46,17 +46,17 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         super.viewDidLoad()
         
         self.titleLabel.font = Fonts.screenTitleFont()
-        self.titleLabel.text = i18n("search_ally.title").uppercaseString
+        self.titleLabel.text = i18n("search_ally.title").uppercased()
         self.searchTextField.placeholder = i18n("search_ally.textfield.placeholder")
         self.swipeLabel.text = i18n("search_ally.swipe")
     }
     
     
     // MARK: - Search & results
-    private func updateSearch(search: String, delay: NSTimeInterval = 0.0) {
+    fileprivate func updateSearch(_ search: String, delay: TimeInterval = 0.0) {
         if (delay > 0.0) {
             self.searchTimer?.invalidate()
-            self.searchTimer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: #selector(SearchAllyViewController.updateSearchTimer(_:)), userInfo: search, repeats: false)
+            self.searchTimer = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(SearchAllyViewController.updateSearchTimer(_:)), userInfo: search, repeats: false)
             return
         }
         self.clearResults()
@@ -70,63 +70,63 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
         }
     }
     
-    private func clearResults() -> Void {
+    fileprivate func clearResults() -> Void {
         self.users = nil
         self.alliesCollectionView.reloadData()
-        self.swipeTutoView.hidden = true
+        self.swipeTutoView.isHidden = true
     }
     
-    func updateSearchTimer(timer: NSTimer) {
+    func updateSearchTimer(_ timer: Timer) {
         self.updateSearch(timer.userInfo as! String)
     }
     
     
     // MARK: - Navigation
-    private func selectAlly(ally: User) -> Void {
-        self.performSegueWithIdentifier("ShowAlly", sender: ally)
+    fileprivate func selectAlly(_ ally: User) -> Void {
+        self.performSegue(withIdentifier: "ShowAlly", sender: ally)
     }
     
     
     // MARK: - Delegates
     // MARK: UITextFieldDelegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var newString:NSString = textField.text! as NSString
-        newString = newString.stringByReplacingCharactersInRange(range, withString: string)
+        newString = newString.replacingCharacters(in: range, with: string) as NSString
         self.updateSearch(newString as String, delay:0.7)
         return true
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.updateSearch("")
         return true
     }
     
     
     // MARK: UICollectionViewDataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (self.users != nil) {
             if ((self.swipeTutoHidden) != nil) {
-                self.swipeTutoView.hidden = true
+                self.swipeTutoView.isHidden = true
             }
             else {
-                self.swipeTutoView.hidden = (users!.count > 0)
+                self.swipeTutoView.isHidden = (users!.count > 0)
             }
             return self.users!.count
         }
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: AllyCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("AllyCell", forIndexPath: indexPath) as! AllyCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: AllyCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllyCell", for: indexPath) as! AllyCollectionViewCell
         let user: User = self.userFromIndexPath(indexPath)!
         cell.user = user
         
@@ -135,19 +135,19 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     
     
     // MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake(self.alliesCollectionView.bounds.size.width, AllyCollectionViewCell.cellDefaultHeight())
+        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+            return CGSize(width: self.alliesCollectionView.bounds.size.width, height: AllyCollectionViewCell.cellDefaultHeight())
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectAlly(self.userFromIndexPath(indexPath)!)
     }
     
     
     // MARK: - Helpers
-    private func userFromIndexPath(indexPath: NSIndexPath) -> User? {
+    fileprivate func userFromIndexPath(_ indexPath: IndexPath) -> User? {
         if (self.users != nil) {
             return self.users![indexPath.row]
         }
@@ -156,16 +156,16 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
     
     
     // MARK: - Segues
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
         case "ShowAlly":
-            let viewController = segue.destinationViewController as! AllyViewController
+            let viewController = segue.destination as! AllyViewController
             viewController.transitioningDelegate = self
             viewController.interactor = self.interactor
             viewController.ally = sender as! User
             viewController.onSkillSelect = { [weak self] (skill) in
                 if self?.onSkillSelect != nil {
-                    self?.onSkillSelect!(skill: skill!)
+                    self?.onSkillSelect!(skill!)
                 }
             }
             break
@@ -177,11 +177,11 @@ class SearchAllyViewController: UIViewController, UITextFieldDelegate, UICollect
 }
 
 extension SearchAllyViewController: UIViewControllerTransitioningDelegate {
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissAnimator()
     }
     
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
 }
