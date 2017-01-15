@@ -17,11 +17,11 @@ class DomainTitleCollectionView: UITableViewHeaderFooterView {
     
     var domain: Domain? {
         didSet {
-            if (self.domain != nil) {
-                let index = self.domain!.name.characters.index(self.domain!.name.startIndex, offsetBy: 1)
-                self.domainFirstLetterLabel.text = self.domain!.name.substring(to: index).uppercased()
+            if let name = self.domain?.name {
+                let index = name.characters.index(name.startIndex, offsetBy: 1)
+                self.domainFirstLetterLabel.text = name.substring(to: index).uppercased()
                 self.domainFirstLetterLabel.textColor = self.domain!.colorObject
-                self.domainLabel.text = self.domain!.name.substring(from: index).uppercased()
+                self.domainLabel.text = name.substring(from: index).uppercased()
                 self.lineView.backgroundColor = self.domain!.colorObject
                 self.pictoImageView.image = self.domain!.pictoImage
                 Colors.colorizeImageView(self.pictoImageView, color: self.domain!.colorObject)

@@ -17,10 +17,10 @@ func i18n(_ key: String, defaultValue: String) -> String {
 }
 
 func DLog(_ message: String = "", function: String = #function, file: String = #file, line: Int = #line) {
-    #if DEBUG
+//    #if DEBUG
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         print(">>>", dateFormatter.string(from: Date()), "|", file.components(separatedBy: "/").last!, function, "#", line, ":", message)
-    #else
-    #endif
+//    #else
+//    #endif
 }

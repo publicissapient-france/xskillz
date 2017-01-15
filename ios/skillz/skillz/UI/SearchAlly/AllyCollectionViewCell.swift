@@ -36,7 +36,7 @@ class AllyCollectionViewCell: UICollectionViewCell {
             attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
             self.nameLabel.attributedText = attributedString
             self.xpLabel.text = String(self.user!.experienceCounter)
-            self.avatarImageView.af_setImage(withURL: URL(string: self.user!.gravatarUrl)!)
+            self.avatarImageView.af_setImage(withURL: URL(string: self.user!.avatarURL)!)
             
             let topDomains = self.user!.foundationDomains(true)
 //            if (topDomains.count > 0) {
@@ -57,7 +57,9 @@ class AllyCollectionViewCell: UICollectionViewCell {
                     let domain: Domain = topDomains[i]
                     Colors.colorizeImageView(topDomainImageView, color: domain.colorObject)
                     topDomainView.isHidden = false
-                    topDomainLabel.attributedText = self.formatDomainName(domain.name as NSString, domainRank: (i + 1), color: domain.colorObject)
+                    if domain.name != nil {
+                        topDomainLabel.attributedText = self.formatDomainName(domain.name! as NSString, domainRank: (i + 1), color: domain.colorObject)
+                    }
                 }
             }
         }

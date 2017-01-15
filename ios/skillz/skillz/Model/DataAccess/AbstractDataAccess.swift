@@ -23,23 +23,19 @@ open class AbstractDataAccess: NSObject {
     }
     
     open func GET(_ endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> DataRequest {
-        if absolute {
-            return Alamofire.request(endpoint, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
+        var path = endpoint
+        if !absolute {
+            path = self.root + endpoint
         }
-        else {
-            let path = self.root + endpoint
-            return Alamofire.request(path, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
-        }
+        return Alamofire.request(path, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
     }
     
     open func POST(_ endpoint: String, absolute: Bool = false, parameters: [String: AnyObject]? = nil) -> DataRequest {
-        if absolute {
-            return Alamofire.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
+        var path = endpoint
+        if !absolute {
+            path = self.root + endpoint
         }
-        else {
-            let path = self.root + endpoint
-            return Alamofire.request(path, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
-        }
+        return Alamofire.request(path, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers())
     }
     
     fileprivate func headers() -> [String: String]? {

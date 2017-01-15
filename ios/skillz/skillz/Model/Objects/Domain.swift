@@ -10,34 +10,38 @@ import Foundation
 import RealmSwift
 
 enum DomainIDMapping: Int {
-    case agile = 1
-    case craft = 2
-    case mobile = 3
-    case back = 4
-    case cloud = 5
+    case agile = 4
+    case craft = 3
+    case mobile = 10
+    case back = 9
+    case cloud = 7
     case devops = 6
-    case data = 7
+    case data = 5
     case leisure = 12
     case front = 8
 }
 
 open class Domain: Object {
-    dynamic var color: String = ""
-    dynamic var id: Int = 0
-    dynamic var name: String = ""
+    dynamic var color: String?
+    let id = RealmOptional<Int>() // because backend can return null value (!)
+    dynamic var name: String? = nil
     dynamic var score: Int = 0
     
     let skills: List<Skill> = List<Skill>()
     
     var colorObject: UIColor! {
         get {
-            return UIColor(self.color)
+            if self.color != nil {
+                return UIColor(self.color!)
+            }
+            return UIColor.black
         }
     }
     
     var pictoImage: UIImage! {
         get {
-            switch self.id {
+            guard let id = self.id.value else { return UIImage(named: "DomainPictoDefault") }
+            switch id {
             case DomainIDMapping.agile.rawValue:
                 return UIImage(named: "DomainPictoAgile")
                 
@@ -73,14 +77,15 @@ open class Domain: Object {
     
     var isFoundation: Bool {
         get {
-            return self.id == DomainIDMapping.agile.rawValue ||
-                self.id == DomainIDMapping.craft.rawValue ||
-                self.id == DomainIDMapping.mobile.rawValue ||
-                self.id == DomainIDMapping.back.rawValue ||
-                self.id == DomainIDMapping.cloud.rawValue ||
-                self.id == DomainIDMapping.devops.rawValue ||
-                self.id == DomainIDMapping.data.rawValue ||
-                self.id == DomainIDMapping.front.rawValue
+            guard let id = self.id.value else { return false }
+            return id == DomainIDMapping.agile.rawValue ||
+                id == DomainIDMapping.craft.rawValue ||
+                id == DomainIDMapping.mobile.rawValue ||
+                id == DomainIDMapping.back.rawValue ||
+                id == DomainIDMapping.cloud.rawValue ||
+                id == DomainIDMapping.devops.rawValue ||
+                id == DomainIDMapping.data.rawValue ||
+                id == DomainIDMapping.front.rawValue
         }
     }
     

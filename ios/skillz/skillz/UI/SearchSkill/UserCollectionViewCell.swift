@@ -52,6 +52,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Avatar
     func loadAvatar() {
-        self.userImageView.af_setImage(withURL: URL(string: (self.user.gravatarUrl))!)
+        self.userImageView.af_setImage(withURL: URL(string: (self.user.avatarURL))!)
     }
 }

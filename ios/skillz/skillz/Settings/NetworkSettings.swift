@@ -9,7 +9,9 @@
 import UIKit
 
 enum Endpoints : String {
-    case Users = "api/mobile/users/", Skills = "api/mobile/skills/"
+    case Users = "api/mobile/users/"
+    case User = "api/users/"
+    case Skills = "api/skills/"
 }
 
 class NetworkSettings: NSObject {
@@ -23,7 +25,7 @@ class NetworkSettings: NSObject {
     }
     
     static func user(_ user: User) -> String {
-        let endpoint = Endpoints.Users.rawValue
+        let endpoint = Endpoints.User.rawValue
         return "\(endpoint)\(user.id)"
     }
 }

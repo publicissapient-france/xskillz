@@ -31,9 +31,7 @@ open class UsersDataAccess: AbstractDataAccess {
                         try! realm.write({ () -> Void in
                             var users = [User]()
                             for userDictionary in JSON {
-                                NSLog("A")
                                 let user = try! realm.create(User.self, value: userDictionary)
-                                NSLog("B")
                                 users.append(user)
                             }
                             AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
@@ -53,9 +51,7 @@ open class UsersDataAccess: AbstractDataAccess {
                     if let JSON: NSDictionary = response.result.value as? NSDictionary {
                         let realm = try! RealmStore.defaultStore()
                         try! realm.write({ () -> Void in
-                            NSLog("C")
                             let user = try! realm.create(User.self, value: JSON)
-                            NSLog("D")
                             AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
                             fulfill(user)
                         })

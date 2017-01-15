@@ -73,7 +73,7 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
         self.headerAvatarActivityIndicatorView.startAnimating()
-        self.headerAvatarImageView.af_setImage(withURL: URL(string: (self.ally.gravatarUrl))!,
+        self.headerAvatarImageView.af_setImage(withURL: URL(string: (self.ally.avatarURL))!,
                                                       placeholderImage: nil,
                                                       filter: nil,
                                                       imageTransition: UIImageView.ImageTransition.noTransition,
@@ -99,10 +99,14 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var levels = [0, 0, 0, 0]
         var numberOfLevels = 0
         for skill: Skill in skills! {
-            if (levels[skill.level] == 0) {
+            var level = 0
+            if skill.level.value != nil {
+                level = skill.level.value!
+            }
+            if (levels[level] == 0) {
                 numberOfLevels += 1
             }
-            levels[skill.level] = 1
+            levels[level] = 1
         }
         return numberOfLevels
     }
@@ -161,7 +165,11 @@ class AllyViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let skills = domain!.skills
         var levels = [0, 0, 0, 0]
         for skill: Skill in skills {
-            levels[(3 - skill.level)] += 1
+            var level = 0
+            if skill.level.value != nil {
+                level = skill.level.value!
+            }
+            levels[(3 - level)] += 1
         }
         var levelIndex = -1
         for i in 0 ..< levels.count {

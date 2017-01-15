@@ -18,6 +18,15 @@ open class User: Object {
     
     let domains: List<Domain> = List<Domain>()
     
+    var avatarURL: String {
+        get {
+            if !gravatarUrl.contains("http:") {
+                return "http:" + gravatarUrl
+            }
+            return gravatarUrl
+        }
+    }
+    
     open func foundationDomains(_ orderedByScore: Bool = true) -> [Domain] {
         var domains = [Domain]()
         for domain in self.domains {

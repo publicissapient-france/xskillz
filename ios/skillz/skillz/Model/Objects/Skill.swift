@@ -18,17 +18,18 @@ public enum SkillLevel : Int {
 
 open class Skill: Object {
     dynamic var domain: Domain? = nil
-    dynamic var level: Int = 0
+    let level = RealmOptional<Int>() // because backend can return null value (!)
     dynamic var id: Int = 0
     dynamic var interested: Bool = false
     dynamic var name: String = ""
     dynamic var numAllies: Int = 0
     
     var skillLevel: SkillLevel {
-        return self.level == 0 ? SkillLevel.noSkill
-        : self.level == 1 ? SkillLevel.beginner
-        : self.level == 2 ? SkillLevel.confirmed
-        : self.level == 3 ? SkillLevel.expert
-        : SkillLevel.noSkill
+        guard let level = self.level.value else { return .noSkill }
+        return level == 0 ? .noSkill
+        : level == 1 ? .beginner
+        : level == 2 ? .confirmed
+        : level == 3 ? .expert
+        : .noSkill
     }
 }

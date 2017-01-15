@@ -31,9 +31,7 @@ open class SkillsDataAccess: AbstractDataAccess {
                     try! realm.write({ () -> Void in
                         var skills = [Skill]()
                         for skillDictionary in JSON {
-                            NSLog("E")
                             let skill = try! realm.create(Skill.self, value: skillDictionary)
-                            NSLog("F")
                             skills.append(skill)
                         }
                         AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
@@ -55,9 +53,7 @@ open class SkillsDataAccess: AbstractDataAccess {
                     try! realm.write({ () -> Void in
                         var users = [User]()
                         for userDictionary in JSON {
-                            NSLog("G")
                             let user = try! realm.create(User.self, value: userDictionary)
-                            NSLog("H")
                             users.append(user)
                         }
                         AbstractDataAccess.activityIndicatorInStatusBarVisible(false)
