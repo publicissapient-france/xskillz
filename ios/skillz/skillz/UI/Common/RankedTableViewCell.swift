@@ -39,6 +39,7 @@ class RankedTableViewCell: UITableViewCell, UICollectionViewDelegate {
     var estimatedItemSize: CGSize? {
         didSet {
             if estimatedItemSize != nil {
+                self.collectionView.layoutIfNeeded() // iOS 10.x issue! WTF? Need to call layoutIfNeeded, if not collectionView make app crashing
                 (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = self.estimatedItemSize!
             }
         }
