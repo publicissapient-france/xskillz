@@ -28,9 +28,11 @@ class DomainTitleCollectionView: UITableViewHeaderFooterView {
             }
             else {
                 // TODO: default domain
-                self.domainFirstLetterLabel.text = "N"
+                let unranked = i18n("skill.unranked")
+                let index = unranked.characters.index(unranked.startIndex, offsetBy: 1)
+                self.domainFirstLetterLabel.text = unranked.substring(to: index).uppercased()
                 self.domainFirstLetterLabel.textColor = UIColor.black
-                self.domainLabel.text = "on classé".uppercased()
+                self.domainLabel.text = unranked.substring(from: index).uppercased()
                 self.lineView.backgroundColor = UIColor.black
                 self.pictoImageView.image = nil
             }

@@ -25,3 +25,5 @@
 
 "ally.number_of_skills.plural" = "%i skills";
 "ally.number_of_skills.singular" = "%i skill";
+
+"skill.unranked" = "Non classé";
