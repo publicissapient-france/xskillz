@@ -10,15 +10,19 @@ import Foundation
 import RealmSwift
 
 enum DomainIDMapping: Int {
-    case agile = 4
+    case office = 1
+//    case ????? = 2
     case craft = 3
-    case mobile = 10
-    case back = 9
-    case cloud = 7
-    case devops = 6
+    case agile = 4
     case data = 5
-    case leisure = 12
+    case devops = 6
+    case cloud = 7
     case front = 8
+    case back = 9
+    case mobile = 10
+    case iot = 11
+    case leisure = 12
+    case languages = 13
 }
 
 open class Domain: Object {
@@ -42,32 +46,41 @@ open class Domain: Object {
         get {
             guard let id = self.id.value else { return UIImage(named: "DomainPictoDefault") }
             switch id {
-            case DomainIDMapping.agile.rawValue:
-                return UIImage(named: "DomainPictoAgile")
+            case DomainIDMapping.office.rawValue:
+                return UIImage(named: "DomainPictoOffice")
                 
             case DomainIDMapping.craft.rawValue:
                 return UIImage(named: "DomainPictoCraft")
                 
-            case DomainIDMapping.mobile.rawValue:
-                return UIImage(named: "DomainPictoMobile")
-                
-            case DomainIDMapping.back.rawValue:
-                return UIImage(named: "DomainPictoBack")
-                
-            case DomainIDMapping.cloud.rawValue:
-                return UIImage(named: "DomainPictoCloud")
-                
-            case DomainIDMapping.devops.rawValue:
-                return UIImage(named: "DomainPictoDevOps")
+            case DomainIDMapping.agile.rawValue:
+                return UIImage(named: "DomainPictoAgile")
                 
             case DomainIDMapping.data.rawValue:
                 return UIImage(named: "DomainPictoData")
                 
-            case DomainIDMapping.leisure.rawValue:
-                return UIImage(named: "DomainPictoLeisure")
+            case DomainIDMapping.devops.rawValue:
+                return UIImage(named: "DomainPictoDevOps")
+                
+            case DomainIDMapping.cloud.rawValue:
+                return UIImage(named: "DomainPictoCloud")
                 
             case DomainIDMapping.front.rawValue:
                 return UIImage(named: "DomainPictoFront")
+                
+            case DomainIDMapping.back.rawValue:
+                return UIImage(named: "DomainPictoBack")
+                
+            case DomainIDMapping.mobile.rawValue:
+                return UIImage(named: "DomainPictoMobile")
+                
+            case DomainIDMapping.iot.rawValue:
+                return UIImage(named: "DomainPictoIOT")
+                
+            case DomainIDMapping.leisure.rawValue:
+                return UIImage(named: "DomainPictoLeisure")
+                
+            case DomainIDMapping.languages.rawValue:
+                return UIImage(named: "DomainPictoLanguages")
                 
             default:
                 return UIImage(named: "DomainPictoDefault")
