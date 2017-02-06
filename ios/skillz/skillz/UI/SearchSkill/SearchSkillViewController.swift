@@ -39,7 +39,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             return 0
         }
     }
-    var cellsHeightCache: [Int: CGFloat]!
+    var cellsHeightCache: [Int: CGFloat]! = [:]
     var searchString: String?
     var selectedSkill: Skill?
     var skillsStore: SkillsStore = SkillsStore.sharedInstance
@@ -227,7 +227,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        if let cachedHeight = cellsHeightCache[indexPath.row] {
+        if cellsHeightCache != nil, let cachedHeight = cellsHeightCache[indexPath.row] {
             return cachedHeight
         }
         let users = self.usersForSkillFromIndexPath(indexPath)
