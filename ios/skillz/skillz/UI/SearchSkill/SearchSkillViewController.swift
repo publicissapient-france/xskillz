@@ -39,6 +39,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             return 0
         }
     }
+    var cellsHeightCache: [Int: CGFloat]!
     var searchString: String?
     var selectedSkill: Skill?
     var skillsStore: SkillsStore = SkillsStore.sharedInstance
@@ -70,6 +71,7 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
             .success { [weak self] (skills:[Skill]) -> Void in
                 self?.loadingVisible = false
                 self?.skills = skills
+                self?.cellsHeightCache = [:]
                 self?.skillsSearchListCollectionView.reloadData()
                 Timer.scheduledTimer(timeInterval: 0.05, target: self!, selector: #selector(SearchSkillViewController.resizeSearchListCollection), userInfo: nil, repeats: false)
                 
@@ -225,8 +227,12 @@ class SearchSkillViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+        if let cachedHeight = cellsHeightCache[indexPath.row] {
+            return cachedHeight
+        }
         let users = self.usersForSkillFromIndexPath(indexPath)
         let cellHeight = RankedTableViewCell.cellHeight(tableView.bounds.size.width, users: users)
+        cellsHeightCache[indexPath.row] = cellHeight
         
         return cellHeight
     }
