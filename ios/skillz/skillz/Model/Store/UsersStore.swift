@@ -45,7 +45,7 @@ open class UsersStore: NSObject {
         return self.getUsersFromSearchTask!
             .success { (users: [User]) -> UsersTask in
                 for user: User in users {
-                    if user.name.lowercased().contains(searchString.lowercased()) {
+                    if user.name.lowercased().folding(options: String.CompareOptions.diacriticInsensitive, locale: nil).contains(searchString.lowercased().folding(options: String.CompareOptions.diacriticInsensitive, locale: nil)) {
                         results.append(user)
                     }
                 }
