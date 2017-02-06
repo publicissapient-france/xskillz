@@ -44,7 +44,7 @@ open class SkillsStore: NSObject {
         return task
             .success { (skills: [Skill]) -> SkillsTask in
                 for skill: Skill in skills {
-                    if skill.name.lowercased().contains(searchString.lowercased()) {
+                    if skill.name.lowercased().folding(options: String.CompareOptions.diacriticInsensitive, locale: nil).contains(searchString.lowercased().folding(options: String.CompareOptions.diacriticInsensitive, locale: nil)) {
                         results.append(skill)
                     }
                 }
