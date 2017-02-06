@@ -10,11 +10,13 @@ import UIKit
 class SkillRankedUsersDataSource: NSObject, UICollectionViewDataSource {
     var domain: Domain?
     var users: [User]!
+    var avatarsCache: [String: UIImage]!
     
     // MARK: - Init
     init(domain: Domain?, users: [User]!) {
         self.domain = domain
         self.users = users
+        self.avatarsCache = [String: UIImage]()
     }
     
     
@@ -35,9 +37,29 @@ class SkillRankedUsersDataSource: NSObject, UICollectionViewDataSource {
         if self.domain != nil {
             cell.color = self.domain!.colorObject
         }
-        cell.loadAvatar()
+        loadAvatar(cell)
         
         return cell
+    }
+    
+    func loadAvatar(_ forCell: UserCollectionViewCell) {
+        let avatarURL = forCell.user.avatarURL
+        if let cachedImage = avatarsCache[avatarURL] {
+            forCell.userImageView.image = cachedImage
+        }
+        else {
+            forCell.userImageView.af_setImage(
+                withURL: URL(string: (avatarURL))!,
+                placeholderImage: nil,
+                filter: nil,
+                progress: nil,
+                progressQueue: DispatchQueue.main,
+                imageTransition: UIImageView.ImageTransition.noTransition,
+                runImageTransitionIfCached: false,
+                completion: { [weak self] image in
+                    self?.avatarsCache[avatarURL] = forCell.userImageView.image!
+            })
+        }
     }
     
     

@@ -48,10 +48,4 @@ class UserCollectionViewCell: UICollectionViewCell {
         
         self.userImageView.layer.mask = self.userMaskImageView.layer
     }
-    
-    
-    // MARK: - Avatar
-    func loadAvatar() {
-        self.userImageView.af_setImage(withURL: URL(string: (self.user.avatarURL))!)
-    }
 }
