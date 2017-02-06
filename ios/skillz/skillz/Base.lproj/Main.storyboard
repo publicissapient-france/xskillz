@@ -101,19 +101,27 @@
                                 <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="UIN-gz-its">
+                                <rect key="frame" x="195.66666666666666" y="70" width="23" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="A8h-Jz-ctG" firstAttribute="top" secondItem="iP5-Tv-ceB" secondAttribute="bottom" constant="19" id="AeK-DM-E67"/>
                             <constraint firstAttribute="trailing" secondItem="EY3-GN-k3U" secondAttribute="trailing" id="Awq-Ts-VCI"/>
                             <constraint firstItem="EY3-GN-k3U" firstAttribute="top" secondItem="DOo-Cm-xkI" secondAttribute="top" id="Fss-jY-coO"/>
+                            <constraint firstItem="UIN-gz-its" firstAttribute="centerX" secondItem="A8h-Jz-ctG" secondAttribute="centerX" id="GPk-T0-uSK"/>
                             <constraint firstItem="A8h-Jz-ctG" firstAttribute="centerX" secondItem="DOo-Cm-xkI" secondAttribute="centerX" id="Qoa-1k-Uun"/>
                             <constraint firstItem="Fn7-ja-tfZ" firstAttribute="top" secondItem="EY3-GN-k3U" secondAttribute="bottom" id="rnI-Vx-bK1"/>
+                            <constraint firstItem="UIN-gz-its" firstAttribute="top" secondItem="A8h-Jz-ctG" secondAttribute="bottom" constant="10" id="sys-CV-jtX"/>
                             <constraint firstItem="EY3-GN-k3U" firstAttribute="leading" secondItem="DOo-Cm-xkI" secondAttribute="leading" id="u5C-PS-BDG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="EY3-GN-k3U" id="PI0-bq-Cn5"/>
+                        <outlet property="pageControl" destination="UIN-gz-its" id="Wyc-jw-ztg"/>
                         <outlet property="skillzLabel" destination="A8h-Jz-ctG" id="CtL-4W-zXu"/>
                     </connections>
                 </viewController>

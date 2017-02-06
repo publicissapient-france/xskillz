@@ -13,9 +13,12 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var skillzLabel: UILabel!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     var pageViewController: UIPageViewController!
     var viewControllers: [UIViewController]!
+    var currentStep: Int = 0
+    var futurStep: Int = 0
 
     
     // MARK: - Init
@@ -73,6 +76,14 @@ class MainViewController: UIViewController, UIPageViewControllerDataSource, UIPa
         if (previousViewControllers.first == self.searchAllyViewController()) {
             self.searchAllyViewController().swipeTutoHidden = true
         }
+        if (completed && indexOfViewController(previousViewControllers.first!) != futurStep) {
+            currentStep = futurStep
+            pageControl.currentPage = currentStep
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        futurStep = indexOfViewController(pendingViewControllers.first!)
     }
     
     
